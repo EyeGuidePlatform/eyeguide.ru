@@ -1,5 +1,4 @@
-<html>
-    <body>
+{% include "templates/header.html" %}
         <p>{{name}} {{obj.surname}}</p>
         <ul>
             {% for item in items %}
@@ -8,5 +7,5 @@
             <li>Empty</li>
             {% endfor %}
         </ul>
-    </body>
-</html>
+
+{% include "templates/footer.html" %}
