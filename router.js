@@ -3,6 +3,6 @@ let express = require('express'),
     mainController = require('./app/controllers/main');
 
 router.get('/', mainController.getHomePage);
-// router.get('/main/:name', require('./app/controllers/main').getPage);
+router.get('/map', require('./app/controllers/main').getMapPage);
 
 module.exports = router;

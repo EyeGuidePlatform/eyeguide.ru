@@ -99,6 +99,8 @@ body {
     display: table;
     table-layout: fixed;
 
+    padding: 0;
+
     z-index: 0;
 
     height: 100vh;
@@ -249,12 +251,6 @@ body {
 /* ========================================================================== */
 #footer {
     padding: 35px 40px;
-<<<<<<< HEAD
-
-=======
-    margin: 0 auto;
-    
->>>>>>> 4c107cbe6484dc64bff956ae6a0e5cfa91afa0f0
     border-top: 1px solid #2ecc71;
 }
 
