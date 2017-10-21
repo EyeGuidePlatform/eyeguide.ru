@@ -34,44 +34,51 @@
         <!-- =========================================================== -->
         <div id="content-sidebar" class="col-md-offset-6 col-md-6 col-sm-12 col-xs-12">
             {% if showMap %}
-            <div id="guides">
-                <h2 class="title">Здесь проводят экскурсии:</h2>
-                <div class="guide row">
-                    <div style="background-image: url('img/746.jpg')" class="guide-img col-md-3 col-sm-4 col-xs-4"></div>
-                    <div class="guide-stats col-md-9 col-sm-8 col-xs-8">
-                        <h3 class="guide-name">Игорь</h3>
-                        <p class="guide-stats">
-                            120 часов экскурсии <br>
-                            83 проведённых экскурсии <br>
-                            12 счастливых туристов
-                        </p>
-                    </div>
+            <div id="switch">
+                <div class="switcher">
+                    <button class="to-guides active">Гиды</button>
+                    <button class="to-places">Места</button>
                 </div>
 
-                <div class="guide row">
-                    <div style="background-image: url('img/4066.png')" class="guide-img col-md-3 col-sm-4 col-xs-4"></div>
-                    <div class="guide-stats col-md-9 col-sm-8 col-xs-8">
-                        <h3 class="guide-name">Наталья</h3>
-                        <p class="guide-stats">
-                            230 часов экскурсии <br>
-                            122 проведённых экскурсии <br>
-                            87 счастливых туристов
-                        </p>
+                <div id="guides">
+                    <div class="guide row">
+                        <div style="background-image: url('img/746.jpg')" class="guide-img col-md-3 col-sm-4 col-xs-4"></div>
+                        <div class="guide-stats col-md-9 col-sm-8 col-xs-8">
+                            <h3 class="guide-name">Игорь</h3>
+                            <p class="guide-stats">
+                                120 часов экскурсии <br>
+                                83 проведённых экскурсии <br>
+                                12 счастливых туристов
+                            </p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="guide row">
-                    <div style="background-image: url('img/6053.jpg')" class="guide-img col-md-3 col-sm-4 col-xs-4"></div>
-                    <div class="guide-stats col-md-9 col-sm-8 col-xs-8">
-                        <h3 class="guide-name">Алла</h3>
-                        <p class="guide-stats">
-                            100 часов экскурсии <br>
-                            60 проведённых экскурсии <br>
-                            20 счастливых туристов
-                        </p>
+                    <div class="guide row">
+                        <div style="background-image: url('img/4066.png')" class="guide-img col-md-3 col-sm-4 col-xs-4"></div>
+                        <div class="guide-stats col-md-9 col-sm-8 col-xs-8">
+                            <h3 class="guide-name">Наталья</h3>
+                            <p class="guide-stats">
+                                230 часов экскурсии <br>
+                                122 проведённых экскурсии <br>
+                                87 счастливых туристов
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="guide row">
+                        <div style="background-image: url('img/6053.jpg')" class="guide-img col-md-3 col-sm-4 col-xs-4"></div>
+                        <div class="guide-stats col-md-9 col-sm-8 col-xs-8">
+                            <h3 class="guide-name">Алла</h3>
+                            <p class="guide-stats">
+                                100 часов экскурсии <br>
+                                60 проведённых экскурсии <br>
+                                20 счастливых туристов
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
+            
             {% else %}
             <div id="about" class="info-block">
                 <h2 class="title"><i class="fa fa-eye"></i>Что такое EyeGuide?</h2>

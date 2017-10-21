@@ -217,9 +217,44 @@ body {
     color: #0caa50;
 }
 
-#guides {
+
+#switch {
     padding: 40px;
 }
+
+.switcher {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.switcher button {
+    padding: 5px 30px;
+    border: 1px solid #2ecc71;
+    background-color: #fff;
+
+    transition: all 0.3s ease-in;
+}
+
+.switcher button:hover,
+.switcher button:focus {
+    background-color: #0caa50;
+    color: #fff;
+}
+
+.switcher button.active {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.to-guides {
+    border-radius: 20px 0 0 20px;
+    margin-right: -5px;
+}
+
+.to-places {
+    border-radius: 0 20px 20px 0;
+}
+
 
 #guides .title {
     margin: 0 0 45px 0;
