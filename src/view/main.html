@@ -5,14 +5,9 @@
         <!-- =========================================================== -->
         <!-- Left-Sidebar -->
         <!-- =========================================================== -->
-        <div id="map-sidebar" style="{{ 'background-image: none; background-color: #ccc;' }}" class="col-md-6 col-sm-12 col-xs-12">
-            {% if showMap %}
-            <iframe src="https://yandex.ru/map-widget/v1/-/CBUtnNaI2D" style="height: 100vh;" width="100%" frameborder="0"></iframe>
-            {% else %}
+        <div id="map-sidebar" class="col-md-6 col-sm-12 col-xs-12">
             <div class="fade"></div>
-            {% endif %}
             <div class="left-s__content vcenter">
-                {% if not showMap %}
                 <div class="left-s__text">
                     <h1 class="intro-title">Быстрый поиск гида</h1>
                     <p class="intro-subtitle">
@@ -20,9 +15,8 @@
                         Наш сервис поможет вам в этом!
                     </p>
                 </div>
-                {% endif %}
                 
-                <form class="search-form {{'bottom' if showMap}}" action="/map" method="GET">
+                <form class="search-form" action="/map" method="GET">
                     <input class="search-input" type="text" name="place" placeholder="Например: Москва, парк Зарядье">
                     <button class="search-submit">Найти</button>
                 </form>
@@ -33,45 +27,6 @@
         <!-- Right-Sidebar -->
         <!-- =========================================================== -->
         <div id="content-sidebar" class="col-md-offset-6 col-md-6 col-sm-12 col-xs-12">
-            {% if showMap %}
-            <div id="switch">
-                <div class="switcher">
-                    <button class="to-guides active" data-target="#guides">Гиды</button>
-                    <button class="to-places" data-target="#places">Места</button>
-                </div>
-
-                <div id="guides" class="row">
-                    {% for guide in guides %}
-                    <a href="#" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
-                        <div style="background-image: url('{{ guide.imgUrl }}')" class="element-img col-md-12"></div>
-                        <div class="element-info col-md-12">
-                            <h3 class="element-name">{{ guide.name }}</h3>
-                            <p class="element-stats">
-                                {{ guide.info.hours }} часов экскурсии<br>
-                                {{ guide.info.made }} проведенных экскурсий<br>
-                                {{ guide.info.happy }} счастливых туристов
-                            </p>
-                        </div>
-                    </a>
-                    {% endfor %}
-                </div>
-
-                <div id="places" class="row hidden">
-                    {% for place in places %}
-                    <a href="#" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
-                        <div style="background-image: url('{{ place.imgUrl }}')" class="element-img col-md-12"></div>
-                        <div class="element-info col-md-12">
-                            <h3 class="element-name">{{ place.name }}</h3>
-                            <p class="element-stats">
-                                {{ place.info.substring(0, 110) }}...
-                            </p>
-                        </div>
-                    </a>
-                    {% endfor %}
-                </div>
-            </div>
-            
-            {% else %}
             <div id="about" class="info-block">
                 <h2 class="title"><i class="fa fa-eye"></i>Что такое EyeGuide?</h2>
                 <p class="descr">EyeGuide — это сервис по поиску гидов-экскурсоводов. Как правило, это частные гиды, которые работают на себя или стараются взять на себя дополнительную нагрузку, постоянно работая в музеях или экскурсионных бюро.</p>
@@ -96,7 +51,6 @@
                 <h2 class="title"><i class="fa fa-question"></i>У меня есть вопросы!</h2>
                 <p class="descr">Вы можете задать любые вопросы и получить поддержку в нашей группе <a href="#">Вконтакте</a> или посмотреть часто задаваемые вопросы <a href="#">тут</a>.</p>
             </div>
-            {% endif %}
         </div>
     </div>
 </div> <!-- container-fluid -->

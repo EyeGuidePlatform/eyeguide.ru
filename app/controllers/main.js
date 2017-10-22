@@ -1,5 +1,5 @@
 exports.getHomePage = (req, res) => {
-    res.render('view/main.html', {showMap: false});
+    res.render('view/main.html');
 }
 
 exports.getMapPage = (req, res) => {
@@ -57,5 +57,5 @@ exports.getMapPage = (req, res) => {
         }
     ];
 
-    res.render('view/main.html', {showMap: true, guides: guides, places: places});
+    res.render('view/map.html', {guides: guides, places: places});
 }
