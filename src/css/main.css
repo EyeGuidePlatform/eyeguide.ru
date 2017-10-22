@@ -257,6 +257,7 @@ body {
 
 
 .element {
+    height: 370px;
     padding: 15px;
 
     transition: all 0.2s ease;
@@ -283,6 +284,10 @@ body {
 
 .element-name {
     margin: 0;
+}
+
+.element-info {
+    padding: 0;
 }
 
 /* ========================================================================== */

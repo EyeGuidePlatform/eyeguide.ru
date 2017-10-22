@@ -41,85 +41,33 @@
                 </div>
 
                 <div id="guides" class="row">
+                    {% for guide in guides %}
                     <a href="#" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
-                        <div style="background-image: url('img/746.jpg')" class="element-img col-md-12"></div>
+                        <div style="background-image: url('{{ guide.imgUrl }}')" class="element-img col-md-12"></div>
                         <div class="element-info col-md-12">
-                            <h3 class="element-name">Игорь</h3>
+                            <h3 class="element-name">{{ guide.name }}</h3>
                             <p class="element-stats">
-                                120 часов экскурсии <br>
-                                83 проведённых экскурсии <br>
-                                12 счастливых туристов
+                                {{ guide.info.hours }} часов экскурсии<br>
+                                {{ guide.info.made }} проведенных экскурсий<br>
+                                {{ guide.info.happy }} счастливых туристов
                             </p>
                         </div>
                     </a>
-
-                    <a href="#" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
-                        <div style="background-image: url('img/4066.png')" class="element-img col-md-12"></div>
-                        <div class="element-info col-md-12">
-                            <h3 class="element-name">Наталья</h3>
-                            <p class="element-stats">
-                                230 часов экскурсии <br>
-                                122 проведённых экскурсии <br>
-                                87 счастливых туристов
-                            </p>
-                        </div>
-                    </a>
-
-                    <a href="#" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
-                        <div style="background-image: url('img/6053.jpg')" class="element-img col-md-12"></div>
-                        <div class="element-info col-md-12">
-                            <h3 class="element-name">Алла</h3>
-                            <p class="element-stats">
-                                100 часов экскурсии <br>
-                                60 проведённых экскурсии <br>
-                                20 счастливых туристов
-                            </p>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
-                        <div style="background-image: url('img/6053.jpg')" class="element-img col-md-12"></div>
-                        <div class="element-info col-md-12">
-                            <h3 class="element-name">Алла</h3>
-                            <p class="element-stats">
-                                100 часов экскурсии <br>
-                                60 проведённых экскурсии <br>
-                                20 счастливых туристов
-                            </p>
-                        </div>
-                    </a>
+                    {% endfor %}
                 </div>
 
                 <div id="places" class="row hidden">
+                    {% for place in places %}
                     <a href="#" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
-                        <div style="background-image: url('img/red_square.jpg')" class="element-img col-md-12"></div>
+                        <div style="background-image: url('{{ place.imgUrl }}')" class="element-img col-md-12"></div>
                         <div class="element-info col-md-12">
-                            <h3 class="element-name">Красная Площадь</h3>
+                            <h3 class="element-name">{{ place.name }}</h3>
                             <p class="element-stats">
-                                Главная площадь Москвы, расположенная в центре радиально-кольцевой планировки города между Московским Кремлём и Китай-городом.
+                                {{ place.info.substring(0, 110) }}...
                             </p>
                         </div>
                     </a>
-
-                    <a href="#" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
-                        <div style="background-image: url('img/park_pobedy.jpg')" class="element-img col-md-12"></div>
-                        <div class="element-info col-md-12">
-                            <h3 class="element-name">Парк Победы</h3>
-                            <p class="element-stats">
-                                Один из крупнейших в России и в мире мемориальных комплексов, площадь которого 135 га, посвящен победе в Великой Отечественной войне.  <br>
-                            </p>
-                        </div>
-                    </a>
-
-                    <a href="#" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
-                        <div style="background-image: url('img/aleks.jpg')" class="element-img col-md-12"></div>
-                        <div class="element-info col-md-12">
-                            <h3 class="element-name">Александровскийй сад</h3>
-                            <p class="element-stats">
-                                Парк в центре Москвы. Расположен с северо-западной стороны от стен Кремля на месте протекавшей здесь ранее реки Неглинной. Площадь сада около 10 гектаров.
-                            </p>
-                        </div>
-                    </a>
+                    {% endfor %}
                 </div>
             </div>
             
