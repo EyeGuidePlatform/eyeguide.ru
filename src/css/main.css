@@ -256,19 +256,19 @@ body {
 }
 
 
-.guide {
+.element {
     padding: 15px;
 
     transition: all 0.2s ease;
 }
 
-.guide:hover,
-.guide:focus {
+.element:hover,
+.element:focus {
     background-color: #2ecc71;
     color: #fff;
 }
 
-.guide-img {
+.element-img {
     height: 200px;
     margin-bottom: 10px;
 
@@ -281,7 +281,7 @@ body {
     border-radius: 10px;
 }
 
-.guide-name {
+.element-name {
     margin: 0;
 }
 
@@ -410,7 +410,7 @@ body {
 }
 
 @media (max-width: 520px) {
-    .guide {
+    .element {
         width: 100%;
     }
 }

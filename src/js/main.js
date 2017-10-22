@@ -26,4 +26,10 @@ switcher.onclick = (e) => {
 
     target.classList.add('active');
     disableBtn.classList.remove('active');
+
+    let disableBlock = document.querySelector(disableBtn.dataset.target);
+    disableBlock.classList.add('hidden');
+
+    let showBlock = document.querySelector(target.dataset.target);
+    showBlock.classList.remove('hidden');
 };
