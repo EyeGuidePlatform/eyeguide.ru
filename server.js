@@ -1,4 +1,4 @@
-let express = require('express'),
+var express = require('express'),
     nunjucks = require('nunjucks'),
     bodyParser = require('body-parser'),
     app = express();
