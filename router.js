@@ -1,7 +1,7 @@
 let express = require('express'),
-    router = express.Router();
+router = express.Router();
+mainController = require('./app/controllers/main');
 
-router.get('/', function (req, res)  {res.redirect('/main/Иван')});
-router.get('/main/:name', require('./app/controllers/main').getPage);
+router.get('/',mainController.getPage);
 
 module.exports = router;
