@@ -3,8 +3,18 @@ a {
     color: inherit;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
-    margin-top: 80px;
+    padding-top: 80px;
+}
+
+.wrap {
+    height: auto;
+    min-height: 100%;
+    padding-bottom: 145px;
 }
 
 /* ========================================================================== */
@@ -81,8 +91,13 @@ body {
 /* Footer */
 /* ========================================================================== */
 #footer {
+    position: relative;
+	margin-top: -145px;
+	clear:both;
+}
+
+#footer .content {
     padding: 35px 40px;
-    margin: 0 auto;
     
     border-top: 1px solid #2ecc71;
 }
@@ -200,12 +215,17 @@ body {
     }
 }
 
-#place{
-  padding-top:50px; 
-    margin-top:50px; 
-   margin-bottom:50px;  
-   padding-bottom:50px; 
-} 
+#place {
+    margin: 50px 0;
+}
+
+#place .container {
+    padding: 10px 0;
+}
+
+.place-name {
+    margin: 0 0 10px 0;
+}
 
 #carusel{
     padding-top:100px;
