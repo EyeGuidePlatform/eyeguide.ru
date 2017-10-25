@@ -1,3 +1,14 @@
+exports.getGidOptionsPage = (req, res) => {
+    res.render('view/gid_options.html');
+}
+exports.getGidOrdersPage = (req, res) => {
+    res.render('view/gid_orders.html');
+}
+exports.getGidPlacesPage = (req, res) => {
+    res.render('view/gid_places.html');
+}
+
+
 exports.getProfilePage = (req, res) => {
 
     let guides = [
@@ -14,7 +25,7 @@ exports.getProfilePage = (req, res) => {
             info: {
                 hours: 100,
                 done: 42,
-                happy: 57
+                happy: 55
             }
         },
         {

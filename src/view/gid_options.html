@@ -3,56 +3,24 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/gid-options.css">
-  <link href="fonts/font-awesome.min.css" rel="stylesheet">
-  <title>gidProfile</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/navbar_top.css">
+  <link rel="stylesheet" href="../css/gid-options.css">
+  <link rel="stylesheet" href="../fonts/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500">
+  <title>gidOptions</title>
 </head>
 <body>
   <!-- =================================================================== -->
   <!-- Navbar -->
   <!-- =================================================================== -->
-  <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-          <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand hidden-xs" href="#"><img src="img/logo.png" alt="logo"></a>
-              <a class="navbar-brand-text center-block visible-xs" href="#">eyeguide</a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="bs-navbar">
-              <ul class="nav navbar-nav">
-                  <li><a href="#">С кем пойдем?</a></li>
-                  <li><a href="#">Куда пойдем?</a></li>
-                  <li><a href="#">Задать вопрос</a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                  <li><a id="nav-sign-in" href="#">Вход / Регистрация</a></li>
-              </ul>
-          </div>
-      </div>
-  </nav>
-
+  {% include "templates/navbar_top.html" %}
 <!-- ====================== -->
 <!-- top-menu -->
 <div class="container-fluid gid_nav">
     <div class="row">
-      <div class='col-xs-12 col-sm-12 col-md-12 '>
-        <div class="gid_nav--menu container-fluid">
-          <div class="row">
-            <div class='col-xs-3 col-sm-3 col-md-3 menu-block'>Профиль</div>
-            <div class='col-xs-3 col-sm-3 col-md-3 menu-block'>Мои места</div>
-            <div class='col-xs-3 col-sm-3 col-md-3 menu-block'>Параметры</div>
-            <div class='col-xs-3 col-sm-3 col-md-3 menu-block'>Мои заказы</div>
-          </div>
-        </div>
-      </div>
+        {% include "templates/top_menu.html" %}
     </div>
   </div>
 
@@ -85,7 +53,7 @@
 
 
 
-  <script src="js/jquery-2.2.3.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="../js/jquery-2.2.3.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
