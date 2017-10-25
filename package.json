@@ -1,0 +1,17 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "MVP",
+  "scripts": {
+    "start": "npm i && nodemon server.js"
+  },
+  "keywords": [],
+  "author": "Startap studio HQ",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.14.0",
+    "nodemon": "^1.11.0",
+    "nunjucks": "^3.0.1"
+  }
+}
