@@ -200,28 +200,36 @@ body {
     }
 }
 
-#slider{
-    margin-top:30px;
+#place{
+  padding-top:50px; 
+    margin-top:50px; 
+   margin-bottom:50px;  
+   padding-bottom:50px; 
+} 
+
+#carusel{
+    padding-top:100px;
+    margin-top:100px;
 
 }
 
-#slider a{
+#carusel a{
     font-size: 100px;
 }
 
 
-#slider img{
+#carusel img{
 padding-top: 30px;
     margin-left: 40px;
 }
 
-#slider button{
+#carusel button{
 
     margin-left: 25px;
     margin-bottom: 10px;
 }
 
-#slider p
+#carusel p
 {
     margin-left: 60px;
 }
@@ -233,3 +241,6 @@ padding-top: 30px;
 #carousel img {
     margin-left: 300px;
 }
+
+
+

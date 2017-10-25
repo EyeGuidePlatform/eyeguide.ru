@@ -4,13 +4,17 @@
 <div id="place">
     <div class="container">
         <div class="row centred">
-            <div class="col-lg-4">
-                <div style="background-image: url('../{{ place.imgUrl }}')" class="element-img col-md-12"></div>
-                <div class="element-info col-md-12">
-                    <h3 class="element-name">{{ place.name }}</h3>
-                    <p class="element-stats">
-                        {{ place.info }}...
+            <div class="col-md-6">
+               
+                <img src="../{{ place.imgUrl }}" class="element-img col-md-6"></img>
+                <div class="element-info col-md-6">
+         
+                  
+                    <h1>{{ place.name }}</h1>
+                    <p >
+                        {{ place.info }}
                     </p>
+                   
                 </div>
             </div>
         </div>
