@@ -1,8 +1,4 @@
-const nunjucks = require('nunjucks');
-
-exports.getPage = (req, res) => {
-    res.render('view/main.html');
-    
+exports.getPlacePage = (req, res) => {
     let places = [
         {
             id: 1, 
@@ -24,7 +20,7 @@ exports.getPage = (req, res) => {
         }
     ];
 
- 
+    res.render('view/main.html', { place: places[req.params.id]} );
 }
 
 
