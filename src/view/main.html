@@ -1,71 +1,59 @@
-{% include "templates/header.html" %}
+{% include "templates/head.html" %}
 
-<div class="wrap">
-    <div id="place">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="place-name text-center">{{ place.name }}</h1>
-                    <div class="place-img col-md-6 col-sm-6">
-                        <img src="../{{ place.imgUrl }}" width="100%">
-                    </div>  
-                    <div class="place-info col-md-6 col-sm-6">
-                        <h4>Описание:</h4>  
-                        <p>
-                            {{ place.info }}
-                        </p>
-                    </div>
+{% include "templates/navbar.html" %}
+<div class="container-fluid wrap">
+    <div class="row">
+        <!-- =========================================================== -->
+        <!-- Left-Sidebar -->
+        <!-- =========================================================== -->
+        <div id="map-sidebar" class="col-md-6 col-sm-12 col-xs-12">
+            <div class="fade"></div>
+            <div class="left-s__content vcenter">
+                <div class="left-s__text">
+                    <h1 class="intro-title">Быстрый поиск гида</h1>
+                    <p class="intro-subtitle">
+                        Хотите посетить экскурсию, но не знаете как выбрать гида? <br>
+                        Наш сервис поможет вам в этом!
+                    </p>
                 </div>
+                
+                <form class="search-form" action="/map" method="GET">
+                    <input class="search-input" type="text" name="place" placeholder="Например: Москва, парк Зарядье">
+                    <button class="search-submit">Найти</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- =========================================================== -->
+        <!-- Right-Sidebar -->
+        <!-- =========================================================== -->
+        <div id="content-sidebar" class="col-md-offset-6 col-md-6 col-sm-12 col-xs-12">
+            <div id="about" class="info-block">
+                <h2 class="title"><i class="fa fa-eye"></i>Что такое EyeGuide?</h2>
+                <p class="descr">EyeGuide — это сервис по поиску гидов-экскурсоводов. Как правило, это частные гиды, которые работают на себя или стараются взять на себя дополнительную нагрузку, постоянно работая в музеях или экскурсионных бюро.</p>
+            </div>
+
+            <div id="how-find" class="info-block">
+                <h2 class="title"><i class="fa fa-search"></i>Как быстро найти гида?</h2>
+                <p class="descr">Выберите город или местоположение куда вы хотите отправиться, найдите его на интерактивной карте. Кликнув по туристическому объекту вы увидите краткое описание места и доступных экскурсоводов. После того, как вы выбрали куда пойти и гида, который проведет вам увлекательную экскурсию, мы сформируем заявку и Ваш экскурсовод свяжется с вами в ближайшее время!</p>
+            </div>
+
+            <div id="where" class="info-block">
+                <h2 class="title"><i class="fa fa-globe"></i>Где это работает?</h2>
+                <p class="descr">По всей необъятной территории России, где есть присутствие наших гидов-экскурсоводов.</p>
+            </div>
+
+            <div id="cost" class="info-block">
+                <h2 class="title"><i class="fa fa-rub"></i>Сколько это стоит?</h2>
+                <p class="descr">Каждый гид-экскурсовод назначает цену за свои услуги самостоятельно, обычно экскурсия для семьи из 3-5 человек стоит от 3000 руб.</p>
+            </div>
+
+            <div id="questions" class="info-block">
+                <h2 class="title"><i class="fa fa-question"></i>У меня есть вопросы!</h2>
+                <p class="descr">Вы можете задать любые вопросы и получить поддержку в нашей группе <a href="#">Вконтакте</a> или посмотреть часто задаваемые вопросы <a href="#">тут</a>.</p>
             </div>
         </div>
     </div>
-    
-    <!-- <div id="carousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carousel" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel" data-slide-to="1"></li>
-            <li data-target="#carousel" data-slide-to="2"></li>
-        </ol>
-    
-        <div class="carousel-inner">
-            <div class="item active">
-                <img src="../img/746.jpg" alt="" width="200" height="200">
-    
-                <div class="carousel-caption">
-                    <h3>Василий пупкин</h3>
-                    <button type="button" class="btn btn-default">Подробнее</button>
-                    <button type="button" class="btn btn-success">Приянть</button>
-                </div>
-            </div>
-            <div class="item">
-                <img src="../img/6053.jpg" alt="" width="200" height="200">
-    
-                <div class="carousel-caption">
-                    <h3>Светлана Тураева</h3>
-                    <button type="button" class="btn btn-default">Подробнее</button>
-                    <button type="button" class="btn btn-success">принять</button>
-                </div>
-            </div>
-            <div class="item">
-                <img src="../img/gid2.jpg" alt="" width="200" height="200">
-    
-                <div class="carousel-caption">
-                    <h3>Катя Самохвалова</h3>
-                    <p> Описание третего  слайда</p>
-                    <button type="button" class="btn btn-default">Подробнее</button>
-                    <button type="button" class="btn btn-success">Принять</button>
-                </div>
-            </div>
-        </div>
-    
-        <a class="left carousel-control" href="#carousel" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="right carousel-control" href="#carousel" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-    </div> -->
-</div>        
-
+</div> <!-- container-fluid -->
 
 {% include "templates/footer.html" %}
