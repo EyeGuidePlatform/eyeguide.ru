@@ -22,6 +22,7 @@ body {
 /* ========================================================================== */
 .navbar-default {
     background-color: #fff;
+    background-image: none;
     font-family: Roboto;
     font-weight: 400;
 
@@ -63,6 +64,16 @@ body {
     height: 80px;
 }
 
+.navbar-brand-text {
+    width: 110px;
+
+    text-transform: uppercase;
+    color: #2ecc71;
+    font-weight: 500;
+    font-size: 1.7em;
+    line-height: 50px;
+}
+
 #nav-sign-in {
     padding: 8px 20px;
 
@@ -85,7 +96,44 @@ body {
     display: block;
 }
 
+/* ========================================================================== */
+/* Place */
+/* ========================================================================== */
+#place {
+    margin: 50px 0;
+}
 
+#place .container {
+    padding: 20px 0;
+
+    border: 1px solid #2cee71;
+    box-shadow: 0 0 5px 0px #2cee71;
+    border-radius: 20px;
+    background-color: #0acc50;
+    color: #fff;
+}
+
+.place-name {
+    margin: 0 0 25px 0;
+
+    font-size: 3em;
+}
+
+/* .place-info h4{
+    margin-top: 0;
+} */
+
+.place-img img {
+    border: 2px solid #fff;
+    border-radius: 20px;
+}
+
+/* ========================================================================== */
+/* Carousel */
+/* ========================================================================== */
+#carousel img {
+    margin-left: 300px;
+}
 
 /* ========================================================================== */
 /* Footer */
@@ -174,15 +222,18 @@ body {
 /* Media queries */
 /* ========================================================================== */
 @media (max-width: 767px) {
-    .navbar-fixed-top {
-        position: relative;
-        margin: 0;
-    }
-
     body {
-        margin: 0;
+        padding-top: 50px;
     }
 
+    .navbar-header {
+        height: 50px;
+    }
+
+    .navbar-header > button {
+        margin-top: 8px;
+    }
+    
     .navbar-right {
         width: 100%;
         margin: 0;
@@ -215,52 +266,13 @@ body {
     }
 }
 
-#place {
-    margin: 50px 0;
-}
-
-#place .container {
-    padding: 10px 0;
-}
-
-.place-name {
-    margin: 0 0 10px 0;
-}
-
-#carusel{
-    padding-top:100px;
-    margin-top:100px;
-
-}
-
-#carusel a{
-    font-size: 100px;
+@media (max-width: 520px) {
+    .element {
+        width: 100%;
+    }
 }
 
 
-#carusel img{
-padding-top: 30px;
-    margin-left: 40px;
-}
-
-#carusel button{
-
-    margin-left: 25px;
-    margin-bottom: 10px;
-}
-
-#carusel p
-{
-    margin-left: 60px;
-}
-
-
-
-
-
-#carousel img {
-    margin-left: 300px;
-}
 
 
 
