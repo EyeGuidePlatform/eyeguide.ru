@@ -12,6 +12,11 @@ switcher.onclick = (e) => {
     
     if (target.tagName != 'BUTTON' || target.classList.contains('active')) return;
     
+    switchBlock(target);
+};
+
+
+function switchBlock(target) {
     let disableBtn;
     switch (target.className) {
         case 'to-guides':
@@ -32,4 +37,4 @@ switcher.onclick = (e) => {
 
     let showBlock = document.querySelector(target.dataset.target);
     showBlock.classList.remove('hidden');
-};
+}
