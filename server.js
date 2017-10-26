@@ -1,4 +1,4 @@
-let express = require('express'),
+const express = require('express'),
     nunjucks = require('nunjucks'),
     bodyParser = require('body-parser'),
     app = express();
@@ -9,7 +9,7 @@ app.use(
     bodyParser.json()
 );
 
-nunjucks.configure(__dirname + '/src', {
+nunjucks.configure(__dirname + 'view/src', {
     autoescape: true,
     cache: false,
     express: app

@@ -1,0 +1,62 @@
+{% include "templates/header.html" %}
+
+<div class="container-fluid wrap">
+    <div class="row">
+        <!-- =========================================================== -->
+        <!-- Left-Sidebar -->
+        <!-- =========================================================== -->
+        <div id="map-sidebar" style="background-image: none; background-color: #ccc;" class="col-md-6 col-sm-12 col-xs-12">
+            <iframe src="https://yandex.ru/map-widget/v1/-/CBUtnNaI2D" style="height: 100vh;" width="100%" frameborder="0"></iframe>
+            <div class="left-s__content vcenter">
+                <form class="search-form bottom" action="/map" method="GET">
+                    <input class="search-input" type="text" name="place" placeholder="Например: Москва, парк Зарядье">
+                    <button class="search-submit">Найти</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- =========================================================== -->
+        <!-- Right-Sidebar -->
+        <!-- =========================================================== -->
+        <div id="content-sidebar" class="col-md-offset-6 col-md-6 col-sm-12 col-xs-12">
+            <div id="switch">
+                <div class="switcher">
+                    <button class="to-guides active" data-target="#guides">Гиды</button>
+                    <button class="to-places" data-target="#places">Места</button>
+                </div>
+
+                <div id="guides" class="row">
+                    {% for guide in guides %}
+                    <a href="#" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
+                        <div style="background-image: url('{{ guide.imgUrl }}')" class="element-img col-md-12"></div>
+                        <div class="element-info col-md-12">
+                            <h3 class="element-name">{{ guide.name }}</h3>
+                            <p class="element-stats">
+                                {{ guide.info.hours }} часов экскурсии<br>
+                                {{ guide.info.made }} проведенных экскурсий<br>
+                                {{ guide.info.happy }} счастливых туристов
+                            </p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+
+                <div id="places" class="row hidden">
+                    {% for place in places %}
+                    <a href="#" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
+                        <div style="background-image: url('{{ place.imgUrl }}')" class="element-img col-md-12"></div>
+                        <div class="element-info col-md-12">
+                            <h3 class="element-name">{{ place.name }}</h3>
+                            <p class="element-stats">
+                                {{ place.info.substring(0, 110) }}...
+                            </p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- container-fluid -->
+
+{% include "templates/footer.html" %}
