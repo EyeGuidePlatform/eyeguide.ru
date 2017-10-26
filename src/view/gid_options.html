@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/navbar_top.css">
+  <link rel="stylesheet" href="../css/gid-options.css">
+  <link rel="stylesheet" href="../fonts/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500">
+  <title>gidOptions</title>
+</head>
+<body>
+  <!-- =================================================================== -->
+  <!-- Navbar -->
+  <!-- =================================================================== -->
+  {% include "templates/navbar_top.html" %}
+<!-- ====================== -->
+<!-- top-menu -->
+<div class="container-fluid gid_nav">
+    <div class="row">
+        {% include "templates/top_menu.html" %}
+    </div>
+  </div>
+
+  <!-- ================================ -->
+  <!-- main -->
+  <main>
+    <div class="container">
+        <span>Смена пароля</span>
+        <form action="#">
+          <div class="form-group">
+            <label for="old_pwd">Старый пароль:</label>
+            <input type="password" class="form-control" id="email" placeholder="Старый пароль" name="old_pwd">
+          </div>
+          <div class="form-group">
+            <label for="new_pwd">Новый пароль:</label>
+            <input type="password" class="form-control" id="new_pwd" placeholder="Новый пароль" name="new_pwd">
+          </div>
+          <div class="form-group">
+            <label for="new_pwd2">Повторить пароль:</label>
+            <input type="password" class="form-control" id="pwd" placeholder="Повторить пароль" name="new_pwd2">
+          </div>
+          <button type="submit" class="btn btn-default submit_btn">OK</button>
+          <button type="button" class="btn btn-default delete_acc_btn">
+              <i class="fa fa-times" aria-hidden="true"></i>
+              Удалить аккаунт
+          </button>
+        </form>
+      </div>
+  </main>
+
+
+
+  <script src="../js/jquery-2.2.3.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+</body>
+</html>
