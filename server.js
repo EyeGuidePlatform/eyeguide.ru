@@ -1,18 +1,18 @@
-let express = require('express'),
-nunjucks = require('nunjucks'),
-bodyParser = require('body-parser'),
-app = express();
+const express = require('express'),
+    nunjucks = require('nunjucks'),
+    bodyParser = require('body-parser'),
+    app = express();
 
 app.use(
-express.static(__dirname + '/src'),
-bodyParser(),
-bodyParser.json()
+    express.static(__dirname + '/src'),
+    bodyParser(),
+    bodyParser.json()
 );
 
 nunjucks.configure(__dirname + '/src', {
-autoescape: true,
-cache: false,
-express: app
+    autoescape: true,
+    cache: false,
+    express: app
 });
 
 app.use('/', require('./router'));
