@@ -1,4 +1,4 @@
-var express = require('express'),
+const express = require('express'),
     nunjucks = require('nunjucks'),
     bodyParser = require('body-parser'),
     app = express();
