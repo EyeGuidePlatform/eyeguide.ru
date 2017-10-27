@@ -53,7 +53,7 @@
                         <div class="element-info col-md-12">
                             <h3 class="element-name">{{ place.name }}</h3>
                             <p class="element-stats">
-                                {{ place.info.substring(0, 110) }}...
+                                {{ place.info | truncate(110) }}
                             </p>
                         </div>
                     </a>
