@@ -1,6 +1,10 @@
-{% include "templates/head.html" %}
+{% extends "templates/pageTemplate.html" %}
 
-{% include "templates/navbar.html" %}
+{% block commonStyles %}
+<link rel="stylesheet" href="css/jz_style.css">
+{% endblock %}
+
+{% block content %}
 <div class="container-fluid wrap">
     <div class="row">
         <!-- =========================================================== -->
@@ -59,5 +63,10 @@
         </div>
     </div>
 </div> <!-- container-fluid -->
+{% endblock %}
 
-{% include "templates/footer.html" %}
+{% block footerClasses %}col-md-offset-6 col-md-6{% endblock %}
+
+{% block commonJS %}
+<script src="js/map.js"></script>
+{% endblock %}

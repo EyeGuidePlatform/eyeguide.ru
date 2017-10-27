@@ -6,7 +6,7 @@ body {
     padding-top: 80px;
 }
 
-a {
+body a {
     text-decoration: inherit;
     color: inherit;
 }
@@ -181,6 +181,8 @@ a {
 
 
 .element {
+    overflow: hidden;
+
     height: 370px;
     padding: 15px;
 
@@ -210,7 +212,7 @@ a {
     margin: 0;
 }
 
-.element-info {
+#switch .element-info {
     padding: 0;
 }
 
@@ -225,7 +227,7 @@ a {
 }
 
 @media (max-width: 520px) {
-    .element {
+    #switch .element {
         width: 100%;
     }
 }
