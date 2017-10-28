@@ -1,15 +1,3 @@
-html, body {
-    height: 100%;
-}
-
-body {
-    padding-top: 80px;
-}
-
-body a {
-    text-decoration: inherit;
-    color: inherit;
-}
 
 /* ========================================================================== */
 /* Left-sidebar */
