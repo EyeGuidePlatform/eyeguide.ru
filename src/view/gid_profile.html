@@ -1,38 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <link rel="stylesheet" href="../css/bootstrap.min.css" media="screen">
-  <link rel="stylesheet" href="../css/navbar.css">
-  <link rel="stylesheet" href="../css/navbar_top.css">
-  <link rel="stylesheet" href="../css/gid-profile.css">
-  <link rel="stylesheet" href="../fonts/font-awesome.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500">
+{% extends "templates/pageTemplate.html" %}
 
-  <title>gidProfile</title>
-</head>
-<body>
-<!-- =================================================================== -->
-<!-- Navbar-->
-<!-- =================================================================== -->
-{% include "templates/navbar_top.html" %}
+{% block commonStyles %}
+
+<link rel="stylesheet" href="../css/gid-navbar.css">
+<link rel="stylesheet" href="../css/gid-profile.css">
+
+{% endblock %}
+
+{% block content %}
 
 <!-- ====================== -->
 <!-- top-menu -->
+
 <div class="container-fluid gid_nav">
-  <div class="row">
-      {% include "templates/top_menu.html" %}
-  </div>
+    <div class="row">
+        <div class='col-xs-12 col-sm-12 col-md-offset-3 col-md-9 '>
+            {% include "templates/top_menu.html" %}
+        </div>
+    </div>
 </div>
+
+
 <div class="container-fluid">
   <div class="row">
     <!-- left-menu -->
     <aside class="col-md-4">
-      <div class="container">
+      <!-- <div class="container"> -->
         <div class="row">
 
-          <div class="col-xs-12 col-sm-3 col-md-12">
+          <div class="col-md-12">
             <div class="profile_photo">
               <div class="edit">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -40,8 +36,8 @@
             </div>
           </div>
 
-          <div class="col-xs-12 col-sm-9 col-md-12 profile_info">
-            <div class="container">
+          <div class="col-md-12 profile_info">
+            <!-- <div class="container"> -->
               <div class="row">
                 <div class="col-xs-4 col-sm-4 col-md-6 col-md-offset-3">
                   <h4>{{ guides.info.hours }}</h4>
@@ -56,10 +52,10 @@
                   <span>счастливых туристов</span>
                 </div>
               </div>
-            </div>
+            <!-- </div> -->
           </div>
         </div>
-      </div>
+      <!-- </div> -->
     </aside>
 
     <!-- main -->
@@ -97,7 +93,13 @@
 <div class="edit big_edit">
   <i class="fa fa-pencil" aria-hidden="true"></i>
 </div>
-  <script src="../js/jquery-2.2.3.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
+
+{% endblock %}
+
+{% block commonJS %}
+<script src="../js/jquery-2.2.3.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+{% endblock %}
 </body>
 </html>

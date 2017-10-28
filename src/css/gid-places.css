@@ -13,23 +13,25 @@
   position: relative;
   font-size: 2.4rem;
   font-weight: 500;
-  padding: 1rem .5rem 1rem .5rem;
+  padding-top: 1rem; padding-bottom: 1rem;
   cursor: pointer;
 }
 .map_menu--edit {
+  padding-left: .2rem;
   border-left: 1px black solid;
   margin-left: -1px;
 }
 
 .map_menu--add {
+  padding-right: .2rem;
   color: black;
   text-shadow: none;
-  padding: 10px 0;
 }
 
 @media (max-width: 991px) {
   .wrapper {
     margin-left: -1rem;
+    margin-top: 5rem;
   }
 }
 

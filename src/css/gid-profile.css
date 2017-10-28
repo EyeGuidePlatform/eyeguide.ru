@@ -55,6 +55,10 @@ aside .edit:active {
 .profile_info, .profile_photo {
   margin-top: 1rem;
 }
+.profile_info .row {
+  margin-left: 0;
+  margin-right: 0;
+}
 .profile_info .row div{
   text-align: center;
   height: 10rem;

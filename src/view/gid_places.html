@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <link rel="stylesheet" href="../css/bootstrap.min.css" media="screen">
-  <link rel="stylesheet" href="../css/navbar.css">
-  <link rel="stylesheet" href="../css/navbar_top.css">
-  <link rel="stylesheet" href="../css/gid-places.css">
-  <link rel="stylesheet" href="../fonts/font-awesome.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500">
-  <title>gidPlaces</title>
-</head>
-<body>
+{% extends "templates/pageTemplate.html" %}
 
-    {% include "templates/navbar_top.html" %}
+{% block commonStyles %}
+
+<link rel="stylesheet" href="../css/gid-navbar.css">
+<link rel="stylesheet" href="../css/gid-places.css">
+
+{% endblock %}
+
+{% block content %}
 
 <!-- ====================== -->
 <!-- top-menu -->
@@ -37,7 +31,13 @@
     <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A2ae8329c0f2db741b42d2346154e5e7ebd699291584b49200326622bc9b027c5&amp;width=100%25&amp;height=720&amp;lang=ru_RU&amp;scroll=true"></script>
  </main>
 
-  <script src="../js/jquery-2.2.3.min.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
+  
+ {% endblock %}
+ 
+ {% block commonJS %}
+ <script src="../js/jquery-2.2.3.min.js"></script>
+ <script src="../js/bootstrap.min.js"></script>
+ 
+ {% endblock %}
 </body>
 </html>

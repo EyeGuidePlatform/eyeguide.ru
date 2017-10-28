@@ -1,0 +1,92 @@
+/* ========================================================================== */
+/* Footer */
+/* ========================================================================== */
+.wrap {
+    height: auto;
+    min-height: 100%;
+}
+
+#footer {
+	margin-top: -145px;
+	clear:both;
+}
+
+#footer .content {
+    padding: 35px 40px;
+    
+    border-top: 1px solid #2ecc71;
+}
+
+.footer-social {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.footer-social a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 35px;
+    border: 2px solid #000;
+    border-radius: 50%;
+
+    transition: all 0.2s ease-in;
+}
+
+.footer-social .facebook {
+    color: #3b5998;
+    border-color: #3b5998;
+}
+
+.footer-social .facebook:hover,
+.footer-social .facebook:focus {
+    color: #fff;
+    background-color: #3b5998;
+}
+
+.footer-social .vk {
+    color: #507299;
+    border-color: #6183aa;
+}
+
+.footer-social .vk:hover,
+.footer-social .vk:focus {
+    color: #fff;
+    background-color: #6183aa;
+}
+
+.footer-social .instagram {
+    color: #c0392b;
+    border-color: #c0392b;
+}
+
+.footer-social .instagram:hover,
+.footer-social .instagram:focus {
+    color: #fff;
+    background-color: #c0392b;
+}
+
+.footer-contacts,
+.footer-help {
+    line-height: 40px;
+    font-size: 1.6rem;
+}
+
+.footer-contacts a:hover,
+.footer-contacts a:focus,
+.footer-help a:hover,
+.footer-help a:focus {
+    color: #000;
+}
+
+.footer-rights {
+    margin-bottom: 0;
+    color: #888;
+}
+
+@media (max-width: 360px) {
+    .footer-social {
+        float: left;
+        width: 100%;
+    }
+}
