@@ -9,30 +9,34 @@
 {% endblock %}
 
 {% block content %}
+<div class="wrap">
+
+
 
 <!-- ====================== -->
 <!-- top-menu -->
-<div class="container-fluid gid_nav">
-  <div class="row">
-    <div class='col-xs-12 col-sm-12 col-md-9 col-md-push-3 '>
-        {% include "templates/top_menu.html" %}
-    </div>
-    <div class="col-md-3 col-md-pull-9 map_menu">
-      <div class="wrapper">
-        <div class="map_menu--add">Добавить</div>
-        <div class="map_menu--edit">Изменить</div>
+  <div class="container-fluid gid_nav">
+    <div class="row">
+      <div class='col-xs-12 col-sm-12 col-md-9 col-md-push-3 '>
+          {% include "templates/top_menu.html" %}
+      </div>
+      <div class="col-md-3 col-md-pull-9 map_menu">
+        <div class="wrapper">
+          <div class="map_menu--add">Добавить</div>
+          <div class="map_menu--edit">Изменить</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ================================ -->
-<!-- main -->
-<main>
-    <div id="YMapsID"></div>
- </main>
+  <!-- ================================ -->
+  <!-- main -->
+  <main>
+      <div id="YMapsID"></div>
+  </main>
 
   
+</div> <!-- wrap -->
  {% endblock %}
  
  {% block commonJS %}
