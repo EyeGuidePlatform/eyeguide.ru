@@ -10,5 +10,6 @@ router.get('/gidOptions', mainController.getGidOptionsPage);
 router.get('/gidOrders', mainController.getGidOrdersPage);
 router.get('/gidPlaces', mainController.getGidPlacesPage);
 router.get('/gidProfile/:id', require('./app/controllers/main').getProfilePage);
+router.get('/test', require('./app/controllers/example').example);// тестовый маршрут
 
 module.exports = router;
