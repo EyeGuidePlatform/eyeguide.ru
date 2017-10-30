@@ -273,6 +273,7 @@ body {
 }
 
 
-
-
-
+#map{
+    padding: 30px 30px ;
+    bottom: 30px 30px ;
+}

@@ -9,7 +9,7 @@ app.use(
     bodyParser.json()
 );
 
-nunjucks.configure(__dirname + 'view/src', {
+nunjucks.configure(__dirname + '/src/view', {
     autoescape: true,
     cache: false,
     express: app

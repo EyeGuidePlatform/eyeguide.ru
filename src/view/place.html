@@ -1,0 +1,41 @@
+{% include "templates/header.html" %}
+
+<div class="wrap">
+    <div id="place">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="place-name text-center">{{ place.name }}</h1>
+                    <div class="place-img col-md-6 col-sm-6">
+                        <img src="../{{ place.imgUrl }}" width="100%">
+                    </div>  
+                    <div class="place-info col-md-6 col-sm-6">
+                        <h4>Описание:</h4>  
+                        <p>
+                            {{ place.info }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+<div id="map">
+    <div class="container">
+        <div class="row centred">
+            <div id="YMapsID" style="width:1024px;height:800px" >
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div> 
+
+
+
+
+{% include "templates/footer.html" %}
