@@ -6,23 +6,30 @@ map = new YMaps.Map(document.getElementById("YMapsID"));
 // Установка для карты ее центра и масштаба
 map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
 
-// Создание метки
-const  placemark1 = new YMaps.Placemark(
-    new YMaps.GeoPoint(37.64, 55.76), 
-    {style: "default#photographerIcon"}
-),
-    placemark2 = new YMaps.Placemark(
-        new YMaps.GeoPoint(37.60, 55.76), 
-        {style: "default#photographerIcon"}
-    )
+// Создание меток
 
-placemark1.name = "Название места №1";
-placemark1.description = "Описание места №1";
+let places = [
+    {
+        name: 'Red Square',
+        loc: [37.621085, 55.753564]
+    }, 
+    {
+        name: 'Arbat str',
+        loc: [ 37.591548, 55.749501]
+    }
+]
 
-placemark2.name = "Название места №2";
-placemark2.description = "Описание места №2";
+
+let allPlaces = new YMaps.GeoObjectCollection();
+
+places.forEach( place => {
+    let point = new YMaps.GeoPoint(place.loc[0], place.loc[1]),
+        placemark = new YMaps.Placemark(point);
+    placemark.name = place.name;
+    allPlaces.add(placemark);
+})
 
 // Добавление метки на карту
-map.addOverlay(placemark1);
-map.addOverlay(placemark2);
+map.addOverlay(allPlaces);
+
 })
