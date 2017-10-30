@@ -48,19 +48,19 @@ exports.getProfile = (req, res) => {
         {
             id: 1, 
             name: 'Александровский сад',
-            img: 'img/places/alexander.jpg',
+            img: '../img/places/alexander.jpg',
             info: 'Какой-то там сад.'
         },
         {
             id: 2, 
             name: 'Ботанический сад МГУ',
-            img: 'img/places/botanic.jpg',
+            img: '../img/places/botanic.jpg',
             info: 'Какой-то там сад.'
         },
         {
             id: 3, 
             name: 'Кремль',
-            img: 'img/places/kremlin.jpg',
+            img: '../img/places/kremlin.jpg',
             info: 'Какие-то там башни.'
         }
     ];
