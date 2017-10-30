@@ -1,7 +1,8 @@
 YMaps.jQuery(function () {
     // Создает экземпляр карты и привязывает его к созданному контейнеру
     let map = new YMaps.Map(YMaps.jQuery("#map-sidebar")[0]);
-        
+    
+    map.enableScrollZoom();
     // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
     map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 11);
 
