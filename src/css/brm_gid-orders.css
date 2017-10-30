@@ -12,10 +12,12 @@ main .row:first-child {
   margin-left: 0px;
   margin-right: 0px;
 }
-
+.list-wrapper .panel-default {
+background-color: #b9ffbe;
+}
 .new_order, .resent_order {
 height: 25rem;
-background-color: white;
+background-color: #b9ffbe;
 }
 
 .new_order {
@@ -45,7 +47,7 @@ background-color: white;
   bottom: -1px;
 }
 .new_order--btnY:hover {
-  background-color:#0d8d44;
+  background-color:#0caa50;
 }
 .new_order--btnN {
   right: -1px;
@@ -57,12 +59,8 @@ background-color: white;
 .new_order--btnY:focus, .new_order--btnN:focus {
   outline: none;
 }
-.list-wrapper {
-  /* max-height: 250px;
-  overflow: scroll;
-  overflow-x: hidden;
-  overflow-y: auto; */
-}
+
+
 .panel-group {
   margin: 1rem 0 1rem 0;
 }

@@ -4,6 +4,7 @@ main {
 main ul {
   list-style: none;
   padding-right: 3rem;
+  background: linear-gradient(to top, white, #b9ffbe)
 }
 main li {
   padding: 1rem;
@@ -41,7 +42,6 @@ aside .edit:active {
   position: fixed;
   line-height: 1.1em;
   font-size: 4.2em;
-  bottom: 5rem;
   right: 5rem;
   width: 8rem;
   height: 8rem;
@@ -64,7 +64,7 @@ aside .edit:active {
   text-align: center;
   height: 10rem;
   padding:1rem 0 1rem 0;
-  border: 3px #16773f solid;
+  border: 3px #0caa50 solid;
 }
 .profile_info div:nth-child(n+2) {
   margin-top: -3px;
@@ -78,17 +78,16 @@ aside .edit:active {
 .menu-block:not(:last-child):hover::before {
     opacity: 0;
   }
-
-  .big_edit {
-    bottom: 5rem;
-    right: 1rem;
-  }
 }
 
 @media (max-width: 991px) {
   .profile_info div:nth-child(n+2) {
     margin-top: 0px;
     margin-left: -3px;
+  }
+  .big_edit {
+    bottom: 15rem;
+    right: 1rem;
   }
 }
 

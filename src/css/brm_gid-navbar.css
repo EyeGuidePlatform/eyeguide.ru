@@ -48,7 +48,7 @@ body {
   
   .menu-block:hover {
     color:white;
-    background-color: #2ecc71;
+    background-color: #0caa50;
   }
   .menu-block:not(:last-child):before{
     content: '';
