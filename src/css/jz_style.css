@@ -57,15 +57,16 @@
 .search-form.bottom {
     position: absolute;
     z-index: 2;
-    
+
     bottom: 100px;
     width: 100%;
     left: 0;
 }
 
 .search-input {
-    padding: 9px 10px;
+    padding: 11px 10px;
     width: 50%;
+    height: 100%;
     min-width: 210px;
 
     color: #000;
