@@ -1,40 +1,7 @@
 const placeModel = require('../models/place').placeModel,
     mongoose = require('./../../server').mongoose;
 
-exports.getMapPage = (req, res) => {
-    let guides = [
-        {
-            id: 1, 
-            name: 'Игорь',
-            imgUrl: 'img/746.jpg',
-            info: {
-                hours: 120,
-                made: 83,
-                happy: 12
-            }
-        },
-        {
-            id: 2, 
-            name: 'Наталья',
-            imgUrl: 'img/4066.png',
-            info: {
-                hours: 230,
-                made: 122,
-                happy: 87
-            }
-        },
-        {
-            id: 3, 
-            name: 'Алла',
-            imgUrl: 'img/6053.jpg',
-            info: {
-                hours: 100,
-                made: 60,
-                happy: 20
-            }
-        }
-    ];
-
+exports.parseCity = (req, res) => {
     // let places = [
     //     {
     //         id: 1, 
@@ -56,7 +23,57 @@ exports.getMapPage = (req, res) => {
     //     }
     // ];
 
+    // placeModel.create( {
+    //     name: 'Пылало',
+    //     description: 'ыаыпыпыпыпып',
+    //     geo: {
+    //         x: 34,
+    //         y: 55
+    //     }
+    // } );
+
+    let city = req.body.city;
+
+    res.redirect('/map/' + city);
+}
+
+exports.getCityPage = (req, res) => {
+    let city = req.params.city;
+
+    let guides = [
+        {
+            id: 1, 
+            name: 'Игорь',
+            imgUrl: '../img/746.jpg',
+            info: {
+                hours: 120,
+                made: 83,
+                happy: 12
+            }
+        },
+        {
+            id: 2, 
+            name: 'Наталья',
+            imgUrl: '../img/4066.png',
+            info: {
+                hours: 230,
+                made: 122,
+                happy: 87
+            }
+        },
+        {
+            id: 3, 
+            name: 'Алла',
+            imgUrl: '/img/6053.jpg',
+            info: {
+                hours: 100,
+                made: 60,
+                happy: 20
+            }
+        }
+    ];
+
     placeModel.find( {}, (err, places) => {
-        res.render('map.html', {guides: guides, places: places});
+        res.render('map.html', {guides: guides, places: places, city: city});
     } );
 }

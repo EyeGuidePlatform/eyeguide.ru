@@ -4,6 +4,7 @@ let express = require('express'),
     mapController = require('./app/controllers/map');
 
 router.get('/', mainController.getHomePage);
-router.get('/map', mapController.getMapPage);
+router.post('/map', mapController.parseCity);
+router.get('/map/:city', mapController.getCityPage)
 
 module.exports = router;
