@@ -12,5 +12,6 @@ router.get('/gidOrders', gidProfile.getGidOrdersPage);
 router.get('/gidPlaces', gidProfile.getGidPlacesPage);
 router.get('/gidProfile', gidProfile.getProfilePage0); // заглушка 
 router.get('/gidProfile/:id', require('./app/controllers/brm_gid').getProfilePage);
+router.get('/newguide', gidProfile.getNewGuide);
 
 module.exports = router;
