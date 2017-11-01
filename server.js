@@ -1,7 +1,13 @@
 const express = require('express'),
     nunjucks = require('nunjucks'),
     bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
     app = express();
+
+let url = 'mongodb://localhost:27017/Jayzzer';
+mongoose.Promise = global.Promise;
+mongoose.connect(url, {useMongoClient: true});
+module.exports.mongoose = mongoose;
 
 app.use(
     express.static(__dirname + '/src'),
