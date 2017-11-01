@@ -10,7 +10,7 @@ router.get('/profile/:id', require('./app/controllers/main').getProfile);
 router.get('/gidOptions', gidProfile.getGidOptionsPage);
 router.get('/gidOrders', gidProfile.getGidOrdersPage);
 router.get('/gidPlaces', gidProfile.getGidPlacesPage);
-// router.get('/gidProfile', gidProfile.getProfilePage); // заглушка 
+router.get('/gidProfile', gidProfile.getProfilePage0); // заглушка 
 router.get('/gidProfile/:id', require('./app/controllers/brm_gid').getProfilePage);
 
 module.exports = router;
