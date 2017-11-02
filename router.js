@@ -3,7 +3,8 @@ let express = require('express'),
     mainController = require('./app/controllers/main'),
     gidProfile = require('./app/controllers/gidProfile'),
     mapController = require('./app/controllers/map'),
-    guideCard = require('./app/controllers/guideCard');
+    guideCard = require('./app/controllers/guideCard'),
+    placeCard = require('./app/controllers/placeCard');
 
 router.get('/', mainController.getHomePage);
 router.post('/map', mapController.parseCity);
@@ -16,6 +17,7 @@ router.get('/gidPlaces', gidProfile.getGidPlacesPage);
 router.get('/gidProfile', gidProfile.getProfilePage0); // заглушка 
 router.get('/gidProfile/:id', require('./app/controllers/brm_gid').getProfilePage);
 router.get('/newguide', gidProfile.getNewGuide);
+router.get('/place/:id', placeCard.getPlacePage);
 router.get('/profile/:id', guideCard.getProfile);
 
 module.exports = router;
