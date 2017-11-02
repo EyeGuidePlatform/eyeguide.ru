@@ -1,0 +1,46 @@
+.map_menu {
+  padding-right: 0px;
+}
+.wrapper {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin-top: .5rem;
+  font-size: 0;
+}
+.map_menu .wrapper div {
+  display: inline-block;
+  position: relative;
+  font-size: 2.4rem;
+  font-weight: 500;
+  padding-top: 1rem; padding-bottom: 1rem;
+  cursor: pointer;
+}
+.map_menu--edit {
+  padding-left: .2rem;
+  border-left: 1px black solid;
+  margin-left: -1px;
+}
+
+.map_menu--add {
+  padding-right: .2rem;
+  color: black;
+  text-shadow: none;
+}
+
+#YMapsID {
+  width:100%;
+  height:400px;
+}
+
+@media (max-width: 991px) {
+  .wrapper {
+    margin-left: -1rem;
+    margin-top: 5rem;
+  }
+}
+
+main {
+  margin: 2rem;
+  background-color: green;
+}

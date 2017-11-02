@@ -4,7 +4,7 @@ const express = require('express'),
     mongoose = require('mongoose'),
     app = express();
 
-let url = 'mongodb://localhost:27017/Jayzzer';
+let url = 'mongodb://'+login+':'+pass+'@'+adress;    
 mongoose.Promise = global.Promise;
 mongoose.connect(url, {useMongoClient: true});
 module.exports.mongoose = mongoose;
