@@ -4,23 +4,23 @@ const mongoose = require('./../../server').mongoose,
 guideSchema = mongoose.Schema({
     name: {
         type: String,
-        default: 'Михаил'
+        default: ''
     },
     surname: {
         type: String, 
-        default:'Иванов'
+        default:''
     },
     age: {
         type: Number,
-        default: 18
+        default: 0
     },
     email: {
         type: String,
-        default: 'eyeguide@gmail.com'
+        default: 'email отсутствует'
     },
     phone: {
         type: String,
-        default: '8 (900) 500 10 50'
+        default: 'телефон отсутствует'
     },
     img: String, 
     info: {
