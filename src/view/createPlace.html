@@ -1,0 +1,36 @@
+{% extends "templates/pageTemplate.html" %}
+{% block content %}
+<div class="container wrap">
+    <div class="row">
+        <h1>Добавить место</h1>
+        <form action="/createPlace" method="POST">
+            <div class="form-group">
+                <label for="name">Наименование:</label>
+                <input class="form-control" id="name" type="text" name="place[name]">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Описание:</label>
+                <textarea class="form-control" id="description" name="place[description]"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="img">Изображение:</label>
+                <input class="form-control" id="img" type="text" name="place[img]">
+            </div>
+
+            <div class="form-group">
+                <label for="x">X:</label>
+                <input class="form-control" id="x" type="text" name="place[geo.x]">
+            </div>
+
+            <div class="form-group">
+                <label for="y">Y:</label>
+                <input class="form-control" id="y" type="text" name="place[geo.y]">
+            </div>
+            <button>Добавить</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
