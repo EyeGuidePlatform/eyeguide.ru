@@ -1,41 +1,65 @@
-{% include "templates/header.html" %}
+{% extends "templates/pageTemplate.html" %}
 
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/style1.css">
+<link rel="stylesheet" href="/css/slick.css">
+<script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
+
+ 
+ <script type="text/javascript">
+     // Создает обработчик события window.onLoad
+     YMaps.jQuery(function () {
+         // Создает экземпляр карты и привязывает его к созданному контейнеру
+         var map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
+             
+         // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
+         map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
+     })
+ </script>
+{% endblock %}
+
+{% block content %}
 <div class="wrap">
-    <div id="place">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="place-name text-center">{{ place.name }}</h1>
-                    <div class="place-img col-md-6 col-sm-6">
-                        <img src="../{{ place.imgUrl }}" width="100%">
-                    </div>  
-                    <div class="place-info col-md-6 col-sm-6">
-                        <h4>Описание:</h4>  
-                        <p>
-                            {{ place.info }}
-                        </p>
+        <div id="place">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="place-name text-center">{{ place.name }}</h1>
+                        <div class="place-img col-md-6 col-sm-6">
+                            <img src="../{{ place.imgUrl }}" width="100%">
+                        </div>  
+                        <div class="place-info col-md-6 col-sm-6">
+                            <h4>Описание:</h4>  
+                            <p>
+                                {{ place.info }}
+                            </p>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        
+    
+    
+    <div id="map">
+        <div class="container">
+            <div class="row centred">
+                <div id="YMapsID" style="width:1024px;height:800px" >
+                    
                 </div>
             </div>
         </div>
     </div>
     
+    
+    </div> 
+  {% endblock %}
 
+  {% block commonJS %}
 
-<div id="map">
-    <div class="container">
-        <div class="row centred">
-            <div id="YMapsID" style="width:1024px;height:800px" >
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-
-</div> 
-
-
-
-
-{% include "templates/footer.html" %}
+  <script src="../js/jquery-2.2.3.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  
+  {% endblock %}
+</body>
+</html>
