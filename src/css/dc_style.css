@@ -30,3 +30,21 @@
 .mb-5{
     margin-bottom: 5rem;
 }
+
+#YMapsID{
+    margin:auto;
+    height:300px;
+}
+
+@media(min-width:576px){
+    #YMapsID{
+        width:auto;
+    }
+}
+
+@media (min-width: 768px) {
+    #YMapsID{
+        width:600px;
+        height: 450px;
+    }
+}
