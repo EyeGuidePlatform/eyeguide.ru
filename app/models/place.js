@@ -19,27 +19,25 @@ placeSchema = mongoose.Schema({
 });
 
 placeSchema.statics = {
-    getPlace: function(placeId, lang){
-        //TODO в async/await
-        return new Promise(function(resolve, reject){
-            mongoose.model('place', placeSchema).findById(placeId).then( function(place, err){
-                trnsModel.translitWord(place.name, lang)
-                    .then(function (name) {
-                        place.name = name;
-                        return place;
-                    })
-                    .then(function (place) {
-                        trnsModel.translateText(place.description, lang)
-                            .then( function (description) {
-                                place.description = description;
-                                resolve(place);
-                            });
-                    });
-            });
-        });
+    getPlace: async function(placeId, lang){
+        let place = await mongoose.model('place', placeSchema).findById(placeId),
+            name = await trnsModel.translitWord(place.name, lang),
+            description = await trnsModel.translateText(place.description, lang);
+
+        place.description = description;
+        place.name = name;
+                
+        return place;  
     },
-    getPlaces: function(lang) {
-        //TODO
+    getPlaces: async function(lang) {
+        let places = await mongoose.model('place', placeSchema).find({});
+        
+        for(let place of places) {
+            place.name = await trnsModel.translitWord(place.name, lang);
+            place.description = await trnsModel.translateText(place.description, lang);
+        };
+
+        return places;
     }
 }
 
