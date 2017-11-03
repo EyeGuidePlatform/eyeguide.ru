@@ -1,3 +1,4 @@
+//TODO убрать заглушки!
 exports.getProfile = (req, res) => {
     let guides = [
         {

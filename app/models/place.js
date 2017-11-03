@@ -1,6 +1,10 @@
 const mongoose = require('./../../server').mongoose;
 
 placeSchema = mongoose.Schema({
+    visible: {
+        type: Number, 
+        default: 0 // 0 - на модерации, 1 - одобрено, 2 - откланено
+    },
     name: String,
     description: String,
     img: {

@@ -2,6 +2,10 @@ const mongoose = require('./../../server').mongoose,
 
 // схема данных - задает структуру объекта, хранимого в БД
 guideSchema = mongoose.Schema({
+    visible: {
+        type: Number, 
+        default: 0 // 0 - на модерации, 1 - одобрен, 2 - откланен
+    },
     name: {
         type: String,
         default: ''

@@ -1,3 +1,4 @@
+//TODO убрать заглушки!
 exports.getPlacePage = (req, res) => {
     let places = [
         {

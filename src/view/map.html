@@ -33,7 +33,7 @@
 
                 <div id="guides" class="row">
                     {% for guide in guides %}
-                    <a href="#" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
+                    <a href="/profile/{{ guide._id }}" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
                         <div style="background-image: url('{{ guide.img }}')" class="element-img col-md-12"></div>
                         <div class="element-info col-md-12">
                             <h3 class="element-name">{{ guide.name }}</h3>
@@ -49,7 +49,7 @@
 
                 <div id="places" class="row hidden">
                     {% for place in places %}
-                    <a href="place/{{ place._id }}" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
+                    <a href="/place/{{ place._id }}" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
                         <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
                         <div class="element-info col-md-12">
                             <h3 class="element-name">{{ place.name }}</h3>

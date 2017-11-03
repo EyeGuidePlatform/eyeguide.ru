@@ -8,6 +8,7 @@ let login = require('./config').dbLogin,
     pass = require('./config').dbPass,
     adress = require('./config').dbAdress,
     url = 'mongodb://'+login+':'+pass+'@'+adress;
+    //url = 'mongodb://localhost:27017/ExampleDB';
 
 mongoose.Promise = global.Promise;
 mongoose.connect(url, {useMongoClient: true});
