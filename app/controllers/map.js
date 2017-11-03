@@ -17,8 +17,8 @@ exports.parseCity = (req, res) => {
 exports.getCityPage = (req, res) => {
     let city = req.params.city;
 
-    placeModel.find({}).then( places => {
-        guideModel.find({}).then( guides => {
+    placeModel.find({}).limit(6).then( places => {
+        guideModel.find({}).limit(6).then( guides => {
             res.render('map.html', {
                 guides: guides, 
                 places: places, 
