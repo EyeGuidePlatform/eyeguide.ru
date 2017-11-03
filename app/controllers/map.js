@@ -18,12 +18,16 @@ exports.getCityPage = (req, res) => {
     let city = req.params.city;
 
     placeModel.find({}).then( places => {
-        guideModel.find({}).then( guides => {
-            res.render('map.html', {
-                guides: guides, 
-                places: places, 
-                city: city
+        placeModel.getPlace(places[0]._id, req.locale)
+            .then( (place, err) => {
+                guideModel.find({}).then( guides => {
+                    places[0] = place;
+                    res.render('map.html', {
+                        guides: guides, 
+                        places: places, 
+                        city: city
+                    });
+                });
             });
-        });
     });
 }

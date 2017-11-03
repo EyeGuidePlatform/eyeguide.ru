@@ -1,5 +1,7 @@
 let express = require('express'),
     router = express.Router(),
+    locales = require('./server').locales,
+
     mainController = require('./app/controllers/main'),
     lkController = require('./app/controllers/guideLk'),//ранее gidProfile
     mapController = require('./app/controllers/map'),
@@ -10,7 +12,13 @@ let express = require('express'),
 
 //Middleware
 router.use('/', (req, res, next) => {
-    console.log (req.method, req.path); next();
+    if (!req.cookies.eye_lang) {
+        lang = (locales.indexOf(req.region) == -1) ? 'ru' : req.region;
+        res.cookie('eye_lang', lang, { maxAge: 900000, httpOnly: true });
+    }
+
+    next();
+
     /**
      * Проверка авторизации
      * Редирект на 404
@@ -42,5 +50,7 @@ router.post('/createPlace', regPlaceController.createPlace);
 
 //Административные функции
 //TODO
+
+router.get('/test', require('./app/controllers/test').test);
 
 module.exports = router;
