@@ -28,7 +28,7 @@ guideSchema = mongoose.Schema({
     },
     img: String, 
     info: {
-        spec: String,
+        spec: [String],
         types: [String],
         lang: [String],
         hours: Number,

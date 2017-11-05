@@ -14,6 +14,9 @@ exports.addNewGuide = (req, res, next) => {
     let newGuide = new guideModel(req.body.guide);
     newGuide.img = req.file.filename;
     newGuide.places = req.body.places;
+    newGuide.info.spec = req.body.spec.split(',');
+    newGuide.info.types = req.body.types.split(',');
+    newGuide.info.lang = req.body.lang.split(',');
     newGuide.save();
 
     //Добавить каждому выбранному месту нового гида

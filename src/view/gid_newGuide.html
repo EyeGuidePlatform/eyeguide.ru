@@ -40,24 +40,24 @@
 
                 <div class="form-group">
                     <label for="places">Места</label>
-                    <select name="places[]" multiple id="places">
+                    <select name="places[]" id="places" placeholder="Введите места" multiple>
                         {% for place in places %}
                         <option value="{{ place._id }}">{{ place.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
-                <!--<div class="form-group">
+                <div class="form-group">
                     <label for="spec">Специализации</label>
-                    <input type="text" class="form-control" id="spec">
+                    <input type="text" class="multiple-choice form-control" id="spec" name="spec" placeholder="Введите специализации">
                 </div>
                 <div class="form-group">
                     <label for="types">Виды экскурсий</label>
-                    <input type="text" class="form-control" id="types">
+                    <input type="text" class="multiple-choice form-control" id="types" name="types" placeholder="Введите виды экскурсий">
                 </div>
                 <div class="form-group">
                     <label for="language">Языки</label>
-                    <input type="text" class="form-control" id="language">
-                </div>-->
+                    <input type="text" class="multiple-choice form-control" id="language" name="lang" placeholder="Введите языки, которые вы знаете">
+                </div>
                 
                 <button type="submit" class="btn btn-block btn-primary">Зарегистрироваться</button>
             </form>       
@@ -68,8 +68,12 @@
 
 {% block commonJS %}
 <script>
-    var multipleCancelButton = new Choices('#places', {
-        removeItemButton: true,
+    let placesSelect = new Choices('#places', {
+        removeItemButton: true
+    });
+
+    let multipleChoiceInputs = new Choices('.multiple-choice', {
+        removeItemButton: true
     });
 </script>
 {% endblock %}
