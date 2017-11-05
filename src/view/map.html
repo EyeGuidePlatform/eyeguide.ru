@@ -58,7 +58,7 @@
                     <div class="elements row">
                         {% for place in places %}
                         <a href="/place/{{ place._id }}" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
-                            <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
+                            <div style="background-image: url('/img/{{ place.img }}')" class="element-img col-md-12"></div>
                             <div class="element-info col-md-12">
                                 <h3 class="element-name">{{ place.name }}</h3>
                                 <p class="element-stats">

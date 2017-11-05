@@ -11,17 +11,10 @@ exports.getCreatePlacePage = (req, res) => {
 /**
  * Сохранение объекта "место" в БД
  */
-exports.createPlace = (req, res) => {
-    if (!req.body.place.img) {
-        req.body.place.img = undefined;
-    }
-
-    /**
-     * TODO
-     * при усложнении реализации, вынести в статический метод модели и передавать
-     * в метод сформированный в контроллере объект
-     */
-    placeModel.create( req.body.place );
+exports.createPlace = (req, res, next) => {
+    let newPlace = new placeModel(req.body.place);
+    newPlace.img = req.file ? req.file.filename : undefined;
+    newPlace.save();
 
     res.redirect('back');
 }
