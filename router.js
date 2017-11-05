@@ -1,6 +1,7 @@
 let express = require('express'),
     router = express.Router(),
     mainController = require('./app/controllers/main'),
+    searchController = require('./app/controllers/search'),
     lkController = require('./app/controllers/guideLk'),//ранее gidProfile
     mapController = require('./app/controllers/map'),
     guideController = require('./app/controllers/guideCard'),//ранее guideCard
@@ -38,7 +39,7 @@ router.get('/create/place', regPlaceController.getCreatePlacePage);
 router.post('/createPlace', regPlaceController.createPlace);
 
 //Поиск мест и гидов
-//TODO
+router.get('/search' ,searchController.getSearchPage);
 
 //Административные функции
 //TODO

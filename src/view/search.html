@@ -1,0 +1,123 @@
+{% extends "templates/pageTemplate.html" %}
+
+{% block commonStyles %}
+
+<link rel="stylesheet" href="/css/brm_gid-navbar.css">
+<link rel="stylesheet" href="/css/brm_search.css">
+
+{% endblock %}
+
+{% block content %}
+<div class="wrap">
+
+  <!-- ================================ -->
+  <!-- main -->
+  <main>
+      <div class="container-fluid">
+        <div class="row">
+
+          <!-- ================================ -->
+          <!-- switcher -->
+            <div class="col-xs-12 col-sm-12 col-md-9">
+              <div class="switcher">
+                <button class="to-guides active" data-target="#guides">Гиды</button>
+                <button class="to-places" data-target="#places">Места</button>
+              </div>
+            </div>
+
+            <!-- ================================ -->
+            <!-- search config-bar -->
+            <div id="search_config" class="col-xs-12 col-sm-12 col-md-offset-9 col-md-3"> <!-- search config -->
+                  <aside>
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a data-toggle="collapse" date-parent='#accordion' href="#collapse1">
+                                Параметры поиска
+                              </a>
+                            </h4>
+                          </div>
+                          <div id='collapse1' class="panel-collapse collapse">
+                            <div class="panel-body">
+                              <div class="order done_order">
+                                <ul>
+                                  <li>Имя:
+                                    <span class="order--name">name</span>
+                                  </li>
+                                  <li>Телефон:
+                                    <span class="order--number">number</span>
+                                  </li>
+                                  <li>Дата:
+                                    <span class="order--date">date</span>
+                                  </li>
+                                  <li>Время:
+                                    <span class="order--time">time</span>
+                                  </li>
+                                  <li>Количество человек:
+                                    <span class="order--people">54</span>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </aside>
+              </div>
+
+            <!-- ================================ -->
+            <!-- places and guides template -->
+            <!-- ================================ -->
+            <div class="col-xs-12 col-sm-12 col-md-9">
+              <!-- ================================ -->
+              <!-- guides template -->
+              <div id="guides" class="row">
+                {% for guide in guides %}
+                <a href="/profile/{{ guide._id }}" class="element col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <div style="background-image: url('{{ guide.img }}')" class="element-img col-md-12"></div>
+                    <div class="element-info col-md-12">
+                        <h3 class="element-name">{{ guide.name }}</h3>
+                        <p class="element-stats">
+                            {{ guide.info.hours }} часов экскурсии<br>
+                            {{ guide.info.tours }} проведенных экскурсий<br>
+                            {{ guide.info.happy }} счастливых туристов
+                        </p>
+                    </div>
+                </a>
+                {% endfor %}
+              </div>
+
+              <!-- ================================ -->
+              <!-- places template -->
+              <div id="places" class="row hidden">
+                {% for place in places %}
+                <a href="/place/{{ place._id }}" class="element col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
+                    <div class="element-info col-md-12">
+                        <h3 class="element-name">{{ place.name }}</h3>
+                        <p class="element-stats">
+                            {{ place.description | truncate(110) }}
+                        </p>
+                    </div>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+      </div>
+  </main>
+
+  
+</div> <!-- wrap -->
+ {% endblock %}
+ 
+ {% block commonJS %}
+ <script src="/js/search.js"></script>
+
+ <script src="/js/jquery-2.2.3.min.js"></script>
+ <script src="/js/bootstrap.min.js"></script>
+ 
+ {% endblock %}
+</body>
+</html>

@@ -1,0 +1,90 @@
+main {
+    margin-top: 2rem;
+}
+
+/* ========================================================================== */
+/* Search switcher */
+/* ========================================================================== */
+.switcher {
+    text-align: center;
+    font-size: 0;
+}
+.switcher button {
+    background-color: white;
+    border: 1px #2ecc71 solid;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: #2ecc71;
+    padding: .5rem 4rem .5rem 4rem;
+    /* margin: 0 2rem 0 2rem; */
+}
+.to-guides {
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+.to-places {
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.switcher .active {
+    color: white;
+    background-color: #2ecc71;
+}
+
+
+/* ========================================================================== */
+/* Search config-sidebar */
+/* ========================================================================== */
+#search_config {
+    position: fixed;
+}
+
+/* ========================================================================== */
+/* Place/guide */
+/* ========================================================================== */
+
+
+.element {
+    overflow: hidden;
+
+    height: 370px;
+    padding: 15px;
+
+    transition: all 0.2s ease;
+}
+
+.element:hover,
+.element:focus {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.element-img {
+    height: 200px;
+    margin-bottom: 10px;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    box-shadow: 0px 0px 10px 2px #ccc;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.element-name {
+    margin: 0;
+}
+
+#switch .element-info {
+    padding: 0;
+}
+
+/* ========================================================================== */
+/* Media queries */
+/* ========================================================================== */
+@media (max-width: 992px) {
+    #search_config {
+        position: relative;
+    }
+}
