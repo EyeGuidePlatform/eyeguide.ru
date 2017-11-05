@@ -1,95 +1,57 @@
 {% extends "templates/pageTemplate.html" %}
 
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/sign-up.css">
+{% endblock %}
 
 {% block content %}
 <div class="wrap">
-
-<form>
-
-<div class="container">
-    <div class="row">
-        <div class="form-group">
-            <label for="name">name</label>
-            <input type="text" class="form-control" id="name">
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Регистрация</h1>
+            <form class="form-center" action="/registration" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Имя</label>
+                    <input type="text" class="form-control" id="name" name="guide[name]" required>
+                </div>
+                <div class="form-group">
+                    <label for="surname">Фамилия</label>
+                    <input type="text" class="form-control" id="surname" name="guide[surname]" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Возраст</label>
+                    <input type="number" class="form-control" id="age" name="guide[age]" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Электронная почта</label>
+                    <input type="email" class="form-control" id="email" name="guide[email]" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="text" class="form-control" id="phone" name="guide[phone]" required>
+                </div>
+                <div class="form-group">
+                    <label>Фотография</label>
+                    <input type="file" class="form-control" id="img" name="img">
+                </div>
+                <!--<div class="form-group">
+                    <label for="spec">Специализации</label>
+                    <input type="text" class="form-control" id="spec">
+                </div>
+                <div class="form-group">
+                    <label for="types">Виды экскурсий</label>
+                    <input type="text" class="form-control" id="types">
+                </div>
+                <div class="form-group">
+                    <label for="language">Языки</label>
+                    <input type="text" class="form-control" id="language">
+                </div>-->
+                
+                <button type="submit" class="btn btn-block btn-primary">Зарегистрироваться</button>
+            </form>       
         </div>
-        <div class="form-group">
-            <label>surname</label>
-            <input type="text" class="form-control" id="surname">
-        </div>
-        <div class="form-group">
-            <label>
-                    age
-                <input type="number" class="form-control" id="age">
-            </label>
-        </div>
-        <div class="form-group">
-            <label>
-                    email
-                <input type="email" class="form-control" id="email">
-            </label>
-        </div>
-        <div class="form-group">
-            <label>
-                    phone
-                <input type="text" class="form-control" id="phone">
-            </label>
-        </div>
-        <div class="form-group">
-            <label>
-                    img
-                <input type="text" class="form-control" id="img">
-            </label>
-        </div>
-        <div class="form-group">
-            <label>
-                spec
-                <input type="text" class="form-control" id="spec">
-            </label>
-        </div>
-        <div class="form-group">
-            <label>
-                    types
-                <input type="text" class="form-control" id="types">
-            </label>
-        </div>
-        <div class="form-group">
-            <label>
-                    language
-                <input type="text" class="form-control" id="language">
-            </label>
-        </div>
-        <div class="form-group">
-            <label>
-                    hours
-                <input type="number" class="form-control" id="hours">
-            </label>
-        </div>
-        <div class="form-group">
-            <label>
-                    tours
-                <input type="number" class="form-control" id="tours">
-            </label>
-        </div>
-        <div class="form-group">
-            <label>
-                    happy people
-                <input type="number" class="form-control" id="happy">
-            </label>
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
     </div>
 </div>
-
-</form>
-
-
-</div>
-{% endblock %}
-
-{% block commonJS %}
-<script src="/js/jquery-2.2.3.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-
 {% endblock %}
 
 </body>

@@ -1,5 +1,17 @@
 let express = require('express'),
     router = express.Router(),
+
+    multer = require('multer'),
+    storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, './src/img')
+        },
+        filename: function (req, file, cb) {
+            cb(null, Date.now() + '-' + file.originalname)
+        }
+    }),
+    upload = multer({storage: storage}),
+
     mainController = require('./app/controllers/main'),
     lkController = require('./app/controllers/guideLk'),//ранее gidProfile
     mapController = require('./app/controllers/map'),
@@ -34,6 +46,7 @@ router.get('/place/:id', placeController.getPlacePage);
 
 //Регистрация гидов и мест
 router.get('/registration', regGuideController.getNewGuide);
+router.post('/registration', upload.single('img'), regGuideController.addNewGuide);
 router.get('/create/place', regPlaceController.getCreatePlacePage);
 router.post('/createPlace', regPlaceController.createPlace);
 
