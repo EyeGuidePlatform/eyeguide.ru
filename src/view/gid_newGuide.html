@@ -1,6 +1,9 @@
 {% extends "templates/pageTemplate.html" %}
 
 {% block commonStyles %}
+<link rel="stylesheet" href="/css/choices.min.css">
+<script src="/js/choices.min.js"></script>
+
 <link rel="stylesheet" href="/css/sign-up.css">
 {% endblock %}
 
@@ -34,6 +37,15 @@
                     <label>Фотография</label>
                     <input type="file" class="form-control" id="img" name="img">
                 </div>
+
+                <div class="form-group">
+                    <label for="places">Места</label>
+                    <select name="places" multiple id="places">
+                        {% for place in places %}
+                        <option value="{{ place._id }}">{{ place.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
                 <!--<div class="form-group">
                     <label for="spec">Специализации</label>
                     <input type="text" class="form-control" id="spec">
@@ -54,5 +66,10 @@
 </div>
 {% endblock %}
 
-</body>
-</html>
+{% block commonJS %}
+<script>
+    var multipleCancelButton = new Choices('#places', {
+        removeItemButton: true,
+    });
+</script>
+{% endblock %}

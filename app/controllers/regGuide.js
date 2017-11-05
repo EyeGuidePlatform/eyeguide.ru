@@ -1,10 +1,13 @@
-let guideModel = require('../models/guide').guideModel;
+let guideModel = require('../models/guide').guideModel,
+    placeModel = require('../models/place').placeModel;
 
 /**
  * Страница "регистрация нового гида"
  */
 exports.getNewGuide = (req, res) => {
-    res.render('gid_newGuide.html');
+    placeModel.find({}).then( (places) => {
+        res.render('gid_newGuide.html', {places: places});
+    } );
 }
 
 exports.addNewGuide = (req, res, next) => {
