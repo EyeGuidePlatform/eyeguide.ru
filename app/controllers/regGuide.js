@@ -5,7 +5,7 @@ let guideModel = require('../models/guide').guideModel,
  * Страница "регистрация нового гида"
  */
 exports.getNewGuide = (req, res) => {
-    placeModel.find({}).then( (places) => {
+    placeModel.find({}).then( places => {
         res.render('gid_newGuide.html', {places: places});
     } );
 }
@@ -13,7 +13,16 @@ exports.getNewGuide = (req, res) => {
 exports.addNewGuide = (req, res, next) => {
     let newGuide = new guideModel(req.body.guide);
     newGuide.img = req.file.filename;
+    newGuide.places = req.body.places;
     newGuide.save();
 
-    res.redirect('back');
+    //Добавить каждому выбранному месту нового гида
+    req.body.places.forEach( placeId => {
+        placeModel.findById( placeId ).then( foundPlace => {
+            foundPlace.guides.push( newGuide );
+            foundPlace.save();
+        });
+    });
+
+    res.redirect('/');
 }

@@ -34,7 +34,13 @@ guideSchema = mongoose.Schema({
         hours: Number,
         tours: Number, 
         happy: Number,
-    }
+    },
+    places: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'place'
+        }
+    ]
 });
 
 

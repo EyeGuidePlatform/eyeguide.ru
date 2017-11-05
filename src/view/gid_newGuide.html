@@ -40,7 +40,7 @@
 
                 <div class="form-group">
                     <label for="places">Места</label>
-                    <select name="places" multiple id="places">
+                    <select name="places[]" multiple id="places">
                         {% for place in places %}
                         <option value="{{ place._id }}">{{ place.name }}</option>
                         {% endfor %}

@@ -14,7 +14,13 @@ placeSchema = mongoose.Schema({
     geo: {
         x: Number,
         y: Number
-    }
+    },
+    guides: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'guide'
+        }
+    ]
 });
 
 let placeModel = mongoose.model('place', placeSchema);
