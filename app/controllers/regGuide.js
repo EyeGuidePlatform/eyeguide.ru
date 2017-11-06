@@ -12,11 +12,12 @@ exports.getNewGuide = (req, res) => {
 
 exports.addNewGuide = (req, res, next) => {
     let newGuide = new guideModel(req.body.guide);
-    newGuide.img = req.file.filename;
+    newGuide.img = req.file ? '/img/' + req.file.filename : undefined;
     newGuide.places = req.body.places;
     newGuide.info.spec = req.body.spec.split(',');
     newGuide.info.types = req.body.types.split(',');
     newGuide.info.lang = req.body.lang.split(',');
+    newGuide.info.hours = newGuide.info.tours = newGuide.info.happy = 0;
     newGuide.save();
 
     //Добавить каждому выбранному месту нового гида

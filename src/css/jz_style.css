@@ -211,16 +211,17 @@
 
 .show-all a {
     padding: 12px 20px;
-    color: #000;
-    border: 1px solid #2ecc71;
+    color: #fff;
+    border: 1px solid #0caa50;
     border-radius: 20px;
+
+    background-color: #2ecc71;
 
     transition: all 0.3s ease;
 }
 
 .show-all a:hover,
 .show-all a:focus {
-    color: #fff;
     background-color: #0caa50;
 
     text-decoration: none;

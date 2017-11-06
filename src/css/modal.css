@@ -23,3 +23,12 @@
     width: 200px;
     margin: 0 auto;
 }
+
+.sign-up {
+    background-color: #2ecc71;
+}
+
+.sign-up:hover,
+.sign-up:focus {
+    background-color: #0caa50;
+}
