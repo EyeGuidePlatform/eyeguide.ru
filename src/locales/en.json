@@ -1,4 +1,8 @@
 {
-    "_TITLE": "Tittle",
-    "_CONTENT_1": "Some text"
+	"_title": "Tittle",
+	"_content_1": "Some text",
+	"_help": "Help",
+	"_contacts": "Contacts",
+	"_login_reg": "Login / Sign in",
+	"_contact": "_contact"
 }

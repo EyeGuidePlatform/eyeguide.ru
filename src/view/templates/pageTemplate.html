@@ -50,7 +50,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 {% block rightNav %}
-                <li><a id="nav-sign-in" href="#">Вход / Регистрация</a></li>
+                <li><a id="nav-sign-in" href="#">{{__('_login_reg')}}</a></li>
                 {% endblock %}
             </ul>
         </div>
@@ -73,11 +73,11 @@
         <div class="row">
             <div class="content {% block footerClasses %} col-md-12 {% endblock %} col-sm-12 col-xs-12">
                 <div class="pull-left footer-contacts">
-                    <a href="#">Контакты</a>
+                    <a href="#">{{__('_contacts')}}</a>
                 </div>
 
                 <div class="pull-right footer-help">
-                    <a href="#">Помощь</a>
+                    <a href="#">{{__('_help')}}</a>
                 </div>
 
                 <div class="footer-social">
