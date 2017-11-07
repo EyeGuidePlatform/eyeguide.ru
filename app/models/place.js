@@ -23,5 +23,16 @@ placeSchema = mongoose.Schema({
     ]
 });
 
+placeSchema.statics = {
+    /**
+     * Добавление нового гида в бд
+     * @param placeData - информация о месте
+     */
+    addPlace: function (placeData, cb) {
+        let newPlace = new this(placeData);
+        newPlace.save().then(cb);
+    }
+}
+
 let placeModel = mongoose.model('place', placeSchema);
 module.exports.placeModel = placeModel;

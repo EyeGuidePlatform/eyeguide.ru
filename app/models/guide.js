@@ -44,6 +44,26 @@ guideSchema = mongoose.Schema({
 });
 
 
+guideSchema.statics = {
+    /**
+     * Добавление нового гида в бд
+     * @param guideData - информация о гиде
+     */
+    addGuide: function (guideData, cb) {
+        let newGuide = new this(guideData);
+
+        let placeModel = require('./place').placeModel;
+        //Добавить каждому выбранному месту нового гида
+        newGuide.places.forEach( placeId => {
+            placeModel.findById( placeId ).then( foundPlace => {
+                foundPlace.guides.push( newGuide );
+                foundPlace.save();
+            });
+        });
+
+        newGuide.save().then(cb);
+    }
+}
 // модель данных и ее экспорт
 let guideModel = mongoose.model('guide', guideSchema);
 module.exports.guideModel = guideModel;

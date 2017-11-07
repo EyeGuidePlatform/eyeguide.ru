@@ -12,9 +12,9 @@ exports.getCreatePlacePage = (req, res) => {
  * Сохранение объекта "место" в БД
  */
 exports.createPlace = (req, res, next) => {
-    let newPlace = new placeModel(req.body.place);
+    let newPlace = req.body.place;
     newPlace.img = req.file ? '/img/' + req.file.filename : undefined;
-    newPlace.save();
-
-    res.redirect('back');
+    placeModel.addPlace(newPlace, (err, place) => {
+        res.redirect('/place/' + place._id);
+    });
 }
