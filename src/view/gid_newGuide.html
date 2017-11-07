@@ -40,7 +40,7 @@
 
                 <div class="form-group">
                     <label for="places">Места</label>
-                    <select name="places[]" id="places" placeholder="Введите места" multiple>
+                    <select name="places[]" id="places" placeholder="Введите места" multiple required>
                         {% for place in places %}
                         <option value="{{ place._id }}">{{ place.name }}</option>
                         {% endfor %}
@@ -56,7 +56,7 @@
                 </div>
                 <div class="form-group">
                     <label for="language">Языки</label>
-                    <input type="text" class="multiple-choice form-control" id="language" name="lang" placeholder="Введите языки, которые вы знаете">
+                    <input type="text" class="multiple-choice form-control" id="language" name="lang" placeholder="Введите языки, которые вы знаете" required>
                 </div>
                 
                 <button type="submit" class="btn btn-block btn-primary">Зарегистрироваться</button>

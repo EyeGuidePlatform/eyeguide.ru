@@ -61,7 +61,7 @@ guideSchema.statics = {
             });
         });
 
-        newGuide.save().then(cb);
+        newGuide.save(cb);
     }
 }
 // модель данных и ее экспорт
