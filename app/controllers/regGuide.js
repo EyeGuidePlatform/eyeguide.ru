@@ -23,7 +23,7 @@ exports.addNewGuide = (req, res, next) => {
         happy: 0
     };
     
-    guideModel.addGuide(newGuide, (err, guide) => {
+    guideModel.addGuide(newGuide, guide => {
         res.redirect('/guideProfile/' + guide._id);
     });
 }

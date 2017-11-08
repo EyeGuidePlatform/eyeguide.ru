@@ -30,7 +30,7 @@ placeSchema.statics = {
      */
     addPlace: function (placeData, cb) {
         let newPlace = new this(placeData);
-        newPlace.save(cb);
+        newPlace.save().then(cb);
     }
 }
 

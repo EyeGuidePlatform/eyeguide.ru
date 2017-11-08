@@ -14,7 +14,7 @@ exports.getCreatePlacePage = (req, res) => {
 exports.createPlace = (req, res, next) => {
     let newPlace = req.body.place;
     newPlace.img = req.file ? '/img/' + req.file.filename : undefined;
-    placeModel.addPlace(newPlace, (err, place) => {
+    placeModel.addPlace(newPlace, place => {
         res.redirect('/place/' + place._id);
     });
 }
