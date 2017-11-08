@@ -1,4 +1,7 @@
 //TODO убрать заглушки!
+const placeModel = require('../models/place').placeModel,
+guideModel = require('../models/guide').guideModel;
+
 exports.getProfile = (req, res) => {
     let guides = [
         {
@@ -66,12 +69,5 @@ exports.getProfile = (req, res) => {
         }
     ];
     
-    if (req.params.id == '1'){
-        res.render('guideView.html', {guides: guides[0], places: places[0]});
-    } else if(req.params.id == '2'){
-        res.render('guideView.html', {guides: guides[1], places: places[1]});
-    } else if(req.params.id == '3'){
-        res.render('guideView.html', {guides: guides[2], places: places[2]});
-    }
-    
+    res.render('guideView.html', {guides: guides[parseInt(req.params.id)], places: places[parseInt(req.params.id)]});
 }
