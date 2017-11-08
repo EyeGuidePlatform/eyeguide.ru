@@ -1,4 +1,4 @@
-const mongoose = require('./../../server').mongoose,
+const mongoose = require('./../../server').mongoose;
 
 // схема данных - задает структуру объекта, хранимого в БД
 guideSchema = mongoose.Schema({

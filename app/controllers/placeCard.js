@@ -1,4 +1,6 @@
 //TODO убрать заглушки!
+const placeModel = require('../models/place').placeModel,
+guideModel = require('../models/guide').guideModel;
 exports.getPlacePage = (req, res) => {
     let places = [
         {

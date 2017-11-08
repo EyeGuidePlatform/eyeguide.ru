@@ -13,51 +13,51 @@
             <div class="col-md-4 col-xs-12">
                 <div class="row">
                     <div class="col-xs-12">
-                    <h2 class="text-center">{{ guides.name }}</h2>
+                    <h3 class="text-center">{{ guides.name }}</h3>
                     </div>
                     <div class="col-xs-12">
                         <img src="{{ guides.img }}" class="img-circle center-block" height="250" width="250">
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-8 text-black">
+            <div class="col-xs-12 col-md-8">
                 <div class="row text-center">
-                    <div class="col-xs-12 col-lg-3 card">
-                        <h3>Специализации</h3>
-                        <p>{{guides.info.spec}}</p>
+                    <div class="col-xs-12 col-lg-5 card">
+                        <h4>Специализации</h4>
+                        <h5>{{guides.info.spec}}</h5>
                     </div>
-                    <div class="col-xs-12 col-lg-3 card">
-                        <h3>Языки</h3>
-                        <p>{{guides.info.languages}}</p>
+                    <div class="col-xs-12 col-lg-5 card">
+                        <h4>Языки</h4>
+                        <h5>{{guides.info.languages}}</h5>
                     </div>
-                    <div class="col-xs-12 col-lg-3 card">
-                        <h3>Виды экскурсий</h3>
-                        <p>{{guides.info.types}}</p>
+                    <div class="col-xs-12 col-lg-5 card">
+                        <h4>Виды экскурсий</h4>
+                        <h5>{{guides.info.types}}</h5>
                     </div>
-                    <div class="col-xs-12 col-lg-3 card">
-                        <h3>Часов экскурсий</h3>
-                        <p>{{guides.info.hours}}</p>
+                    <div class="col-xs-12 col-lg-5 card">
+                        <h4>Часов экскурсий</h4>
+                        <h5>{{guides.info.hours}}</h5>
                     </div>
-                    <div class="col-xs-12 col-lg-3 card">
-                        <h3>Проведенных экскурсий</h3>
-                        <p>{{guides.info.made}}</p>
+                    <div class="col-xs-12 col-lg-5 card">
+                        <h4>Проведенных экскурсий</h4>
+                        <h5>{{guides.info.made}}</h5>
                     </div>
-                    <div class="col-xs-12 col-lg-3 card">
-                        <h3>Счастливых туристов</h3>
-                        <p>{{guides.info.happy}}</p>
+                    <div class="col-xs-12 col-lg-5 card">
+                        <h4>Счастливых туристов</h4>
+                        <h5>{{guides.info.happy}}</h5>
                     </div>    
                 </div>
             </div>
             <div class="col-xs-12">
-                <h2 class="text-center">Информация о гиде</h2>
-                <p>{{guides.desc}}</p>
+                <h3 class="text-center">Информация о гиде</h3>
+                <h4>{{guides.desc}}</h4>
             </div>
         </div>
     </div>
     <div class="container-fluid green-bg text-white slider">
         <div class="row">
             <div class="col-xs-12">
-                <h2 class="text-center">Места</h2>
+                <h3 class="text-center">Места</h3>
                 <div class="responsive">
                     <div><img src={{places.img}} width="300" height="150"></div>
                     <div><img src={{places.img}} width="300" height="150"></div>
@@ -69,8 +69,21 @@
         </div>
     </div>
     <div class="container-fluid grey-bg">
-        <h2 class="text-center">Расположение на карте</h2>
-        <div id="YMapsID"></div>
+        <h3 class="text-center">Расположение на карте</h3>
+            <div class="row">
+                <div class="col-xs-12 mb-5">
+                    <div id="YMapsID"></div>
+                </div>
+                <div class="col-xs-12 col-sm-4"></div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                        <div class="btn-group" role="group">
+                          <button type="button" class="btn btn-success"><h4>Заказать!</h4></button>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-xs-12 col-sm-4"></div>
+            </div>
     </div>
 </div>        
 {% endblock %}

@@ -2,9 +2,10 @@
 const placeModel = require('../models/place').placeModel,
 guideModel = require('../models/guide').guideModel;
 
-exports.getProfile = (req, res) => {
-    let guides = [
-        {
+exports.getProfile = (req, res) => { 
+    // let guides = guideModel.find({_id: parseInt(req.params.id)}).then
+    // (res.render('guideView.html', {guides: guides[_id], places: places[_id]}));
+    let guides = [{
             id: 1, 
             name: 'Светлана Сладкова',
             img: '../img/guides/guide1.jpg',
