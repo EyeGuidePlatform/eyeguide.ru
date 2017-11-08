@@ -272,6 +272,10 @@ body {
     }
 }
 
+#car{
+    padding: 30px 30px;
+    bottom: 30px 30px
+}
 
 #map{
     padding: 30px 30px ;
