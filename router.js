@@ -8,6 +8,7 @@ let express = require('express'),
     guideController = require('./app/controllers/guideCard'),//ранее guideCard
     placeController = require('./app/controllers/placeCard'),//ранее placeCard
     regPlaceController = require('./app/controllers/regPlace'),
+    adminController = require('./app/controllers/admin'),
     regGuideController = require('./app/controllers/regGuide');
 
 //Middleware
@@ -49,7 +50,12 @@ router.post('/createPlace', regPlaceController.createPlace);
 //TODO
 
 //Административные функции
-//TODO
+router.get('/admin/main', adminController.getPage);
+router.get('/admin/login', adminController.loginPage);
+router.get('/admin/logout', adminController.logout);
+router.get('/admin/create', adminController.createPage);
+router.post('/admin/create', adminController.create);
+router.post('/admin/login', adminController.login);
 
 router.get('/test', require('./app/controllers/test').test);
 

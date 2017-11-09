@@ -4,6 +4,8 @@ const express = require('express'),
     mongoose = require('mongoose'),
     i18n = require('i18n'),
     cookieParser = require('cookie-parser'),
+    session = require('express-session'),
+    mongoStore = require('connect-mongo')(session),
     app = express();
 
 let locales = ['ru', 'en'],
@@ -24,6 +26,18 @@ i18n.configure({
     cookie: 'eye_lang',
     directory: __dirname + '/src/locales'
 });
+
+app.use(    
+    session(
+    ({
+        secret: require('./config.js').session,
+        resave: false,
+        saveUninitialized: false,
+        store: new mongoStore({ 
+            url: url
+        })
+    })
+));
 
 app.use(
     express.static(__dirname + '/src'),
