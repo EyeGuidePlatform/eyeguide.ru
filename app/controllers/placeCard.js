@@ -12,11 +12,16 @@ guideModel = require('../models/guide').guideModel;
 exports.getPlacePage = (req, res) => {
     let id = req.params.id;
 
-    placeModel.findById(id).then((err, places) => {
+    placeModel.findById(id).then( place => {
+        //place.guides[]._id;
+        //
+        let query;
+        //
+
         guideModel.find({}).then( guides => {
             res.render('place.html', {
                 guides: guides, 
-                places: places
+                place: place
             });
         });
     });
