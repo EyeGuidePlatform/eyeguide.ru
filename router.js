@@ -1,6 +1,5 @@
 let express = require('express'),
     router = express.Router(),
-
     multer = require('multer'),
     storage = multer.diskStorage({
         destination: function (req, file, cb) {
@@ -11,6 +10,7 @@ let express = require('express'),
         }
     }),
     upload = multer({storage: storage}),
+    locales = require('./server').locales,
 
     mainController = require('./app/controllers/main'),
     searchController = require('./app/controllers/search'),
@@ -19,11 +19,18 @@ let express = require('express'),
     guideController = require('./app/controllers/guideCard'),//ранее guideCard
     placeController = require('./app/controllers/placeCard'),//ранее placeCard
     regPlaceController = require('./app/controllers/regPlace'),
+    adminController = require('./app/controllers/admin'),
     regGuideController = require('./app/controllers/regGuide');
 
 //Middleware
 router.use('/', (req, res, next) => {
-    console.log (req.method, req.path); next();
+    if (!req.cookies.eye_lang) {
+        lang = (locales.indexOf(req.region) == -1) ? 'ru' : req.region;
+        res.cookie('eye_lang', lang, { maxAge: 900000, httpOnly: true });
+    }
+
+    next();
+
     /**
      * Проверка авторизации
      * Редирект на 404
@@ -55,6 +62,11 @@ router.post('/createPlace', upload.single('img'), regPlaceController.createPlace
 router.get('/search' ,searchController.getSearchPage);
 
 //Административные функции
-//TODO
+router.get('/admin/main', adminController.getPage);
+router.get('/admin/login', adminController.loginPage);
+router.get('/admin/logout', adminController.logout);
+router.get('/admin/create', adminController.createPage);
+router.post('/admin/create', adminController.create);
+router.post('/admin/login', adminController.login);
 
 module.exports = router;

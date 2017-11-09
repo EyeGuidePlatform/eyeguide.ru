@@ -14,7 +14,7 @@ exports.parseCity = (req, res) => {
  * Страница "Карта"
  * @param {String} city
  */
-exports.getCityPage = (req, res) => {
+/*exports.getCityPage = (req, res) => {
     let city = req.params.city;
 
     placeModel.find({}).limit(6).then( places => {
@@ -24,6 +24,15 @@ exports.getCityPage = (req, res) => {
                 places: places, 
                 city: city
             });
-        });
+        });*/
+exports.getCityPage = async (req, res) => {
+    let places = await placeModel.getPlaces(req.locale),
+        guides = await guideModel.find().limit(6),
+        city = req.params.city;
+    
+    res.render('map.html', {
+        guides: guides, 
+        places: places, 
+        city: city
     });
 }

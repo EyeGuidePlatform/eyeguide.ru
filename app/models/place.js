@@ -1,4 +1,5 @@
-const mongoose = require('./../../server').mongoose;
+const mongoose = require('./../../server').mongoose,
+    trnsModel = require('./translater');
 
 placeSchema = mongoose.Schema({
    
@@ -35,6 +36,26 @@ placeSchema.statics = {
     addPlace: function (placeData, cb) {
         let newPlace = new this(placeData);
         newPlace.save().then(cb);
+    },
+    getPlace: async function(placeId, lang){
+        let place = await mongoose.model('place', placeSchema).findById(placeId),
+            name = await trnsModel.translitWord(place.name, lang),
+            description = await trnsModel.translateText(place.description, lang);
+
+        place.description = description;
+        place.name = name;
+                
+        return place;  
+    },
+    getPlaces: async function(lang) {
+        let places = await mongoose.model('place', placeSchema).find({});
+        
+        for(let place of places) {
+            place.name = await trnsModel.translitWord(place.name, lang);
+            place.description = await trnsModel.translateText(place.description, lang);
+        };
+
+        return places;
     }
 }
 
