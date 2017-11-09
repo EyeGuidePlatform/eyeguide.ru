@@ -31,26 +31,3 @@ function toggleThis(target) {
             elem.classList.toggle('hidden');
         }, this);
 }
-
-// function switchBlock(target) {
-//     let disableBtn;
-//     switch (target.className) {
-//         case 'to-guides':
-//             disableBtn = document.querySelector('.to-places');
-
-//             break;
-//         case 'to-places':
-//             disableBtn = document.querySelector('.to-guides');
-
-//             break;
-//     }
-
-//     target.classList.add('active');
-//     disableBtn.classList.remove('active');
-
-//     let disableBlock = document.querySelector(disableBtn.dataset.target);
-//     disableBlock.classList.add('hidden');
-
-//     let showBlock = document.querySelector(target.dataset.target);
-//     showBlock.classList.remove('hidden');
-// }
