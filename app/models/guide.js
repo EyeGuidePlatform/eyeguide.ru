@@ -59,21 +59,21 @@ guideSchema.statics = {
      * Добавление нового гида в бд
      * @param guideData - информация о гиде
      */
-    addGuide: function (guideData, cb) {
+    addGuide: async function (guideData, cb) {
         let newGuide = new this(guideData);
         newGuide.password = toHash(guideData.password);
 
-        let placeModel = require('./place').placeModel;
         //Добавить каждому выбранному месту нового гида
-        //FIXME: одним запросом всех!
-        newGuide.places.forEach( placeId => {
-            placeModel.findById( placeId ).then( foundPlace => {
-                foundPlace.guides.push( newGuide );
-                foundPlace.save();
-            });
+        let placeModel = require('./place').placeModel;
+        let places = await placeModel.find({
+            '_id': { $in: newGuide.places }
         });
-
-        newGuide.save().then(cb);
+        for(let i = 0; i < places.length; i++) {
+            places[i].guides.push(newGuide);
+            await places[i].save();
+        }
+        
+        return await newGuide.save();
     },
     /**
      * Заправшиваем из БД гида по id

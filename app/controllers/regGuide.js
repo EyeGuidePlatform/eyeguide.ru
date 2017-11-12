@@ -20,7 +20,7 @@ exports.getPlacesJSON = async (req, res) => {
     res.json(placesJSON);
 }
 
-exports.addNewGuide = (req, res, next) => {
+exports.addNewGuide = async (req, res, next) => {
     let newGuide = req.body.guide;
     newGuide.img = req.file ? '/img/' + req.file.filename : undefined;
     // newGuide.places = req.body.places;
@@ -33,7 +33,6 @@ exports.addNewGuide = (req, res, next) => {
         happy: 0
     }
     
-    guideModel.addGuide(newGuide, guide => {
-        res.redirect('/guideProfile/' + guide._id);
-    });
+    let guide = await guideModel.addGuide(newGuide);
+    res.redirect('/guideProfile/' + guide._id);
 }
