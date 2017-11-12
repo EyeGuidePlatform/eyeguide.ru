@@ -1,27 +1,34 @@
 let guideModel = require('../models/guide').guideModel,
-    placeModel = require('../models/place').placeModel;
+    placeModel = require('../models/place').placeModel,
+    cityModel = require('../models/city').cityModel,
+    languageModel = require('../models/language').languageModel;
 
 /**
  * Страница "регистрация нового гида"
  */
-exports.getNewGuide = (req, res) => {
-    placeModel.find({}).then( places => {
-        res.render('gid_newGuide.html', {places: places}); 
-    } );
+exports.getNewGuide = async (req, res) => {
+    let cities = await cityModel.find(),
+        languages = await languageModel.find();
+    
+    res.render('gid_newGuide.html', {cities: cities, languages: languages});
+}
+
+exports.getPlacesJSON = async (req, res) => {
+    let places = await placeModel.getPlaces();
+
+    let placesJSON = JSON.stringify(places);
+    res.json(placesJSON);
 }
 
 exports.addNewGuide = (req, res, next) => {
     let newGuide = req.body.guide;
     newGuide.img = req.file ? '/img/' + req.file.filename : undefined;
-    newGuide.places = req.body.places;
-    newGuide.info = {
-        spec: req.body.spec ? req.body.spec.split(',') : undefined,
-        types: req.body.types ? req.body.types.split(',') : undefined,
-        lang: req.body.lang.split(','),
-        hours: 0,
-        tours: 0,
-        happy: 0
-    };
+    // newGuide.places = req.body.places;
+    newGuide.info.spec = req.body.spec ? req.body.spec.split(',') : undefined;
+    newGuide.info.types = req.body.types ? req.body.types.split(',') : undefined;
+    newGuide.info.hours = 0;
+    newGuide.info.tours = 0;
+    newGuide.info.happy = 0;
     
     guideModel.addGuide(newGuide, guide => {
         res.redirect('/guideProfile/' + guide._id);

@@ -58,6 +58,8 @@ router.post('/registration', upload.single('img'), regGuideController.addNewGuid
 router.get('/create/place', regPlaceController.getCreatePlacePage);
 router.post('/createPlace', upload.single('img'), regPlaceController.createPlace);
 
+router.get('/getPlaces', regGuideController.getPlacesJSON);
+
 //Поиск мест и гидов
 router.get('/search' ,searchController.getSearchPage);
 

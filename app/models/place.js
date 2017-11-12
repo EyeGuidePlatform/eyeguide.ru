@@ -2,16 +2,13 @@ const mongoose = require('./../../server').mongoose,
     trnsModel = require('./translater');
 
 placeSchema = mongoose.Schema({
-   
-
-    
-    
     visible: {
         type: Number, 
         default: 0 // 0 - на модерации, 1 - одобрено, 2 - откланено
     },
     name: String,
     description: String,
+    city: String,
     img: {
         type: String,
         default: 'http://dummyimage.com/300'

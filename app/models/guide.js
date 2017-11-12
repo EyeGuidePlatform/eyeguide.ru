@@ -1,10 +1,19 @@
-const mongoose = require('./../../server').mongoose,
+const mongoose = require('./../../server').mongoose;
 
 // схема данных - задает структуру объекта, хранимого в БД
 guideSchema = mongoose.Schema({
     visible: {
         type: Number, 
         default: 0 // 0 - на модерации, 1 - одобрен, 2 - откланен
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
     },
     name: {
         type: String,
@@ -18,10 +27,7 @@ guideSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    email: {
-        type: String,
-        default: 'email отсутствует'
-    },
+    city: String,
     phone: {
         type: String,
         default: 'телефон отсутствует'
@@ -32,7 +38,7 @@ guideSchema = mongoose.Schema({
         types: [String],
         lang: [String],
         hours: Number,
-        tours: Number, 
+        tours: Number,
         happy: Number,
     },
     places: [

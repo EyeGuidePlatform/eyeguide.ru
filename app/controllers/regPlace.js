@@ -1,11 +1,13 @@
 const placeModel = require('../models/place').placeModel,
+    cityModel = require('../models/city').cityModel,
     mongoose = require('./../../server').mongoose;
 
 /**
  * Страница "Добавление места"
  */
-exports.getCreatePlacePage = (req, res) => {
-    res.render('createPlace.html');
+exports.getCreatePlacePage = async (req, res) => {
+    let cities = await cityModel.find();
+    res.render('createPlace.html', {cities: cities});
 }
 
 /**
