@@ -1,4 +1,5 @@
-const mongoose = require('./../../server').mongoose;
+const mongoose = require('./../../server').mongoose,
+    toHash = require('md5');
 
 // схема данных - задает структуру объекта, хранимого в БД
 guideSchema = mongoose.Schema({
@@ -57,6 +58,7 @@ guideSchema.statics = {
      */
     addGuide: function (guideData, cb) {
         let newGuide = new this(guideData);
+        newGuide.password = toHash(guideData.password);
 
         let placeModel = require('./place').placeModel;
         //Добавить каждому выбранному месту нового гида

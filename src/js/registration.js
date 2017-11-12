@@ -19,6 +19,24 @@ citySelect.onchange = e => {
     updatePlaces(newCity);
 }
 
+let passwordInput = document.getElementById('password'),
+    passwordAgainInput = document.getElementById('password-again'),
+    passwordAccept = false;
+passwordAgainInput.onchange = e => {
+    let password = passwordInput.value,
+        passwordAgain = e.target.value;
+    
+    passwordAccept = false;
+    if (password == passwordAgain) {
+        passwordAccept = true;
+    }
+}
+
+let submitBtn = document.getElementById('submit');
+submitBtn.onclick = () => {
+    if (!passwordAccept) return false;
+}
+
 function updatePlaces(newCity) {
     let options = [];
 
