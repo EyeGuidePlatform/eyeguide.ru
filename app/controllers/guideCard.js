@@ -1,17 +1,25 @@
-//TODO убрать заглушки!
 const placeModel = require('../models/place').placeModel,
 guideModel = require('../models/guide').guideModel;
 
-exports.getProfile = (req, res) => { 
-    let id = Math.floor(req.params.id);
-    guideModel.findById(id).then((err,guides)=>{
-       placeModel.find ({}).then(places=>{
-           res.render('guideView.html',{
-               guides:guide,
-               places:place
-           });
-       });
+
+
+
+/**
+ * Страница "Место"
+ * @param {String} place
+ */
+exports.getProfile = (req, res) => {
+    let id = req.params.id;
+
+    guideModel.findById(id).then( guide => {
+        //place.guides[]._id;
+        //
+        let query;
+        placeModel.find({}).then( places => {
+            res.render('guideView.html', {
+                guide: guide, 
+                places: places
+            });
+        });
     });
-    
-    // res.render('guideView.html', {guides: guides[parseInt(req.params.id)], places: places[parseInt(req.params.id)]});
 }
