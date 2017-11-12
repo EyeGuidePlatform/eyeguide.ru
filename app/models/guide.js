@@ -120,7 +120,7 @@ guideSchema.methods = {
         this.surname = await trnsModel.translitWord(this.surname, lang);
         //TODO: info
                 
-        return guide;  
+        return this;  
     }
 }
 
