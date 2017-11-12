@@ -82,8 +82,9 @@ map.addControl(new YMaps.ScaleLine());
                         </div>  
                         <div class="place-info col-md-6 col-sm-6">
                             <h4>Описание:</h4>  
+                            <h5>{{ place.description }}</h5>
                             <p>
-                                {{ place.description }} {{place.geo.x}} {{place.geo.y}}
+                                 {{place.geo.x}} {{place.geo.y}}
                             </p>
                         </div>
                     </div>
@@ -96,6 +97,7 @@ map.addControl(new YMaps.ScaleLine());
         <div class="col-xs-12">
             <h2 class="text-center">Гиды</h2>
             <div class="responsive">
+                <!-- переделать через foreach в nunjucks !!!-->
                 <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
                 <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
                 <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>

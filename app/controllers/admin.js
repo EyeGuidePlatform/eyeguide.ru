@@ -2,7 +2,7 @@ const mongoose = require('mongoose'),
     adminModel = require('../models/admin').adminModel;
 
 exports.getPage = (req, res) => {
-    console.log(session);
+    console.log(req.session);
     
     if (req.session.admin)
         res.send('В админке');
