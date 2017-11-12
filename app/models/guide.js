@@ -61,13 +61,9 @@ guideSchema.statics = {
      */
     addGuide: function (guideData, cb) {
         let newGuide = new this(guideData);
-<<<<<<< HEAD
         newGuide.password = toHash(guideData.password);
 
         let placeModel = require('./place').placeModel;
-=======
- 
->>>>>>> origin/SOLID
         //Добавить каждому выбранному месту нового гида
         //FIXME: одним запросом всех!
         newGuide.places.forEach( placeId => {
