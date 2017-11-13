@@ -1,4 +1,5 @@
 const guideModel = require('../models/guide').guideModel;
+const placeModel = require('../models/place').placeModel;
 
 /**
  * Страница "Смена пароля гида"
@@ -17,16 +18,18 @@ exports.getGuideOrdersPage = (req, res) => {
 /**
  * Страница "Места гида"
  */
-exports.getGuidePlacesPage = (req, res) => {
-    res.render('gid_places.html');
+exports.getGuidePlacesPage = async (req, res) => {
+    let places = placeModel.getPlaces()
+    res.render('gid_places.html', {places: places});
 }
 
 /**
  * Страница "Личный кабинет гида"
  * @param {ObjectId} id
  */
-exports.getProfilePage = (req, res) => {
-    guideModel.findById({_id: req.params.id}).then( guides => {
-        res.render('gid_profile.html', {guides: guides});
-    });
+exports.getProfilePage = async (req, res) => {
+    let id = req.param.id,
+        guide = await guideModel.getGuide(id)
+    
+    res.render('gid_profile.html', {guide: guide})
 }

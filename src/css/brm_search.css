@@ -41,19 +41,20 @@ button {
     position: fixed;
     padding-right: 0;
     height: 100vh;
-    background: linear-gradient(
-    to bottom, 
-    rgba(46,204,113,1) 0%, 
-    rgba(234,255,234,0.59) 73%, 
-    rgba(234,255,234,0.56) 79%
-    );
  }
 #search_config aside {
     margin-top: 2rem;
 }
+.panel-search {
+    background-color: #2ecc71;
+    color: white;
+    padding: 1rem;
+    font-weight: 500;
+    font-size: 14px;
+}
 #collapse_search span {
     font-weight: 700;
-    font-size: 14px;
+    font-size: 16px;
 }
 .search_confirm {
     text-align: center;
@@ -130,3 +131,10 @@ button {
         height: auto;
     }
 }
+
+@media (max-width: 425px) {
+    .panel-search {
+        text-align: center;
+    }
+}
+
