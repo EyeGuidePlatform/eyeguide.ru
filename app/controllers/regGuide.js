@@ -13,6 +13,8 @@ exports.getNewGuide = async (req, res) => {
     res.render('gid_newGuide.html', {cities: cities, languages: languages});
 }
 
+//FIXME
+//Перенести в отдельный контроллер
 exports.getPlacesJSON = async (req, res) => {
     let places = await placeModel.getPlaces();
 

@@ -75,6 +75,12 @@ guideSchema.statics = {
         
         return await newGuide.save();
     },
+    checkGuide: async function(guideData){
+        console.log(guideData);
+        let foundUser = await this.findOne({email: guideData.email});
+        foundUser = (foundUser.password == toHash(guideData.password)) ? foundUser : null;
+        return foundUser;
+    },
     /**
      * Заправшиваем из БД гида по id
      * @param {ObjectId} guideId

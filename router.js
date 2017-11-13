@@ -20,7 +20,8 @@ let express = require('express'),
     placeController = require('./app/controllers/placeCard'),//ранее placeCard
     regPlaceController = require('./app/controllers/regPlace'),
     adminController = require('./app/controllers/admin'),
-    regGuideController = require('./app/controllers/regGuide');
+    regGuideController = require('./app/controllers/regGuide'),
+    logGuideController = require('./app/controllers/logGuide');
 
 //Middleware
 router.use('/', (req, res, next) => {
@@ -58,6 +59,9 @@ router.post('/registration', upload.single('img'), regGuideController.addNewGuid
 router.get('/create/place', regPlaceController.getCreatePlacePage);
 router.post('/createPlace', upload.single('img'), regPlaceController.createPlace);
 
+//Аутентификация гидов
+router.post('/guide/login', logGuideController.login);
+router.post('/guide/logout', logGuideController.logout);
 router.get('/getPlaces', regGuideController.getPlacesJSON);
 
 //Поиск мест и гидов
