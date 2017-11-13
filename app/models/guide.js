@@ -75,10 +75,15 @@ guideSchema.statics = {
         
         return await newGuide.save();
     },
+    /**
+     * Проверяем введенные данные для аутентификации
+     * @param {Object} guideData
+     */
     checkGuide: async function(guideData){
-        console.log(guideData);
-        let foundUser = await this.findOne({email: guideData.email});
-        foundUser = (foundUser.password == toHash(guideData.password)) ? foundUser : null;
+        let foundUser = await this.findOne({
+            email: guideData.email, 
+            password: toHash(guideData.password)
+        });
         return foundUser;
     },
     /**

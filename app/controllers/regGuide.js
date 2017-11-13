@@ -36,5 +36,6 @@ exports.addNewGuide = async (req, res, next) => {
     }
     
     let guide = await guideModel.addGuide(newGuide);
+    req.session.guide = {id: guide._id, email: guide.email, name: guide.name};
     res.redirect('/guideProfile/' + guide._id);
 }

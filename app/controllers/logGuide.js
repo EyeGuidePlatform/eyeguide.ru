@@ -2,16 +2,16 @@ let guideModel = require('../models/guide').guideModel;
 
 exports.login = async (req, res) => {
     if (req.session.guide)
-        res.redirect('/guideProfile/' + req.session.guide._id);
+        return res.redirect('/guideProfile/' + req.session.guide.id);
 
     let guide = await guideModel.checkGuide(req.body);
 
-    if (guide != null) {
-        req.session.guide = {id: guide._id, email: guide.email};
-        res.redirect('/guideProfile/' + guide._id);
-    } else {
-        res.redirect('back');
+    if (guide) {
+        req.session.guide = {id: guide._id, email: guide.email, name: guide.name};
+        return res.redirect('/guideProfile/' + guide._id);
     }
+
+    res.redirect('back');
 }
 
 exports.logout = (req, res) => {
