@@ -5,7 +5,7 @@ const placeSelect = new Choices('#places', {
     citySelect = document.getElementById('city');
 
 (async () => {
-    const places = await getPlacesJSON();
+    const places = await getJSON.getPlacesJSON('none');
 
     updatePlaces(places, citySelect.value);
 
@@ -31,11 +31,10 @@ function updatePlaces(places, newCity) {
 
     //Обновляем места, принадлежащие выбранному городу
     placeSelect.clearStore().setChoices(items, 'value', 'label', false);
-    // placeSelect.setChoices(options, 'value', 'label', false);
 }
 
 async function getPlacesJSON () {
-    const placesJSON = await $.getJSON('/api/getPlaces');
+    const placesJSON = await $.getJSON('/api/getPlaces/none');
 
     return JSON.parse( placesJSON );
 }

@@ -65,7 +65,7 @@ router.get('/activate/:url', regGuideController.confirmEmail);
 router.post('/guide/login', logGuideController.login);
 router.post('/guide/logout', logGuideController.logout);
 
-router.get('/api/getPlaces', getJSONController.getPlacesJSON);
+router.get('/api/getPlaces/:city', getJSONController.getPlacesJSON);
 
 //Поиск мест и гидов
 router.get('/search' ,searchController.getSearchPage);
