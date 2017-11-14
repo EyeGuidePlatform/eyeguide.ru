@@ -20,7 +20,9 @@ let express = require('express'),
     placeController = require('./app/controllers/placeCard'),//ранее placeCard
     regPlaceController = require('./app/controllers/regPlace'),
     adminController = require('./app/controllers/admin'),
-    regGuideController = require('./app/controllers/regGuide');
+    regGuideController = require('./app/controllers/regGuide'),
+    logGuideController = require('./app/controllers/logGuide'),
+    getJSONController = require('./app/controllers/getJSON');
 
 //Middleware
 router.use('/', (req, res, next) => {
@@ -46,11 +48,8 @@ router.post('/map', mapController.parseCity);
 router.get('/guideOptions', lkController.getGuideOptionsPage);
 router.get('/guideOrders', lkController.getGuideOrdersPage);
 router.get('/guidePlaces', lkController.getGuidePlacesPage);
-router.post('/guidePlace', lkController.parsePlaces);
-
-    //Guide profile 
-router.get('/guideProfile/:id', lkController.getProfilePage);
-router.post('/guideProfile', lkController.parseId);
+router.post('/guidePlaces', lkController.parsePlaces);
+router.get('/guideProfile', lkController.getProfilePage);
 
 //Карточки(профиль) гида и места
 router.get('/profile/:id', guideController.getProfile);
@@ -61,6 +60,13 @@ router.get('/registration', regGuideController.getNewGuide);
 router.post('/registration', upload.single('img'), regGuideController.addNewGuide);
 router.get('/create/place', regPlaceController.getCreatePlacePage);
 router.post('/createPlace', upload.single('img'), regPlaceController.createPlace);
+router.get('/activate/:url', regGuideController.confirmEmail);
+
+//Аутентификация гидов
+router.post('/guide/login', logGuideController.login);
+router.post('/guide/logout', logGuideController.logout);
+
+router.get('/api/getPlaces/:city', getJSONController.getPlacesJSON);
 
 //Поиск мест и гидов
 router.get('/search' ,searchController.getSearchPage);
