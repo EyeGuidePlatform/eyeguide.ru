@@ -12,6 +12,10 @@
   position: relative;
   z-index: 1001;
 }
+
+.choices .choices__list--dropdown {
+  z-index: 10;
+}
 /* .wrapper span {
   display: inline-block;
 } */
@@ -95,6 +99,9 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+#places label {
+  position: relative;
+}
 #places li {
   border: 1px #2ecc71 solid;
   margin-bottom: 1rem;
@@ -103,7 +110,17 @@
   display: none;
   width: 100%;
 }
-
+.remove_place {
+  text-align: center;
+}
+.remove_place button {
+  color: #2ecc71;
+  background-color: white;
+}
+.remove_place button:hover {
+  color: white;
+  background-color: rgb(153, 45, 45);
+}
 
 /* ========================================================================== */
 /* Media queries */

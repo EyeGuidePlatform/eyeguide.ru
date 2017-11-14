@@ -46,7 +46,11 @@ router.post('/map', mapController.parseCity);
 router.get('/guideOptions', lkController.getGuideOptionsPage);
 router.get('/guideOrders', lkController.getGuideOrdersPage);
 router.get('/guidePlaces', lkController.getGuidePlacesPage);
+router.post('/guidePlace', lkController.parsePlaces);
+
+    //Guide profile 
 router.get('/guideProfile/:id', lkController.getProfilePage);
+router.post('/guideProfile', lkController.parseId);
 
 //Карточки(профиль) гида и места
 router.get('/profile/:id', guideController.getProfile);
