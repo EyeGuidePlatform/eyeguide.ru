@@ -4,6 +4,8 @@
 
 <link rel="stylesheet" href="/css/brm_gid-navbar.css">
 <link rel="stylesheet" href="/css/brm_gid-places.css">
+<link rel="stylesheet" href="/css/choices.min.css">
+<script src="/js/choices.min.js"></script>
 <script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
 
 {% endblock %}
@@ -22,8 +24,17 @@
       </div>
       <div class="col-md-3 col-md-pull-9 map_menu">
         <div class="wrapper">
-          <div class="map_menu--add">Добавить</div>
-          <div class="map_menu--edit">Изменить</div>
+          <div class="input-group">
+              <select name="places[]" id="place_choise">
+                  <option selected disabled placeholder>Выберите место</option>
+                  {% for place in places %}
+                  <option value="{{ place._id }}">{{ place.name }}</option>
+                  {% endfor %}
+              </select>
+              <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">Add</button>
+              </span>
+          </div>
         </div>
       </div>
     </div>
@@ -73,6 +84,9 @@
  <script src="/js/bootstrap.min.js"></script>
  <script src="/js/gid_places.js"></script>
  
+ <script>
+     let placesSelect = new Choices('#place_choise');
+ </script>
  {% endblock %}
 </body>
 </html>

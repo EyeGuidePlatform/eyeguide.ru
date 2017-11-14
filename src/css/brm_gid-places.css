@@ -4,29 +4,25 @@
 .wrapper {
   position: relative;
   width: 100%;
-  text-align: center;
-  margin-top: .5rem;
-  font-size: 0;
+  /* text-align: center; */
+  margin-top: .5rem; 
+  /* font-size: 0;  */
 }
-.map_menu .wrapper div {
+.wrapper option {
+  position: relative;
+  z-index: 1001;
+}
+/* .wrapper span {
+  display: inline-block;
+} */
+/* .map_menu .wrapper div {
   display: inline-block;
   position: relative;
   font-size: 2.4rem;
   font-weight: 500;
   padding-top: 1rem; padding-bottom: 1rem;
   cursor: pointer;
-}
-.map_menu--edit {
-  padding-left: .2rem;
-  border-left: 1px black solid;
-  margin-left: -1px;
-}
-
-.map_menu--add {
-  padding-right: .2rem;
-  color: black;
-  text-shadow: none;
-}
+} */
 .main-content {
   margin-top: 1rem;
 }
@@ -95,6 +91,9 @@
 #places {
   list-style: none;
   padding-left: 0;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 #places li {
   border: 1px #2ecc71 solid;
@@ -113,11 +112,6 @@
 @media (max-width: 991px) {
   .wrapper {
     margin-left: -1rem;
-    margin-top: 5rem;
+    margin-top: 7rem;
   }
 }
-
-/* main {
-  margin: 2rem;
-  background-color: green;
-} */
