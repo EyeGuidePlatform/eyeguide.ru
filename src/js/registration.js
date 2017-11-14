@@ -5,7 +5,7 @@ const placeSelect = new Choices('#places', {
     citySelect = document.getElementById('city');
 
 (async () => {
-    const places = await getJSON.getPlacesJSON('none');
+    const places = await getPlacesJSON('none');
 
     updatePlaces(places, citySelect.value);
 

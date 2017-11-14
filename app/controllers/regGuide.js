@@ -16,8 +16,8 @@ const guideModel = require('../models/guide').guideModel,
  * Страница "регистрация нового гида"
  */
 exports.getNewGuide = async (req, res) => {
-    let cities = await cityModel.find(),
-        languages = await languageModel.find();
+    let cities = await cityModel.getCities(),
+        languages = await languageModel.getLangs();
     
     res.render('gid_newGuide.html', {cities: cities, languages: languages});
 }
