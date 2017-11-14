@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-=======
 let guideModel = require('../models/guide').guideModel,
     placeModel = require('../models/place').placeModel;
 
->>>>>>> origin/SOLID
 /**
  * Страница "регистрация нового гида"
  */
 exports.getNewGuide = (req, res) => {
-<<<<<<< HEAD
-    res.render('gid_newGuide.html');
-=======
     placeModel.find({}).then( places => {
         res.render('gid_newGuide.html', {places: places}); 
     } );
@@ -32,5 +26,4 @@ exports.addNewGuide = (req, res, next) => {
     guideModel.addGuide(newGuide, guide => {
         res.redirect('/guideProfile/' + guide._id);
     });
->>>>>>> origin/SOLID
 }

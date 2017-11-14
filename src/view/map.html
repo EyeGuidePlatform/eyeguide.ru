@@ -31,36 +31,6 @@
                     <button class="to-places" data-target="#places">Места</button>
                 </div>
 
-<<<<<<< HEAD
-                <div id="guides" class="row">
-                    {% for guide in guides %}
-                    <a href="/profile/{{ guide._id }}" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
-                        <div style="background-image: url('{{ guide.img }}')" class="element-img col-md-12"></div>
-                        <div class="element-info col-md-12">
-                            <h3 class="element-name">{{ guide.name }}</h3>
-                            <p class="element-stats">
-                                {{ guide.info.hours }} часов экскурсии<br>
-                                {{ guide.info.tours }} проведенных экскурсий<br>
-                                {{ guide.info.happy }} счастливых туристов
-                            </p>
-                        </div>
-                    </a>
-                    {% endfor %}
-                </div>
-
-                <div id="places" class="row hidden">
-                    {% for place in places %}
-                    <a href="/place/{{ place._id }}" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
-                        <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
-                        <div class="element-info col-md-12">
-                            <h3 class="element-name">{{ place.name }}</h3>
-                            <p class="element-stats">
-                                {{ place.description | truncate(110) }}
-                            </p>
-                        </div>
-                    </a>
-                    {% endfor %}
-=======
                 <div id="guides">
                     <div class="elements row">
                         {% for guide in guides %}
@@ -102,7 +72,6 @@
                     <div class="show-all">
                         <a href="#">Показать все места</a>
                     </div>
->>>>>>> origin/SOLID
                 </div>
             </div>
         </div>

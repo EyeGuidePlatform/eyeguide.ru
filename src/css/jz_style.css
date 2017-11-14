@@ -165,12 +165,9 @@
     border-radius: 0 20px 20px 0;
 }
 
-<<<<<<< HEAD
-=======
 .elements {
     margin-bottom: 20px;
 }
->>>>>>> origin/SOLID
 
 .element {
     overflow: hidden;
@@ -208,8 +205,6 @@
     padding: 0;
 }
 
-<<<<<<< HEAD
-=======
 .show-all {
     text-align: center;
 }
@@ -232,7 +227,6 @@
     text-decoration: none;
 }
 
->>>>>>> origin/SOLID
 
 /* ========================================================================== */
 /* Media queries */

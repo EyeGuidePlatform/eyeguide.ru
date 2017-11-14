@@ -2,11 +2,6 @@ const express = require('express'),
     nunjucks = require('nunjucks'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-<<<<<<< HEAD
-    app = express();
-
-let login = require('./config').dbLogin,
-=======
     i18n = require('i18n'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
@@ -15,7 +10,6 @@ let login = require('./config').dbLogin,
 
 let locales = ['ru', 'en'],
     login = require('./config').dbLogin,
->>>>>>> origin/SOLID
     pass = require('./config').dbPass,
     adress = require('./config').dbAdress,
     url = 'mongodb://'+login+':'+pass+'@'+adress;
@@ -24,8 +18,6 @@ let locales = ['ru', 'en'],
 mongoose.Promise = global.Promise;
 mongoose.connect(url, {useMongoClient: true});
 module.exports.mongoose = mongoose;
-<<<<<<< HEAD
-=======
 module.exports.locales = locales;
 
 i18n.configure({
@@ -46,18 +38,13 @@ app.use(
         })
     })
 ));
->>>>>>> origin/SOLID
 
 app.use(
     express.static(__dirname + '/src'),
     bodyParser(),
-<<<<<<< HEAD
-    bodyParser.json()
-=======
     bodyParser.json(),
     cookieParser(),
     i18n.init
->>>>>>> origin/SOLID
 );
 
 nunjucks.configure(__dirname + '/src/view', {

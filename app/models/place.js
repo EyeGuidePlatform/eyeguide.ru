@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-const mongoose = require('./../../server').mongoose;
-=======
 const mongoose = require('./../../server').mongoose,
     guideModel = require('./guide').guideModel,
     trnsModel = require('./translater');
->>>>>>> origin/SOLID
 
 placeSchema = mongoose.Schema({
     visible: {
@@ -20,11 +16,6 @@ placeSchema = mongoose.Schema({
     geo: {
         x: Number,
         y: Number
-<<<<<<< HEAD
-    }
-});
-
-=======
     },
     city: String,
     guides: [
@@ -100,6 +91,5 @@ placeSchema.methods = {
     } 
 }
 
->>>>>>> origin/SOLID
 let placeModel = mongoose.model('place', placeSchema);
 module.exports.placeModel = placeModel;

@@ -3,10 +3,7 @@ const placeModel = require('../models/place').placeModel,
 
 /**
  * Переход к карте после ввода города на главной
-<<<<<<< HEAD
-=======
  * @param {String} city
->>>>>>> origin/SOLID
  */
 exports.parseCity = (req, res) => {
     let city = req.body.city;
@@ -18,19 +15,6 @@ exports.parseCity = (req, res) => {
  * Страница "Карта"
  * @param {String} city
  */
-<<<<<<< HEAD
-exports.getCityPage = (req, res) => {
-    let city = req.params.city;
-
-    placeModel.find({}).then( places => {
-        guideModel.find({}).then( guides => {
-            res.render('map.html', {
-                guides: guides, 
-                places: places, 
-                city: city
-            });
-        });
-=======
 exports.getCityPage = async (req, res) => {
     let city = req.params.city;
         places = await placeModel.getPlaces({limit: 6}, {city: city}),
@@ -44,6 +28,5 @@ exports.getCityPage = async (req, res) => {
         guides: guides, 
         places: places, 
         city: city
->>>>>>> origin/SOLID
     });
 }
