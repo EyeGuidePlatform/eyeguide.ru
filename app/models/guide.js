@@ -7,13 +7,14 @@ const mongoose = require('./../../server').mongoose,
 guideSchema = mongoose.Schema({
     visible: {
         type: Number, 
-        default: 0 // 0 - на модерации, 1 - одобрен, 2 - откланен
+        default: 0 // 0 - не подтверждена почта, 1 - на модерации, 2 - одобрен, 3 - откланен
     },
     email: {
         type: String,
         unique: true,
         required: true
     },
+    activate: String,
     password: {
         type: String,
         required: true
@@ -141,6 +142,13 @@ guideSchema.methods = {
         //TODO: info
                 
         return this;  
+    },
+    genEmailConfirmURL: async function () {
+        const url = toHash(this._id + this.email);
+        this.activate = url;
+        await this.save();
+
+        return 'http://localhost:8080/activate/' + url;
     }
 }
 
