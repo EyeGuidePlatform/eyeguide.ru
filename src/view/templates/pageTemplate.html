@@ -15,6 +15,10 @@
 
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/footer.css">
+<<<<<<< HEAD
+=======
+    <link rel="stylesheet" href="/css/modal.css">
+>>>>>>> origin/SOLID
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -43,19 +47,63 @@
 
         <div class="collapse navbar-collapse" id="bs-navbar">
             <ul class="nav navbar-nav">
+<<<<<<< HEAD
                 <li><a href="#">С кем пойдем?</a></li>
                 <li><a href="#">Куда пойдем?</a></li>   
+=======
+                <li><a href="/search">С кем пойдем?</a></li>
+                <li><a href="/search">Куда пойдем?</a></li>   
+>>>>>>> origin/SOLID
                 <li><a href="#">Задать вопрос</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 {% block rightNav %}
+<<<<<<< HEAD
                 <li><a id="nav-sign-in" href="#">Вход / Регистрация</a></li>
+=======
+                <li><a id="nav-sign-in" href="#" data-target="#sign-in">{{__('_login_reg')}}</a></li>
+>>>>>>> origin/SOLID
                 {% endblock %}
             </ul>
         </div>
     </div>
 </nav>
+<<<<<<< HEAD
+=======
+
+{% block modal %}
+<div class="modal fade" id="sign-in">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="close-modal" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Вход</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="form-group">
+                        <label for="sign-in-username">Логин</label>
+                        <input class="form-control" type="text" id="sign-in-username" name="username" placeholder="введите имя пользователя" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sign-in-password">Пароль</label>
+                        <input class="form-control" type="password" id="sign-in-password" name="password" placeholder="введите пароль" required>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="sign-in btn btn-default">Войти</button>
+                        <a href="/registration" class="sign-up btn btn-success">Регистрация</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+>>>>>>> origin/SOLID
 {% endblock %}
 
 <!-- ======================================================================= -->
@@ -73,11 +121,19 @@
         <div class="row">
             <div class="content {% block footerClasses %} col-md-12 {% endblock %} col-sm-12 col-xs-12">
                 <div class="pull-left footer-contacts">
+<<<<<<< HEAD
                     <a href="#">Контакты</a>
                 </div>
 
                 <div class="pull-right footer-help">
                     <a href="#">Помощь</a>
+=======
+                    <a href="#">{{__('_contacts')}}</a>
+                </div>
+
+                <div class="pull-right footer-help">
+                    <a href="#">{{__('_help')}}</a>
+>>>>>>> origin/SOLID
                 </div>
 
                 <div class="footer-social">
@@ -94,6 +150,10 @@
     </div>
 
     <script src="/js/menu.js"></script>
+<<<<<<< HEAD
+=======
+    <script src="/js/modal.js"></script>
+>>>>>>> origin/SOLID
     {% block commonJS %}
 
     {% endblock %}

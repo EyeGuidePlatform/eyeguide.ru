@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
     background: rgb(245, 245, 245);
 }
@@ -8,10 +9,22 @@ body{
 }
 
 .green-bg{
+=======
+/* div{
+    border:solid 1px black;    
+} */
+
+.text-center{
+    text-align: center;
+}
+
+.cards{
+>>>>>>> origin/SOLID
     padding: 1rem 3rem 1rem 3rem;
     background: #0caa50;
 }
 
+<<<<<<< HEAD
 .grey-bg{
     padding: 1rem 3rem 1rem 3rem;
     background: rgb(235, 235, 235);
@@ -33,13 +46,22 @@ body{
     border-radius: 1rem;
     margin:1rem 1rem 1rem 1rem;
 }
+=======
+.container-fluid{
+    border: 1px solid black;
+}
+
+>>>>>>> origin/SOLID
 .text-white{
     color: white;
 }
 
+<<<<<<< HEAD
 .text-black{
     color:black;
 }
+=======
+>>>>>>> origin/SOLID
 
 .mb-1{
     margin-bottom: 1rem;
@@ -52,6 +74,7 @@ body{
     margin-bottom: 5rem;
 }
 
+<<<<<<< HEAD
 .mt-1{
     margin-top: 1rem;
 }
@@ -64,6 +87,8 @@ body{
     margin-top: 5rem;
 }
 
+=======
+>>>>>>> origin/SOLID
 #YMapsID{
     margin:auto;
     height:300px;
@@ -80,8 +105,12 @@ body{
         width:600px;
         height: 450px;
     }
+<<<<<<< HEAD
 }
 
 .btn{
     height: 5rem;
 }
+=======
+}
+>>>>>>> origin/SOLID

@@ -106,10 +106,17 @@ body {
 #place .container {
     padding: 20px 0;
 
+<<<<<<< HEAD
     border: 1px solid #2cee71;
     box-shadow: 0 0 5px 0px #2cee71;
     border-radius: 20px;
     background-color: #0acc50;
+=======
+    border: 1px solid #028d33;
+    box-shadow: 0 0 5px 0px #028d33;
+    border-radius: 20px;
+    background-color: #028d33;
+>>>>>>> origin/SOLID
     color: #fff;
 }
 
@@ -272,8 +279,29 @@ body {
     }
 }
 
+<<<<<<< HEAD
+=======
+#car{
+    padding: 30px 30px;
+    bottom: 30px 30px
+}
+>>>>>>> origin/SOLID
 
 #map{
     padding: 30px 30px ;
     bottom: 30px 30px ;
+<<<<<<< HEAD
+=======
+} 
+
+
+#car .container{
+    padding: 20px 0;
+    
+        border: 1px solid #028d33;
+        box-shadow: 0 0 5px 0px #028d33;
+        border-radius: 20px;
+        background-color: #028d33;
+        color: #fff;
+>>>>>>> origin/SOLID
 }

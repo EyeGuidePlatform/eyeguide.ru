@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "templates/pageTemplate.html" %}
 
 {% block commonStyles %}
@@ -108,3 +109,115 @@
 {% endblock %}
 </body>
 </html>
+=======
+{% extends "templates/pageTemplate.html" %}
+
+{% block commonStyles %}
+
+<link rel="stylesheet" href="/css/brm_gid-navbar.css">
+<link rel="stylesheet" href="/css/brm_gid-profile.css">
+
+{% endblock %}
+
+{% block content %}
+<div class="wrap">
+
+
+
+<!-- ====================== -->
+<!-- top-menu -->
+
+<div class="container-fluid gid_nav">
+    <div class="row">
+        <div class='col-xs-12 col-sm-12 col-md-offset-3 col-md-9 '>
+            {% include "templates/top_menu.html" %}
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- left-menu -->
+    <aside class="col-md-4">
+      <!-- <div class="container"> -->
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="profile_photo">
+              <div class="edit">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12 profile_info">
+            <!-- <div class="container"> -->
+              <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-6 col-md-offset-3">
+                  <h4>{{ guides.info.hours }}</h4>
+                  <span>часов экскурсий</span>
+                </div>
+                <div class="col-xs-4 col-sm-4  col-md-6 col-md-offset-3">
+                  <h4>{{ guides.info.tours }}</h4>
+                  <span>проведенных экскурсий</span>
+                </div>
+                <div class="col-xs-4 col-sm-4  col-md-6 col-md-offset-3">
+                  <h4>{{ guides.info.happy }}</h4>
+                  <span>счастливых туристов</span>
+                </div>
+              </div>
+            <!-- </div> -->
+          </div>
+        </div>
+      <!-- </div> -->
+    </aside>
+
+    <!-- main -->
+    <main class="col-md-8">
+      <ul>
+        <li>
+          <span>Фамилия имя</span>
+          <h4>{{ guides.surname }} {{ guides.name }}</h2>
+        </li>
+        <li>
+            <span>Специализации</span>
+            <h4>{{ guides.info.spec }}</h4>
+        </li>
+        <li>
+            <span>Виды экскурсий</span>
+            <h4>{{ guides.info.types }}</h4>
+        </li>
+        <li>
+            <span>Языки</span>
+            <h4>{{ guides.info.lang }}</h4>
+        </li>
+        <li>
+            <span>Телефон</span>
+            <h4>{{ guides.phone }} (виден только мне)</h4>
+        </li>
+        <li>
+            <span>E-mail</span>
+            <h4>{{ guides.email }}</h4>
+        </li>
+      </ul>
+    </main>
+
+  </div>
+</div>
+<div class="edit big_edit">
+  <i class="fa fa-pencil" aria-hidden="true"></i>
+</div>
+
+
+</div> <!-- wrap -->
+{% endblock %}
+
+{% block commonJS %}
+<script src="/js/jquery-2.2.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+{% endblock %}
+</body>
+</html>
+>>>>>>> origin/SOLID

@@ -165,6 +165,12 @@
     border-radius: 0 20px 20px 0;
 }
 
+<<<<<<< HEAD
+=======
+.elements {
+    margin-bottom: 20px;
+}
+>>>>>>> origin/SOLID
 
 .element {
     overflow: hidden;
@@ -202,6 +208,31 @@
     padding: 0;
 }
 
+<<<<<<< HEAD
+=======
+.show-all {
+    text-align: center;
+}
+
+.show-all a {
+    padding: 12px 20px;
+    color: #fff;
+    border: 1px solid #0caa50;
+    border-radius: 20px;
+
+    background-color: #2ecc71;
+
+    transition: all 0.3s ease;
+}
+
+.show-all a:hover,
+.show-all a:focus {
+    background-color: #0caa50;
+
+    text-decoration: none;
+}
+
+>>>>>>> origin/SOLID
 
 /* ========================================================================== */
 /* Media queries */
