@@ -31,12 +31,36 @@
 
   <!-- ================================ -->
   <!-- main -->
-  <div class="container-fluid">
+  <div class="container-fluid main-content">
     <div class="row">
-      <main class="col-md-9 col-lg-9">
+      <aside class="col-sm-12 col-md-3 col-lg-3 col-md-push-9">
+        <h4>Список мест:</h4>
+        <!-- <div id="places" class="row"> -->
+          <ul id="places">
+          {% for place in places %}
+            <li class="row">
+              <input id='place_{{ place._id}}' type="checkbox" >
+              <label for='place_{{ place._id}}'>{{ place.name }}</label>
+              <article>
+                  <a href="/place/{{ place._id }}" class="element col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
+                    <div class="element-info col-md-12">
+                        <h3 class="element-name">{{ place.name }}</h3>
+                        <p class="element-stats">
+                            {{ place.description | truncate(110) }}
+                        </p>
+                    </div>
+                </a>
+              </article>
+          </li>
+          {% endfor %}
+        </ul>
+        <!-- </div> -->
+
+      </aside>
+      <main class="col-sm-12 col-md-9 col-lg-9 col-md-pull-3">
         <div id="YMapsID"></div>
       </main>
-      <aside class="col-md-3 col-lg-3">Список мест:</aside>
     </div>
   </div>
 

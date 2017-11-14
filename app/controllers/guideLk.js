@@ -19,7 +19,7 @@ exports.getGuideOrdersPage = (req, res) => {
  * Страница "Места гида"
  */
 exports.getGuidePlacesPage = async (req, res) => {
-    let places = placeModel.getPlaces()
+    let places = await placeModel.getPlaces()
     res.render('gid_places.html', {places: places});
 }
 
