@@ -32,9 +32,9 @@ placeSchema.statics = {
      * Добавление нового гида в бд
      * @param {Object} placeData - информация о месте
      */
-    addPlace: function (placeData, cb) {
+    addPlace: async function (placeData) {
         let newPlace = new this(placeData);
-        newPlace.save().then(cb);
+        return await newPlace.save();
     },
     /**
      * Заправшиваем из БД место по id

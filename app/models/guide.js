@@ -63,7 +63,7 @@ guideSchema.statics = {
      * Добавление нового гида в бд
      * @param guideData - информация о гиде
      */
-    addGuide: async function (guideData, cb) {
+    addGuide: async function (guideData) {
         let newGuide = new this(guideData);
         newGuide.password = toHash(guideData.password);
 
