@@ -21,7 +21,8 @@ let express = require('express'),
     regPlaceController = require('./app/controllers/regPlace'),
     adminController = require('./app/controllers/admin'),
     regGuideController = require('./app/controllers/regGuide'),
-    logGuideController = require('./app/controllers/logGuide');
+    logGuideController = require('./app/controllers/logGuide'),
+    getJSONController = require('./app/controllers/getJSON');
 
 //Middleware
 router.use('/', (req, res, next) => {
@@ -63,7 +64,8 @@ router.get('/activate/:url', regGuideController.confirmEmail);
 //Аутентификация гидов
 router.post('/guide/login', logGuideController.login);
 router.post('/guide/logout', logGuideController.logout);
-router.get('/getPlaces', regGuideController.getPlacesJSON);
+
+router.get('/api/getPlaces', getJSONController.getPlacesJSON);
 
 //Поиск мест и гидов
 router.get('/search' ,searchController.getSearchPage);

@@ -59,6 +59,8 @@ placeSchema.statics = {
                     break;
                 case 'limit': query.limit(arg.limit);
                     break;
+                case '_id': query.where('_id').in(arg._id);
+                    break;
                 //TODO: остальные криетрии поиска
             }
         })

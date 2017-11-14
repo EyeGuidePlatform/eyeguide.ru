@@ -37,7 +37,10 @@ guideSchema = mongoose.Schema({
         default: 'телефон отсутствует'
     },
     city: String,
-    img: String, 
+    img: {
+        type: String,
+        default: 'http://dummyimage.com/300'
+    },
     info: {
         spec: [String],
         types: [String],
@@ -66,9 +69,7 @@ guideSchema.statics = {
 
         //Добавить каждому выбранному месту нового гида
         let placeModel = require('./place').placeModel;
-        let places = await placeModel.find({
-            '_id': { $in: newGuide.places }
-        });
+        let places = await placeModel.getPlaces({ _id: newGuide.places });
         for(let i = 0; i < places.length; i++) {
             places[i].guides.push(newGuide);
             await places[i].save();
@@ -81,7 +82,7 @@ guideSchema.statics = {
      * @param {Object} guideData
      */
     checkGuide: async function(guideData){
-        let foundUser = await this.findOne({
+        const foundUser = await this.findOne({
             email: guideData.email, 
             password: toHash(guideData.password)
         });
@@ -112,11 +113,11 @@ guideSchema.statics = {
                     break;
                 //TODO: остальные криетрии поиска
             }
-        })
+        });
 
         let guides = await query.populate('places');
         
-        return guides
+        return guides;
     },
     /**
      * Перевод списка гидов

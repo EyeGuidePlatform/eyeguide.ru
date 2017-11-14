@@ -22,16 +22,12 @@ exports.getNewGuide = async (req, res) => {
     res.render('gid_newGuide.html', {cities: cities, languages: languages});
 }
 
-//FIXME
-//Перенести в отдельный контроллер
-exports.getPlacesJSON = async (req, res) => {
-    let places = await placeModel.getPlaces();
-
-    let placesJSON = JSON.stringify(places);
-    res.json(placesJSON);
-}
-
 exports.addNewGuide = async (req, res, next) => {
+    //При несовпадении паролей возвращаем обратно
+    if (req.body.guide.password != req.body.confirmPassword) {
+        return res.redirect('back');
+    }
+
     let newGuide = req.body.guide;
     newGuide.img = req.file ? '/img/' + req.file.filename : undefined;
     newGuide.info = {
@@ -41,14 +37,20 @@ exports.addNewGuide = async (req, res, next) => {
         hours: 0,
         tours: 0,
         happy: 0
-    }
+    };
     
-    let guide = await guideModel.addGuide(newGuide);
-    req.session.guide = {id: guide._id, email: guide.email, name: guide.name};
+    const guide = await guideModel.addGuide(newGuide);
+    //Сразу логиним гида
+    req.session.guide = {
+        id: guide._id, 
+        email: guide.email, 
+        name: guide.name
+    };
 
+    //Генерируем ссылку для подтверждения регистрации
     const confirmURL = await guide.genEmailConfirmURL();
 
-    server.send({
+    const message = {
         text: 'Перейдите по ссылке ниже, чтобы подтвердить почту: \n' + confirmURL,
         from: 'no-reply <eyeguidetest@gmail.com>',
         to: guide.name + ' <' + guide.email + '>',
@@ -65,7 +67,8 @@ exports.addNewGuide = async (req, res, next) => {
                 alternative: true
             }
         ]
-    }, function(err, message) { console.log(err || message); });
+    };
+    server.send(message, function(err, message) { console.log(err || message); });
 
     res.redirect('/guideProfile/' + guide._id);
 }

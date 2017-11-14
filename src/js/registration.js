@@ -1,55 +1,41 @@
-let singleChoiceInputs = new Choices('.single-choice'),
-    multipleChoiceInputs = new Choices('.multiple-choice', {
+const placeSelect = new Choices('#places', {
         removeItemButton: true
     }),
-    placeSelect = new Choices('#places', {
-        removeItemButton: true
-    });
 
-let places;
-let citySelect = document.getElementById('city');
-$.getJSON('/getPlaces', data => {
-    places = JSON.parse(data);
-    updatePlaces(citySelect.value);
-});
+    citySelect = document.getElementById('city');
 
-citySelect.onchange = e => {
-    let newCity = e.target.value;
+(async () => {
+    const places = await getPlacesJSON();
 
-    updatePlaces(newCity);
-}
+    updatePlaces(places, citySelect.value);
 
-let passwordInput = document.getElementById('password'),
-    passwordAgainInput = document.getElementById('password-again'),
-    passwordAccept = false;
-passwordAgainInput.onchange = e => {
-    let password = passwordInput.value,
-        passwordAgain = e.target.value;
-    
-    passwordAccept = false;
-    if (password == passwordAgain) {
-        passwordAccept = true;
+    citySelect.onchange = e => {
+        let newCity = e.target.value;
+
+        updatePlaces(places, newCity);
     }
-}
+})();
 
-let submitBtn = document.getElementById('submit');
-submitBtn.onclick = () => {
-    if (!passwordAccept) return false;
-}
-
-function updatePlaces(newCity) {
-    let options = [];
+function updatePlaces(places, newCity) {
+    let items = [];
 
     places.forEach( place => {
         if (place.city == newCity) {
-            let option = {
+            const item = {
                 value: place._id,
                 label: place.name
             };
-            options.push(option);
+            items.push(item);
         }
     } );
 
-    placeSelect.clearStore();
-    placeSelect.setChoices(options, 'value', 'label', false);
+    //Обновляем места, принадлежащие выбранному городу
+    placeSelect.clearStore().setChoices(items, 'value', 'label', false);
+    // placeSelect.setChoices(options, 'value', 'label', false);
+}
+
+async function getPlacesJSON () {
+    const placesJSON = await $.getJSON('/api/getPlaces');
+
+    return JSON.parse( placesJSON );
 }

@@ -7,7 +7,11 @@ exports.login = async (req, res) => {
     let guide = await guideModel.checkGuide(req.body);
 
     if (guide) {
-        req.session.guide = {id: guide._id, email: guide.email, name: guide.name};
+        req.session.guide = {
+            id: guide._id, 
+            email: guide.email, 
+            name: guide.name
+        };
         return res.redirect('/guideProfile/' + guide._id);
     }
 
