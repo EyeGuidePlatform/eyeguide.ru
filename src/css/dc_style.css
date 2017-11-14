@@ -67,17 +67,11 @@ body{
 #YMapsID{
     margin:auto;
     height:300px;
-}
-
-@media(min-width:576px){
-    #YMapsID{
-        width:auto;
-    }
+    width:100%;
 }
 
 @media (min-width: 768px) {
     #YMapsID{
-        width:600px;
         height: 450px;
     }
 }

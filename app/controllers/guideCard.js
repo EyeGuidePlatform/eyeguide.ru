@@ -8,18 +8,25 @@ guideModel = require('../models/guide').guideModel;
  * Страница "Место"
  * @param {String} place
  */
-exports.getProfile = (req, res) => {
-    let id = req.params.id;
-
-    guideModel.findById(id).then( guide => {
-        //place.guides[]._id;
-        //
-        let query;
-        placeModel.find({}).then( places => {
-            res.render('guideView.html', {
-                guide: guide, 
-                places: places
-            });
-        });
+exports.getProfile= async (req, res)=>{
+    let id = req.params.id,
+    guide = await  guideModel.findById(id);
+    console.log(guide);
+    res.render('guideView.html',{
+        guide:guide
     });
 }
+
+// exports.getProfile = (req, res) => {
+//     let id = req.params.id;
+//     guideModel.findById(id).then( guide => {
+//         let query;
+//         placeModel.find({}).then( places => {
+//             res.render('guideView.html', {
+//                 guide: guide, 
+//                 places: places
+//             });
+//             console.log(guide);
+//         });
+//     });
+// }

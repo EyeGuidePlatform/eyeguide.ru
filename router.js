@@ -20,7 +20,8 @@ let express = require('express'),
     placeController = require('./app/controllers/placeCard'),//ранее placeCard
     regPlaceController = require('./app/controllers/regPlace'),
     adminController = require('./app/controllers/admin'),
-    regGuideController = require('./app/controllers/regGuide');
+    regGuideController = require('./app/controllers/regGuide'),
+    error404 = require('./app/controllers/error');
 
 //Middleware
 router.use('/', (req, res, next) => {
@@ -49,8 +50,10 @@ router.get('/guidePlaces', lkController.getGuidePlacesPage);
 router.get('/guideProfile/:id', lkController.getProfilePage);
 
 //Карточки(профиль) гида и места
+router.get('/error/404', error404. throwError);
 router.get('/profile/:id', guideController.getProfile);
 router.get('/place/:id', placeController.getPlacePage);
+
 
 //Регистрация гидов и мест
 router.get('/registration', regGuideController.getNewGuide);
