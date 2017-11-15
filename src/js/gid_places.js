@@ -1,3 +1,4 @@
+let placesSelect = new Choices('#place_choise');
 // Создает обработчик события window.onLoad
 YMaps.jQuery(function () {
 // Создание экземпляра карты и его привязка к созданному контейнеру

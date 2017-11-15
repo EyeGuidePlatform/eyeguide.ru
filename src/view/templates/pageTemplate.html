@@ -54,7 +54,7 @@
                 {% if not currentUser %}
                 <li><a id="nav-sign-in" class="right-nav-btn" href="#" data-target="#sign-in">{{__('_login_reg')}}</a></li>
                 {% else %}
-                <li><a class="username" href="/guideProfile/{{ currentUser.id }}">{{ currentUser.name }}</a></li>
+                <li><a class="username" href="/guideProfile">{{ currentUser.name }}</a></li>
                 <li>
                     <form action="/guide/logout" method="POST">
                         <button class="right-nav-btn">Выйти</button>

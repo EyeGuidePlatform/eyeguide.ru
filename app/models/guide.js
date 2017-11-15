@@ -78,6 +78,36 @@ guideSchema.statics = {
         return await newGuide.save();
     },
     /**
+     * Добавление в гида выбранное место
+     * @param guideId - айди гида
+     * @param placeId - айди места
+     */
+    addPlaceInGuide: async function (guideId ,placeId) {
+        let placeModel = require('./place').placeModel;
+
+        let guide = await guideModel.getGuide(guideId);
+        let place = await placeModel.getPlace(placeId);
+
+        guide.places.push(place)
+
+        return await guide.save();
+    },
+    /**
+     * Удаление у гида выбранного места
+     * @param guideId - айди гида
+     * @param placeId - айди места
+     */
+    removePlaceFromGuide: async function (guideId, placeId) {
+        let placeModel = require('./place').placeModel;
+
+        let guide = await guideModel.getGuide(guideId);
+        let place = await placeModel.getPlace(placeId);
+
+        guide.places = await guide.places.filter( place => place._id != placeId)
+
+        return await guide.save();
+    },
+    /**
      * Проверяем введенные данные для аутентификации
      * @param {Object} guideData
      */
@@ -94,6 +124,13 @@ guideSchema.statics = {
      */
     getGuide: async function (guideId) {
         return await this.findById(guideId).populate('places');
+    },
+    /**
+     * Запрашиваем из БД гида по id (список мест в виде id)
+     * @param {ObjectId} guideId
+     */
+    getThisGuide: async function (guideId) {
+        return await this.findById(guideId);
     },
     /**
      * Запрашиваем из БД гидов по критериям

@@ -79,7 +79,7 @@ exports.confirmEmail = async (req, res) => {
         guide.visible = 1;
         await guide.save();
 
-        return res.redirect('/guideProfile/' + guide._id);
+        return res.redirect('/guideProfile/');
     }
 
     res.redirect('/');
