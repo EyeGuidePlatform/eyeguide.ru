@@ -21,7 +21,7 @@ let express = require('express'),
     regPlaceController = require('./app/controllers/regPlace'),
     adminController = require('./app/controllers/admin'),
     regGuideController = require('./app/controllers/regGuide');
-
+    FAQcontroller=require('./app/controllers/FAQ');
 //Middleware
 router.use('/', (req, res, next) => {
     if (!req.cookies.eye_lang) {
@@ -42,6 +42,7 @@ router.get('/', mainController.getHomePage);
 router.get('/map/:city', mapController.getCityPage);
 router.post('/map', mapController.parseCity);
 
+router.get('/FAQ', FAQcontroller.getFAQpage);
 //ЛК гида
 router.get('/guideOptions', lkController.getGuideOptionsPage);
 router.get('/guideOrders', lkController.getGuideOrdersPage);
@@ -68,5 +69,8 @@ router.get('/admin/logout', adminController.logout);
 router.get('/admin/create', adminController.createPage);
 router.post('/admin/create', adminController.create);
 router.post('/admin/login', adminController.login);
+
+//FAQ
+
 
 module.exports = router;
