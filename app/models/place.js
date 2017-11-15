@@ -58,6 +58,10 @@ placeSchema.statics = {
                     break;
                 case 'limit': query.limit(arg.limit);
                     break;
+                case '_id': query.where('_id').in(arg._id);
+                    break;
+                case 'not': query.where('_id').nin(arg.not);
+                    break;
                 //TODO: остальные криетрии поиска
             }
         })
@@ -88,7 +92,7 @@ placeSchema.methods = {
         this.description = await trnsModel.translateText(this.description, lang);
                 
         return this;  
-    } 
+    }
 }
 
 let placeModel = mongoose.model('place', placeSchema);

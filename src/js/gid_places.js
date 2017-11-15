@@ -1,3 +1,4 @@
+let placesSelect = new Choices('#place_choise');
 // Создает обработчик события window.onLoad
 YMaps.jQuery(function () {
 // Создание экземпляра карты и его привязка к созданному контейнеру
@@ -33,3 +34,41 @@ places.forEach( place => {
 map.addOverlay(allPlaces);
 
 })
+
+// добавление нового места гиду
+const citySelect = document.getElementById('place_choise');
+
+(async () => {
+    const places = await editPlacesJSON('none');
+
+    updatePlaces(places, citySelect.value);
+
+    citySelect.onchange = e => {
+        let newCity = e.target.value;
+
+        updatePlaces(places, newCity);
+    }
+})();
+
+function updatePlaces(places, newCity) {
+    let items = [];
+
+    places.forEach( place => {
+        if (place.city == newCity) {
+            const item = {
+                value: place._id,
+                label: place.name
+            };
+            items.push(item);
+        }
+    } );
+
+    //Обновляем места, принадлежащие выбранному городу
+    placeSelect.clearStore().setChoices(items, 'value', 'label', false);
+}
+
+async function getPlacesJSON () {
+    const placesJSON = await $.getJSON('/api/editPlaces/none');
+
+    return JSON.parse( placesJSON );
+}

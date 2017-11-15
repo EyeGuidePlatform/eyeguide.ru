@@ -48,8 +48,10 @@ router.post('/map', mapController.parseCity);
 router.get('/guideOptions', lkController.getGuideOptionsPage);
 router.get('/guideOrders', lkController.getGuideOrdersPage);
 router.get('/guidePlaces', lkController.getGuidePlacesPage);
-router.post('/guidePlaces', lkController.parsePlaces);
 router.get('/guideProfile', lkController.getProfilePage);
+// ЛК гида - utils
+router.post('/guidePlaceAdd', lkController.addPlace);
+router.post('/guidePlaceRemove', lkController.removePlace);
 
 //Карточки(профиль) гида и места
 router.get('/profile/:id', guideController.getProfile);
@@ -66,7 +68,9 @@ router.get('/activate/:url', regGuideController.confirmEmail);
 router.post('/guide/login', logGuideController.login);
 router.post('/guide/logout', logGuideController.logout);
 
+//JSON
 router.get('/api/getPlaces/:city', getJSONController.getPlacesJSON);
+router.get('/api/editPlaces/:id', getJSONController.editPlacesJSON);
 
 //Поиск мест и гидов
 router.get('/search' ,searchController.getSearchPage);

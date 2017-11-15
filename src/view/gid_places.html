@@ -22,11 +22,11 @@
       </div>
       <div class="col-md-3 col-md-pull-9 map_menu">
         <div class="wrapper">
-          <form method="POST" action="/guidePlaces" class="input-group">
-              <select name="places[]" id="place_choise">
+          <form method="POST" action="/guidePlaceAdd" class="input-group">
+              <select name="places[]" id="place_choise" required>
                   <option selected disabled placeholder>Выберите место</option>
                   {% for place in places %}
-                  <option value="{{ place._id }}">{{ place.name }}</option>
+                  <option value="{{ place._id }}" name="place">{{ place.name }}</option>
                   {% endfor %}
               </select>
               <span class="input-group-btn">
@@ -46,7 +46,7 @@
         <h4>Список мест:</h4>
         <!-- <div id="places" class="row"> -->
           <ul id="places">
-          {% for place in places %}
+          {% for place in myPlaces %}
             <li class="row">
               <input id='place_{{ place._id}}' type="checkbox" >
               <label for='place_{{ place._id}}'>{{ place.name }}</label>
@@ -61,7 +61,10 @@
                     </div>
                 </a>
                 <div class="remove_place">
+                  <form method="POST" action="/guidePlaceRemove">
+                    <input type="hidden" name="placeId" value="{{ place._id}}"/>
                     <button class="btn btn-block">Удалить место</button>
+                  </form>
                 </div>
               </article>
           </li>
@@ -84,8 +87,4 @@
  <script src="/js/jquery-2.2.3.min.js"></script>
  <script src="/js/bootstrap.min.js"></script>
  <script src="/js/gid_places.js"></script>
- 
- <script>
-     let placesSelect = new Choices('#place_choise');
- </script>
  {% endblock %}

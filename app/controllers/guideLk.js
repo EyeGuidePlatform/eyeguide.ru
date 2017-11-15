@@ -22,16 +22,36 @@ exports.getGuideOrdersPage = (req, res) => {
  */
 exports.getGuidePlacesPage = async (req, res) => {
     let id = req.session.guide.id,
-        places = await placeModel.getPlaces()
+        guide = await guideModel.getGuide(id),
+        thisGuide = await guideModel.getThisGuide(id),
+        places = await placeModel.getPlaces({not: thisGuide.places})
     res.render('gid_places.html', {
-        places: places,
-        id: id
+        myPlaces: guide.places,
+        id: id,
+        places: places
     });
 }
 
-//ToDo
-exports.parsePlaces = async (req,res) => {
-    let placeId = req.body.value
+// POST запрос на добавление места и обновление страницы
+exports.addPlace = async (req,res) => {
+    let id = req.session.guide.id,
+        placeId = req.body.places
+    if (placeId == "Выберите место") {
+        //todo
+        res.redirect('/guidePlaces')
+    } else {
+        let check = await guideModel.addPlaceInGuide(id, ...placeId)
+        res.redirect('/guidePlaces')
+    }
+}
+// POST запрос на удаление места и обновление страницы
+exports.removePlace = async (req,res) => {
+    let id = req.session.guide.id,
+        placeId = req.body.placeId
+    let placeList = await guideModel.removePlaceFromGuide(id, placeId)
+    // res.redirect('/guidePlaces')
+    res.send(placeList)
+    
 }
 
 /**

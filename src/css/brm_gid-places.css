@@ -16,17 +16,9 @@
 .choices .choices__list--dropdown {
   z-index: 10;
 }
-/* .wrapper span {
-  display: inline-block;
-} */
-/* .map_menu .wrapper div {
-  display: inline-block;
-  position: relative;
-  font-size: 2.4rem;
-  font-weight: 500;
-  padding-top: 1rem; padding-bottom: 1rem;
-  cursor: pointer;
-} */
+.choices {
+  margin-bottom: 0 !important;
+}
 .main-content {
   margin-top: 1rem;
 }
