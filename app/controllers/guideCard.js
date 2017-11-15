@@ -18,17 +18,3 @@ exports.getProfile= async (req, res)=>{
 }
 
 
-
-// exports.getProfile = (req, res) => {
-//     let id = req.params.id;
-//     guideModel.findById(id).then( guide => {
-//         let query;
-//         placeModel.find({}).then( places => {
-//             res.render('guideView.html', {
-//                 guide: guide, 
-//                 places: places
-//             });
-//             console.log(guide);
-//         });
-//     });
-// }

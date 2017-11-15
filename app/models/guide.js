@@ -1,4 +1,5 @@
 const mongoose = require('./../../server').mongoose,
+    toHash = require('md5'),
     placeModel = require('./place').placeModel,
     trnsModel = require('./translater');
 
@@ -6,7 +7,17 @@ const mongoose = require('./../../server').mongoose,
 guideSchema = mongoose.Schema({
     visible: {
         type: Number, 
-        default: 0 // 0 - на модерации, 1 - одобрен, 2 - откланен
+        default: 0 // 0 - не подтверждена почта, 1 - на модерации, 2 - одобрен, 3 - откланен
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    activate: String,
+    password: {
+        type: String,
+        required: true
     },
     name: {
         type: String,
@@ -20,22 +31,22 @@ guideSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    email: {
-        type: String,
-        default: 'email отсутствует'
-    },
+    city: String,
     phone: {
         type: String,
         default: 'телефон отсутствует'
     },
     city: String,
-    img: String, 
+    img: {
+        type: String,
+        default: 'http://dummyimage.com/300'
+    },
     info: {
         spec: [String],
         types: [String],
         lang: [String],
         hours: Number,
-        tours: Number, 
+        tours: Number,
         happy: Number,
     },
     places: [
@@ -52,18 +63,30 @@ guideSchema.statics = {
      * Добавление нового гида в бд
      * @param guideData - информация о гиде
      */
-    addGuide: function (guideData, cb) {
+    addGuide: async function (guideData) {
         let newGuide = new this(guideData);
-        //Добавить каждому выбранному месту нового гида
-        //FIXME: одним запросом всех!
-        newGuide.places.forEach( placeId => {
-            placeModel.findById( placeId ).then( foundPlace => {
-                foundPlace.guides.push( newGuide );
-                foundPlace.save();
-            });
-        });
+        newGuide.password = toHash(guideData.password);
 
-        newGuide.save().then(cb);
+        //Добавить каждому выбранному месту нового гида
+        let placeModel = require('./place').placeModel;
+        let places = await placeModel.getPlaces({ _id: newGuide.places });
+        for(let i = 0; i < places.length; i++) {
+            places[i].guides.push(newGuide);
+            await places[i].save();
+        }
+        
+        return await newGuide.save();
+    },
+    /**
+     * Проверяем введенные данные для аутентификации
+     * @param {Object} guideData
+     */
+    checkGuide: async function(guideData){
+        const foundUser = await this.findOne({
+            email: guideData.email, 
+            password: toHash(guideData.password)
+        });
+        return foundUser;
     },
     /**
      * Заправшиваем из БД гида по id
@@ -90,11 +113,11 @@ guideSchema.statics = {
                     break;
                 //TODO: остальные криетрии поиска
             }
-        })
+        });
 
         let guides = await query.populate('places');
         
-        return guides
+        return guides;
     },
     /**
      * Перевод списка гидов
@@ -120,6 +143,13 @@ guideSchema.methods = {
         //TODO: info
                 
         return this;  
+    },
+    genEmailConfirmURL: async function () {
+        const url = toHash(this._id + this.email);
+        this.activate = url;
+        await this.save();
+
+        return 'http://localhost:8080/activate/' + url;
     }
 }
 

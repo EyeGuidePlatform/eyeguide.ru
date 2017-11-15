@@ -9,6 +9,7 @@ placeSchema = mongoose.Schema({
     },
     name: String,
     description: String,
+    city: String,
     img: {
         type: String,
         default: 'http://dummyimage.com/300'
@@ -31,9 +32,9 @@ placeSchema.statics = {
      * Добавление нового гида в бд
      * @param {Object} placeData - информация о месте
      */
-    addPlace: function (placeData, cb) {
+    addPlace: async function (placeData) {
         let newPlace = new this(placeData);
-        newPlace.save().then(cb);
+        return await newPlace.save();
     },
     /**
      * Заправшиваем из БД место по id
@@ -57,6 +58,8 @@ placeSchema.statics = {
                 case 'city': query.where('city').equals(arg.city);
                     break;
                 case 'limit': query.limit(arg.limit);
+                    break;
+                case '_id': query.where('_id').in(arg._id);
                     break;
                 //TODO: остальные криетрии поиска
             }

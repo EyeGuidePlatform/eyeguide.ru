@@ -1,4 +1,10 @@
 {% extends "templates/pageTemplate.html" %}
+
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/choices.min.css">
+<script src="/js/choices.min.js"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container wrap">
     <div class="row">
@@ -12,6 +18,14 @@
             <div class="form-group">
                 <label for="description">Описание:</label>
                 <textarea class="form-control" id="description" name="place[description]"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="city">Город</label>
+                <select id="city" class="single-choice" name="place[city]" required>
+                    {% for city in cities %}
+                    <option value="{{ city.name }}">{{ city.name }}</option>
+                    {% endfor %}
+                </select>
             </div>
 
             <div class="form-group">
@@ -33,4 +47,8 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block commonJS %}
+<script src="/js/choiceInputs.js"></script>
 {% endblock %}

@@ -22,6 +22,8 @@ let express = require('express'),
     adminController = require('./app/controllers/admin'),
     regGuideController = require('./app/controllers/regGuide'),
     error404 = require('./app/controllers/error');
+    logGuideController = require('./app/controllers/logGuide'),
+    getJSONController = require('./app/controllers/getJSON');
 
 //Middleware
 router.use('/', (req, res, next) => {
@@ -60,6 +62,13 @@ router.get('/registration', regGuideController.getNewGuide);
 router.post('/registration', upload.single('img'), regGuideController.addNewGuide);
 router.get('/create/place', regPlaceController.getCreatePlacePage);
 router.post('/createPlace', upload.single('img'), regPlaceController.createPlace);
+router.get('/activate/:url', regGuideController.confirmEmail);
+
+//Аутентификация гидов
+router.post('/guide/login', logGuideController.login);
+router.post('/guide/logout', logGuideController.logout);
+
+router.get('/api/getPlaces/:city', getJSONController.getPlacesJSON);
 
 //Поиск мест и гидов
 router.get('/search' ,searchController.getSearchPage);

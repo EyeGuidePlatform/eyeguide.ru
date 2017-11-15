@@ -1,6 +1,6 @@
 YMaps.jQuery(function () {
     // Создает экземпляр карты и привязывает его к созданному контейнеру
-    let map = new YMaps.Map(YMaps.jQuery("#map-sidebar")[0]);
+    const map = new YMaps.Map(YMaps.jQuery('#map-sidebar')[0]);
     
     map.enableScrollZoom();
     // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
@@ -17,40 +17,27 @@ YMaps.jQuery(function () {
     let s = new YMaps.Style();
     s.balloonContentStyle = new YMaps.BalloonContentStyle(template);
 
-    let places = [
-        {
-            name: 'Парк Победы',
-            description: 'Один из крупнейших в России и в мире мемориальных комплексов, площадь которого 135 га, посвящен победе в Великой Отечественной войне.',
-            img: '/img/park_pobedy.jpg',
-            geo: [37.504214, 55.730715]
-        },
-        {
-            name: 'Красная площадь',
-            description: 'Главная площадь Москвы, расположенная в центре радиально-кольцевой планировки города между Московским Кремлём и Китай-городом. Также неофициально является главной площадью страны.',
-            img: '/img/red_square.jpg',
-            geo: [37.621085, 55.753564]
-        },
-        {
-            name: 'Парк Зарядье',
-            description: 'Объект в одноимённом историческом районе Москвы, созданный на месте снесённой в 2006 году гостиницы «Россия». Расположен на территории площадью в 13 га между Китайгородским проездом, улицей Варваркой и Москворецкой набережной.',
-            img: '/img/zaryade.jpg',
-            geo: [37.629008, 55.751320]
-        }
-    ];
-
-    let pCollection = new YMaps.GeoObjectCollection();
+    const currentCity = YMaps.jQuery('.search-input')[0].value;
     
-    places.forEach( (place) => {
-        let point = new YMaps.GeoPoint(place.geo[0], place.geo[1]);
-        let placemark = new YMaps.Placemark(point, {style: s});
-        placemark.name = place.name;
-        placemark.description = place.description;
-        placemark.img = place.img;
+    let places = [];
+    (async () => {
+        places = await getPlacesJSON(currentCity);
 
-        pCollection.add(placemark);
-    });
+        let pCollection = new YMaps.GeoObjectCollection();
     
-    map.addOverlay(pCollection);
+        places.forEach( place => {
+            let point = new YMaps.GeoPoint(place.geo.x, place.geo.y);
+            let placemark = new YMaps.Placemark(point, {style: s});
+            placemark.name = place.name;
+            placemark.description = place.description;
+            placemark.img = place.img;
+
+            pCollection.add(placemark);
+        });
+        
+        map.addOverlay(pCollection);
+        map.setCenter(new YMaps.GeoPoint(places[0].geo.x, places[0].geo.y), 11);
+    })();
 });
 
 let switcher = document.querySelector('.switcher');
@@ -103,4 +90,10 @@ function switchBlock(target) {
 
     let showBlock = document.querySelector(target.dataset.target);
     showBlock.classList.remove('hidden');
+}
+
+async function getPlacesJSON (city) {
+    const placesJSON = await $.getJSON('/api/getPlaces/' + city);
+
+    return JSON.parse( placesJSON );
 }

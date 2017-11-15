@@ -38,8 +38,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand hidden-xs" href="#"><img src="/img/logo.png" alt="logo"></a>
-            <a class="navbar-brand-text center-block visible-xs" href="#">eyeguide</a>
+            <a class="navbar-brand hidden-xs" href="/"><img src="/img/logo.png" alt="logo"></a>
+            <a class="navbar-brand-text center-block visible-xs" href="/">eyeguide</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-navbar">
@@ -51,7 +51,16 @@
 
             <ul class="nav navbar-nav navbar-right">
                 {% block rightNav %}
-                <li><a id="nav-sign-in" href="#" data-target="#sign-in">{{__('_login_reg')}}</a></li>
+                {% if not currentUser %}
+                <li><a id="nav-sign-in" class="right-nav-btn" href="#" data-target="#sign-in">{{__('_login_reg')}}</a></li>
+                {% else %}
+                <li><a class="username" href="/guideProfile/{{ currentUser.id }}">{{ currentUser.name }}</a></li>
+                <li>
+                    <form action="/guide/logout" method="POST">
+                        <button class="right-nav-btn">Выйти</button>
+                    </form>
+                </li>
+                {% endif %}
                 {% endblock %}
             </ul>
         </div>
@@ -67,10 +76,10 @@
                 <h4 class="modal-title">Вход</h4>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="/guide/login" method="POST">
                     <div class="form-group">
-                        <label for="sign-in-username">Логин</label>
-                        <input class="form-control" type="text" id="sign-in-username" name="username" placeholder="введите имя пользователя" required>
+                        <label for="sign-in-username">E-mail</label>
+                        <input class="form-control" type="email" id="sign-in-email" name="email" placeholder="введите электронную почту" required>
                     </div>
                     
                     <div class="form-group">

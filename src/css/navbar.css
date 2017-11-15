@@ -73,18 +73,25 @@ body a {
     color: #0caa50;
 }
 
-#nav-sign-in {
+.navbar-default .navbar-nav .right-nav-btn {
     padding: 8px 20px;
 
     color: #2ecc71;
     border: 1px solid #2ecc71;
     border-radius: 20px;
+    background-color: #fff;
+
+    transition: all 0.3s ease;
 }
 
-#nav-sign-in:hover,
-#nav-sign-in:focus {
+.navbar-default .navbar-nav .right-nav-btn:hover,
+.navbar-default .navbar-nav .right-nav-btn:focus {
     color: #fff;
     background-color: #2ecc71;
+}
+
+.navbar-default .navbar-nav .username {
+    padding-top: 10px;
 }
 
 .collapse {

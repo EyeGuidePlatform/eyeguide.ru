@@ -44,8 +44,13 @@ app.use(
     bodyParser(),
     bodyParser.json(),
     cookieParser(),
-    i18n.init
+    i18n.init,
 );
+
+app.use(function (req, res, next) {
+    res.locals.currentUser = req.session.guide;
+    next();
+});
 
 nunjucks.configure(__dirname + '/src/view', {
     autoescape: true,
