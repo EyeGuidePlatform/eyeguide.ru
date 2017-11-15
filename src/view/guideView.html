@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
 <script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
-<script type="text/javascript" src="/js/map-api.js"></script>
+<script type="text/javascript" src="/js/guideCardMap.js"></script>
 {% endblock %}
 {% block content %}
 <div class="wrap">
@@ -16,7 +16,7 @@
                     <h3 class="text-center">{{ guide.name +' '+ guide.surname }}</h3>
                     </div>
                     <div class="col-xs-12">
-                        <img src="{{ guides.img }}" class="img-circle center-block" height="250" width="250">
+                        <img src="{{ guide.img }}" class="img-circle center-block" height="250" width="250">
                     </div>
                 </div>
             </div>
@@ -50,7 +50,9 @@
             </div>
             <div class="col-xs-12">
                 <h3 class="text-center">Информация о гиде</h3>
-                <h4>{{guide.desc}}</h4>
+                <h4>Возраст: {{guide.age}}</h4>
+                <h4>Телефон: {{guide.phone}}</h4>
+                <h4>E-mail: {{guide.email}}</h4>
             </div>
             <div class="col-xs-12 col-sm-4"></div>
             <div class="col-xs-12 col-sm-4">
@@ -93,4 +95,4 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="/slick/slick.min.js"></script>
 <script type="text/javascript" src="/js/slider.js"></script>
-{% endblock %}
+{% endblock %} 

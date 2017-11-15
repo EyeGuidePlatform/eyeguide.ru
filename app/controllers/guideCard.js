@@ -10,12 +10,17 @@ guideModel = require('../models/guide').guideModel;
  */
 exports.getProfile= async (req, res)=>{
     let id = req.params.id,
-    guide = await  guideModel.findById(id);
+    guide = await  guideModel.findById(id),
+    places = await placeModel.findById(guide.places);
     console.log(guide);
+    // console.log(places);
     res.render('guideView.html',{
-        guide:guide
+        guide:guide,
+        places:places
     });
 }
+
+
 
 // exports.getProfile = (req, res) => {
 //     let id = req.params.id;
