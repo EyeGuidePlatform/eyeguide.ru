@@ -54,7 +54,6 @@ guideSchema.statics = {
      */
     addGuide: function (guideData, cb) {
         let newGuide = new this(guideData);
- 
         //Добавить каждому выбранному месту нового гида
         //FIXME: одним запросом всех!
         newGuide.places.forEach( placeId => {

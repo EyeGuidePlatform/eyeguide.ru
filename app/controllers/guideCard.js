@@ -1,23 +1,20 @@
 const placeModel = require('../models/place').placeModel,
 guideModel = require('../models/guide').guideModel;
 
-
-
-
 /**
  * Страница "Место"
  * @param {String} place
  */
 exports.getProfile= async (req, res)=>{
     let id = req.params.id,
-    guide = await  guideModel.findById(id),
-    places = await placeModel.findById(guide.places);
-    console.log(guide);
-    // console.log(places);
-    res.render('guideView.html',{
-        guide:guide,
-        places:places
-    });
+    guide = await  guideModel.getGuide(id);
+    if ((guide == undefined) || (guide == null))
+        res.redirect('/error/404');
+    else
+        res.render('guideView.html',{
+            guide:guide,
+            places:guide.places
+        });
 }
 
 
