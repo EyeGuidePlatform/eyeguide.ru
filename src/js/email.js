@@ -12,7 +12,7 @@
       } else {
         $.ajax({
           method: 'POST',
-          //url: '//formspree.io/nomad854@gmail.com',
+          url: '//formspree.io/nomad854@gmail.com',
           data: $('#contact-form').serialize(),
           datatype: 'json'
         });
