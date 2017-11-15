@@ -48,9 +48,10 @@ exports.addPlace = async (req,res) => {
 exports.removePlace = async (req,res) => {
     let id = req.session.guide.id,
         placeId = req.body.placeId
-    let placeList = await guideModel.removePlaceFromGuide(id, placeId)
-    // res.redirect('/guidePlaces')
-    res.send(placeList)
+    let placeList = await guideModel.removePlaceFromGuide(id,placeId)
+    
+    res.redirect('/guidePlaces')
+    // res.send(placeList)
     
 }
 

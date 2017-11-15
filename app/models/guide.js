@@ -98,21 +98,14 @@ guideSchema.statics = {
      * @param placeId - айди места
      */
     removePlaceFromGuide: async function (guideId, placeId) {
-
         let placeModel = require('./place').placeModel;
 
         let guide = await guideModel.getGuide(guideId);
         let place = await placeModel.getPlace(placeId);
-        // let placeIndex = guide.places.findIndex(item => item._id === placeId)
 
-        // return [
-        //     ...guide.places.slice(0, placeIndex),
-        //     ...guide.places.slice(placeIndex+1)
-        // ]
-        
-        return placeIndex
+        guide.places = await guide.places.filter( place => place._id != placeId)
 
-        // return await guide.save();
+        return await guide.save();
     },
     /**
      * Проверяем введенные данные для аутентификации
