@@ -20,4 +20,8 @@ exports.getPlacePage = async (req, res) => {
         guides: place.guides, 
         place: place
     });
+
+
+
+
 }
