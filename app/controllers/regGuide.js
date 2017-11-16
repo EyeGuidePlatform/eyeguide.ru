@@ -2,15 +2,7 @@ const guideModel = require('../models/guide').guideModel,
     placeModel = require('../models/place').placeModel,
     cityModel = require('../models/city').cityModel,
     languageModel = require('../models/language').languageModel,
-    config = require('../../config'),
-    
-    email = require('emailjs/email'),
-    server = email.server.connect({
-        user: 'eyeguidetest',
-        password: config.emailPass,
-        host: 'smtp.gmail.com',
-        ssl: true
-    });
+    emailModel = require('../models/email');
 
 /**
  * Страница "регистрация нового гида"
@@ -68,7 +60,7 @@ exports.addNewGuide = async (req, res, next) => {
             }
         ]
     };
-    server.send(message, function(err, message) { console.log(err || message); });
+    emailModel.sendEmail(message);
 
     res.redirect('/guideProfile/' + guide._id);
 }

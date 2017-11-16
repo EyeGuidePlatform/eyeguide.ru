@@ -66,7 +66,9 @@ router.get('/place/:id', placeController.getPlacePage);
 router.get('/registration', regGuideController.getNewGuide);
 router.post('/registration', upload.single('img'), regGuideController.addNewGuide);
 router.get('/create/place', regPlaceController.getCreatePlacePage);
-router.post('/createPlace', upload.single('img'), regPlaceController.createPlace);
+router.post('/create/place', upload.single('img'), regPlaceController.createPlace);
+router.get('/suggest/place', regPlaceController.getSuggestPlacePage);
+router.post('/suggest/place', upload.single('img'),regPlaceController.suggestPlace);
 router.get('/activate/:url', regGuideController.confirmEmail);
 
 //Аутентификация гидов

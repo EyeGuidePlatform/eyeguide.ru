@@ -10,3 +10,7 @@
 .choices__list--multiple .choices__item.is-highlighted {
     background-color: #0caa50;
 }
+
+textarea {
+    resize: none;
+}

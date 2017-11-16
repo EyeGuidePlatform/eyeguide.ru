@@ -9,7 +9,7 @@
 {% block content %}
 <div class="container wrap">
     <div class="row">
-        <h1 class="text-center">Добавить место</h1>
+        <h1 class="text-center">Предложить место</h1>
         <form class="form-center" action="/createPlace" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Название:</label>
@@ -43,7 +43,7 @@
                 <label for="y">Y:</label>
                 <input class="form-control" id="y" type="number" name="place[geo.y]" step="0.000001" required>
             </div>
-            <button type="submit" id="submit" class="btn btn-block btn-primary">Добавить</button>
+            <button type="submit" id="submit" class="btn btn-block btn-primary">Предложить добавление</button>
         </form>
     </div>
 </div>
