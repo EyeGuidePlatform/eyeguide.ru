@@ -24,7 +24,8 @@ let express = require('express'),
     error404 = require('./app/controllers/error');
     logGuideController = require('./app/controllers/logGuide'),
     getJSONController = require('./app/controllers/getJSON');
-    FAQcontroller=require('./app/controllers/FAQ');
+    FAQcontroller=require('./app/controllers/FAQ'),
+    middleware = require('./app/controllers/middleware');
 
 //Middleware
 router.use('/', (req, res, next) => {
@@ -65,15 +66,15 @@ router.get('/place/:id', placeController.getPlacePage);
 //Регистрация гидов и мест
 router.get('/registration', regGuideController.getNewGuide);
 router.post('/registration', upload.single('img'), regGuideController.addNewGuide);
-router.get('/create/place', regPlaceController.getCreatePlacePage);
-router.post('/create/place', upload.single('img'), regPlaceController.createPlace);
-router.get('/suggest/place', regPlaceController.getSuggestPlacePage);
-router.post('/suggest/place', upload.single('img'),regPlaceController.suggestPlace);
+router.get('/create/place', middleware.isAdminLogged, regPlaceController.getCreatePlacePage);
+router.post('/create/place', middleware.isAdminLogged, upload.single('img'), regPlaceController.createPlace);
+router.get('/suggest/place', middleware.isGuideLogged, regPlaceController.getSuggestPlacePage);
+router.post('/suggest/place', middleware.isGuideLogged, upload.single('img'),regPlaceController.suggestPlace);
 router.get('/activate/:url', regGuideController.confirmEmail);
 
 //Аутентификация гидов
 router.post('/guide/login', logGuideController.login);
-router.post('/guide/logout', logGuideController.logout);
+router.post('/guide/logout', middleware.isGuideLogged, logGuideController.logout);
 
 
 //JSON
@@ -84,11 +85,11 @@ router.get('/api/editPlaces/:id', getJSONController.editPlacesJSON);
 router.get('/search' ,searchController.getSearchPage);
 
 //Административные функции
-router.get('/admin/main', adminController.getPage);
+router.get('/admin/main', middleware.isAdminLogged, adminController.getPage);
 router.get('/admin/login', adminController.loginPage);
-router.get('/admin/logout', adminController.logout);
-router.get('/admin/create', adminController.createPage);
-router.post('/admin/create', adminController.create);
+router.get('/admin/logout', middleware.isAdminLogged, adminController.logout);
+router.get('/admin/create', middleware.isAdminLogged, adminController.createPage);
+router.post('/admin/create', middleware.isAdminLogged,adminController.create);
 router.post('/admin/login', adminController.login);
 
 //FAQ

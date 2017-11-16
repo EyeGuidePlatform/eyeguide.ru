@@ -36,6 +36,7 @@ exports.getCreatePlacePage = async (req, res) => {
 exports.createPlace = async (req, res, next) => {
     let newPlace = req.body.place;
     newPlace.img = req.file ? '/img/' + req.file.filename : undefined;
+    newPlace.visible = 1;
 
     newPlace = await placeModel.addPlace(newPlace);
     res.redirect('/place/' + newPlace._id);

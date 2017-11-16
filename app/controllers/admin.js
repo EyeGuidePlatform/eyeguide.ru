@@ -2,12 +2,7 @@ const mongoose = require('mongoose'),
     adminModel = require('../models/admin').adminModel;
 
 exports.getPage = (req, res) => {
-    console.log(req.session);
-    
-    if (req.session.admin)
-        res.send('В админке');
-    else
-        res.redirect('/admin/login');
+    res.send('В админке');
 }
 
 exports.login = async (req, res) => {
@@ -25,10 +20,8 @@ exports.login = async (req, res) => {
 }
 
 exports.logout = (req, res) => {
-    if (req.session.admin) {
-        delete req.session.admin;
-        res.redirect('/admin/login');
-    }
+    delete req.session.admin;
+    res.redirect('/admin/login');
 }
 
 exports.create = (req, res) => {
