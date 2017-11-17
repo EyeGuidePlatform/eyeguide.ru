@@ -1,7 +1,6 @@
 const guideModel = require('../models/guide').guideModel,
     placeModel = require('../models/place').placeModel,
-    cityModel = require('../models/city').cityModel,
-    languageModel = require('../models/language').languageModel,
+    staticModel = require('../models/static').staticModel,
     config = require('../../config'),
     
     email = require('emailjs/email'),
@@ -16,9 +15,9 @@ const guideModel = require('../models/guide').guideModel,
  * Страница "регистрация нового гида"
  */
 exports.getNewGuide = async (req, res) => {
-    let cities = await cityModel.getCities(),
-        languages = await languageModel.getLangs();
-    
+    let cities = await staticModel.getCities(req.locale),
+        languages = await staticModel.getLangs();
+
     res.render('gid_newGuide.html', {cities: cities, languages: languages});
 }
 

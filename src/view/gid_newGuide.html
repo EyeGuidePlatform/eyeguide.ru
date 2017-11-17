@@ -52,7 +52,7 @@
                     <label for="city">Город</label>
                     <select id="city" class="single-choice" name="guide[city]" required>
                         {% for city in cities %}
-                        <option value="{{ city.name }}">{{ city.name }}</option>
+                        <option value="{{ city }}">{{ city }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -76,7 +76,7 @@
                     <label for="languages">Языки</label>
                     <select class="multiple-choice form-control" id="languages" name="lang" placeholder="Выберите языки, которые вы знаете" multiple required>
                         {% for lang in languages %}
-                        <option value="{{ lang.code }}">{{ lang.name }}</option>
+                        <option value="{{ lang }}">{{ lang }}</option>
                         {% endfor %}
                     </select>
                 </div>

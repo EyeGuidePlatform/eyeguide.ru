@@ -1,7 +1,6 @@
 const mongoose = require('./../../server').mongoose,
     toHash = require('md5'),
-    placeModel = require('./place').placeModel,
-    trnsModel = require('./translater');
+    placeModel = require('./place').placeModel;
 
 // схема данных - задает структуру объекта, хранимого в БД
 guideSchema = mongoose.Schema({
@@ -54,7 +53,19 @@ guideSchema = mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'place'
         }
-    ]
+    ],
+    excursions: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'excursion'
+    }],
+    orders: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'order'
+    }],
+    desctiption:[{
+        lang: String,
+        value: String
+    }]
 });
 
 
@@ -83,9 +94,7 @@ guideSchema.statics = {
      * @param placeId - айди места
      */
     addPlaceInGuide: async function (guideId ,placeId) {
-        let placeModel = require('./place').placeModel;
-
-        let guide = await guideModel.getGuide(guideId);
+        let guide = await this.getGuide(guideId);
         let place = await placeModel.getPlace(placeId);
 
         guide.places.push(place)
@@ -98,10 +107,10 @@ guideSchema.statics = {
      * @param placeId - айди места
      */
     removePlaceFromGuide: async function (guideId, placeId) {
-        let placeModel = require('./place').placeModel;
-
-        let guide = await guideModel.getGuide(guideId);
+        let guide = await this.getGuide(guideId);
         let place = await placeModel.getPlace(placeId);
+
+        //TODO: удаление экскурсий связанных с местом
 
         guide.places = await guide.places.filter( place => place._id != placeId)
 
@@ -155,32 +164,10 @@ guideSchema.statics = {
         let guides = await query.populate('places');
         
         return guides;
-    },
-    /**
-     * Перевод списка гидов
-     * @param {[Object]} guides
-     * @param {String} lang
-     */
-    trnsGuides: async function(guides, lang){
-        for(let i=0; i<guides.length; i++){
-            await guides[0].trnsGuide(lang)
-        }
-        return guides;
     }
 }
 
 guideSchema.methods = {
-    /**
-     * Перевод данных гида
-     * @param {String} lang
-     */
-    trnsGuide: async function (lang) {
-        this.name = await trnsModel.translitWord(this.name, lang);
-        this.surname = await trnsModel.translitWord(this.surname, lang);
-        //TODO: info
-                
-        return this;  
-    },
     genEmailConfirmURL: async function () {
         const url = toHash(this._id + this.email);
         this.activate = url;
