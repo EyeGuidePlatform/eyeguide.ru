@@ -63,6 +63,8 @@ placeSchema.statics = {
                     break;
                 case 'not': query.where('_id').nin(arg.not);
                     break;
+                case 'visible': query.where('visible').equals(arg.visible);
+                    break;
                 //TODO: остальные криетрии поиска
             }
         })

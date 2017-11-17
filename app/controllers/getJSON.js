@@ -4,9 +4,9 @@ const guideModel = require('../models/guide').guideModel;
 exports.getPlacesJSON = async (req, res) => {
     let places;
     if (req.params.city == 'none') {
-        places = await placeModel.getPlaces();
+        places = await placeModel.getPlaces({visible: 1});
     } else {
-        places = await placeModel.getPlaces({ city: req.params.city });
+        places = await placeModel.getPlaces({ city: req.params.city }, {visible: 1});
     }
     
     res.json(JSON.stringify(places));
