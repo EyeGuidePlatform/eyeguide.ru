@@ -7,13 +7,14 @@ exports.getPlacesJSON = async (req, res) => {
     
     switch (query) {
         case 'guides':
-            const guides = await guideModel.getGuides({limit: 6}, {city: parameter});
+            const guides = await guideModel.getGuides({city: parameter}, {limit: 6});
             let foundPlaces = [];
 
             guides.forEach(guide => {
-                foundPlaces = guide.places.filter(place => {
-                    if (foundPlaces.indexOf(place) == -1)
-                        return place.city == parameter;
+                guide.places.forEach(place => {
+                    if (place.city == parameter && foundPlaces.indexOf(place) === -1) {
+                        foundPlaces.push(place);
+                    }
                 });
             });
             
