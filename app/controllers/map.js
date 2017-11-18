@@ -16,13 +16,17 @@ exports.parseCity = (req, res) => {
  * @param {String} city
  */
 exports.getCityPage = async (req, res) => {
-    let city = req.params.city;
+    let city = req.params.city,
         places = await placeModel.getPlaces({limit: 6}, {city: city}, {visible: 1}),
         guides = await guideModel.getGuides({limit: 6}, {city: city});
-
-    res.render('map.html', {
-        guides: guides, 
-        places: places, 
-        city: city
-    });
+    
+    if (guides.length > 0) {  
+        res.render('map.html', {
+            guides: guides, 
+            places: places, 
+            city: city
+        });
+    } else {
+        res.render('404notfound.html', {error: 'Город не найден'});
+    }
 }
