@@ -21,9 +21,10 @@ let express = require('express'),
     regPlaceController = require('./app/controllers/regPlace'),
     adminController = require('./app/controllers/admin'),
     regGuideController = require('./app/controllers/regGuide'),
-    error404 = require('./app/controllers/error');
+    error404 = require('./app/controllers/error'),
     logGuideController = require('./app/controllers/logGuide'),
-    getJSONController = require('./app/controllers/getJSON');
+    getJSONController = require('./app/controllers/getJSON'),
+    newOrderController = require('./app/controllers/newOrder'),
     FAQcontroller=require('./app/controllers/FAQ');
 
 //Middleware
@@ -69,6 +70,10 @@ router.get('/create/place', regPlaceController.getCreatePlacePage);
 router.post('/createPlace', upload.single('img'), regPlaceController.createPlace);
 router.get('/activate/:url', regGuideController.confirmEmail);
 
+
+//Создание заказа
+router.get('/new_order', newOrderController.getNewOrderPage);
+
 //Аутентификация гидов
 router.post('/guide/login', logGuideController.login);
 router.post('/guide/logout', logGuideController.logout);
@@ -77,6 +82,7 @@ router.post('/guide/logout', logGuideController.logout);
 //JSON
 router.get('/api/getPlaces/:city', getJSONController.getPlacesJSON);
 router.get('/api/editPlaces/:id', getJSONController.editPlacesJSON);
+router.get('/api/getPlace/:id', getJSONController.getPlaceByIdJSON);
 
 //Поиск мест и гидов
 router.get('/search' ,searchController.getSearchPage);

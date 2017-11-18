@@ -12,9 +12,15 @@ exports.getPlacesJSON = async (req, res) => {
     res.json(JSON.stringify(places));
 }
 
+exports.getPlaceByIdJSON = async (req, res) => {
+    let place = await placeModel.getPlace(req.params.id);
+    res.json(JSON.stringify(place));
+}
+
 exports.editPlacesJSON = async (req, res) => {
     let buffer;
     if (req.params.id === 'none') {
         buffer = await placeModel.getPlaces({not: req.params.id})
     }
 }
+
