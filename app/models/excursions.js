@@ -1,11 +1,8 @@
 const mongoose = require('./../../server').mongoose,
 
 excursionSchema = mongoose.Schema({
-    conductedExc: Number,
-    marks: [{
-        tourist: mongoose.Schema.Types.ObjectId,
-        mark: Number
-    }],
+    conductedExc: {type: Number, default:0},
+    totalMark: {type: Number, default:0},
     prices: [{
         price: Number,
         people: String
