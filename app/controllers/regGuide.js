@@ -62,7 +62,7 @@ exports.addNewGuide = async (req, res, next) => {
     };
     emailModel.sendEmail(message);
 
-    res.redirect('/guideProfile/' + guide._id);
+    res.redirect('/guideProfile/');
 }
 
 exports.confirmEmail = async (req, res) => {

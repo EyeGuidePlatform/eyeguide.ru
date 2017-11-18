@@ -78,7 +78,7 @@ router.post('/guide/logout', middleware.isGuideLogged, logGuideController.logout
 
 
 //JSON
-router.get('/api/getPlaces/:city', getJSONController.getPlacesJSON);
+router.get('/api/getPlaces/:query', getJSONController.getPlacesJSON);
 router.get('/api/editPlaces/:id', getJSONController.editPlacesJSON);
 
 //Поиск мест и гидов

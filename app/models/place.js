@@ -65,6 +65,8 @@ placeSchema.statics = {
                     break;
                 case 'visible': query.where('visible').equals(arg.visible);
                     break;
+                case 'guides': query.where('guides').in(arg.guides);
+                    break;
                 //TODO: остальные криетрии поиска
             }
         })

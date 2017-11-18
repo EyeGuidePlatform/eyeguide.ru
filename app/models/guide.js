@@ -36,7 +36,6 @@ guideSchema = mongoose.Schema({
         type: String,
         default: 'телефон отсутствует'
     },
-    city: String,
     img: {
         type: String,
         default: 'http://dummyimage.com/300'
@@ -147,6 +146,8 @@ guideSchema.statics = {
                 case 'city': query.where('city').equals(arg.city);
                        break;
                 case 'limit': query.limit(arg.limit);
+                    break;
+                case 'select': query.select(arg.select);
                     break;
                 //TODO: остальные криетрии поиска
             }
