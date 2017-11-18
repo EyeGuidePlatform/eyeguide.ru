@@ -1,0 +1,53 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    padding-top: 80px;
+}
+
+.wrap {
+    height: auto;
+    min-height: 100%;
+    padding-bottom: 145px;
+}
+
+
+
+#textFAQ {
+    font-size: 14px;
+    height: 300px;
+    width: 500px;
+
+}
+.display-none {
+    display: none;
+  }
+  .fill {
+    display: block;
+    width: 100%;
+  }
+  textarea {
+    resize: vertical;
+  } 
+
+  #inputName{
+  margin: 20px;
+
+}
+  
+  #inputEmail{
+      margin: 20px;
+margin-left: 13px;
+  }
+
+ #inputMessage{
+     margin:20px;
+ margin-left: 50px;
+width: 400px;    
+} 
+
+    #email-submit-btn{
+        height: 30px;
+        width: 100px;
+    }

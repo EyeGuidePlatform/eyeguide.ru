@@ -1,0 +1,64 @@
+{% extends "templates/pageTemplate.html" %}
+
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/jz_style.css">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid wrap">
+    <div class="row">
+        <!-- =========================================================== -->
+        <!-- Left-Sidebar -->
+        <!-- =========================================================== -->
+        <div id="map-sidebar" class="col-md-6 col-sm-12 col-xs-12">
+            <div class="fade"></div>
+            <div class="left-s__content vcenter">
+                <div class="left-s__text">
+                    <h1 class="intro-title">Быстрый поиск гида</h1>
+                    <p class="intro-subtitle">
+                        Хотите посетить экскурсию, но не знаете как выбрать гида? <br>
+                        Наш сервис поможет вам в этом!
+                    </p>
+                </div>
+                
+                <form class="search-form" action="/map" method="POST">
+                    <input class="search-input" type="text" name="city" placeholder="Например: Москва">
+                    <button class="search-submit">Найти</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- =========================================================== -->
+        <!-- Right-Sidebar -->
+        <!-- =========================================================== -->
+        <div id="content-sidebar" class="col-md-offset-6 col-md-6 col-sm-12 col-xs-12">
+            <div id="about" class="info-block">
+                <h2 class="title"><i class="fa fa-eye"></i>Что такое EyeGuide?</h2>
+                <p class="descr">EyeGuide — это сервис по поиску гидов-экскурсоводов. Как правило, это частные гиды, которые работают на себя или стараются взять на себя дополнительную нагрузку, постоянно работая в музеях или экскурсионных бюро.</p>
+            </div>
+
+            <div id="how-find" class="info-block">
+                <h2 class="title"><i class="fa fa-search"></i>Как быстро найти гида?</h2>
+                <p class="descr">Выберите город или местоположение куда вы хотите отправиться, найдите его на интерактивной карте. Кликнув по туристическому объекту вы увидите краткое описание места и доступных экскурсоводов. После того, как вы выбрали куда пойти и гида, который проведет вам увлекательную экскурсию, мы сформируем заявку и Ваш экскурсовод свяжется с вами в ближайшее время!</p>
+            </div>
+
+            <div id="where" class="info-block">
+                <h2 class="title"><i class="fa fa-globe"></i>Где это работает?</h2>
+                <p class="descr">По всей необъятной территории России, где есть присутствие наших гидов-экскурсоводов.</p>
+            </div>
+
+            <div id="cost" class="info-block">
+                <h2 class="title"><i class="fa fa-rub"></i>Сколько это стоит?</h2>
+                <p class="descr">Каждый гид-экскурсовод назначает цену за свои услуги самостоятельно, обычно экскурсия для семьи из 3-5 человек стоит от 3000 руб.</p>
+            </div>
+
+            <div id="questions" class="info-block">
+                <h2 class="title"><i class="fa fa-question"></i>У меня есть вопросы!</h2>
+                <p class="descr">Вы можете задать любые вопросы и получить поддержку в нашей группе <a href="#">Вконтакте</a> или посмотреть часто задаваемые вопросы <a href="#">тут</a>.</p>
+            </div>
+        </div>
+    </div>
+</div> <!-- container-fluid -->
+{% endblock %}
+
+{% block footerClasses %}col-md-offset-6 col-md-6{% endblock %}

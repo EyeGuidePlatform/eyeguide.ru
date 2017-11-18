@@ -1,0 +1,95 @@
+{% extends "templates/pageTemplate.html" %}
+
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/choices.min.css">
+<script src="/js/choices.min.js"></script>
+
+<link rel="stylesheet" href="/css/sign-up.css">
+{% endblock %}
+
+{% block content %}
+<div class="wrap">
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Регистрация</h1>
+            <form class="form-center" action="/registration" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Имя</label>
+                    <input type="text" class="form-control" id="name" name="guide[name]" required>
+                </div>
+                <div class="form-group">
+                    <label for="surname">Фамилия</label>
+                    <input type="text" class="form-control" id="surname" name="guide[surname]" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Электронная почта</label>
+                    <input type="email" class="form-control" id="email" name="guide[email]" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" class="form-control" id="password" name="guide[password]" required>
+                </div>
+                <div class="form-group">
+                    <label for="password-again">Подтвердите пароль</label>
+                    <input type="password" class="form-control" id="password-again" name="confirmPassword" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Возраст</label>
+                    <input type="number" class="form-control" id="age" name="guide[age]" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="text" class="form-control" id="phone" name="guide[phone]" required>
+                </div>
+                <div class="form-group">
+                    <label>Фотография</label>
+                    <input type="file" class="form-control" id="img" name="img">
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Город</label>
+                    <select id="city" class="single-choice" name="guide[city]" required>
+                        {% for city in cities %}
+                        <option value="{{ city.name }}">{{ city.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="places">Места</label>
+                    <select id="places" name="guide[places]" placeholder="Введите места" multiple required>
+                        <!--{% for place in places %}
+                        <option value="{{ place._id }}">{{ place.name }}</option>
+                        {% endfor %}-->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="spec">Специализации</label>
+                    <input type="text" class="multiple-choice form-control" id="spec" name="spec" placeholder="Введите специализации">
+                </div>
+                <div class="form-group">
+                    <label for="types">Виды экскурсий</label>
+                    <input type="text" class="multiple-choice form-control" id="types" name="types" placeholder="Введите виды экскурсий">
+                </div>
+                <div class="form-group">
+                    <label for="languages">Языки</label>
+                    <select class="multiple-choice form-control" id="languages" name="lang" placeholder="Выберите языки, которые вы знаете" multiple required>
+                        {% for lang in languages %}
+                        <option value="{{ lang.code }}">{{ lang.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <button type="submit" id="submit" class="btn btn-block btn-primary">Зарегистрироваться</button>
+            </form>       
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block commonJS %}
+<script src="/js/jquery-2.2.3.min.js"></script>
+<script src="/js/choiceInputs.js"></script>
+<script src="/js/registration.js"></script>
+{% endblock %}
