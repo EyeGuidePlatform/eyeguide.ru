@@ -20,13 +20,13 @@ exports.getCityPage = async (req, res) => {
         places = await placeModel.getPlaces({limit: 6}, {city: city}, {visible: 1}),
         guides = await guideModel.getGuides({limit: 6}, {city: city});
     
-    if (guides.length > 0) {  
-        res.render('map.html', {
-            guides: guides, 
-            places: places, 
-            city: city
-        });
-    } else {
-        res.render('404notfound.html', {error: 'Город не найден'});
+    if (!guides.length) {
+        return res.render('404notfound.html', {error: 'Город не найден'});
     }
+
+    res.render('map.html', {
+        guides: guides, 
+        places: places, 
+        city: city
+    });
 }
