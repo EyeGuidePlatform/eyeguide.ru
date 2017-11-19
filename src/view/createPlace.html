@@ -24,7 +24,7 @@
                 <label for="city">Город</label>
                 <select id="city" class="single-choice" name="place[city]" required>
                     {% for city in cities %}
-                    <option value="{{ city.name }}">{{ city.name }}</option>
+                    <option value="{{ city }}">{{ city }}</option>
                     {% endfor %}
                 </select>
             </div>

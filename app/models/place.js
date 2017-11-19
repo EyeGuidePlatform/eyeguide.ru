@@ -1,8 +1,11 @@
 const mongoose = require('./../../server').mongoose,
-    guideModel = require('./guide').guideModel,
-    trnsModel = require('./translater');
+    guideModel = require('./guide').guideModel;
 
 placeSchema = mongoose.Schema({
+    lang: {
+        type: String,
+        default: 'ru'
+    },
     visible: {
         type: Number, 
         default: 0 // 0 - на модерации, 1 - одобрено, 2 - откланено
@@ -74,29 +77,6 @@ placeSchema.statics = {
         let places = await query.populate('guides');
 
         return places;
-    },
-    /**
-     * Перевод списка мест
-     * @param {[Object]} places
-     * @param {String} lang
-     */
-    trnsPlaces: async function(places, lang){
-        for(let i=0; i<places.length; i++){
-            await places[0].trnsPlace(lang)
-        }
-        return places;
-    }
-}
-
-placeSchema.methods = {
-    /**
-     * @param {String} lang
-     */
-    trnsPlace: async function(lang){
-        this.name = await trnsModel.translitWord(this.name, lang),
-        this.description = await trnsModel.translateText(this.description, lang);
-                
-        return this;  
     }
 }
 

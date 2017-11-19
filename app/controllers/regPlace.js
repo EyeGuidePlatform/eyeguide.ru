@@ -1,5 +1,5 @@
 const placeModel = require('../models/place').placeModel,
-    cityModel = require('../models/city').cityModel,
+    staticModel = require('../models/static').staticModel,
     mongoose = require('./../../server').mongoose;
 
 
@@ -26,7 +26,7 @@ exports.suggestPlace = async (req, res, next) => {
  * Страница "Добавление места"
  */
 exports.getCreatePlacePage = async (req, res) => {
-    let cities = await cityModel.getCities();
+    let cities = await staticModel.getCities(req.locale);
     res.render('createPlace.html', {cities: cities});
 }
 
