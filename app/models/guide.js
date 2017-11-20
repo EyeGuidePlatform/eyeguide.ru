@@ -35,6 +35,7 @@ guideSchema = mongoose.Schema({
         type: String,
         default: 'телефон отсутствует'
     },
+    bio: String,
     img: {
         type: String,
         default: 'http://dummyimage.com/300'
