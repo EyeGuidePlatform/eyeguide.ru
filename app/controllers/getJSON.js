@@ -10,6 +10,7 @@ exports.getPlacesJSON = async (req, res) => {
             const guides = await guideModel.getGuides({city: parameter}, {limit: 6});
             let foundPlaces = [];
 
+            //FIXME: Оптимизировать выбор
             guides.forEach(guide => {
                 guide.places.forEach(place => {
                     if (place.city == parameter && foundPlaces.indexOf(place) === -1) {
