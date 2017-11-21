@@ -27,7 +27,7 @@
   <main>
     <div class="container">
         <span>Смена пароля</span>
-        <form action="#">
+        <form>
           <div class="form-group">
             <label for="old_pwd">Старый пароль:</label>
             <input type="password" class="form-control" id="email" placeholder="Старый пароль" name="old_pwd">
@@ -40,7 +40,7 @@
             <label for="new_pwd2">Повторить пароль:</label>
             <input type="password" class="form-control" id="pwd" placeholder="Повторить пароль" name="new_pwd2">
           </div>
-          <button type="submit" class="btn btn-default submit_btn">OK</button>
+          <button type="button" onclick="check(this.form)" class="btn btn-default submit_btn">OK</button>
           <button type="button" class="btn btn-default delete_acc_btn">
               <i class="fa fa-times" aria-hidden="true"></i>
               Удалить аккаунт
@@ -56,5 +56,6 @@
 {% block commonJS %}
 <script src="/js/jquery-2.2.3.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/gid_options.js"></script>
 
 {% endblock %}
