@@ -41,6 +41,7 @@ exports.addPlace = async (req,res) => {
         res.redirect('/guidePlaces')
     } else {
         let check = await guideModel.addPlaceInGuide(id, ...placeId)
+        // res.send(check)
         res.redirect('/guidePlaces')
     }
 }

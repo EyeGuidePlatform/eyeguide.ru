@@ -7,8 +7,11 @@ map = new YMaps.Map(document.getElementById("YMapsID"));
 // Установка для карты ее центра и масштаба
 map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
 
-// Создание меток
+(async () => {
+    let places =  await getPlacesJSON()
+})();
 
+// Создание меток
 let places = [
     {
         name: 'Red Square',
@@ -33,4 +36,9 @@ places.forEach( place => {
 // Добавление метки на карту
 map.addOverlay(allPlaces);
 
-})
+});
+
+async function getPlacesJSON() {
+    const places = await $.getJSON(`/api/getMyPlaces`)
+    return JSON.parse(places)
+};

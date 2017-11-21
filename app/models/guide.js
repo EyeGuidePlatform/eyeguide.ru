@@ -94,11 +94,11 @@ guideSchema.statics = {
      * @param placeId - айди места
      */
     addPlaceInGuide: async function (guideId ,placeId) {
+        let placeModel = require('./place').placeModel;
         let guide = await this.getGuide(guideId);
         let place = await placeModel.getPlace(placeId);
 
         guide.places.push(place)
-
         return await guide.save();
     },
     /**
@@ -107,6 +107,7 @@ guideSchema.statics = {
      * @param placeId - айди места
      */
     removePlaceFromGuide: async function (guideId, placeId) {
+        let placeModel = require('./place').placeModel;
         let guide = await this.getGuide(guideId);
         let place = await placeModel.getPlace(placeId);
 

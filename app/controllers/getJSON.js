@@ -9,7 +9,7 @@ exports.getPlacesJSON = async (req, res) => {
     } else {
         places = await placeModel.getPlaces({ city: req.params.city });
     }
-    
+
     res.json(JSON.stringify(places));
 }
 
@@ -21,27 +21,35 @@ exports.getPlaceByIdJSON = async (req, res) => {
 exports.editPlacesJSON = async (req, res) => {
     let buffer;
     if (req.params.id === 'none') {
-        buffer = await placeModel.getPlaces({not: req.params.id})
+        buffer = await placeModel.getPlaces({ not: req.params.id })
     }
 }
 
-exports.checkPassJSON = async (req,res) => {
+exports.checkPassJSON = async (req, res) => {
     let id = req.session.guide.id,
         guide = await guideModel.getThisGuide(id),
         pass = guide.password,
         old_pass = req.params.pwd,
 
-    answer = pass === toHash(old_pass)? true : false
+        answer = pass === toHash(old_pass) ? true : false
     res.json(JSON.stringify(answer))
 }
 
-exports.changePassJSON = async(req, res) => {
+exports.changePassJSON = async (req, res) => {
     let id = req.session.guide.id,
         pass = toHash(req.params.pwd)
-        guide = await guideModel.getThisGuide(id)
-        guide.password = pass
+    guide = await guideModel.getThisGuide(id)
+    guide.password = pass
 
-        await guide.save()
-        res.json(JSON.stringify(true))
+    await guide.save()
+    res.json(JSON.stringify(true))
 }
 
+exports.getMyPlacesJSON = async (req, res) => {
+    let places,
+        id = req.session.guide.id
+
+    guide = await guideModel.getGuide(id);
+
+    res.json(JSON.stringify(guide.places));
+}

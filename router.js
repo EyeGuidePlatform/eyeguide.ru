@@ -85,6 +85,7 @@ router.get('/api/editPlaces/:id', getJSONController.editPlacesJSON);
 router.get('/api/getPlace/:id', getJSONController.getPlaceByIdJSON);
 router.get('/api/checkPass/:pwd', getJSONController.checkPassJSON);
 router.get('/api/changePass/:pwd', getJSONController.changePassJSON);
+router.get('/api/getMyPlaces', getJSONController.getMyPlacesJSON);
 
 //Поиск мест и гидов
 router.get('/search' ,searchController.getSearchPage);
