@@ -1,5 +1,6 @@
 const placeModel = require('../models/place').placeModel;
 const guideModel = require('../models/guide').guideModel;
+const toHash = require('md5')
 
 exports.getPlacesJSON = async (req, res) => {
     let places;
@@ -22,5 +23,25 @@ exports.editPlacesJSON = async (req, res) => {
     if (req.params.id === 'none') {
         buffer = await placeModel.getPlaces({not: req.params.id})
     }
+}
+
+exports.checkPassJSON = async (req,res) => {
+    let id = req.session.guide.id,
+        guide = await guideModel.getThisGuide(id),
+        pass = guide.password,
+        old_pass = req.params.pwd,
+
+    answer = pass === toHash(old_pass)? true : false
+    res.json(JSON.stringify(answer))
+}
+
+exports.changePassJSON = async(req, res) => {
+    let id = req.session.guide.id,
+        pass = toHash(req.params.pwd)
+        guide = await guideModel.getThisGuide(id)
+        guide.password = pass
+
+        await guide.save()
+        res.json(JSON.stringify(true))
 }
 

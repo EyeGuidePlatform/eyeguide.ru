@@ -4,7 +4,7 @@ const placeModel = require('../models/place').placeModel;
 
 
 exports.getNewOrderPage = async (req, res) => {
-    // let id = req.body.guideId,
+    // let id = req.body.guideId
         // guide = await placeModel.getGuide(id)
 
         let places = await placeModel.getPlaces()

@@ -83,6 +83,8 @@ router.post('/guide/logout', logGuideController.logout);
 router.get('/api/getPlaces/:city', getJSONController.getPlacesJSON);
 router.get('/api/editPlaces/:id', getJSONController.editPlacesJSON);
 router.get('/api/getPlace/:id', getJSONController.getPlaceByIdJSON);
+router.get('/api/checkPass/:pwd', getJSONController.checkPassJSON);
+router.get('/api/changePass/:pwd', getJSONController.changePassJSON);
 
 //Поиск мест и гидов
 router.get('/search' ,searchController.getSearchPage);
