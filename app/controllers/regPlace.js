@@ -16,6 +16,9 @@ exports.getSuggestPlacePage = async (req, res) => {
  */
 exports.suggestPlace = async (req, res, next) => {
     let newPlace = req.body.place;
+    newPlace.lang = req.locale;
+    newPlace.name = req.sanitize(newPlace.name);
+    newPlace.description = req.sanitize(newPlace.description);
     newPlace.img = req.file ? '/img/' + req.file.filename : undefined;
 
     newPlace = await placeModel.addPlace(newPlace);
@@ -35,6 +38,9 @@ exports.getCreatePlacePage = async (req, res) => {
  */
 exports.createPlace = async (req, res, next) => {
     let newPlace = req.body.place;
+    newPlace.lang = req.locale;
+    newPlace.name = req.sanitize(newPlace.name);
+    newPlace.description = req.sanitize(newPlace.description);
     newPlace.img = req.file ? '/img/' + req.file.filename : undefined;
     newPlace.visible = 1;
 

@@ -21,7 +21,6 @@ placeSchema = mongoose.Schema({
         x: Number,
         y: Number
     },
-    city: String,
     guides: [
         {
             type: mongoose.Schema.Types.ObjectId,
