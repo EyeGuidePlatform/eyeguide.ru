@@ -18,9 +18,20 @@ orderSchema = mongoose.Schema({
 
 
 orderSchema.statics = {
-    getOrders: async function(){
-        return await this.find();
+    getOrder: async function(orderId){
+        return await this.findById(orderId);
+    },
+
+    getStatus: async function(orderId){
+        let order = await this.findById(orderId);
+        switch(order.status){
+            case(0) : return await 'Подана заявка';
+            case(1) : return await 'Принята гидом';
+            case(2) : return await 'Экскурсия завершена';
+        }
     }
+
+    
 }
 
 let orderModel = mongoose.model('order', orderSchema);

@@ -2,8 +2,11 @@ const orderModel = require('../models/orders').orderModel;
 
 
 exports.getOrderStatus = async (req, res) => {
-    let id = req.params.id,
-        orders = await orderModel.getOrders();
-        console.log(orders);
-    res.render('orderStatus.html');
+    let orderId = req.params.id,
+        order = await orderModel.getOrder(orderId),
+        status = await orderModel.getStatus(orderId);
+    res.render('orderStatus.html', {
+        order: order,
+        status: status
+    });
 };

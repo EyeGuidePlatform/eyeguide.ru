@@ -94,7 +94,7 @@ router.post('/admin/login', adminController.login);
 //FAQ
 
 //Статус заказа
-router.get('/orderStatus', orderStatusController.getOrderStatus);
+router.get('/order/:id', orderStatusController.getOrderStatus);
 
 
 module.exports = router;
