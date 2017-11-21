@@ -1,0 +1,5 @@
+exports.port = '8080';
+exports.dbAdress = '95.213.191.13/EyeguideDB';
+exports.dbLogin = 'admin';
+exports.dbPass = 'Da-strateg-eyeguide';
+exports.session = 'kitty'
