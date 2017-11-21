@@ -35,7 +35,6 @@ guideSchema = mongoose.Schema({
         type: String,
         default: 'телефон отсутствует'
     },
-    bio: String,
     img: {
         type: String,
         default: 'http://dummyimage.com/300'
@@ -62,7 +61,7 @@ guideSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'order'
     }],
-    desctiption:[{
+    description:[{
         lang: String,
         value: String
     }]

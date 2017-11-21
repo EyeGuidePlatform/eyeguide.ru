@@ -20,6 +20,13 @@ exports.addNewGuide = async (req, res, next) => {
     }
 
     let newGuide = req.body.guide;
+    newGuide.name = req.sanitize(newGuide.name);
+    newGuide.surname = req.sanitize(newGuide.surname);
+    newGuide.description = [];
+    newGuide.description.push({
+        value: req.sanitize(req.body.description),
+        lang: req.locale
+    });
     newGuide.img = req.file ? '/img/' + req.file.filename : undefined;
     newGuide.info = {
         spec: req.body.spec ? req.body.spec.split(',') : undefined,

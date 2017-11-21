@@ -5,6 +5,7 @@ const express = require('express'),
     i18n = require('i18n'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
+    expressSanitizer = require('express-sanitizer'),
     mongoStore = require('connect-mongo')(session),
     app = express();
 
@@ -12,7 +13,9 @@ let locales = ['ru', 'en'],
     login = require('./config').dbLogin,
     pass = require('./config').dbPass,
     adress = require('./config').dbAdress,
-    url = 'mongodb://'+login+':'+pass+'@'+adress;
+    dbName = require('./config').dbName,
+    dbPort = require('./config').dbPort,
+    url = 'mongodb://'+login+':'+pass+'@'+adress+':'+dbPort + '/' + dbName;
     //url = 'mongodb://localhost:27017/ExampleDB';
 
 mongoose.Promise = global.Promise;
@@ -43,6 +46,7 @@ app.use(
     express.static(__dirname + '/src'),
     bodyParser(),
     bodyParser.json(),
+    expressSanitizer(),
     cookieParser(),
     i18n.init,
 );
