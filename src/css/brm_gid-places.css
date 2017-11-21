@@ -4,9 +4,7 @@
 .wrapper {
   position: relative;
   width: 100%;
-  /* text-align: center; */
   margin-top: .5rem; 
-  /* font-size: 0;  */
 }
 .wrapper option {
   position: relative;
@@ -24,7 +22,17 @@
 }
 #YMapsID {
   width:100%;
-  height:400px;
+  height:60vh;
+}
+.balloon {
+  width: 250px;
+  height: auto;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.balloon img {
+  width: 70%;
+  height: auto;
 }
 /* ========================================================================== */
 /* Place/guides */

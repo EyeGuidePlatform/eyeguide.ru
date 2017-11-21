@@ -1,40 +1,41 @@
 let placesSelect = new Choices('#place_choise');
-// Создает обработчик события window.onLoad
+
 YMaps.jQuery(function () {
-// Создание экземпляра карты и его привязка к созданному контейнеру
-map = new YMaps.Map(document.getElementById("YMapsID"));
- 
-// Установка для карты ее центра и масштаба
-map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
 
-(async () => {
-    let places =  await getPlacesJSON()
-})();
+    map = new YMaps.Map(document.getElementById("YMapsID"));
+    map.enableScrollZoom();
 
-// Создание меток
-let places = [
-    {
-        name: 'Red Square',
-        loc: [37.621085, 55.753564]
-    }, 
-    {
-        name: 'Arbat str',
-        loc: [ 37.591548, 55.749501]
-    }
-]
+    map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
+    let template = new YMaps.Template(
+        `<div class='balloon'> 
+            <img src="$[img]"> 
+            <h3>$[name]</h3> 
+            <p>$[description]</p> 
+        </div>`
+    );
 
+    let s = new YMaps.Style();
+    s.balloonContentStyle = new YMaps.BalloonContentStyle(template);
 
-let allPlaces = new YMaps.GeoObjectCollection();
+    let places = [];
+    (async () => {
+        places = await getPlacesJSON()
 
-places.forEach( place => {
-    let point = new YMaps.GeoPoint(place.loc[0], place.loc[1]),
-        placemark = new YMaps.Placemark(point);
-    placemark.name = place.name;
-    allPlaces.add(placemark);
-})
+        let pCollection = new YMaps.GeoObjectCollection();
 
-// Добавление метки на карту
-map.addOverlay(allPlaces);
+        places.forEach(place => {
+            let point = new YMaps.GeoPoint(place.geo.x, place.geo.y);
+            let placemark = new YMaps.Placemark(point, { style: s });
+            placemark.name = place.name;
+            placemark.description = place.description;
+            placemark.img = place.img;
+
+            pCollection.add(placemark);
+        });
+
+        map.addOverlay(pCollection);
+        map.setCenter(new YMaps.GeoPoint(places[0].geo.x, places[0].geo.y), 10);
+    })();
 
 });
 
