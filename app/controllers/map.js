@@ -20,10 +20,6 @@ exports.getCityPage = async (req, res) => {
         places = await placeModel.getPlaces({limit: 6}, {city: city}),
         guides = await guideModel.getGuides({limit: 6}, {city: city});
 
-    places = await placeModel.trnsPlaces(places, req.locale);
-    console.log(places);
-    guides = await guideModel.trnsGuides(guides, req.locale);
-
     res.render('map.html', {
         guides: guides, 
         places: places, 
