@@ -43,3 +43,18 @@ async function getPlacesJSON() {
     const places = await $.getJSON(`/api/getMyPlaces`)
     return JSON.parse(places)
 };
+// =================================================
+// modal window
+// =================================================
+const total = document.querySelector('#total-people')
+const total_label = document.querySelector('#form-label')
+
+const duration = document.querySelector('#duration')
+const duration_label = document.querySelector('#form-duration')
+
+total.addEventListener('input', (e) => {
+    total_label.textContent = `Максимальное количество человек:  ${e.target.value}`
+});
+duration.addEventListener('input', (e) => {
+    duration_label.textContent = `Длительность экскурсии в часах:  ${e.target.value}`
+});

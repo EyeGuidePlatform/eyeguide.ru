@@ -1,37 +1,31 @@
-{% extends "templates/pageTemplate.html" %}
-
-{% block commonStyles %}
+{% extends "templates/pageTemplate.html" %} {% block commonStyles %}
 
 <link rel="stylesheet" href="/css/brm_gid-navbar.css">
 <link rel="stylesheet" href="/css/brm_gid-places.css">
 <link rel="stylesheet" href="/css/choices.min.css">
 <script src="/js/choices.min.js"></script>
-<script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
-
-{% endblock %}
-
-{% block content %}
+<script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script> {% endblock %} {% block content %}
 
 <div class="wrap">
-<!-- ====================== -->
-<!-- top-menu -->
+  <!-- ====================== -->
+  <!-- top-menu -->
   <div class="container-fluid gid_nav">
     <div class="row">
       <div class='col-xs-12 col-sm-12 col-md-9 col-md-push-3 '>
-          {% include "templates/top_menu.html" %}
+        {% include "templates/top_menu.html" %}
       </div>
       <div class="col-md-3 col-md-pull-9 map_menu">
         <div class="wrapper">
           <form method="POST" action="/guidePlaceAdd" class="input-group">
-              <select name="places[]" id="place_choise" required>
-                  <option selected disabled placeholder>Выберите место</option>
-                  {% for place in places %}
-                  <option value="{{ place._id }}" name="place">{{ place.name }}</option>
-                  {% endfor %}
-              </select>
-              <span class="input-group-btn">
-                  <button class="btn btn-default" type="submit">Добавить</button>
-              </span>
+            <select name="places[]" id="place_choise" required>
+              <option selected disabled placeholder>Выберите место</option>
+              {% for place in places %}
+              <option value="{{ place._id }}" name="place">{{ place.name }}</option>
+              {% endfor %}
+            </select>
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">Добавить</button>
+            </span>
           </form>
         </div>
       </div>
@@ -44,33 +38,31 @@
     <div class="row">
       <aside class="col-sm-12 col-md-3 col-lg-3 col-md-push-9">
         <h4>Список мест:</h4>
-        <!-- <div id="places" class="row"> -->
-          <ul id="places">
+        <ul id="places">
           {% for place in myPlaces %}
-            <li class="row">
-              <input id='place_{{ place._id}}' type="checkbox" >
-              <label for='place_{{ place._id}}'>{{ place.name }}</label>
-              <article>
-                  <a href="/place/{{ place._id }}" class="element col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
-                    <div class="element-info col-md-12">
-                        <h3 class="element-name">{{ place.name }}</h3>
-                        <p class="element-stats">
-                            {{ place.description | truncate(110) }}
-                        </p>
-                    </div>
-                </a>
-                <div class="remove_place">
-                  <form method="POST" action="/guidePlaceRemove">
-                    <input type="hidden" name="placeId" value="{{ place._id}}"/>
-                    <button class="btn btn-block">Удалить место</button>
-                  </form>
+          <li class="row">
+            <input id='place_{{ place._id}}' type="checkbox">
+            <label for='place_{{ place._id}}'>{{ place.name }}</label>
+            <article>
+              <a href="/place/{{ place._id }}" class="element col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
+                <div class="element-info col-md-12">
+                  <h3 class="element-name">{{ place.name }}</h3>
+                  <p class="element-stats">
+                    {{ place.description | truncate(110) }}
+                  </p>
                 </div>
-              </article>
+              </a>
+              <div class="remove_place">
+                <form method="POST" action="/guidePlaceRemove">
+                  <input type="hidden" name="placeId" value="{{ place._id}}" />
+                  <button class="btn btn-block">Удалить место</button>
+                </form>
+              </div>
+            </article>
           </li>
           {% endfor %}
         </ul>
-        <!-- </div> -->
 
       </aside>
       <main class="col-sm-12 col-md-9 col-lg-9 col-md-pull-3">
@@ -78,13 +70,47 @@
       </main>
     </div>
   </div>
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+  </button>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <form class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Экскурсия по месту</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label id='form-label' for="total-people">Максимальное количество человек: 1</label>
+            <input class="form-control" type="range" id="total-people" name="people" min='1' max='6' value='1' required>
+          </div>
+          <div class="form-group">
+            <label for="price">Цена за человека:</label>
+            <input class="form-control" type="number" id="price" name="price" required>
+          </div>
+          <div class="form-group">
+            <label id='form-duration' for="duration">Длительность экскурсии в часах: 1</label>
+            <input class="form-control" type="range" id="duration" name="duration" step='.5' min='1' max='5' value='1' required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+          <button type="submit" class="btn btn-primary">Добавить место</button>
+        </div>
+      </form>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 
 </div>
 
- {% endblock %}
- 
- {% block commonJS %}
- <script src="/js/jquery-2.2.3.min.js"></script>
- <script src="/js/bootstrap.min.js"></script>
- <script src="/js/gid_places.js"></script>
- {% endblock %}
+{% endblock %} {% block commonJS %}
+<script src="/js/jquery-2.2.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/gid_places.js"></script> {% endblock %}

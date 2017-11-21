@@ -20,9 +20,10 @@
 .main-content {
   margin-top: 1rem;
 }
+
 #YMapsID {
   width:100%;
-  height:60vh;
+  height:70vh;
 }
 .balloon {
   width: 250px;
@@ -121,6 +122,17 @@
   color: white;
   background-color: rgb(153, 45, 45);
 }
+
+/* ========================================================================== */
+/* Modal window  */
+/* ========================================================================== */
+/* .modal {
+  display: block;
+  position: fixed;
+  left: 0; right: 0; top: 0; bottom: 0;
+  z-index: 150;
+  background-color: red;
+} */
 
 /* ========================================================================== */
 /* Media queries */
