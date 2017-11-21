@@ -6,10 +6,10 @@ exports.getOrderStatus = async (req, res) => {
         order = await orderModel.getOrder(orderId),
         status = await orderModel.getStatus(order),
         checkCase = await orderModel.getCase(order);
-
-        orderModel.getCase(order);
+        
     res.render('orderStatus.html', {
         order: order,
-        status: status
+        status: status,
+        checkCase: order.people + checkCase 
     });
 };
