@@ -28,12 +28,6 @@ orderSchema.statics = {
             case(1) : return await 'Принята гидом';
             case(2) : return await 'Экскурсия завершена';
         }
-    },
-
-    getCase: async function(order){
-        if(order.people % 10 < 5)
-            return await ' человека';
-        else return await ' человек';
     }
 }
 
