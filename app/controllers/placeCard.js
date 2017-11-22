@@ -8,12 +8,31 @@ const placeModel = require('../models/place').placeModel,
  * Страница "Место"
  * @param {String} place
  */
-exports.getPlacePage = async (req, res) => {
+
+
+ exports.getPlacePage = async (req, res) => {
     let id = req.params.id,
         place = await placeModel.getPlace(id);
-
+    if ((place == undefined) || (place == null))
+        res.redirect('/error/404');
+    else
     res.render('place.html', {
         guides: place.guides, 
         place: place
-    });
+        });
 }
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+

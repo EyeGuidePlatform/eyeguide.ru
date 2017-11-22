@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="/css/FAQ.css">
 
 
-<script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
 
  
  <script type="text/javascript">
@@ -21,7 +20,7 @@
 
     <div class="wrap">
         <div id="FAQ">
-            <div class="container">
+            <div class="container-fluid">
             <div  class="row">
             <div class=" col-md-12 col-sm-12">
 <h1>FAQ</h1>
@@ -49,24 +48,33 @@
                     </div>
 
             </div>
+           
+           <div id="RSV">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <form id="contact-form">
-                           <div>
-                            <label for="inputName">Имя</label>
-                            <input class="form__input" id="inputName" type="text" placeholder="Name" name="name"/>
-                           </div>
-                           <div>
-                           <label for="inputEmail">Email</label>
-                            <input class="form__input" id="inputEmail" type="email" placeholder="Email" name="email"/>
-                           </div>
-                           <div>
-                            <textarea class="form__input" id="inputMessage" rows="4" placeholder="Your Message" name="message"></textarea>
-                            <input class="display-none" type="text" name="_gotcha"/>
-                            <input class="btn--default fill" id="email-submit-btn" type="submit" value="Отправить"/>
-                        </div>  
-                        </form>
+                      
+                        <h3 class="title text-center">Возникли еще вопросы,то напишите здесь</h3>
+                        <form class="tc-form-style1">
+                            <div class="form-field">
+                                <input type="text" placeholder="Ваше имя" required>
+                            </div>								
+                            <div class="form-field">
+                                <input type="email" placeholder="Email" required>
+                            </div>								
+                            <div class="form-field">
+                                <input type="text" placeholder="Тема вопроса">
+                            </div>
+                            <div class="form-field">
+                                <textarea placeholder="Сообщение" rows="7"></textarea>
+                            </div>
+                            <div class="form-button">
+                                <button type="submit" id='Send-button'> Отправить</button>
+                            </div>
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -74,13 +82,14 @@
         </div>
 
     </div>
+    </div>
     {% endblock %}   
 
 
   {% block commonJS %}
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script src="/js/email.js"></script>
+  <script src="/js/FAQ.js"></script>
   <script src="/js/jquery-2.2.3.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   
