@@ -1,7 +1,7 @@
 {% extends "templates/pageTemplate.html" %}
 
 {% block commonStyles %}
-<link rel="stylesheet" href="/css/style1.css">
+
 <link rel="stylesheet" href="/css/slick.css">
 <link href="/css/place.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
@@ -13,11 +13,7 @@
      YMaps.jQuery(function () {
         // Создает экземпляр карты и привязывает его к созданному контейнеру
         var map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
-    map.addControl(new YMaps.TypeControl());
-    map.addControl(new YMaps.ToolBar());
-    map.addControl(new YMaps.Zoom());
-    map.addControl(new YMaps.MiniMap());
-    map.addControl(new YMaps.ScaleLine());     
+  
         // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
         map.setCenter(new YMaps.GeoPoint(+' {{place.geo.x}}', +' {{place.geo.y}}'), 10);
         let template = new YMaps.Template(
@@ -80,33 +76,28 @@
             </div>
         </div>
         
-       <div id="car">
-     <div class="container">
-        <div class="col-xs-12">
-            <h2 class="text-center">Гиды</h2>
-            <div class="responsive">
-                <!-- переделать через foreach в nunjucks !!!-->
-                <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
-                <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
-                <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
-                <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
-                <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
-            </div>
-        </div>
-    </div>
-    </div>
-    
-    <div id="map">
-        <div class="container">
-            <div class="row centred">
-                <div id="YMapsID" style="width:640px;height:480px" >
-                    
+        <div class="container-fluid green-bg text-white slider">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 class="text-center">Гиды</h3>
+                    <div class="responsive">
+                        {% for item in place.guides %}
+                        <div><img src={{item.img}}></div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     
-    
+    <div class="container-fluid grey-bg">
+        <h3 class="text-center">Расположение на карте</h3>
+            <div class="row">
+                <div class="col-xs-12 mb-5">
+                    <div id="YMapsID"></div>
+                </div>
+                
+            </div>
+</div>
     </div> 
   {% endblock %}
 

@@ -16,7 +16,7 @@
                     <h3 class="text-center">{{ guide.name +' '+ guide.surname }}</h3>
                     </div>
                     <div class="col-xs-12">
-                        <img src="{{ guide.img }}" class="center-block" height="250" width="250">
+                        <img src="{{ guide.img }}" class="img-thumbnail center-block" height="250" width="250">
                     </div>
                 </div>
             </div>
@@ -70,11 +70,9 @@
             <div class="col-xs-12">
                 <h3 class="text-center">Места</h3>
                 <div class="responsive">
-                    <div><img src={{places.img}}></div>
-                    <div><img src={{places.img}}></div>
-                    <div><img src={{places.img}}></div>
-                    <div><img src={{places.img}}></div>
-                    <div><img src={{places.img}}></div>
+                    {% for item in guide.places %}
+                    <div><img src={{item.img}}></div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
