@@ -1,6 +1,7 @@
 {% extends "templates/pageTemplate.html" %}
 
 {% block commonStyles %}
+<link rel="stylesheet" href="/css/registration-form.css">
 <link rel="stylesheet" href="/css/choices.min.css">
 <script src="/js/choices.min.js"></script>
 {% endblock %}
@@ -8,16 +9,16 @@
 {% block content %}
 <div class="container wrap">
     <div class="row">
-        <h1>Добавить место</h1>
-        <form action="/createPlace" method="POST" enctype="multipart/form-data">
+        <h1 class="text-center">Добавить место</h1>
+        <form class="form-center" action="/create/place" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="name">Наименование:</label>
-                <input class="form-control" id="name" type="text" name="place[name]">
+                <label for="name">Название</label>
+                <input class="form-control" id="name" type="text" name="place[name]" required>
             </div>
 
             <div class="form-group">
-                <label for="description">Описание:</label>
-                <textarea class="form-control" id="description" name="place[description]"></textarea>
+                <label for="description">Описание</label>
+                <textarea class="form-control" id="description" name="place[description]" rows="5" required></textarea>
             </div>
             <div class="form-group">
                 <label for="city">Город</label>
@@ -29,20 +30,20 @@
             </div>
 
             <div class="form-group">
-                <label for="img">Изображение:</label>
+                <label for="img">Изображение</label>
                 <input class="form-control" id="img" type="file" name="img">
             </div>
 
             <div class="form-group">
-                <label for="x">X:</label>
-                <input class="form-control" id="x" type="text" name="place[geo.x]">
+                <label for="x">X</label>
+                <input class="form-control" id="x" type="number" name="place[geo.x]" step="0.000001" required>
             </div>
 
             <div class="form-group">
-                <label for="y">Y:</label>
-                <input class="form-control" id="y" type="text" name="place[geo.y]">
+                <label for="y">Y</label>
+                <input class="form-control" id="y" type="number" name="place[geo.y]" step="0.000001" required>
             </div>
-            <button>Добавить</button>
+            <button type="submit" id="submit" class="btn btn-block btn-primary">Добавить</button>
         </form>
     </div>
 </div>

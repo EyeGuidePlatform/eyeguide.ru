@@ -1,0 +1,16 @@
+.form-center {
+    width: 50%;
+    margin: 25px auto;
+}
+
+.choices__list--multiple .choices__item {
+    background-color: #2ecc71;
+}
+
+.choices__list--multiple .choices__item.is-highlighted {
+    background-color: #0caa50;
+}
+
+textarea {
+    resize: none;
+}

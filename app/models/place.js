@@ -21,7 +21,6 @@ placeSchema = mongoose.Schema({
         x: Number,
         y: Number
     },
-    city: String,
     guides: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -65,6 +64,10 @@ placeSchema.statics = {
                 case '_id': query.where('_id').in(arg._id);
                     break;
                 case 'not': query.where('_id').nin(arg.not);
+                    break;
+                case 'visible': query.where('visible').equals(arg.visible);
+                    break;
+                case 'guides': query.where('guides').in(arg.guides);
                     break;
                 //TODO: остальные криетрии поиска
             }

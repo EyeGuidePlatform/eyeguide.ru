@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/css/choices.min.css">
 <script src="/js/choices.min.js"></script>
 
-<link rel="stylesheet" href="/css/sign-up.css">
+<link rel="stylesheet" href="/css/registration-form.css">
 {% endblock %}
 
 {% block content %}
@@ -44,6 +44,10 @@
                     <input type="text" class="form-control" id="phone" name="guide[phone]" required>
                 </div>
                 <div class="form-group">
+                    <label for="description">О себе</label>
+                    <textarea class="form-control" id="description" name="description" rows="5"></textarea>
+                </div>
+                <div class="form-group">
                     <label>Фотография</label>
                     <input type="file" class="form-control" id="img" name="img">
                 </div>
@@ -54,14 +58,6 @@
                         {% for city in cities %}
                         <option value="{{ city }}">{{ city }}</option>
                         {% endfor %}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="places">Места</label>
-                    <select id="places" name="guide[places]" placeholder="Введите места" multiple required>
-                        <!--{% for place in places %}
-                        <option value="{{ place._id }}">{{ place.name }}</option>
-                        {% endfor %}-->
                     </select>
                 </div>
                 <div class="form-group">
@@ -76,7 +72,7 @@
                     <label for="languages">Языки</label>
                     <select class="multiple-choice form-control" id="languages" name="lang" placeholder="Выберите языки, которые вы знаете" multiple required>
                         {% for lang in languages %}
-                        <option value="{{ lang }}">{{ lang }}</option>
+                        <option value="{{ lang.key }}">{{ lang.value }}</option>
                         {% endfor %}
                     </select>
                 </div>

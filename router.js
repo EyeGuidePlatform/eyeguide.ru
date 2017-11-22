@@ -25,7 +25,9 @@ let express = require('express'),
     logGuideController = require('./app/controllers/logGuide'),
     getJSONController = require('./app/controllers/getJSON'),
     newOrderController = require('./app/controllers/newOrder'),
+    middleware = require('./app/controllers/middleware'),
     FAQcontroller=require('./app/controllers/FAQ');
+
 
 //Middleware
 router.use('/', (req, res, next) => {
@@ -66,8 +68,10 @@ router.get('/place/:id', placeController.getPlacePage);
 //Регистрация гидов и мест
 router.get('/registration', regGuideController.getNewGuide);
 router.post('/registration', upload.single('img'), regGuideController.addNewGuide);
-router.get('/create/place', regPlaceController.getCreatePlacePage);
-router.post('/createPlace', upload.single('img'), regPlaceController.createPlace);
+router.get('/create/place', middleware.isAdminLogged, regPlaceController.getCreatePlacePage);
+router.post('/create/place', middleware.isAdminLogged, upload.single('img'), regPlaceController.createPlace);
+router.get('/suggest/place', middleware.isGuideLogged, regPlaceController.getSuggestPlacePage);
+router.post('/suggest/place', middleware.isGuideLogged, upload.single('img'),regPlaceController.suggestPlace);
 router.get('/activate/:url', regGuideController.confirmEmail);
 
 
@@ -76,11 +80,11 @@ router.get('/new_order', newOrderController.getNewOrderPage);
 
 //Аутентификация гидов
 router.post('/guide/login', logGuideController.login);
-router.post('/guide/logout', logGuideController.logout);
+router.post('/guide/logout', middleware.isGuideLogged, logGuideController.logout);
 
 
 //JSON
-router.get('/api/getPlaces/:city', getJSONController.getPlacesJSON);
+router.get('/api/getPlaces/:query', getJSONController.getPlacesJSON);
 router.get('/api/editPlaces/:id', getJSONController.editPlacesJSON);
 router.get('/api/getPlace/:id', getJSONController.getPlaceByIdJSON);
 router.get('/api/checkPass/:pwd', getJSONController.checkPassJSON);
@@ -91,11 +95,11 @@ router.get('/api/getMyPlaces', getJSONController.getMyPlacesJSON);
 router.get('/search' ,searchController.getSearchPage);
 
 //Административные функции
-router.get('/admin/main', adminController.getPage);
+router.get('/admin/main', middleware.isAdminLogged, adminController.getPage);
 router.get('/admin/login', adminController.loginPage);
-router.get('/admin/logout', adminController.logout);
-router.get('/admin/create', adminController.createPage);
-router.post('/admin/create', adminController.create);
+router.get('/admin/logout', middleware.isAdminLogged, adminController.logout);
+router.get('/admin/create', middleware.isAdminLogged, adminController.createPage);
+router.post('/admin/create', middleware.isAdminLogged,adminController.create);
 router.post('/admin/login', adminController.login);
 
 //FAQ

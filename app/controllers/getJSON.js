@@ -3,14 +3,34 @@ const guideModel = require('../models/guide').guideModel;
 const toHash = require('md5')
 
 exports.getPlacesJSON = async (req, res) => {
-    let places;
-    if (req.params.city == 'none') {
-        places = await placeModel.getPlaces();
-    } else {
-        places = await placeModel.getPlaces({ city: req.params.city });
-    }
+    const [query, parameter] = req.params.query.split('=');
+    let response;
+    
+    switch (query) {
+        case 'guides':
+            const guides = await guideModel.getGuides({city: parameter}, {limit: 6});
+            let foundPlaces = [];
 
-    res.json(JSON.stringify(places));
+            //FIXME: Оптимизировать выбор
+            guides.forEach(guide => {
+                guide.places.forEach(place => {
+                    if (place.city == parameter && foundPlaces.indexOf(place) === -1) {
+                        foundPlaces.push(place);
+                    }
+                });
+            });
+            
+            response = foundPlaces;
+            break;
+        case 'city':
+            if (parameter !== 'none')
+                response = await placeModel.getPlaces({limit: 6}, { city: parameter }, {visible: 1});
+            else
+                response = await placeModel.getPlaces({limit: 6}, {visible: 1});
+            break;
+    }
+    
+    res.json(JSON.stringify(response));
 }
 
 exports.getPlaceByIdJSON = async (req, res) => {

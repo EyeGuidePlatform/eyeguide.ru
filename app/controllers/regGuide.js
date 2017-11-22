@@ -1,22 +1,14 @@
 const guideModel = require('../models/guide').guideModel,
     placeModel = require('../models/place').placeModel,
-    staticModel = require('../models/static').staticModel,
-    config = require('../../config'),
-    
-    email = require('emailjs/email'),
-    server = email.server.connect({
-        user: 'eyeguidetest',
-        password: config.emailPass,
-        host: 'smtp.gmail.com',
-        ssl: true
-    });
+    emailModel = require('../models/email'),
+    staticModel = require('../models/static').staticModel;
 
 /**
  * Страница "регистрация нового гида"
  */
 exports.getNewGuide = async (req, res) => {
     let cities = await staticModel.getCities(req.locale),
-        languages = await staticModel.getLangs();
+        languages = await staticModel.getLangs(req.locale);
 
     res.render('gid_newGuide.html', {cities: cities, languages: languages});
 }
@@ -28,6 +20,13 @@ exports.addNewGuide = async (req, res, next) => {
     }
 
     let newGuide = req.body.guide;
+    newGuide.name = req.sanitize(newGuide.name);
+    newGuide.surname = req.sanitize(newGuide.surname);
+    newGuide.description = [];
+    newGuide.description.push({
+        value: req.sanitize(req.body.description),
+        lang: req.locale
+    });
     newGuide.img = req.file ? '/img/' + req.file.filename : undefined;
     newGuide.info = {
         spec: req.body.spec ? req.body.spec.split(',') : undefined,
@@ -67,9 +66,9 @@ exports.addNewGuide = async (req, res, next) => {
             }
         ]
     };
-    server.send(message, function(err, message) { console.log(err || message); });
+    emailModel.sendEmail(message);
 
-    res.redirect('/guideProfile/' + guide._id);
+    res.redirect('/guideProfile/');
 }
 
 exports.confirmEmail = async (req, res) => {

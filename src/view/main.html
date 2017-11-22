@@ -2,6 +2,7 @@
 
 {% block commonStyles %}
 <link rel="stylesheet" href="/css/jz_style.css">
+<link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
 {% endblock %}
 
 {% block content %}
@@ -12,6 +13,13 @@
         <!-- =========================================================== -->
         <div id="map-sidebar" class="col-md-6 col-sm-12 col-xs-12">
             <div class="fade"></div>
+            <div id="slider">
+                <div class="image" style="background-image: url('/img/main_page/1.jpg')"></div>
+                <div class="image" style="background-image: url('/img/main_page/2.jpeg')"></div>
+                <div class="image" style="background-image: url('/img/main_page/3.jpg')"></div>  
+                <div class="image" style="background-image: url('/img/main_page/4.jpg')"></div>  
+            </div>
+            
             <div class="left-s__content vcenter">
                 <div class="left-s__text">
                     <h1 class="intro-title">Быстрый поиск гида</h1>
@@ -22,7 +30,7 @@
                 </div>
                 
                 <form class="search-form" action="/map" method="POST">
-                    <input class="search-input" type="text" name="city" placeholder="Например: Москва">
+                    <input class="search-input" type="text" name="city" placeholder="Например: Москва" required>
                     <button class="search-submit">Найти</button>
                 </form>
             </div>
@@ -62,3 +70,19 @@
 {% endblock %}
 
 {% block footerClasses %}col-md-offset-6 col-md-6{% endblock %}
+
+{% block commonJS %}
+<script src="/js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="/slick/slick.min.js"></script>
+<script>
+    $('#slider').slick({
+        arrows: false,
+        infinite: true,
+        speed: 1000,
+        fade: true,
+        cssEase: 'linear',
+        autoplay: true,
+        autoplaySpeed: 3000
+    });
+</script>
+{% endblock %}

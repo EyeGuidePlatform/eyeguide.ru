@@ -19,8 +19,6 @@ exports.login = async (req, res) => {
 }
 
 exports.logout = (req, res) => {
-    if (req.session.guide) {
-        delete req.session.guide;
-        res.redirect('/');
-    }
+    delete req.session.guide;
+    res.redirect('/');
 }

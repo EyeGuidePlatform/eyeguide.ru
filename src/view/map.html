@@ -15,7 +15,7 @@
         <div id="map-sidebar" style="background-image: none; background-color: #ccc;" class="col-md-6 col-sm-12 col-xs-12">
             <div class="left-s__content vcenter">
                 <form class="search-form bottom" action="/map" method="POST">
-                    <input class="search-input" type="text" name="city" placeholder="Например: Москва" value="{{ city }}">
+                    <input class="search-input" type="text" name="city" placeholder="Например: Москва" value="{{ city }}" required>
                     <button class="search-submit">Найти</button>
                 </form>
             </div>
@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="show-all">
-                        <a href="#">Показать всех гидов</a>
+                        <a href="/search">Показать всех гидов</a>
                     </div>
                     
                 </div>
@@ -70,7 +70,7 @@
                     </div>
                     
                     <div class="show-all">
-                        <a href="#">Показать все места</a>
+                        <a href="/search">Показать все места</a>
                     </div>
                 </div>
             </div>
