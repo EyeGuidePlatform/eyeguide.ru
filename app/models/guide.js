@@ -1,11 +1,12 @@
 const mongoose = require('./../../server').mongoose,
     toHash = require('md5'),
-    placeModel = require('./place').placeModel;
+    placeModel = require('./place').placeModel,
+    exModel = require('./excursions').exModel
 
 // схема данных - задает структуру объекта, хранимого в БД
 guideSchema = mongoose.Schema({
     visible: {
-        type: Number, 
+        type: Number,
         default: 0 // 0 - не подтверждена почта, 1 - на модерации, 2 - одобрен, 3 - откланен
     },
     email: {
@@ -23,8 +24,8 @@ guideSchema = mongoose.Schema({
         default: ''
     },
     surname: {
-        type: String, 
-        default:''
+        type: String,
+        default: ''
     },
     age: {
         type: Number,
@@ -62,7 +63,7 @@ guideSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'order'
     }],
-    desctiption:[{
+    desctiption: [{
         lang: String,
         value: String
     }]
@@ -81,11 +82,11 @@ guideSchema.statics = {
         //Добавить каждому выбранному месту нового гида
         let placeModel = require('./place').placeModel;
         let places = await placeModel.getPlaces({ _id: newGuide.places });
-        for(let i = 0; i < places.length; i++) {
+        for (let i = 0; i < places.length; i++) {
             places[i].guides.push(newGuide);
             await places[i].save();
         }
-        
+
         return await newGuide.save();
     },
     /**
@@ -93,12 +94,24 @@ guideSchema.statics = {
      * @param guideId - айди гида
      * @param placeId - айди места
      */
-    addPlaceInGuide: async function (guideId ,placeId) {
+    addPlaceInGuide: async function (guideId, placeId) {
         let placeModel = require('./place').placeModel;
         let guide = await this.getGuide(guideId);
         let place = await placeModel.getPlace(placeId);
 
         guide.places.push(place)
+        return await guide.save();
+    },
+    /**
+     * Добавление в гида выбранную экскурсию
+     * @param guideId - айди гида
+     * @param ex - экскурсия
+     */
+    addExInGuide: async function (ex, guideId) {
+        let guide = await this.getGuide(guideId);
+
+        guide.excursions.push(ex)
+
         return await guide.save();
     },
     /**
@@ -113,7 +126,7 @@ guideSchema.statics = {
 
         //TODO: удаление экскурсий связанных с местом
 
-        guide.places = await guide.places.filter( place => place._id != placeId)
+        guide.places = await guide.places.filter(place => place._id != placeId)
 
         return await guide.save();
     },
@@ -121,9 +134,9 @@ guideSchema.statics = {
      * Проверяем введенные данные для аутентификации
      * @param {Object} guideData
      */
-    checkGuide: async function(guideData){
+    checkGuide: async function (guideData) {
         const foundUser = await this.findOne({
-            email: guideData.email, 
+            email: guideData.email,
             password: toHash(guideData.password)
         });
         return foundUser;
@@ -146,16 +159,16 @@ guideSchema.statics = {
      * Запрашиваем из БД гидов по критериям
      * @param {[Object]} args (критерии поиска)
      */
-    getGuides: async function(...args) {
+    getGuides: async function (...args) {
         let query = this.find();
-        
+
         //парсим аргументы и cоставляем query
         args.map(arg => {
             let argKey = Object.keys(arg)[0];
-            switch(argKey){
+            switch (argKey) {
                 //FIXME: поиск без учета регистра
                 case 'city': query.where('city').equals(arg.city);
-                       break;
+                    break;
                 case 'limit': query.limit(arg.limit);
                     break;
                 //TODO: остальные криетрии поиска
@@ -163,7 +176,7 @@ guideSchema.statics = {
         });
 
         let guides = await query.populate('places');
-        
+
         return guides;
     }
 }

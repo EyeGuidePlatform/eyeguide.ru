@@ -1,5 +1,6 @@
 const guideModel = require('../models/guide').guideModel;
 const placeModel = require('../models/place').placeModel;
+const exModel = require('../models/excursions').exModel;
 
 /**
  * Страница "Смена пароля гида"
@@ -32,18 +33,23 @@ exports.getGuidePlacesPage = async (req, res) => {
     });
 }
 
-// POST запрос на добавление места и обновление страницы
+// POST запрос на добавление места и экскурсии в гида => обновление страницы
 exports.addPlace = async (req,res) => {
     let id = req.session.guide.id,
-        placeId = req.body.places
-    if (placeId == "Выберите место") {
-        //todo
-        res.redirect('/guidePlaces')
-    } else {
-        let check = await guideModel.addPlaceInGuide(id, ...placeId)
-        // res.send(check)
-        res.redirect('/guidePlaces')
-    }
+        placeId = req.body.place,
+        excursion = {}
+
+        excursion.place = await placeModel.getPlace(req.body.place)
+        excursion.guide = await guideModel.getGuide(id)
+        excursion.prices = [{price: req.body.price, people: req.body.people}]
+        excursion.lasting = req.body.duration
+
+        let newEx = await exModel.addExcursion(excursion)
+        let addEx = await guideModel.addExInGuide(newEx, id)
+        let addPlace = await guideModel.addPlaceInGuide(id, placeId)
+        
+        res.send({redirect: '/guidePlaces'});
+    
 }
 // POST запрос на удаление места и обновление страницы
 exports.removePlace = async (req,res) => {
