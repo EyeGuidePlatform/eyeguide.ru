@@ -71,7 +71,7 @@
                 <h3 class="text-center">Места</h3>
                 <div class="responsive">
                     {% for item in guide.places %}
-                    <div><a href="/place/{{ item.id }}"><img src={{item.img}}></a></div>
+                    <div class="placeCard"><a href="/place/{{ item.id }}"><img src={{item.img}}></a></div>
                     {% endfor %}
                 </div>
             </div>
