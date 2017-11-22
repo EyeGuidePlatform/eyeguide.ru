@@ -125,9 +125,10 @@ guideSchema.statics = {
         let place = await placeModel.getPlace(placeId);
 
         //TODO: удаление экскурсий связанных с местом
-
+        // let exs = await exModel.getExs({place: placeId})
+        // console.log(exs)
         guide.places = await guide.places.filter(place => place._id != placeId)
-
+        // console.log(guide)
         return await guide.save();
     },
     /**

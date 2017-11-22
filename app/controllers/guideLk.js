@@ -58,8 +58,6 @@ exports.removePlace = async (req,res) => {
     let placeList = await guideModel.removePlaceFromGuide(id,placeId)
     
     res.redirect('/guidePlaces')
-    // res.send(placeList)
-    
 }
 
 /**

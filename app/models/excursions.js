@@ -34,6 +34,26 @@ excursionSchema.statics = {
      */
     getEx: async function (exId) {
         return await this.findById(exId).populate('place').populate('guide');
+    },
+    /**
+     * Заправшиваем из БД экскурсию по id
+     * @param {ObjectId} exId
+     */
+    getExs: async function (...args) {
+        let query = this.find();
+
+        //парсим аргументы и cоставляем query
+        args.map(arg => {
+            let argKey = Object.keys(arg)[0];
+            switch (argKey) {
+                case 'place': query.where('place').equals(arg.place);
+                    break;
+            }
+        });
+
+        let exs = await query.populate('place').populate('guide');
+
+        return exs;
     }
 }
 let exModel = mongoose.model('excursion', excursionSchema);
