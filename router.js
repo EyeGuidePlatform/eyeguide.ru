@@ -26,7 +26,9 @@ let express = require('express'),
     getJSONController = require('./app/controllers/getJSON'),
     newOrderController = require('./app/controllers/newOrder'),
     middleware = require('./app/controllers/middleware'),
+    orderStatusController = require('./app/controllers/orderStatus'),
     FAQcontroller=require('./app/controllers/FAQ');
+
 
 
 //Middleware
@@ -103,6 +105,9 @@ router.post('/admin/create', middleware.isAdminLogged,adminController.create);
 router.post('/admin/login', adminController.login);
 
 //FAQ
+
+//Статус заказа
+router.get('/order/:id', orderStatusController.getOrderStatus);
 
 
 module.exports = router;
