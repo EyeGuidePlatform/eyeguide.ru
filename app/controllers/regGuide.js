@@ -37,7 +37,13 @@ exports.addNewGuide = async (req, res, next) => {
         happy: 0
     };
     
-    const guide = await guideModel.addGuide(newGuide);
+    let guide;
+    try {
+        guide = await guideModel.addGuide(newGuide);
+    } catch (e) {
+        req.flash('error', 'Пользователь с данным адресом почты уже зарегистрирован!');
+        return res.redirect('back');
+    }
     //Сразу логиним гида
     req.session.guide = {
         id: guide._id, 
@@ -68,6 +74,7 @@ exports.addNewGuide = async (req, res, next) => {
     };
     emailModel.sendEmail(message);
 
+    req.flash('success', 'Вы успешно зарегистрировались!');
     res.redirect('/guideProfile/');
 }
 
@@ -77,7 +84,7 @@ exports.confirmEmail = async (req, res) => {
         guide.visible = 1;
         await guide.save();
 
-        return res.redirect('/guideProfile/');
+        req.flash('success', 'Почта успешно подтверждена!');
     }
 
     res.redirect('/');

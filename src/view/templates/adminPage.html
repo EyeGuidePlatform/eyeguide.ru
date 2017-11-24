@@ -49,7 +49,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <form action="/admin/logout" method="POST">
+                    <form action="/admin/logout" method="GET">
                         <button class="right-nav-btn">Выйти из админки</button>
                     </form>
                 </li>
@@ -58,6 +58,18 @@
     </div>
 </nav>
 
+{% endblock %}
+
+{% block flashMessage %}
+<div class="container-fluid text-center">
+    {% if error and error.length > 0 %}
+        <div class="alert alert-danger" role="alert">{{ error }}</div>
+    {% endif %}
+    
+    {% if success and success.length > 0 %}
+        <div class="alert alert-success" role="alert">{{ success }}</div>
+    {% endif %}
+</div>
 {% endblock %}
 
 <!-- ======================================================================= -->
