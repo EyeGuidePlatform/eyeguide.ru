@@ -29,8 +29,13 @@ exports.suggestPlace = async (req, res, next) => {
  * Страница "Добавление места"
  */
 exports.getCreatePlacePage = async (req, res) => {
-    let cities = await staticModel.getCities(req.locale);
-    res.render('createPlace.html', {cities: cities});
+    let cities = await staticModel.getCities(req.locale),
+        places = await placeModel.getPlaces({select: '_id name'});
+
+    res.render('createPlace.html', {
+        addedPlaces: places,
+        cities: cities
+    });
 }
 
 /**
@@ -46,4 +51,10 @@ exports.createPlace = async (req, res, next) => {
 
     newPlace = await placeModel.addPlace(newPlace);
     res.redirect('/place/' + newPlace._id);
+}
+
+exports.removePlace = async (req, res) => {
+    placeModel.removePlace(req.params.id);
+
+    res.redirect('back');
 }

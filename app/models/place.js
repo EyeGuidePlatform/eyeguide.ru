@@ -69,6 +69,8 @@ placeSchema.statics = {
                     break;
                 case 'guides': query.where('guides').in(arg.guides);
                     break;
+                case 'select': query.select(arg.select);
+                    break;
                 //TODO: остальные криетрии поиска
             }
         })
@@ -76,6 +78,9 @@ placeSchema.statics = {
         let places = await query.populate('guides');
 
         return places;
+    },
+    removePlace: async function (placeId) {
+        await this.findByIdAndRemove(placeId);
     }
 }
 
