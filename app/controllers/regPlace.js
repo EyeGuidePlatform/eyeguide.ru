@@ -50,11 +50,14 @@ exports.createPlace = async (req, res, next) => {
     newPlace.visible = 1;
 
     newPlace = await placeModel.addPlace(newPlace);
-    res.redirect('/place/' + newPlace._id);
+
+    req.flash('success', 'Место успешно создано!');
+    res.redirect('back');
 }
 
 exports.removePlace = async (req, res) => {
     placeModel.removePlace(req.params.id);
 
+    req.flash('success', 'Место успешно удалено!');
     res.redirect('back');
 }
