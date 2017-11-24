@@ -14,3 +14,7 @@
 textarea {
     resize: none;
 }
+
+.checkbox a {
+    color: blue;
+}

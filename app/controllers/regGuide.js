@@ -16,6 +16,7 @@ exports.getNewGuide = async (req, res) => {
 exports.addNewGuide = async (req, res, next) => {
     //При несовпадении паролей возвращаем обратно
     if (req.body.guide.password != req.body.confirmPassword) {
+        req.flash('error', 'Пароли не совпадают!');
         return res.redirect('back');
     }
 

@@ -76,6 +76,12 @@
                         {% endfor %}
                     </select>
                 </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="rules" required> Прежде чем зарегистрироваться необходимо принять <a href="">условия соглашения</a>
+                    </label>
+                </div>
                 
                 <button type="submit" id="submit" class="btn btn-block btn-primary">Зарегистрироваться</button>
             </form>       
@@ -85,6 +91,5 @@
 {% endblock %}
 
 {% block commonJS %}
-<script src="/js/jquery-2.2.3.min.js"></script>
 <script src="/js/choiceInputs.js"></script>
 {% endblock %}
