@@ -2,7 +2,7 @@ const mongoose = require('mongoose'),
     adminModel = require('../models/admin').adminModel;
 
 exports.getPage = (req, res) => {
-    res.send('В админке');
+    res.redirect('/admin/create/place');
 }
 
 exports.login = async (req, res) => {

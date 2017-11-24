@@ -79,6 +79,12 @@ placeSchema.statics = {
 
         return places;
     },
+
+    editPlace: async function (placeId, placeData) {
+        const editPlace = await this.findByIdAndUpdate(placeId, placeData);
+        return editPlace;
+    },
+
     removePlace: async function (placeId) {
         await this.findByIdAndRemove(placeId);
     }

@@ -11,7 +11,7 @@
     <div class="row">
         <div class="left-sidebar col-md-6">
             <h1 class="text-center">Добавить место</h1>
-            <form action="/create/place" method="POST" enctype="multipart/form-data">
+            <form action="/admin/create/place" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Название</label>
                     <input class="form-control" id="name" type="text" name="place[name]" required>
@@ -58,9 +58,7 @@
                             <h4>{{ place.name }}</h3>
                         </a>
                         <div class="control-btns">
-                            <form class="form-btn" action="/place/{{ place._id }}/edit" method="POST">
-                                <button class="btn btn-warning" type="submit">Редактировать</button>
-                            </form>
+                            <a href="/place/{{ place._id }}/edit" class="btn btn-warning">Редактировать</a>
                             <form class="form-btn" action="/place/{{ place._id }}/remove" method="POST">
                                 <button class="btn btn-danger" type="submit">Удалить</button>
                             </form>

@@ -104,6 +104,8 @@ router.get('/admin/create/place', middleware.isAdminLogged, regPlaceController.g
 router.post('/admin/create/place', middleware.isAdminLogged, upload.single('img'), regPlaceController.createPlace);
 router.post('/admin/login', adminController.login);
 
+router.get('/place/:id/edit', middleware.isAdminLogged, regPlaceController.getEditPlace);
+router.post('/place/:id', middleware.isAdminLogged, upload.single('img'), regPlaceController.editPlace);
 router.post('/place/:id/remove', middleware.isAdminLogged, regPlaceController.removePlace);
 
 //FAQ

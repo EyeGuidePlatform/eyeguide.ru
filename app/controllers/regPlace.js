@@ -55,6 +55,29 @@ exports.createPlace = async (req, res, next) => {
     res.redirect('back');
 }
 
+exports.getEditPlace = async (req, res) => {
+    const targetPlace = await placeModel.getPlace(req.params.id),
+          cities = await staticModel.getCities(req.locale);
+
+    res.render('editPlace.html', {place: targetPlace, cities: cities});
+}
+
+exports.editPlace = async (req, res) => {
+    let editPlace = req.body.editPlace;
+    editPlace.name = req.sanitize(editPlace.name);
+    editPlace.description = req.sanitize(editPlace.description);
+    if (req.file) {
+        editPlace.img = '/img/' + req.file.filename;
+    } else {
+        delete editPlace.img;
+    }
+
+    editPlace = await placeModel.editPlace(req.params.id, editPlace);
+
+    req.flash('success', 'Место успешно изменено!');
+    res.redirect('/admin/create/place');
+}
+
 exports.removePlace = async (req, res) => {
     placeModel.removePlace(req.params.id);
 
