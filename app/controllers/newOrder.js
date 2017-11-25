@@ -4,11 +4,12 @@ const placeModel = require('../models/place').placeModel;
 
 
 exports.getNewOrderPage = async (req, res) => {
-    // let id = req.body.guideId
-        // guide = await placeModel.getGuide(id)
-
-        let places = await placeModel.getPlaces()
-
-    // res.render('new_order.html', {guide: guide})
-    res.render('new_order.html', {places: places})
+    if (req.body.guideId) {
+        let guide = await guideModel.getGuide(req.body.guideId)
+        res.render('new_orderG.html', {guide: guide})
+    }
+    if (req.body.placeId) {
+        let place = await placeModel.getPlace(req.body.placeId)
+        res.render('new_orderP.html', {place: place})
+    }
 }

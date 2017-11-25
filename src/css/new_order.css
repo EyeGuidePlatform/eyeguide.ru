@@ -34,7 +34,7 @@ input.invalid {
 .tab {
   display: none;
 }
-#city {
+#select_form {
   margin-bottom: 1rem;
 }
 button {

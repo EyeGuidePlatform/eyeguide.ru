@@ -97,7 +97,10 @@ guideSchema.statics = {
         let placeModel = require('./place').placeModel;
         let guide = await this.getGuide(guideId);
         let place = await placeModel.getPlace(placeId);
-
+        // добавление в место гида 
+        place.guides.push(guide)
+        await place.save()
+        // добавление в гида место
         guide.places.push(place)
         return await guide.save();
     },

@@ -1,18 +1,54 @@
-let currentTab = 0; 
+// добавление мест или гидов в селект при загрузке страницы
+window.onload = () => {
+  const placeSelect = new Choices('#select_form')
+
+  if (document.querySelector('#guide')) {
+    let check = document.querySelector('#guide');
+    (async () => {
+      let places = await getPlacesJSON(check.getAttribute('value'));
+      let items = [];
+      places.forEach(place => {
+        const item = {
+          value: place._id,
+          label: place.name
+        };
+        items.push(item);
+
+      });
+
+      // Обновляем места, принадлежащие выбранном гиду
+      placeSelect.setChoices(items, 'value', 'label', false);
+    })();
+
+  }
+
+
+  async function getPlacesJSON(id) {
+    const placesJSON = await $.getJSON(`/api/getPlacesByGuideId/${id}`);
+
+    return JSON.parse(placesJSON);
+  }
+}
+
+
+
+
+let choice = document.querySelector('#select_form')
+let currentTab = 0;
 showTab(currentTab);
 
 function showTab(n) {
-    let x = document.getElementsByClassName("tab"),
-        prevBtn = document.getElementById("prevBtn"),
-        nextBtn = document.getElementById("nextBtn")
+  let x = document.getElementsByClassName("tab"),
+    prevBtn = document.getElementById("prevBtn"),
+    nextBtn = document.getElementById("nextBtn")
 
-    x[n].style.display = "block";
+  x[n].style.display = "block";
 
-    prevBtn.style.display = n == 0 ? 'none' :  'inline'
-    nextBtn.style.display = (n == (x.length - 1))? 'Submit' : 'Next'
+  prevBtn.style.display = n == 0 ? 'none' : 'inline'
+  nextBtn.style.display = (n == (x.length - 1)) ? 'Submit' : 'Next'
 
 
-    fixStepIndicator(n)
+  fixStepIndicator(n)
 }
 
 function nextPrev(n) {
@@ -40,18 +76,14 @@ function validateForm() {
   x = document.getElementsByClassName("tab");
   y = x[currentTab].getElementsByTagName("input");
 
-//   [].forEach.call(y, (input => {
-//      if (input.value == "") {
-//          y.className += 'invalid';
 
-//          valid = false;
-//      }
-//   }))
-
-//   A loop that checks every input field in the current tab:
+  //   A loop that checks every input field in the current tab:
   for (i = 0; i < y.length; i++) {
     // If a field is empty...
-    if (y[i].value == "") {
+    if (y[i].value == "" ) {
+      if (y[i].classList.contains('choices__input') && choice.value) {
+       continue
+      }
       // add an "invalid" class to the field:
       y[i].className += " invalid";
       // and set the current valid status to false
@@ -66,53 +98,53 @@ function validateForm() {
 }
 
 function fixStepIndicator(n) {
-    let x = document.getElementsByClassName("step");
+  let x = document.getElementsByClassName("step");
 
-    [].forEach.call(x, ( (step, index) => {
-      index === n? step.classList.add('active') : step.classList.remove('active')
-    }))
+  [].forEach.call(x, ((step, index) => {
+    index === n ? step.classList.add('active') : step.classList.remove('active')
+  }))
 }
 
-// Место в зависимости от select
-const citySelect = document.querySelector('#city');
-const currentCity = document.querySelector('#city-img');
-const check = document.querySelector('#check');
+// // Место в зависимости от select
+// const citySelect = document.querySelector('#city');
+// const currentCity = document.querySelector('#city-img');
+// const check = document.querySelector('#check');
 
-(async () => {
-    let place = await getPlacesJSON(citySelect.value);
-    console.log(place)
-    updatePlace(place);
+// (async () => {
+//     let place = await getPlacesJSON(citySelect.value);
+//     // console.log(place)
+//     updatePlace(place);
 
-    citySelect.onchange = e => {
-        let shit = e.target.value;
-        // place = await getPlacesJSON(citySelect.value)
-        updatePlace(shit);
-    }
-})();
+//     citySelect.onchange = e => {
+//         let shit = e.target.value;
+//         // place = await getPlacesJSON(citySelect.value)
+//         updatePlace(shit);
+//     }
+// })();
 
-function updatePlace(place) {
-    // let items = [];
-    currentCity.style.backgroundImage = `url(${place.img})`;
-    currentCity.value = place._id;
-    check.innerHTML = place.name;
+// function updatePlace(place) {
+//     // let items = [];
+//     currentCity.style.backgroundImage = `url(${place.img})`;
+//     currentCity.value = place._id;
+//     check.innerHTML = place.name;
 
 
-    // places.forEach( place => {
-    //     if (place.city == newCity) {
-    //         const item = {
-    //             value: place._id,
-    //             label: place.name
-    //         };
-    //         items.push(item);
-    //     }
-    // } );
+//     // places.forEach( place => {
+//     //     if (place.city == newCity) {
+//     //         const item = {
+//     //             value: place._id,
+//     //             label: place.name
+//     //         };
+//     //         items.push(item);
+//     //     }
+//     // } );
 
-    //Обновляем места, принадлежащие выбранному городу
-    // placeSelect.clearStore().setChoices(items, 'value', 'label', false);
-}
+//     //Обновляем места, принадлежащие выбранному городу
+//     // placeSelect.clearStore().setChoices(items, 'value', 'label', false);
+// }
 
-async function getPlacesJSON (id) {
-    const placeJSON = await $.getJSON(`/api/getPlace/${id}`);
+// async function getPlacesJSON (id) {
+//     const placeJSON = await $.getJSON(`/api/getPlace/${id}`);
 
-    return JSON.parse( placeJSON );
-}
+//     return JSON.parse( placeJSON );
+// }
