@@ -1,67 +1,23 @@
-body{
-    background: #eee;
-}
-
 .text-center{
     text-align: center;
-    margin-bottom: 3rem;
 }
 
-.green-bg{
-    padding: 1rem 3rem 1rem 3rem;
+.guideCard{
     background: #0caa50;
-}
-
-.grey-bg{
-    padding: 1rem 3rem 1rem 3rem;
-    background: rgb(235, 235, 235);
-}
-
-.container{
     border: 1px rgb(175, 175, 175) solid;
     box-shadow: 0px 0px 4px rgb(175, 175, 175);
-    border-radius: 3rem;
+    border-radius: 3rem; 
+    color:white;   
 }
 
-.slider{
-    border: 1px rgb(175, 175, 175) solid;
-    box-shadow: 0px 0px 4px rgb(175, 175, 175);
-}
-
-.card{
-    border: 1px rgb(226, 226, 226) solid;
+.guideInfo{
+    border: 1px rgb(225, 225, 225) solid;
     border-radius: 1rem;
-    margin:1rem 1rem 1rem 1rem;
+    margin: 1rem 0 1rem 0;
 }
+
 .text-white{
     color: white;
-}
-
-.text-black{
-    color:black;
-}
-
-.mb-1{
-    margin-bottom: 1rem;
-}
-
-.mb-3{
-    margin-bottom: 3rem;
-}
-.mb-5{
-    margin-bottom: 5rem;
-}
-
-.mt-1{
-    margin-top: 1rem;
-}
-
-.mt-3{
-    margin-top: 3rem;
-}
-
-.mt-5{
-    margin-top: 5rem;
 }
 
 #YMapsID{
@@ -70,16 +26,18 @@ body{
     width:100%;
 }
 
-@media (min-width: 768px) {
-    #YMapsID{
-        height: 450px;
-    }
-}
-
 .btn{
     height: 5rem;
 }
 
-.placeCard{
-    box-shadow: 1px 1px 5px black;
+@media (min-width: 768px) {
+    #YMapsID{
+        height: 450px;
+    }
+
+    .imgSlide{
+        width: 100%;
+        height: 100%;
+        max-height: 200px;
+    }
 }
