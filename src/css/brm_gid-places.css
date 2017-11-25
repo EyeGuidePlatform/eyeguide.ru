@@ -38,9 +38,6 @@
 /* ========================================================================== */
 /* Place/guides */
 /* ========================================================================== */
-#places {
-  margin-top: 2rem;
-}
 
 .element {
   overflow: hidden;
@@ -77,44 +74,37 @@
 .element-name {
   margin: 0;
 }
-#places label{
-  padding: 1rem 2rem;
-  position: relative;
-  display: block;
-  cursor: pointer;
+
+.panel-title {
   text-align: center;
-  background-color: #2ecc71;
-  color: white;
-  margin-bottom: 0;
 }
-#places input {
-  display: none;
+.panel-heading {
+  background-color: #2ecc71 !important;
+  color: white !important;
 }
-#places input:checked ~ article {
-  display: inline-block;
+.panel-heading a:focus, .panel-heading a:hover {
+  color: #73867b;
+  text-decoration: none;
 }
-#places {
+
+aside {
+  height: 70vh;
+  overflow: hidden;
+}
+ #places {
   list-style: none;
   padding-left: 0;
-  max-height: 400px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  margin: 2rem 0 0 0;
+  height: calc(100% - 5rem);
+  overflow: auto;
+ 
 }
-#places label {
-  position: relative;
-}
-#places li {
-  border: 1px #2ecc71 solid;
-  margin-bottom: 1rem;
-}
-#places article {
-  display: none;
-  width: 100%;
-}
+
 .remove_place {
   text-align: center;
 }
 .remove_place button {
+  border: 1px #2ecc71 solid;
   color: #2ecc71;
   background-color: white;
 }
