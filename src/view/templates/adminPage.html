@@ -15,7 +15,6 @@
 
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/modal.css">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -44,59 +43,21 @@
 
         <div class="collapse navbar-collapse" id="bs-navbar">
             <ul class="nav navbar-nav">
-                <li><a href="/search">С кем пойдем?</a></li>
-                <li><a href="/search">Куда пойдем?</a></li>   
-                <li><a href="/FAQ">Задать вопрос</a></li>
+                <li><a href="/admin/create/place">Добавить место</a></li>
+                <li><a href="/admin/create">Добавить админа</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                {% block rightNav %}
-                {% if not currentUser %}
-                <li><a id="nav-sign-in" class="right-nav-btn" href="#" data-target="#sign-in">{{__('_login_reg')}}</a></li>
-                {% else %}
-                <li><a class="username" href="/guideProfile">{{ currentUser.name }}</a></li>
                 <li>
-                    <form action="/guide/logout" method="POST">
-                        <button class="right-nav-btn">Выйти</button>
+                    <form action="/admin/logout" method="GET">
+                        <button class="right-nav-btn">Выйти из админки</button>
                     </form>
                 </li>
-                {% endif %}
-                {% endblock %}
             </ul>
         </div>
     </div>
 </nav>
-{% endblock %}
 
-{% block modal %}
-<div class="modal fade" id="sign-in">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" id="close-modal" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Вход</h4>
-            </div>
-            <div class="modal-body">
-                <form action="/guide/login" method="POST">
-                    <div class="form-group">
-                        <label for="sign-in-username">E-mail</label>
-                        <input class="form-control" type="email" id="sign-in-email" name="email" placeholder="введите электронную почту" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="sign-in-password">Пароль</label>
-                        <input class="form-control" type="password" id="sign-in-password" name="password" placeholder="введите пароль" required>
-                    </div>
-
-                    <div class="form-group">
-                        <button class="sign-in btn btn-default">Войти</button>
-                        <a href="/registration" class="sign-up btn btn-success">Регистрация</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 {% endblock %}
 
 {% block flashMessage %}
@@ -110,6 +71,7 @@
     {% endif %}
 </div>
 {% endblock %}
+
 <!-- ======================================================================= -->
 <!-- Main content -->
 <!-- ======================================================================= -->
@@ -146,7 +108,6 @@
     </div>
 
     <script src="/js/menu.js"></script>
-    <script src="/js/modal.js"></script>
     {% block commonJS %}
 
     {% endblock %}

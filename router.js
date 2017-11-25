@@ -70,8 +70,6 @@ router.get('/place/:id', placeController.getPlacePage);
 //Регистрация гидов и мест
 router.get('/registration', regGuideController.getNewGuide);
 router.post('/registration', upload.single('img'), regGuideController.addNewGuide);
-router.get('/create/place', middleware.isAdminLogged, regPlaceController.getCreatePlacePage);
-router.post('/create/place', middleware.isAdminLogged, upload.single('img'), regPlaceController.createPlace);
 router.get('/suggest/place', middleware.isGuideLogged, regPlaceController.getSuggestPlacePage);
 router.post('/suggest/place', middleware.isGuideLogged, upload.single('img'),regPlaceController.suggestPlace);
 router.get('/activate/:url', regGuideController.confirmEmail);
@@ -102,7 +100,13 @@ router.get('/admin/login', adminController.loginPage);
 router.get('/admin/logout', middleware.isAdminLogged, adminController.logout);
 router.get('/admin/create', middleware.isAdminLogged, adminController.createPage);
 router.post('/admin/create', middleware.isAdminLogged,adminController.create);
+router.get('/admin/create/place', middleware.isAdminLogged, regPlaceController.getCreatePlacePage);
+router.post('/admin/create/place', middleware.isAdminLogged, upload.single('img'), regPlaceController.createPlace);
 router.post('/admin/login', adminController.login);
+
+router.get('/place/:id/edit', middleware.isAdminLogged, regPlaceController.getEditPlace);
+router.post('/place/:id', middleware.isAdminLogged, upload.single('img'), regPlaceController.editPlace);
+router.post('/place/:id/remove', middleware.isAdminLogged, regPlaceController.removePlace);
 
 //FAQ
 
