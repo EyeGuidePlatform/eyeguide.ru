@@ -1,0 +1,96 @@
+{% extends "templates/pageTemplate.html" %}
+{% block commonStyles %}
+<link href="/css/dc_style.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
+<script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
+<script type="text/javascript" src="/js/guideCardMap.js"></script>
+{% endblock %}
+{% block content %}
+<div class="wrap">
+    <div class="container green-bg text-white mb-5 mt-1">
+        <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                    <h3 class="text-center">{{ guide.name +' '+ guide.surname }}</h3>
+                    </div>
+                    <div class="col-xs-12">
+                        <img src="{{ guide.img }}" class="img-thumbnail center-block" height="250" width="250">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-8">
+                <div class="row text-center">
+                    <div class="col-xs-12 col-lg-5 card">
+                        <h4>Специализации</h4>
+                        <h5>{{guide.info.spec}}</h5>
+                    </div>
+                    <div class="col-xs-12 col-lg-5 card">
+                        <h4>Языки</h4>
+                        <h5>{{guide.info.lang}}</h5>
+                    </div>
+                    <div class="col-xs-12 col-lg-5 card">
+                        <h4>Виды экскурсий</h4>
+                        <h5>{{guide.info.types}}</h5>
+                    </div>
+                    <div class="col-xs-12 col-lg-5 card">
+                        <h4>Часов экскурсий</h4>
+                        <h5>{{guide.info.hours}}</h5>
+                    </div>
+                    <div class="col-xs-12 col-lg-5 card">
+                        <h4>Проведенных экскурсий</h4>
+                        <h5>{{guide.info.tours}}</h5>
+                    </div>
+                    <div class="col-xs-12 col-lg-5 card">
+                        <h4>Счастливых туристов</h4>
+                        <h5>{{guide.info.happy}}</h5>
+                    </div>    
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <h3 class="text-center">Информация о гиде</h3>
+                <h4>Возраст: {{guide.age}}</h4>
+                <h4>Телефон: {{guide.phone}}</h4>
+                <h4>E-mail: {{guide.email}}</h4>
+            </div>
+            <div class="col-xs-12 col-sm-4"></div>
+            <div class="col-xs-12 col-sm-4">
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-success"><h4>Заказать!</h4></button>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-xs-12 col-sm-4"></div>
+        </div>
+    </div>
+    <div class="container-fluid text-white slider">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="text-center">Места</h3>
+                <div class="responsive">
+                    {% for item in guide.places %}
+                    <div class="placeCard"><a href="/place/{{ item.id }}"><img src={{item.img}}></a></div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid grey-bg">
+        <h3 class="text-center">Расположение на карте</h3>
+            <div class="row">
+                <div class="col-xs-12 mb-5">
+                    <div id="YMapsID"></div>
+                </div>
+                
+            </div>
+    </div>
+</div>        
+{% endblock %}
+{% block commonJS %}
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/slick/slick.min.js"></script>
+<script type="text/javascript" src="/js/slider.js"></script>
+{% endblock %} 
