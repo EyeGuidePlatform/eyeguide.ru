@@ -93,8 +93,9 @@ router.get('/api/checkPass/:pwd', getJSONController.checkPassJSON);
 router.get('/api/changePass/:pwd', getJSONController.changePassJSON);
 router.get('/api/getMyPlaces', getJSONController.getMyPlacesJSON);
 
-//Поиск мест и гидов
-router.get('/search' ,searchController.getSearchPage);
+//Поиск мест и гидов TODO
+router.get('/search/guides' ,searchController.getSearchPageGuides);
+router.get('/search/places' ,searchController.getSearchPagePlaces);
 
 //Административные функции
 router.get('/admin/main', middleware.isAdminLogged, adminController.getPage);

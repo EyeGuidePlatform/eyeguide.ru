@@ -13,3 +13,19 @@ exports.getSearchPage = async (req, res) => {
         places: places
     });
 }
+
+exports.getSearchPageGuides = async (req,res) => {
+    guides = await guideModel.getGuides({limit: 9})
+
+    res.render('searchGuides.html', {
+        guides: guides
+    })
+}
+
+exports.getSearchPagePlaces = async (req,res) => {
+    places = await placeModel.getPlaces({limit: 9})
+
+    res.render('searchPlaces.html', {
+        places: places
+    })
+}

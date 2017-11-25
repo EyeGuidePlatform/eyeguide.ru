@@ -28,6 +28,10 @@ exports.getPlacesJSON = async (req, res) => {
             else
                 response = await placeModel.getPlaces({limit: 6}, {visible: 1});
             break;
+
+        case 'allPlaces':
+                response = await placeModel.getPlaces();
+            break;
     }
     
     res.json(JSON.stringify(response));
