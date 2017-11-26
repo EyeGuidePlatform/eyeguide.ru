@@ -2,6 +2,7 @@ main {
   padding-top: 2rem;
 }
 main ul {
+  position: relative;
   list-style: none;
   padding-right: 3rem;
   background: linear-gradient(to top, white, #b9ffbe)
@@ -42,7 +43,8 @@ aside .edit:active {
   position: fixed;
   line-height: 1.1em;
   font-size: 4.2em;
-  right: 5rem;
+  right: calc(10%);
+  bottom: calc(20%);
   width: 8rem;
   height: 8rem;
   border: 4px solid black;
@@ -52,6 +54,20 @@ aside .edit:active {
 .big_edit:active {
   box-shadow: 0 20px 100px black,
               0px 5px 10px black inset;
+}
+.edit_small {
+  position: absolute;
+  display: none;
+  line-height: 2.5rem;
+  font-size: 2em;
+  top: 5px;
+  left: 5px;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+}
+.edit_small:active, .edit_small:hover {
+  color:red;
 }
 .profile_info, .profile_photo {
   margin-top: 1rem;
@@ -85,10 +101,6 @@ aside .edit:active {
     margin-top: 0px;
     margin-left: -3px;
   }
-  .big_edit {
-    bottom: 15rem;
-    right: 1rem;
-  }
 }
 
 @media (max-width: 430px) {
@@ -97,6 +109,12 @@ aside .edit:active {
   }
   .menu-block {
     font-size: 1em;
+  }
+  .big_edit {
+   display: none;
+  }
+  .edit_small {
+    display: block;
   }
 
 }
