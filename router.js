@@ -93,6 +93,7 @@ router.get('/api/checkPass/:pwd', getJSONController.checkPassJSON);
 router.get('/api/changePass/:pwd', getJSONController.changePassJSON);
 router.get('/api/getMyPlaces', getJSONController.getMyPlacesJSON);
 router.get('/api/getPlacesByGuideId/:id', getJSONController.getPlacesByGuideId);
+router.get('/api/getGuidesByPlaceId/:id', getJSONController.getGuidesByPlaceId);
 
 //Поиск мест и гидов TODO
 router.get('/search/guides' ,searchController.getSearchPageGuides);

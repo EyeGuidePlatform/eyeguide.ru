@@ -61,7 +61,7 @@ aside .edit:active {
   line-height: 2.5rem;
   font-size: 2em;
   top: 5px;
-  left: 5px;
+  right: 10px;
   width: 3rem;
   height: 3rem;
   cursor: pointer;
@@ -88,7 +88,7 @@ aside .edit:active {
 
 .form_lang {
   position: absolute;
-  width: 80px;
+  width: 70px;
   right: 10px;
   top: 10px;
   cursor: pointer;
@@ -123,6 +123,12 @@ aside .edit:active {
   }
   .edit_small {
     display: block;
+  }
+  main ul {
+    padding-left: 0px;
+  }
+  .form_lang {
+    top: 3.5rem;
   }
 
 }
