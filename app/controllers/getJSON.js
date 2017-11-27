@@ -28,6 +28,10 @@ exports.getPlacesJSON = async (req, res) => {
             else
                 response = await placeModel.getPlaces({limit: 6}, {visible: 1});
             break;
+
+        case 'allPlaces':
+                response = await placeModel.getPlaces();
+            break;
     }
     
     res.json(JSON.stringify(response));
@@ -67,7 +71,7 @@ exports.changePassJSON = async (req, res) => {
 
 exports.getMyPlacesJSON = async (req, res) => {
     let places,
-        id = req.session.guide.id,
+        id = req.session.guide.id
 
     guide = await guideModel.getGuide(id);
 
@@ -77,6 +81,6 @@ exports.getMyPlacesJSON = async (req, res) => {
 exports.getPlacesByGuideId = async (req, res) => {
     let id = req.params.id
     guide = await guideModel.getGuide(id);
-
+    // console.log(guide.places)
     res.json(JSON.stringify(guide.places));
 }

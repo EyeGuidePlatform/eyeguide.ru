@@ -1,17 +1,37 @@
-YMaps.jQuery(function () {
-    var map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
+YMaps.jQuery(initMap);
+function initMap(){
+    const map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
     
     // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
     map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
+    map.enableScrollZoom();
 
-    let id = document.getElementById('avatar').value;
-    (async()=>{
-        let cardPlaces = await getCardPlacesJSON(id);
-    });
-})
+    let template = new YMaps.Template(
+        '<div style="width: 300px; text-align:center"> \
+            <img style="width: 90%" src="$[img]"> \
+            <h3>$[name]</h3> \
+            <p>$[description]</p> \
+            <a href="$[placeurl]">Перейти к месту...</a> \
+        </div>'
+    );
 
-async function getCardPlacesJSON(id) {
-    const cardPlaces = await $.getJSON(`/api/getPlacesByGuideId/${id}`);
-    console.log(id);
-    return JSON.parse(cardPlaces);
-};
+    let s = new YMaps.Style();
+    s.BalloonContentStyle = new YMaps.BalloonContentStyle(template);
+
+    (async () => {
+        let places = await getPlacesJSON(document.querySelector('#avatar').getAttribute('value'));
+        places.forEach(place => {
+            let placemark = new YMaps.Placemark(new YMaps.GeoPoint(place.geo.x, place.geo.y), {style: s});
+            placemark.name = place.name;
+            placemark.description = place.description;
+            placemark.img = place.img;
+            placemark.placeurl = '/place/' + place._id;
+            map.addOverlay(placemark);
+        });
+    })();
+}
+
+async function getPlacesJSON(id) {
+    const placesJSON = await $.getJSON(`/api/getPlacesByGuideId/${id}`);
+    return JSON.parse(placesJSON);
+}
