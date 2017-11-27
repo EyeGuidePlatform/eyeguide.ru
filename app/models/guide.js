@@ -113,6 +113,17 @@ guideSchema.statics = {
         let guide = await this.getGuide(guideId);
 
         guide.excursions.push(ex)
+        console.log(guide.excursions)
+        return await guide.save();
+    },
+    /**
+     * Удаление у гида ВСЕХ экскурсий
+     * @param guideId - айди гида
+     */
+    RemoveALLExFromGuide: async function (guideId) {
+        let guide = await this.getGuide(guideId);
+
+        guide.excursions = [];
 
         return await guide.save();
     },
@@ -125,12 +136,17 @@ guideSchema.statics = {
         let placeModel = require('./place').placeModel;
         let guide = await this.getGuide(guideId);
         let place = await placeModel.getPlace(placeId);
-
+        // console.log(guide)
         //TODO: удаление экскурсий связанных с местом
+        // guideModel.RemoveALLExFromGuide(guideId)
+        check = guide.excursions
+        
+
         // let exs = await exModel.getExs({place: placeId})
         // console.log(exs)
+        // check = await guide.excursions.filter( ex => ex._id != exs._id)
+        console.log(check)
         guide.places = await guide.places.filter(place => place._id != placeId)
-        // console.log(guide)
         return await guide.save();
     },
     /**
@@ -149,7 +165,7 @@ guideSchema.statics = {
      * @param {ObjectId} guideId
      */
     getGuide: async function (guideId) {
-        return await this.findById(guideId).populate('places');
+        return await this.findById(guideId).populate('places').populate('excursions');
     },
     /**
      * Запрашиваем из БД гида по id (список мест в виде id)

@@ -142,4 +142,7 @@ aside {
     margin-left: -1rem;
     margin-top: 7rem;
   }
+  aside {
+    max-height: none;
+  }
 }
