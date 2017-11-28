@@ -77,6 +77,7 @@ router.get('/activate/:url', regGuideController.confirmEmail);
 
 //Создание заказа
 router.get('/new_order', newOrderController.getNewOrderPage);
+router.post('/new_order', newOrderController.createOrder); 
 
 //Аутентификация гидов
 router.post('/guide/login', logGuideController.login);
