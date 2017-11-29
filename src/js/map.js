@@ -67,6 +67,8 @@ function showCollection(map, collection, center) {
     map.setCenter(new YMaps.GeoPoint(center.x, center.y), 11);
 }
 
+//FIXME:
+// Создать отдельный класс для свитчера
 function switchBlock(target, map, pCollection, gCollection) {
     let disableBtn;
     switch (target.className) {
