@@ -1,4 +1,5 @@
-const mongoose = require('../../server').mongoose;
+const mongoose = require('../../server').mongoose,
+    toHash = require('md5');
 
 touristSchema = mongoose.Schema({
     name: String,
@@ -13,6 +14,23 @@ touristSchema = mongoose.Schema({
         }
     ]
 });
+
+touristSchema.statics = {
+    regTourist: async function (touristData) {
+        const newTourist = new this(touristData);
+
+        return await newTourist.save();
+    }
+}
+
+touristSchema.methods = {
+    genPassword: function () {
+        const randomString = Math.random().toString(36).slice(-8);
+        this.password = toHash(randomString);
+
+        return randomString;
+    }
+}
 
 const touristModel = mongoose.model('tourist', touristSchema);
 module.exports.touristModel = touristModel;
