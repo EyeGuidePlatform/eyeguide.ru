@@ -62,7 +62,7 @@ guideSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'order'
     }],
-    description:[{
+    description: [{
         lang: String,
         value: String
     }]
@@ -111,13 +111,11 @@ guideSchema.statics = {
      */
     addExInGuide: async function (ex, guideId) {
         let guide = await this.getGuide(guideId);
-
         guide.excursions.push(ex)
-        console.log(guide.excursions)
         return await guide.save();
     },
-    /**
-     * Удаление у гида ВСЕХ экскурсий
+    /** ОПАСНО ДЛЯ ГИДА, НЕ ТРОГАТЬ!
+     * Обнуление у гида ВСЕХ экскурсий
      * @param guideId - айди гида
      */
     RemoveALLExFromGuide: async function (guideId) {
@@ -128,25 +126,22 @@ guideSchema.statics = {
         return await guide.save();
     },
     /**
-     * Удаление у гида выбранного места
+     * Удаление у гида выбранного места и экскурсий места
      * @param guideId - айди гида
      * @param placeId - айди места
      */
     removePlaceFromGuide: async function (guideId, placeId) {
         let placeModel = require('./place').placeModel;
-        let guide = await this.getGuide(guideId);
+        let guide = await guideModel.getGuide(guideId);
         let place = await placeModel.getPlace(placeId);
-        // console.log(guide)
-        //TODO: удаление экскурсий связанных с местом
-        // guideModel.RemoveALLExFromGuide(guideId)
-        check = guide.excursions
-        
+        let exs = await exModel.getExs({ guideId: guideId }, { place: placeId });
 
-        // let exs = await exModel.getExs({place: placeId})
-        // console.log(exs)
-        // check = await guide.excursions.filter( ex => ex._id != exs._id)
-        console.log(check)
-        guide.places = await guide.places.filter(place => place._id != placeId)
+        await exs.forEach(element => element.remove());
+
+        place.guides = await place.guides.filter(guide => guide._id != guideId);
+        await place.save()
+        
+        guide.places = await guide.places.filter(place => place._id != placeId);
         return await guide.save();
     },
     /**

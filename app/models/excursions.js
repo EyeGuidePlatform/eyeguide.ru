@@ -48,6 +48,10 @@ excursionSchema.statics = {
             switch (argKey) {
                 case 'place': query.where('place').equals(arg.place);
                     break;
+                case 'guideId': query.where('guide').equals(arg.guideId);
+                    break;
+                case 'lastings': query.where('lasting').equals(arg.lastings);
+                    break;
             }
         });
 

@@ -98,7 +98,7 @@
 
 aside {
   max-height: 70vh;
-  overflow: hidden;
+  overflow: auto;
 }
  #places {
   list-style: none;
