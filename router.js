@@ -73,10 +73,10 @@ router.get('/suggest/place', middleware.isGuideLogged, regPlaceController.getSug
 router.post('/suggest/place', middleware.isGuideLogged, upload.single('img'),regPlaceController.suggestPlace);
 router.get('/activate/:url', regGuideController.confirmEmail);
 
-
 //Создание заказа
-router.get('/new_order', newOrderController.getNewOrderPage);
-router.post('/new_order', newOrderController.createOrder); 
+router.post('/new_order', newOrderController.getNewOrderPage);
+//FIXME:
+//router.post('/new_order', newOrderController.createOrder); 
 
 //Аутентификация гидов
 router.post('/guide/login', logGuideController.login);

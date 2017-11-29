@@ -54,7 +54,7 @@
                 <h4>{{guide.description}}</h4>
             </div>
             <div class="col-xs-12">
-                  <form action="/new_order" method="GET" class="my-1">
+                  <form action="/new_order" method="POST" class="my-1">
                     <input type="hidden" value="{{guide._id}}" name="guideId">
                     <button type="submit" class="btn btn-default"><h4>Заказать!</h4></button>
                  </form>

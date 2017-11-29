@@ -6,6 +6,7 @@ const guideModel = require('../models/guide').guideModel,
 
 
 exports.getNewOrderPage = async (req, res) => {
+    console.log(req.body);
     if (req.body.guideId) {
         let guide = await guideModel.getGuide(req.body.guideId)
         res.render('new_orderG.html', {guide: guide})
