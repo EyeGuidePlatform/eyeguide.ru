@@ -38,6 +38,7 @@ exports.getPlacesJSON = async (req, res) => {
 }
 
 exports.getPlaceByIdJSON = async (req, res) => {
+   
     let place = await placeModel.getPlace(req.params.id);
     res.json(JSON.stringify(place));
 }
@@ -84,3 +85,4 @@ exports.getPlacesByGuideId = async (req, res) => {
     // console.log(guide.places)
     res.json(JSON.stringify(guide.places));
 }
+
