@@ -188,7 +188,6 @@ guideSchema.methods = {
         const url = toHash(this._id + this.email);
         this.activate = url;
         await this.save();
-
         return 'http://localhost:8080/activate/' + url;
     }
 }

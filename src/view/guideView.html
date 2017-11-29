@@ -51,12 +51,10 @@
             </div>
             <div class="col-xs-12">
                 <h3 class="text-center mb-3">Информация о гиде</h3>
-                <h4>Возраст: {{guide.age}}</h4>
-                <h4>Телефон: {{guide.phone}}</h4>
-                <h4>E-mail: {{guide.email}}</h4>
+                <h4>{{guide.description}}</h4>
             </div>
             <div class="col-xs-12">
-                  <form action="/new_order" method="POST" class="my-1">
+                  <form action="/new_order" method="GET" class="my-1">
                     <input type="hidden" value="{{guide._id}}" name="guideId">
                     <button type="submit" class="btn btn-default"><h4>Заказать!</h4></button>
                  </form>
