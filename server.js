@@ -6,6 +6,7 @@ const express = require('express'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
     expressSanitizer = require('express-sanitizer'),
+    flash = require('connect-flash'),
     mongoStore = require('connect-mongo')(session),
     app = express();
 
@@ -49,10 +50,13 @@ app.use(
     expressSanitizer(),
     cookieParser(),
     i18n.init,
+    flash()
 );
 
 app.use(function (req, res, next) {
     res.locals.currentUser = req.session.guide;
+    res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
     next();
 });
 

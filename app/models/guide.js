@@ -78,14 +78,6 @@ guideSchema.statics = {
         let newGuide = new this(guideData);
         newGuide.password = toHash(guideData.password);
 
-        //Добавить каждому выбранному месту нового гида
-        let placeModel = require('./place').placeModel;
-        let places = await placeModel.getPlaces({ _id: newGuide.places });
-        for (let i = 0; i < places.length; i++) {
-            places[i].guides.push(newGuide);
-            await places[i].save();
-        }
-
         return await newGuide.save();
     },
     /**
