@@ -21,7 +21,7 @@ function initMap() {
         </div>'
     );
 
-    let s = new YMaps.Style();
+    let s = new YMaps.Style(); 
     s.balloonContentStyle = new YMaps.BalloonContentStyle(template);
 
     const currentCity = YMaps.jQuery('.search-input')[0].value;
@@ -34,7 +34,7 @@ function initMap() {
         
         let gCollection = createCollection(placesOfGuides, s),
             pCollection = createCollection(allPlaces, s);
-        
+         
         showCollection(map, gCollection, placesOfGuides[0].geo);
 
         switcher.addEventListener('click', (e) => {

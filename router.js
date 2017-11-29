@@ -92,6 +92,9 @@ router.get('/api/getPlace/:id', getJSONController.getPlaceByIdJSON);
 router.get('/api/checkPass/:pwd', getJSONController.checkPassJSON);
 router.get('/api/changePass/:pwd', getJSONController.changePassJSON);
 router.get('/api/getMyPlaces', getJSONController.getMyPlacesJSON);
+router.get('/api/getPlacesByGuideId/:id', getJSONController.getPlacesByGuideId);
+
+
 
 //Поиск мест и гидов
 router.get('/search' ,searchController.getSearchPage);
