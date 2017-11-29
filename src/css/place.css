@@ -341,4 +341,13 @@ body {
     .btn{
         width:70%;
     }
+} 
+
+@media (min-width: 768px) {
+   
+
+    .imgSlide{
+        width: 50%;
+        height: 100%;
+    }
 }
