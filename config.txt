@@ -1,8 +1,0 @@
-exports.port = '9000';
-exports.dbAdress = '212.42.44.254';
-exports.dbName = 'EyeguideDB';
-exports.dbPort = '13444';
-exports.dbLogin = 'admin';
-exports.dbPass = 'Da-strateg-eyeguide';
-exports.session = 'Da-strateg-eyeguide';
-exports.emailPass = 'eyeguideemailtest';
