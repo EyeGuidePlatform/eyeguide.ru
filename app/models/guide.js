@@ -62,7 +62,7 @@ guideSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'order'
     }],
-    description:[{
+    description: [{
         lang: String,
         value: String
     }]
@@ -97,7 +97,10 @@ guideSchema.statics = {
         let placeModel = require('./place').placeModel;
         let guide = await this.getGuide(guideId);
         let place = await placeModel.getPlace(placeId);
-
+        // добавление в место гида 
+        place.guides.push(guide)
+        await place.save()
+        // добавление в гида место
         guide.places.push(place)
         return await guide.save();
     },
@@ -108,26 +111,37 @@ guideSchema.statics = {
      */
     addExInGuide: async function (ex, guideId) {
         let guide = await this.getGuide(guideId);
-
         guide.excursions.push(ex)
+        return await guide.save();
+    },
+    /** ОПАСНО ДЛЯ ГИДА, НЕ ТРОГАТЬ!
+     * Обнуление у гида ВСЕХ экскурсий
+     * @param guideId - айди гида
+     */
+    RemoveALLExFromGuide: async function (guideId) {
+        let guide = await this.getGuide(guideId);
+
+        guide.excursions = [];
 
         return await guide.save();
     },
     /**
-     * Удаление у гида выбранного места
+     * Удаление у гида выбранного места и экскурсий места
      * @param guideId - айди гида
      * @param placeId - айди места
      */
     removePlaceFromGuide: async function (guideId, placeId) {
         let placeModel = require('./place').placeModel;
-        let guide = await this.getGuide(guideId);
+        let guide = await guideModel.getGuide(guideId);
         let place = await placeModel.getPlace(placeId);
+        let exs = await exModel.getExs({ guideId: guideId }, { place: placeId });
 
-        //TODO: удаление экскурсий связанных с местом
-        // let exs = await exModel.getExs({place: placeId})
-        // console.log(exs)
-        guide.places = await guide.places.filter(place => place._id != placeId)
-        // console.log(guide)
+        await exs.forEach(element => element.remove());
+
+        place.guides = await place.guides.filter(guide => guide._id != guideId);
+        await place.save()
+        
+        guide.places = await guide.places.filter(place => place._id != placeId);
         return await guide.save();
     },
     /**
@@ -146,7 +160,7 @@ guideSchema.statics = {
      * @param {ObjectId} guideId
      */
     getGuide: async function (guideId) {
-        return await this.findById(guideId).populate('places');
+        return await this.findById(guideId).populate('places').populate('excursions');
     },
     /**
      * Запрашиваем из БД гида по id (список мест в виде id)
@@ -188,6 +202,7 @@ guideSchema.methods = {
         const url = toHash(this._id + this.email);
         this.activate = url;
         await this.save();
+
         return 'http://localhost:8080/activate/' + url;
     }
 }

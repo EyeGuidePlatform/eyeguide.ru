@@ -78,7 +78,7 @@ router.get('/activate/:url', regGuideController.confirmEmail);
 
 
 //Создание заказа
-router.get('/new_order', newOrderController.getNewOrderPage);
+router.post('/new_order', newOrderController.getNewOrderPage);
 
 //Аутентификация гидов
 router.post('/guide/login', logGuideController.login);
@@ -93,11 +93,11 @@ router.get('/api/checkPass/:pwd', getJSONController.checkPassJSON);
 router.get('/api/changePass/:pwd', getJSONController.changePassJSON);
 router.get('/api/getMyPlaces', getJSONController.getMyPlacesJSON);
 router.get('/api/getPlacesByGuideId/:id', getJSONController.getPlacesByGuideId);
+router.get('/api/getGuidesByPlaceId/:id', getJSONController.getGuidesByPlaceId);
 
-
-
-//Поиск мест и гидов
-router.get('/search' ,searchController.getSearchPage);
+//Поиск мест и гидов TODO
+router.get('/search/guides' ,searchController.getSearchPageGuides);
+router.get('/search/places' ,searchController.getSearchPagePlaces);
 
 //Административные функции
 router.get('/admin/main', middleware.isAdminLogged, adminController.getPage);

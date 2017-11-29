@@ -74,6 +74,10 @@
                             <p>
                                  {{place.geo.x}} {{place.geo.y}}
                             </p>
+                            <form action="/new_order" method="POST">
+                                <input type="hidden" value="{{ place._id }}" name="placeId">
+                                <button type="submit" class="btn btn-success"><h4>Заказать!</h4></button>
+                            </form>
                         </div>
                        
                     </div>
