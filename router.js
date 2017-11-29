@@ -51,7 +51,6 @@ router.get('/', mainController.getHomePage);
 router.get('/map/:city', mapController.getCityPage);
 router.post('/map', mapController.parseCity);
 
-router.get('/FAQ', FAQcontroller.getFAQpage);
 //ЛК гида
 router.get('/guideOptions', lkController.getGuideOptionsPage);
 router.get('/guideOrders', lkController.getGuideOrdersPage);
@@ -112,6 +111,7 @@ router.post('/place/:id', middleware.isAdminLogged, upload.single('img'), regPla
 router.post('/place/:id/remove', middleware.isAdminLogged, regPlaceController.removePlace);
 
 //FAQ
+router.get('/FAQ', FAQcontroller.getFAQpage);
 
 //Статус заказа
 router.get('/order/:id', orderStatusController.getOrderStatus);
