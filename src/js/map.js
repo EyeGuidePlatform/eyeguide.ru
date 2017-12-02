@@ -64,7 +64,7 @@ function createCollection(items, s) {
 
 function showCollection(map, collection, center) {
     map.addOverlay(collection);
-    map.setCenter(new YMaps.GeoPoint(center.x, center.y), 11);
+    map.setCenter(new YMaps.GeoPoint(center.y, center.x), 11);
 }
 
 function switchBlock(target, map, pCollection, gCollection) {
