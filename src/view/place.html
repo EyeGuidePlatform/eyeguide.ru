@@ -9,49 +9,52 @@
 <script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
 
  
- <script type="text/javascript">
-     YMaps.jQuery(function () {
-        // Создает экземпляр карты и привязывает его к созданному контейнеру
-        var map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
-  
-        // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
-        map.setCenter(new YMaps.GeoPoint(+' {{place.geo.x}}', +' {{place.geo.y}}'), 10);
-        let template = new YMaps.Template(
-           '<div style="width: 300px; text-align:center"> \
-               <img style="width: 90%" src="$[img]"> \
-               <h3>$[name]</h3> \
-               <p>$[description]</p> \
-           </div>'
-       );
-    
-       let s = new YMaps.Style();
-       s.balloonContentStyle = new YMaps.BalloonContentStyle(template);
-    
-       let places = [
-           {
-               name: '{{place.name}}',
-               description: '{{place.description}}',
-               img: '/img/park_pobedy.jpg',
-               geo: [+' {{place.geo.x}}', +'{{place.geo.y}}']
-           },
-         
-       ];
-    
-       let pCollection = new YMaps.GeoObjectCollection();
-       
-       places.forEach( (place) => {
-           let point = new YMaps.GeoPoint(place.geo[0], place.geo[1]);
-           let placemark = new YMaps.Placemark(point, {style: s});
-           placemark.name = place.name;
-           placemark.description = place.description;
-           placemark.img = place.img;
-    
-           pCollection.add(placemark);
-       });
-       
-       map.addOverlay(pCollection);
-       })
- </script>
+ 
+<script type="text/javascript">
+    YMaps.jQuery(function () {
+       // Создает экземпляр карты и привязывает его к созданному контейнеру
+       var map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
+ 
+       // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
+       map.setCenter(new YMaps.GeoPoint(+' {{place.geo.x}}', +' {{place.geo.y}}'), 10);
+       let template = new YMaps.Template(
+          '<div style="width: 300px; text-align:center"> \
+              <img style="width: 90%" src="$[img]"> \
+              <h3>$[name]</h3> \
+              <p>$[description]</p> \
+          </div>'
+      );
+   
+      let s = new YMaps.Style();
+      s.balloonContentStyle = new YMaps.BalloonContentStyle(template);
+   
+      let places = [
+          {
+              name: '{{place.name}}',
+              description: '{{place.description}}',
+              img: '{{ place.img }}',
+              geo: [+' {{place.geo.x}}', +'{{place.geo.y}}']
+          },
+        
+      ];
+   
+      let pCollection = new YMaps.GeoObjectCollection();
+      
+      places.forEach( (place) => {
+          let point = new YMaps.GeoPoint(place.geo[0], place.geo[1]);
+          let placemark = new YMaps.Placemark(point, {style: s});
+          placemark.name = place.name;
+          placemark.description = place.description;
+          placemark.img = place.img;
+   
+          pCollection.add(placemark);
+      });
+      
+      map.addOverlay(pCollection);
+      })
+</script>
+
+
 {% endblock %}
 
 {% block content %}
@@ -67,11 +70,23 @@
                         <div class="place-info col-md-6 col-sm-6">
                             <h4>Описание:</h4>  
                             <h5>{{ place.description }}</h5>
+                           <h4>Координаты</h4>
                             <p>
                                  {{place.geo.x}} {{place.geo.y}}
                             </p>
+                            <form action="/new_order" method="POST">
+                                <input type="hidden" value="{{ place._id }}" name="placeId">
+                                <button type="submit" class="btn btn-success"><h4>Заказать!</h4></button>
+                            </form>
                         </div>
+                       
                     </div>
+                  <div class="col-xs-12" >
+                    <form action="/new_order" method="POST"id="zakaz">
+                        <input type="hidden" value="{{ place._id }}" name="placeId">
+                        <button type="submit" class="btn btn-default" ><h4>Заказать!</h4></button>
+                    </form>
+            </div>
                 </div>
             </div>
         </div>
@@ -82,14 +97,14 @@
                     <h3 class="text-center">Гиды</h3>
                     <div class="responsive">
                         {% for item in place.guides %}
-                        <div><img src={{item.img}}></div>
+                        <div class=""><a href="/profile/{{ item.id }}"><img class = "imgSlide" src={{item.img}} title="{{item.name}}"></a></div>
                         {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
     
-    <div class="container-fluid grey-bg">
+    <div class="container-fluid ">
         <h3 class="text-center">Расположение на карте</h3>
             <div class="row">
                 <div class="col-xs-12 mb-5">
@@ -107,6 +122,7 @@
   <script type="text/javascript" src="/slick/slick.min.js"></script>
   <script type="text/javascript" src="/js/slider.js"></script>
   <script src="/js/jquery-2.2.3.min.js"></script>
+  <!-- <script src="/js/place.js"></script> -->
   <script src="/js/bootstrap.min.js"></script>
   
   {% endblock %}

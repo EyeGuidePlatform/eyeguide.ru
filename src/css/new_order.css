@@ -2,7 +2,6 @@
     height: 200px;
     margin: 0 auto;
     margin-bottom: 2rem;
-    /* margin-bottom: 10px; */
 
     background-repeat: no-repeat;
     background-position: center center;
@@ -15,6 +14,10 @@
 
 h1, h3 {
   text-align: center;  
+}
+ul {
+  padding: 0;
+  list-style: none;
 }
 
 input {
@@ -34,7 +37,7 @@ input.invalid {
 .tab {
   display: none;
 }
-#city {
+#select_form {
   margin-bottom: 1rem;
 }
 button {
@@ -75,4 +78,10 @@ button:hover {
 /* Mark the steps that are finished and valid: */
 .step.finish {
   background-color: #4CAF50;
+}
+.modal-body {
+  /* padding:  */
+}
+.modal.fade .modal-dialog {
+ transform: translate(0,0) !important;
 }

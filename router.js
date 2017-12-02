@@ -51,7 +51,6 @@ router.get('/', mainController.getHomePage);
 router.get('/map/:city', mapController.getCityPage);
 router.post('/map', mapController.parseCity);
 
-router.get('/FAQ', FAQcontroller.getFAQpage);
 //ЛК гида
 router.get('/guideOptions', lkController.getGuideOptionsPage);
 router.get('/guideOrders', lkController.getGuideOrdersPage);
@@ -74,9 +73,10 @@ router.get('/suggest/place', middleware.isGuideLogged, regPlaceController.getSug
 router.post('/suggest/place', middleware.isGuideLogged, upload.single('img'),regPlaceController.suggestPlace);
 router.get('/activate/:url', regGuideController.confirmEmail);
 
-
 //Создание заказа
-router.get('/new_order', newOrderController.getNewOrderPage);
+router.post('/new_order', newOrderController.getNewOrderPage);
+//FIXME:
+//router.post('/new_order', newOrderController.createOrder); 
 
 //Аутентификация гидов
 router.post('/guide/login', logGuideController.login);
@@ -90,9 +90,12 @@ router.get('/api/getPlace/:id', getJSONController.getPlaceByIdJSON);
 router.get('/api/checkPass/:pwd', getJSONController.checkPassJSON);
 router.get('/api/changePass/:pwd', getJSONController.changePassJSON);
 router.get('/api/getMyPlaces', getJSONController.getMyPlacesJSON);
+router.get('/api/getPlacesByGuideId/:id', getJSONController.getPlacesByGuideId);
+router.get('/api/getGuidesByPlaceId/:id', getJSONController.getGuidesByPlaceId);
 
-//Поиск мест и гидов
-router.get('/search' ,searchController.getSearchPage);
+//Поиск мест и гидов TODO
+router.get('/search/guides' ,searchController.getSearchPageGuides);
+router.get('/search/places' ,searchController.getSearchPagePlaces);
 
 //Административные функции
 router.get('/admin/main', middleware.isAdminLogged, adminController.getPage);
@@ -109,6 +112,7 @@ router.post('/place/:id', middleware.isAdminLogged, upload.single('img'), regPla
 router.post('/place/:id/remove', middleware.isAdminLogged, regPlaceController.removePlace);
 
 //FAQ
+router.get('/FAQ', FAQcontroller.getFAQpage);
 
 //Статус заказа
 router.get('/order/:id', orderStatusController.getOrderStatus);
