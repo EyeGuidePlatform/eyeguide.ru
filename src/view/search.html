@@ -43,9 +43,9 @@
                               <div class="form-group search_lang col-xs-12 col-sm-4 col-md-12">
                                 <label for="language">Язык</label>
                                 <select class="single-choice form-control" id="language" name="lang" required>
-                                    {% for lang in langs %}
-                                    <option value="{{ lang.key }}">{{ lang.value }}</option>
-                                    {% endfor %}
+                                  {% for lang in langs %}
+                                  <option value="{{ lang.key }}">{{ lang.value }}</option>
+                                  {% endfor %}
                                 </select>
                               </div>
                               <div class="form-group search_city col-xs-12 col-sm-4 col-md-12">

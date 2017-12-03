@@ -50,7 +50,7 @@ function initMap() {
 function createCollection(items, s) {
     let newCollection = new YMaps.GeoObjectCollection();
     items.forEach( item => {
-        let point = new YMaps.GeoPoint(item.geo.x, item.geo.y);
+        let point = new YMaps.GeoPoint(item.geo.y, item.geo.x);
         let placemark = new YMaps.Placemark(point, {style: s});
         placemark.name = item.name;
         placemark.description = item.description;

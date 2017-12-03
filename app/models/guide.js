@@ -173,11 +173,19 @@ guideSchema.statics = {
             let argKey = Object.keys(arg)[0];
             switch (argKey) {
                 //FIXME: поиск без учета регистра
-                case 'city': query.where('city').equals(arg.city);
+                case 'city': 
+                    if (arg.city)
+                        query.where('city').equals(arg.city);
+
                     break;
                 case 'limit': query.limit(arg.limit);
                     break;
                 case 'select': query.select(arg.select);
+                    break;
+                case 'places':
+                    if (arg.places)
+                        query.where('places').in(arg.places);
+
                     break;
                 //TODO: остальные криетрии поиска
             }
