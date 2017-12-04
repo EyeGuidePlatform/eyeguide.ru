@@ -1,0 +1,116 @@
+{% block head %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    
+    <!--Your common styles-->
+    {% block commonStyles %}
+    
+    {% endblock %}
+
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>EyeGuide</title>
+</head>
+<body>
+{% endblock %}
+
+<!-- =================================================================== -->
+<!-- Navbar -->
+<!-- =================================================================== -->
+{% block navbar %}
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand hidden-xs" href="/"><img src="/img/logo.png" alt="logo"></a>
+            <a class="navbar-brand-text center-block visible-xs" href="/">eyeguide</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="nav navbar-nav">
+                <li><a href="/admin/create/place">Добавить место</a></li>
+                <li><a href="/admin/create">Добавить админа</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form action="/admin/logout" method="GET">
+                        <button class="right-nav-btn">Выйти из админки</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% endblock %}
+
+{% block flashMessage %}
+<div class="container-fluid text-center">
+    {% if error and error.length > 0 %}
+        <div class="alert alert-danger" role="alert">{{ error }}</div>
+    {% endif %}
+    
+    {% if success and success.length > 0 %}
+        <div class="alert alert-success" role="alert">{{ success }}</div>
+    {% endif %}
+</div>
+{% endblock %}
+
+<!-- ======================================================================= -->
+<!-- Main content -->
+<!-- ======================================================================= -->
+{% block content %}
+
+{% endblock %}
+
+<!-- ======================================================= -->
+<!-- Footer -->
+<!-- ======================================================= -->
+{% block footer %}
+<div id="footer" class="container-fluid">
+        <div class="row">
+            <div class="content {% block footerClasses %} col-md-12 {% endblock %} col-sm-12 col-xs-12">
+                <div class="pull-left footer-contacts">
+                    <a href="#">{{__('_contacts')}}</a>
+                </div>
+
+                <div class="pull-right footer-help">
+                    <a href="#">{{__('_help')}}</a>
+                </div>
+
+                <div class="footer-social">
+                    <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                    <a class="vk" href="#"><i class="fa fa-vk"></i></a>
+                    <a class="instagram" href="#"><i class="fa fa-instagram"></i></a>
+                </div>
+
+                <p class="pull-right footer-rights">
+                    &copy; EyeGuide 2017
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/menu.js"></script>
+    {% block commonJS %}
+
+    {% endblock %}
+</body>
+</html>
+{% endblock %}

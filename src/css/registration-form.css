@@ -1,0 +1,45 @@
+.form-center {
+    width: 50%;
+    margin: 25px auto;
+}
+
+.choices__list--multiple .choices__item {
+    background-color: #2ecc71;
+}
+
+.choices__list--multiple .choices__item.is-highlighted {
+    background-color: #0caa50;
+}
+
+textarea {
+    resize: none;
+}
+
+.checkbox a {
+    color: blue;
+}
+
+.form-btn {
+    display: inline-block;
+}
+
+.added-places {
+    height: 80%;
+}
+
+.added-places ul {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    
+    list-style: none;
+    padding: 0;
+}
+
+.place {
+    text-align: center;
+}
+
+.right-sidebar {
+    height: 90vh;
+}

@@ -1,0 +1,23 @@
+{% extends "templates/pageTemplate.html" %}
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/dc_statusOrder.css"> </link>
+
+{% endblock %}
+{% block content %}
+<div class="wrap">
+    <div class="container">
+        <div class="jumbotron text-center mt-3">
+            <h1>Благодарим за заказ!</h1>
+            <p class="mt-3">Название экскурсии <strong>{{ order.excursion }}</strong></p>
+            <p>Дата и время: <a class="" href="#">{{ order.date }}</a></p>
+            <p><a class="" href="http://localhost:8080/profile/5a0829b2fc12603110200c9e">Ссылка на профиль гида</a></p>
+            <hr class="mt-3">
+            <p>Стоимость: {{ order.price }} щекелей за {{ order.people }} людей</p>
+            <p>Статус заказа: <span>{{ status }}</span></p>
+            <p><a class="btn btn-danger btn-lg" href="#" role="button">Отменить</a></p>
+        </div>
+    </div>
+</div>        
+{% endblock %}
+{% block commonJS %}
+{% endblock %} 
