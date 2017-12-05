@@ -3,22 +3,8 @@
 {% block commonStyles %}
 <link rel="stylesheet" href="/css/FAQ.css">
 <link rel="stylesheet" href="/css/dc_spacing.css">
-
-
-
- 
- <script type="text/javascript">
-   
-     
- </script>
 {% endblock %}
-
-
-
-
 {% block content %}
-
-
     <div class="wrap">
         <div id="FAQ">
             <div class="container">
@@ -50,35 +36,30 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                      
-                        
                             <div class="jumbotron">
                                 <h1 class="title text-center mb-3">Есть вопросы? Задайте их!</h1>
-                                <form class="tc-form-style1">
+                                <p id="form-messages"></p>
+                                <form class="tc-form-style1" id="ajax-form" method="POST">
                                     <div class="form-field">
-                                        <input type="text" placeholder="Ваше имя" required>
+                                        <input type="text" class="name" name="name" placeholder="Ваше имя" required>
                                     </div>								
                                     <div class="form-field">
-                                        <input type="email" placeholder="Email" required>
+                                        <input type="email" class="email" name="_replyto" placeholder="Email" required>
                                     </div>								
                                     <div class="form-field">
-                                        <input type="text" placeholder="Тема вопроса">
+                                        <input type="text" class="subject" name="subject" placeholder="Тема вопроса">
                                     </div>
                                     <div class="form-field">
-                                        <textarea placeholder="Сообщение" rows="7"></textarea>
+                                        <textarea class="message" name="message" placeholder="Сообщение" rows="7"></textarea>
                                     </div>
                                     <div class="form-button">
-                                        <button type="submit" id='Send-button'> Отправить</button>
+                                        <button type="submit" class="btn btn-default"> Отправить</button>
                                     </div>
                                 </form>
                               </div>
-
-
-
                     </div>
                 </div>
             </div>
-      
         </div>
 
     </div>
@@ -92,7 +73,7 @@
   <script src="/js/FAQ.js"></script>
   <script src="/js/jquery-2.2.3.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
-  
+
   {% endblock %}
 </body>
 </html>
