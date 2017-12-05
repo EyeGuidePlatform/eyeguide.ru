@@ -34,3 +34,22 @@ body {
     padding-bottom: 30px;
 
  }
+
+.faq-row p{
+    font-size: 16px;
+}
+
+@media(max-width:768px){
+    .faq-row h2{
+        font-size: 20px;
+    }
+
+    .faq-row p{
+        font-size: 14px;
+    }
+
+    .jumbotron h1{
+        font-size: 28px;
+        font-weight: 525;
+    }
+}
