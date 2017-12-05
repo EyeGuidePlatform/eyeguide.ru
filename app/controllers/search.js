@@ -7,17 +7,22 @@ const   placeModel = require('../models/place').placeModel,
         staticModel = require('../models/static').staticModel;
 
 exports.getSearchPageGuides = async (req,res) => {
-    const langs = await staticModel.getLangs(req.query.lang || req.locale),
-        cities = await staticModel.getCities(req.query.lang || req.locale),
-        queryPlaces = [];
+    const langs = await staticModel.getLangs(req.locale),
+        cities = await staticModel.getCities(req.locale);
+    
+    let queryPlaces = undefined;
 
-    if (req.query.places.splice) {
-        queryPlaces = req.query.places; 
-    } else {
-        queryPlaces.push(req.query.places);
+    if (req.query.places) {
+        if (req.query.places.splice) {
+            queryPlaces = req.query.places; 
+        } else {
+            queryPlaces = [];
+            queryPlaces.push(req.query.places);
+        }
     }
 
     const guides = await guideModel.getGuides(
+        {lang: req.query.lang ? [req.query.lang] : undefined},
         {city: req.query.city}, 
         {places: queryPlaces}, 
         {limit: 9}
@@ -26,7 +31,9 @@ exports.getSearchPageGuides = async (req,res) => {
     res.render('searchGuides.html', {
         guides: guides,
         cities: cities,
-        languages: langs
+        languages: langs,
+        selectedLang: req.query.lang,
+        selectedCity: req.query.city
     })
 }
 

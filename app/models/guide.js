@@ -174,8 +174,9 @@ guideSchema.statics = {
             switch (argKey) {
                 //FIXME: поиск без учета регистра
                 case 'city': 
-                    if (arg.city)
-                        query.where('city').equals(arg.city);
+                    if (!arg.city) break;
+
+                    query.where('city').equals(arg.city);
 
                     break;
                 case 'limit': query.limit(arg.limit);
@@ -183,8 +184,15 @@ guideSchema.statics = {
                 case 'select': query.select(arg.select);
                     break;
                 case 'places':
-                    if (arg.places)
-                        query.where('places').in(arg.places);
+                    if (!arg.places) break;
+                    
+                    query.where('places').in(arg.places);
+
+                    break;
+                case 'lang':
+                    if (!arg.lang) break;
+
+                    query.where('info.lang').in(arg.lang);
 
                     break;
                 //TODO: остальные криетрии поиска

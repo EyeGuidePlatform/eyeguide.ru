@@ -24,9 +24,9 @@ exports.getPlacesJSON = async (req, res) => {
             break;
         case 'city':
             if (parameter !== 'none')
-                response = await placeModel.getPlaces({limit: 6}, { city: parameter }, {visible: 1});
+                response = await placeModel.getPlaces({ city: parameter }, {visible: 1});
             else
-                response = await placeModel.getPlaces({limit: 6}, {visible: 1});
+                response = await placeModel.getPlaces({visible: 1});
             break;
 
         case 'allPlaces':

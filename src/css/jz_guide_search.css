@@ -1,0 +1,15 @@
+#collapse_search {
+    height: 80%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+aside, #accordion, .panel {
+    height: 100%;
+}
+
+.is-flipped .choices__list--dropdown {
+    bottom: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+}

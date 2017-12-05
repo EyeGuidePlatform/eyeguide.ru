@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="/css/brm_search.css">
 
 <link rel="stylesheet" href="/css/choices.min.css">
+<link rel="stylesheet" href="/css/jz_guide_search.css">
 <script src="/js/choices.min.js"></script>
 {% endblock %}
 
@@ -36,7 +37,7 @@
                           <label for="languages">Языки</label>
                           <select class="single-choice form-control" id="languages" name="lang">
                               {% for lang in languages %}
-                              <option value="{{ lang.key }}">{{ lang.value }}</option>
+                              <option {% if selectedLang == lang.key %} selected {% endif %} value="{{ lang.key }}">{{ lang.value }}</option>
                               {% endfor %}
                           </select>
                         </div>
@@ -44,7 +45,7 @@
                           <label for="city">Город</label>
                           <select id="city" class="single-choice" name="city">
                               {% for city in cities %}
-                              <option value="{{ city }}">{{ city }}</option>
+                              <option {% if selectedCity == city %} selected {% endif %} value="{{ city }}">{{ city }}</option>
                               {% endfor %}
                           </select>
                         </div>
@@ -57,6 +58,21 @@
                         <div class="form-group search_date col-xs-12 col-sm-4 col-md-12">
                           <label for="date">Выберите дату</label>
                           <input id="date" class="form-control" type="date">
+                        </div>
+                        <div class="form-group search_cost col-xs-12 col-sm-4 col-md-12">
+                          <a data-toggle="collapse" href="#collapse_cost" aria-expanded="false">
+                            <label>Стоимость</label>
+                          </a>
+                          <div id="collapse_cost" class="collapse">
+                            <div class="form-group search_amount col-xs-12 col-sm-4 col-md-12">
+                              <label for="amount">Количество человек</label>
+                              <input id="amount" class="form-control" type="number">
+                            </div>
+                            <div class="form-group search_max-cost col-xs-12 col-sm-4 col-md-12">
+                              <label for="max-cost">Максимальная стоимость</label>
+                              <input id="max-cost" class="form-control" type="number">
+                            </div>
+                          </div>
                         </div>
                         <div class="form-group search_сar col-xs-12 col-sm-4 col-md-12">
                           <label>Наличие автомобиля</label>
