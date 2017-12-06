@@ -105,12 +105,11 @@ body {
 
 #place .container {
     padding: 20px 0;
-
-    border: 1px solid #028d33;
-    box-shadow: 0 0 5px 0px #028d33;
-    border-radius: 20px;
-    background-color: #028d33;
-    color: #fff;
+    background: #0caa50;
+    border: 1px rgb(175, 175, 175) solid;
+    box-shadow: 0px 0px 4px rgb(175, 175, 175);
+    border-radius: 3rem; 
+    color:white;  
 }
 
 .place-name {
@@ -124,8 +123,8 @@ body {
 } */
 
 .place-img img {
-    border: 2px solid #fff;
-    border-radius: 20px;
+    /* border: 2px solid #fff;
+    border-radius: 20px; */
 }
 
 /* ========================================================================== */
@@ -271,7 +270,9 @@ body {
         width: 100%;
     }
 }
-
+#YMapsID{
+    height: 300px;
+}
 
 @media (min-width: 768px) {
     #YMapsID{
@@ -286,18 +287,20 @@ body {
 
 
 .element-img {
-    height: 200px;
-    margin-bottom: 10px;
+    width:100%;
+    height:100%;
+    max-height: 360px;
+
+    /* margin-bottom: 10px;
 
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
 
-    box-shadow: 0px 0px 10px 2px #ccc;
+    box-shadow: 0px 0px 5px 0px #ccc;
     border: 2px solid #ccc;
-    border-radius: 10px;
+    border-radius: 10px; */
 } 
-
 
 
 .grey-bg{
@@ -340,6 +343,11 @@ body {
     .btn{
         width:70%;
     }
+
+    .element-img{
+        width: 320px;
+        height: 180px;
+    }
 } 
 
 @media (min-width: 768px) {
@@ -349,4 +357,8 @@ body {
         width: 50%;
         height: 100%;
     }
+}
+
+.mt-3{
+    margin-top: 3rem;
 }

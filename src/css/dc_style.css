@@ -23,42 +23,9 @@ body{
     color: white;
 }
 
-<<<<<<< HEAD
-.text-black{
-    color:black;
-}
-
-.mb-1{
-    margin-bottom: 1rem;
-}
-
-.mb-3{
-    margin-bottom: 3rem;
-}
-.mb-5{
-    margin-bottom: 5rem;
-}
-
-.mt-1{
-    margin-top: 1rem;
-}
-
-.mt-3{
-    margin-top: 3rem;
-}
-
-.mt-5{
-    margin-top: 5rem;
-}
-
 #YMapsID{
     margin:auto;
-    height:300px;
-    width:100%;
-=======
-#YMapsID{
-    margin:auto;
-    height:300px;
+    height:400px;
     width:100%;
 }
 form{
@@ -76,29 +43,15 @@ form{
     .btn{
         width:70%;
     }
->>>>>>> origin/CULER6
 }
 
 @media (min-width: 768px) {
     #YMapsID{
-        height: 450px;
+        height: 550px;
     }
-<<<<<<< HEAD
-}
-
-.btn{
-    height: 5rem;
-}
-
-.placeCard{
-    box-shadow: 1px 1px 5px black;
-}
-=======
 
     .imgSlide{
         width: 50%;
         height: 100%;
     }
 }
-
->>>>>>> origin/CULER6

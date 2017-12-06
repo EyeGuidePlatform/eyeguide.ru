@@ -13,7 +13,7 @@ exports.getProfile = async (req, res)=>{
         res.redirect('/error/404');
     else
         res.render('guideView.html',{
-            guide:guide,
-            places:guide.places
+            guide: guide,
+            places: guide.places
         });
 }
