@@ -3,7 +3,8 @@
 <link rel="stylesheet" href="/css/brm_gid-navbar.css">
 <link rel="stylesheet" href="/css/brm_gid-options.css">
 <link rel="stylesheet" href="/css/datepicker.min.css">
-<link rel="stylesheet" href="/css/calendar.css"> {% endblock %} {% block content %}
+<link rel="stylesheet" href="/css/jz_gid-options.css">
+{% endblock %} {% block content %}
 
 <div class="wrap">
 
@@ -25,22 +26,27 @@
 
 
 
-  <div id='cal'>
+  <main>
     <div class="container">
-      <div class="col-md-offset-6 col-md-6 col-sm-12 col-xs-12">
+        
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <h3>Календарь занятости</h3>
+        <p>
+          Выберите места, в которые вы заняты и не можете проводить экскурсии.
+        </p>
 
+        <form action="" method="post">
+          <button class="btn btn-success">Сохранить</button>
+        </form>
+      </div>
+      <div class="col-md-6 col-sm-12 col-xs-12">
+  
         <div id="calendar" class="datepicker-here" data-multiple-dates='true' data-multiple-dates-separator=", " data-position='right top'>
-
+  
         </div>
-        <button type="button" id="button-save" class="btn btn-success">Принять</button>
       </div>
     </div>
-  </div>
-
-
-
-
-  <main>
+      
     <div class="container">
       <span class="container__header">Смена пароля</span>
       <span class="container__confirm hide">пароль успешно сменен</span>

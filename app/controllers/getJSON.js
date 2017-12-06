@@ -5,7 +5,7 @@ const toHash = require('md5')
 exports.getPlacesJSON = async (req, res) => {
     const [query, parameter] = req.params.query.split('=');
     let response;
-    
+
     switch (query) {
         case 'guides':
             const guides = await guideModel.getGuides({city: parameter}, {limit: 6});
@@ -24,16 +24,17 @@ exports.getPlacesJSON = async (req, res) => {
             break;
         case 'city':
             if (parameter !== 'none')
-                response = await placeModel.getPlaces({limit: 6}, { city: parameter }, {visible: 1});
+                response = await placeModel.getPlaces({ city: parameter }, {visible: 1});
             else
-                response = await placeModel.getPlaces({limit: 6}, {visible: 1});
+                response = await placeModel.getPlaces({visible: 1});
             break;
 
         case 'allPlaces':
                 response = await placeModel.getPlaces();
             break;
     }
-    
+      
+    console.log(response);
     res.json(JSON.stringify(response));
 }
 

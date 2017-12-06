@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="/css/brm_gid-navbar.css">
 <link rel="stylesheet" href="/css/brm_search.css">
 
+<link rel="stylesheet" href="/css/choices.min.css">
+<link rel="stylesheet" href="/css/jz_guide_search.css">
+<script src="/js/choices.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -16,52 +19,77 @@
       <div class="container-fluid">
         <div class="row">
 
-            <!-- ================================ -->
-            <!-- search config-bar -->
-            <div id="search_config" class="col-xs-12 col-sm-12 col-md-offset-9 col-md-3"> <!-- search config -->
-                  <aside>
-                    <div class="panel-group" id="accordion">
-                        <div class="panel panel-default">
-                          <a data-toggle="collapse" date-parent='#accordion' href="#collapse_search">
-                            <div class="panel-search">
-                                Параметры поиска
-                            </div>
+          <!-- ================================ -->
+          <!-- search config-bar -->
+          <div id="search_config" class="col-xs-12 col-sm-12 col-md-offset-9 col-md-3"> <!-- search config -->
+            <aside>
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                  <a data-toggle="collapse" date-parent='#accordion' href="#collapse_search">
+                    <div class="panel-search">
+                        Параметры поиска
+                    </div>
+                  </a>
+                  <div id='collapse_search' class="panel-collapse in">
+                    <div class="panel-body row">
+                      <form action="/search/guides" method="GET">
+                        <div class="form-group search_lang col-xs-12 col-sm-4 col-md-12">
+                          <label for="languages">Языки</label>
+                          <select class="single-choice form-control" id="languages" name="lang">
+                              {% for lang in languages %}
+                              <option {% if selectedLang == lang.key %} selected {% endif %} value="{{ lang.key }}">{{ lang.value }}</option>
+                              {% endfor %}
+                          </select>
+                        </div>
+                        <div class="form-group search_city col-xs-12 col-sm-4 col-md-12">
+                          <label for="city">Город</label>
+                          <select id="city" class="single-choice" name="city">
+                              {% for city in cities %}
+                              <option {% if selectedCity == city %} selected {% endif %} value="{{ city }}">{{ city }}</option>
+                              {% endfor %}
+                          </select>
+                        </div>
+                        <div class="form-group search_place col-xs-12 col-sm-4 col-md-12">
+                          <label for="places">Места</label>
+                          <select id="places" name="places" placeholder="Введите места" multiple>
+
+                          </select>
+                        </div>
+                        <div class="form-group search_date col-xs-12 col-sm-4 col-md-12">
+                          <label for="date">Выберите дату</label>
+                          <input id="date" class="form-control" type="date">
+                        </div>
+                        <div class="form-group search_cost col-xs-12 col-sm-4 col-md-12">
+                          <a data-toggle="collapse" href="#collapse_cost" aria-expanded="false">
+                            <label>Стоимость</label>
                           </a>
-                          <div id='collapse_search' class="panel-collapse in">
-                            <div class="panel-body row">
-                              <div class="form-group search_lang col-xs-12 col-sm-4 col-md-12">
-                                <label>Язык</label>
-                                <div class="form">
-                                    <label class="checkbox-inline"><input type="checkbox" value="">Английский</label>
-                                    <label class="checkbox-inline"><input type="checkbox" value="">Русский</label>
-                                </div>
-                              </div>
-                              <div class="form-group search_city col-xs-12 col-sm-4 col-md-12">
-                                <label for="city">Город</label>
-                                <input id="city" class="form-control" type="text" placeholder="Введите город">
-                              </div>
-                              <div class="form-group search_place col-xs-12 col-sm-4 col-md-12">
-                                <label for="place">Место</label>
-                                <input id="place" class="form-control" type="text" placeholder="Введите название места">
-                              </div>
-                              <div class="form-group search_date col-xs-12 col-sm-4 col-md-12">
-                                <label for="date">Выберите дату</label>
-                                <input id="date" class="form-control" type="date">
-                              </div>
-                              <div class="form-group search_сar col-xs-12 col-sm-4 col-md-12">
-                                <label>Наличие автомобиля</label>
-                                <div class="form">
-                                    <label class="checkbox-inline"><input type="checkbox" value="">Да</label>
-                              </div>
+                          <div id="collapse_cost" class="collapse">
+                            <div class="form-group search_amount col-xs-12 col-sm-4 col-md-12">
+                              <label for="amount">Количество человек</label>
+                              <input id="amount" class="form-control" type="number">
                             </div>
-                           <div class="form-group search_confirm col-xs-12 col-sm-12 col-md-12">
-                            <button type="submit">Поиск</button>
-                           </div>
+                            <div class="form-group search_max-cost col-xs-12 col-sm-4 col-md-12">
+                              <label for="max-cost">Максимальная стоимость</label>
+                              <input id="max-cost" class="form-control" type="number">
+                            </div>
                           </div>
                         </div>
-                      </div>
-                  </aside>
+                        <div class="form-group search_сar col-xs-12 col-sm-4 col-md-12">
+                          <label>Наличие автомобиля</label>
+                          <div class="form">
+                              <label class="checkbox-inline"><input type="checkbox" value="">Да</label>
+                          </div>
+                        </div>
+                        <div class="form-group search_confirm col-xs-12 col-sm-12 col-md-12">
+                          <button type="submit">Поиск</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </aside>
+          </div>
 
             <!-- ================================ -->
             <!-- places and guides template -->
@@ -94,9 +122,10 @@
  {% endblock %}
  
  {% block commonJS %}
- <!-- <script src="/js/search.js"></script> -->
+ <script src="/js/choiceInputs.js"></script>
 
  <script src="/js/jquery-2.2.3.min.js"></script>
+ <script src="/js/search_guides.js"></script>
  <script src="/js/bootstrap.min.js"></script>
  
  {% endblock %}

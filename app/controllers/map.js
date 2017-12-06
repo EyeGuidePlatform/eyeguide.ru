@@ -26,7 +26,8 @@ exports.getCityPage = async (req, res) => {
 
     res.render('map.html', {
         guides: guides, 
-        places: places, 
+        places: places,
+        lang: req.locale,
         city: city
     });
 }

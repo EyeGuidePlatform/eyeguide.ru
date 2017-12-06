@@ -20,12 +20,12 @@ YMaps.jQuery(function () {
 
     let places = [];
     (async () => {
-        places = await getPlacesJSON()
+        places = await getPlacesJSON('allPlaces')
 
         let pCollection = new YMaps.GeoObjectCollection();
 
         places.forEach(place => {
-            let point = new YMaps.GeoPoint(place.geo.x, place.geo.y);
+            let point = new YMaps.GeoPoint(place.geo.y, place.geo.x);
             let placemark = new YMaps.Placemark(point, { style: s });
             placemark.name = place.name;
             placemark.description = place.description;
@@ -35,15 +35,10 @@ YMaps.jQuery(function () {
         });
 
         map.addOverlay(pCollection);
-        map.setCenter(new YMaps.GeoPoint(places[0].geo.x, places[0].geo.y), 10);
+        map.setCenter(new YMaps.GeoPoint(places[0].geo.y, places[0].geo.x), 10);
     })();
 
 });
-
-async function getPlacesJSON() {
-    const places = await $.getJSON(`/api/getPlaces/allPlaces`)
-    return JSON.parse(places)
-};
 
 // switcher
 
@@ -77,43 +72,6 @@ function toggleThis(target) {
         target.forEach( elem => {
             elem.classList.toggle('hidden');
         }, this);
-}
-
-
-//Поле 'выбор мест'
-const placeSelect = new Choices('#places', {
-        removeItemButton: true
-    }),
-
-    citySelect = document.getElementById('city');
-
-(async () => {
-    const places = await getPlacesJSON('city', 'none');
-
-    updatePlaces(places, citySelect.value);
-
-    citySelect.onchange = e => {
-        let newCity = e.target.value;
-
-        updatePlaces(places, newCity);
-    }
-})();
-
-function updatePlaces(places, newCity) {
-    let items = [];
-
-    places.forEach( place => {
-        if (place.city == newCity) {
-            const item = {
-                value: place._id,
-                label: place.name
-            };
-            items.push(item);
-        }
-    } );
-
-    //Обновляем места, принадлежащие выбранному городу
-    placeSelect.clearStore().setChoices(items, 'value', 'label', false);
 }
 
 async function getPlacesJSON (attr, param) {

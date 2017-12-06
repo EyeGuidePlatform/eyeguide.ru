@@ -41,9 +41,10 @@
 }
 
 .vcenter {
-    display: table-row;
+    display: table-cell;
     vertical-align: middle;
     text-align: center;
+    width: 100%;
 }
 
 .left-s__content {

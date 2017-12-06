@@ -151,8 +151,11 @@ guideSchema.statics = {
      * Заправшиваем из БД гида по id
      * @param {ObjectId} guideId
      */
-    getGuide: async function (guideId) {
-        return await this.findById(guideId).populate('places').populate('excursions');
+    getGuide: async function (guideId, locale='ru') {
+        let guide = await this.findById(guideId).populate('places').populate('excursions');
+
+        guide.description = guide.description.find(desc => desc.lang == locale);  
+        return guide;
     },
     /**
      * Запрашиваем из БД гида по id (список мест в виде id)
@@ -173,11 +176,27 @@ guideSchema.statics = {
             let argKey = Object.keys(arg)[0];
             switch (argKey) {
                 //FIXME: поиск без учета регистра
-                case 'city': query.where('city').equals(arg.city);
+                case 'city': 
+                    if (!arg.city) break;
+
+                    query.where('city').equals(arg.city);
+
                     break;
                 case 'limit': query.limit(arg.limit);
                     break;
                 case 'select': query.select(arg.select);
+                    break;
+                case 'places':
+                    if (!arg.places) break;
+                    
+                    query.where('places').in(arg.places);
+
+                    break;
+                case 'lang':
+                    if (!arg.lang) break;
+
+                    query.where('info.lang').in(arg.lang);
+
                     break;
                 //TODO: остальные криетрии поиска
             }

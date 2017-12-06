@@ -16,7 +16,7 @@
        var map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
  
        // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
-       map.setCenter(new YMaps.GeoPoint(+' {{place.geo.x}}', +' {{place.geo.y}}'), 10);
+       map.setCenter(new YMaps.GeoPoint(+' {{place.geo.y}}', +' {{place.geo.x}}'), 10);
        map.enableScrollZoom();
        let template = new YMaps.Template(
           '<div style="width: 300px; text-align:center"> \
@@ -34,7 +34,7 @@
               name: '{{place.name}}',
               description: '{{place.description}}',
               img: '{{ place.img }}',
-              geo: [+' {{place.geo.x}}', +'{{place.geo.y}}']
+              geo: [+' {{place.geo.y}}', +'{{place.geo.x}}']
           },
         
       ];

@@ -21,7 +21,7 @@ function initMap(){
     (async () => {
         let places = await getPlacesJSON(document.querySelector('#avatar').getAttribute('value'));
         places.forEach(place => {
-            let placemark = new YMaps.Placemark(new YMaps.GeoPoint(place.geo.x, place.geo.y), {style: s});
+            let placemark = new YMaps.Placemark(new YMaps.GeoPoint(place.geo.y, place.geo.x), {style: s});
             placemark.name = place.name;
             placemark.description = place.description;
             placemark.img = place.img;
