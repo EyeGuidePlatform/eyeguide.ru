@@ -69,6 +69,7 @@
 {% endblock %}
 
 {% block modal %}
+{% if not currentUser %}
 <div class="modal fade" id="sign-in">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -97,6 +98,7 @@
         </div>
     </div>
 </div>
+{% endif %}
 {% endblock %}
 
 {% block flashMessage %}
@@ -146,7 +148,7 @@
     </div>
 
     <script src="/js/menu.js"></script>
-    <script src="/js/modal.js"></script>
+    {% if not currentUser %}<script src="/js/modal.js"></script>{% endif %}
     {% block commonJS %}
 
     {% endblock %}
