@@ -29,7 +29,7 @@ exports.getSearchPageGuides = async (req,res) => {
 }
 
 exports.getSearchPagePlaces = async (req,res) => {
-    places = await placeModel.getPlaces({limit: 9})
+    places = await placeModel.getPlaces()
 
     res.render('searchPlaces.html', {
         places: places
