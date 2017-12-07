@@ -18,7 +18,7 @@ touristSchema = mongoose.Schema({
 touristSchema.statics = {
     regTourist: async function (touristData) {
         const newTourist = new this(touristData);
-
+        newTourist.password = await newTourist.genPassword()
         return await newTourist.save();
     }
 }

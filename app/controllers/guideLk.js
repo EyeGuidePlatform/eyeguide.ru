@@ -15,6 +15,8 @@ exports.getGuideOptionsPage = (req, res) => {
  */
 exports.getGuideOrdersPage = (req, res) => {
     let id = req.session.guide.id
+    // guide = await guideModel.getGuide(id),
+
     res.render('gid_orders.html', { id: id});
 }
 

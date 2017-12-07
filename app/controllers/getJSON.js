@@ -34,7 +34,6 @@ exports.getPlacesJSON = async (req, res) => {
             break;
     }
       
-    console.log(response);
     res.json(JSON.stringify(response));
 }
 

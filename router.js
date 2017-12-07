@@ -75,8 +75,7 @@ router.get('/activate/:url', regGuideController.confirmEmail);
 
 //Создание заказа
 router.post('/new_order', newOrderController.getNewOrderPage);
-//FIXME:
-//router.post('/new_order', newOrderController.createOrder); 
+router.post('/set_new_order', newOrderController.createOrder); 
 
 //Аутентификация гидов
 router.post('/guide/login', logGuideController.login);

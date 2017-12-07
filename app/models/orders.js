@@ -28,6 +28,12 @@ orderSchema.statics = {
             case(1) : return await 'Принята гидом';
             case(2) : return await 'Экскурсия завершена';
         }
+    },
+
+    regOrder: async function (orderData, exc) {
+        const newOrder = new this(orderData);
+        newOrder.excursion = exc;
+        return await newOrder.save();
     }
 }
 

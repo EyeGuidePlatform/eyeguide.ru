@@ -1,11 +1,15 @@
 // добавление мест или гидов в селект при загрузке страницы
+let placeId, guideId;
 window.onload = () => {
-  const selectForm = new Choices('#select_form')
+  const selectForm = new Choices('#select_form');
 
-  if (document.querySelector('#guide')) {
+  if (document.querySelector('#regForm .tab div').id === "guide") {
     let check = document.querySelector('#guide');
+    guideId = check.getAttribute('value');
+
+
     (async () => {
-      let places = await getPlacesJSON(check.getAttribute('value'));
+      let places = await getPlacesJSON(guideId);
       let items = [];
       places.forEach(place => {
         const item = {
@@ -22,10 +26,13 @@ window.onload = () => {
     })();
 
 
-  } else if (document.querySelector('#place')) {
+  } else if (document.querySelector('#regForm .tab div').id === "place") {
     let check = document.querySelector('#place');
+    placeId = check.getAttribute('value');
+
+
     (async () => {
-      let guides = await getGuidesJSON(check.getAttribute('value'));
+      let guides = await getGuidesJSON(placeId);
       let items = [];
       guides.forEach(guide => {
         const item = {
@@ -58,13 +65,6 @@ window.onload = () => {
 
 const regForm = document.querySelector('#regForm')
 
-// regForm.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   $('#myModal').modal('toggle')
-// })
-
-
-
 let choice = document.querySelector('#select_form')
 let currentTab = 0;
 showTab(currentTab);
@@ -91,6 +91,8 @@ function nextPrev(n) {
   // if you have reached the end of the form...
   if (currentTab + n >= x.length) {
     $('#myModal').modal('toggle')
+    let buffer = document.querySelector('#select_form').value;
+    guideId? placeId = buffer : guideId = buffer;
     return false;
   }
   // Hide the current tab:
@@ -135,3 +137,23 @@ function fixStepIndicator(n) {
     index === n ? step.classList.add('active') : step.classList.remove('active')
   }))
 }
+
+const createBtn = document.querySelector('#createOrderBtn')
+
+createBtn.addEventListener('click', (e) => {
+
+  const myForm = document.querySelector('#regForm')
+  const order = new FormData(myForm)
+  const buffer = {}
+
+  order.append('guideId', guideId)
+  order.append('placeId', placeId)
+
+  for (let pair of order.entries()) {
+    buffer[pair[0]] = pair[1]
+  }
+
+  $.post('/set_new_order', buffer, (data) => {
+       if (typeof data.redirect == 'string') window.location = data.redirect
+    })
+})
