@@ -1,3 +1,5 @@
+
+/*
 YMaps.jQuery(initMap);
 function initMap(){
     const map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
@@ -19,9 +21,9 @@ function initMap(){
     s.BalloonContentStyle = new YMaps.BalloonContentStyle(template);
 
     (async () => {
-        let places = await getPlacesJSON(document.querySelector('#avatar').getAttribute('value'));
-        places.forEach(place => {
-            let placemark = new YMaps.Placemark(new YMaps.GeoPoint(place.geo.y, place.geo.x), {style: s});
+        let place = await getPlaceByIdJSON(document.querySelector('#avatar').getAttribute('value'));
+        place.forEach(place => {
+            let placemark = new YMaps.Placemark(new YMaps.GeoPoint(place.geo.x, place.geo.y), {style: s});
             placemark.name = place.name;
             placemark.description = place.description;
             placemark.img = place.img;
@@ -31,7 +33,8 @@ function initMap(){
     })();
 }
 
-async function getPlacesJSON(id) {
-    const placesJSON = await $.getJSON(`/api/getPlacesByGuideId/${id}`);
-    return JSON.parse(placesJSON);
+async function getPlaceByIdJSON(id) {
+    const placeJSON = await $.getJSON(`'/api/getPlace/${id}'`);
+    return JSON.parse(placeJSON);
 }
+

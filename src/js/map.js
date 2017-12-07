@@ -21,7 +21,7 @@ function initMap() {
         </div>'
     );
 
-    let s = new YMaps.Style();
+    let s = new YMaps.Style(); 
     s.balloonContentStyle = new YMaps.BalloonContentStyle(template);
 
     const currentCity = YMaps.jQuery('.search-input')[0].value;
@@ -35,7 +35,11 @@ function initMap() {
         let gCollection = createCollection(placesOfGuides, s),
             pCollection = createCollection(allPlaces, s);
         
-        showCollection(map, gCollection, placesOfGuides[0].geo);
+        console.log(placesOfGuides.length);
+        if(placesOfGuides.length != 0) {
+            showCollection(map, gCollection, placesOfGuides[0].geo);
+        }
+        
 
         switcher.addEventListener('click', (e) => {
             let target = e.target;
@@ -50,7 +54,7 @@ function initMap() {
 function createCollection(items, s) {
     let newCollection = new YMaps.GeoObjectCollection();
     items.forEach( item => {
-        let point = new YMaps.GeoPoint(item.geo.x, item.geo.y);
+        let point = new YMaps.GeoPoint(item.geo.y, item.geo.x);
         let placemark = new YMaps.Placemark(point, {style: s});
         placemark.name = item.name;
         placemark.description = item.description;
@@ -64,9 +68,11 @@ function createCollection(items, s) {
 
 function showCollection(map, collection, center) {
     map.addOverlay(collection);
-    map.setCenter(new YMaps.GeoPoint(center.x, center.y), 11);
+    map.setCenter(new YMaps.GeoPoint(center.y, center.x), 11);
 }
 
+//FIXME:
+// Создать отдельный класс для свитчера
 function switchBlock(target, map, pCollection, gCollection) {
     let disableBtn;
     switch (target.className) {

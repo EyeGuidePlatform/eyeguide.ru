@@ -20,13 +20,14 @@ button {
     color: #2ecc71;
     padding: .5rem 4rem .5rem 4rem;
 }
-.to-guides {
-    border-bottom-left-radius: 15px;
-    border-top-left-radius: 15px;
-}
 .to-places {
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
+    
+}
+.to-placesMap {
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
 }
 .switcher .active {
     color: white;
@@ -74,9 +75,9 @@ button {
     color: #fff;
 }
 /* ========================================================================== */
-/* Place/guides */
+/* places/guides/map */
 /* ========================================================================== */
-#guides, #places {
+#placesMap, #places, #guides {
     margin-top: 2rem;
 }
 
@@ -119,6 +120,22 @@ button {
 #switch .element-info {
     padding: 0;
 }
+
+/* map */
+#YMapsID {
+    width:100%;
+    height:70vh;
+  }
+  .balloon {
+    width: 250px;
+    height: auto;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .balloon img {
+    width: 70%;
+    height: auto;
+  }
 
 /* ========================================================================== */
 /* Media queries */

@@ -62,7 +62,7 @@ guideSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'order'
     }],
-    description:[{
+    description: [{
         lang: String,
         value: String
     }]
@@ -78,14 +78,6 @@ guideSchema.statics = {
         let newGuide = new this(guideData);
         newGuide.password = toHash(guideData.password);
 
-        //Добавить каждому выбранному месту нового гида
-        let placeModel = require('./place').placeModel;
-        let places = await placeModel.getPlaces({ _id: newGuide.places });
-        for (let i = 0; i < places.length; i++) {
-            places[i].guides.push(newGuide);
-            await places[i].save();
-        }
-
         return await newGuide.save();
     },
     /**
@@ -97,7 +89,10 @@ guideSchema.statics = {
         let placeModel = require('./place').placeModel;
         let guide = await this.getGuide(guideId);
         let place = await placeModel.getPlace(placeId);
-
+        // добавление в место гида 
+        place.guides.push(guide)
+        await place.save()
+        // добавление в гида место
         guide.places.push(place)
         return await guide.save();
     },
@@ -108,26 +103,37 @@ guideSchema.statics = {
      */
     addExInGuide: async function (ex, guideId) {
         let guide = await this.getGuide(guideId);
-
         guide.excursions.push(ex)
+        return await guide.save();
+    },
+    /** ОПАСНО ДЛЯ ГИДА, НЕ ТРОГАТЬ!
+     * Обнуление у гида ВСЕХ экскурсий
+     * @param guideId - айди гида
+     */
+    RemoveALLExFromGuide: async function (guideId) {
+        let guide = await this.getGuide(guideId);
+
+        guide.excursions = [];
 
         return await guide.save();
     },
     /**
-     * Удаление у гида выбранного места
+     * Удаление у гида выбранного места и экскурсий места
      * @param guideId - айди гида
      * @param placeId - айди места
      */
     removePlaceFromGuide: async function (guideId, placeId) {
         let placeModel = require('./place').placeModel;
-        let guide = await this.getGuide(guideId);
+        let guide = await guideModel.getGuide(guideId);
         let place = await placeModel.getPlace(placeId);
+        let exs = await exModel.getExs({ guideId: guideId }, { place: placeId });
 
-        //TODO: удаление экскурсий связанных с местом
-        // let exs = await exModel.getExs({place: placeId})
-        // console.log(exs)
-        guide.places = await guide.places.filter(place => place._id != placeId)
-        // console.log(guide)
+        await exs.forEach(element => element.remove());
+
+        place.guides = await place.guides.filter(guide => guide._id != guideId);
+        await place.save()
+        
+        guide.places = await guide.places.filter(place => place._id != placeId);
         return await guide.save();
     },
     /**
@@ -145,8 +151,11 @@ guideSchema.statics = {
      * Заправшиваем из БД гида по id
      * @param {ObjectId} guideId
      */
-    getGuide: async function (guideId) {
-        return await this.findById(guideId).populate('places');
+    getGuide: async function (guideId, locale='ru') {
+        let guide = await this.findById(guideId).populate('places').populate('excursions');
+
+        guide.description = guide.description.find(desc => desc.lang == locale);  
+        return guide;
     },
     /**
      * Запрашиваем из БД гида по id (список мест в виде id)
@@ -167,11 +176,27 @@ guideSchema.statics = {
             let argKey = Object.keys(arg)[0];
             switch (argKey) {
                 //FIXME: поиск без учета регистра
-                case 'city': query.where('city').equals(arg.city);
+                case 'city': 
+                    if (!arg.city) break;
+
+                    query.where('city').equals(arg.city);
+
                     break;
                 case 'limit': query.limit(arg.limit);
                     break;
                 case 'select': query.select(arg.select);
+                    break;
+                case 'places':
+                    if (!arg.places) break;
+                    
+                    query.where('places').in(arg.places);
+
+                    break;
+                case 'lang':
+                    if (!arg.lang) break;
+
+                    query.where('info.lang').in(arg.lang);
+
                     break;
                 //TODO: остальные криетрии поиска
             }
@@ -189,7 +214,7 @@ guideSchema.methods = {
         this.activate = url;
         await this.save();
 
-        return 'http://localhost:8080/activate/' + url;
+        return 'http://'+require('.../config').domain+'/activate/' + url;
     }
 }
 

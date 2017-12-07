@@ -5,15 +5,15 @@ guideModel = require('../models/guide').guideModel;
  * Страница "Место"
  * @param {String} place
  */
-exports.getProfile= async (req, res)=>{
+exports.getProfile = async (req, res)=>{
     let id = req.params.id,
     guide = await  guideModel.getGuide(id);
-    console.log(guide.places[0].id);
+    console.log(guide);
     if ((guide == undefined) || (guide == null))
         res.redirect('/error/404');
     else
         res.render('guideView.html',{
-            guide:guide,
-            places:guide.places
+            guide: guide,
+            places: guide.places
         });
 }
