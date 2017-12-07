@@ -1,6 +1,7 @@
 const guideModel = require('../models/guide').guideModel;
 const placeModel = require('../models/place').placeModel;
 const exModel = require('../models/excursions').exModel;
+const orderModel = require('../models/orders').orderModel;
 
 /**
  * Страница "Смена пароля гида"
@@ -13,10 +14,16 @@ exports.getGuideOptionsPage = (req, res) => {
 /**
  * Страница "Заказы гида"
  */
-exports.getGuideOrdersPage = (req, res) => {
-    let id = req.session.guide.id
-    // guide = await guideModel.getGuide(id),
+exports.getGuideOrdersPage = async (req, res) => {
+    let id = req.session.guide.id,
+    // guide = await guideModel.getGuide(id)
+    // orders = await orderModel.getOrders({guideId: 0});
+    orders = await orderModel.getOrder('5a2939f5d2c0131864a55197');
+    console.log(orders.excursion.guide)
 
+    let check = await orderModel.getOrders()
+
+    console.log(check)
     res.render('gid_orders.html', { id: id});
 }
 
