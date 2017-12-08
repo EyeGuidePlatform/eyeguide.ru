@@ -16,15 +16,32 @@ exports.getGuideOptionsPage = (req, res) => {
  */
 exports.getGuideOrdersPage = async (req, res) => {
     let id = req.session.guide.id,
-    // guide = await guideModel.getGuide(id)
-    // orders = await orderModel.getOrders({guideId: 0});
-    orders = await orderModel.getOrder('5a2939f5d2c0131864a55197');
-    console.log(orders.excursion.guide)
+    guide = await guideModel.getGuide(id)
+    
+    const ordersNew = [];
+    const ordersDone = [];
+    const ordersNow = [];
 
-    let check = await orderModel.getOrders()
+    guide.orders.forEach( (order) => {
+        switch(order.status) {
+            case 0 : ordersNew.push(order);
+                break;
+            case 1 : ordersNow.push(order);
+                break;
+            case 2 : ordersDone.push(order);
+                break;
+        }
+    });
 
-    console.log(check)
-    res.render('gid_orders.html', { id: id});
+    // console.log(guide)
+    // console.log(ordersNow)
+
+    res.render('gid_orders.html', {
+         id: id,
+         ordersNew: ordersNew,
+         ordersNow: ordersNow,
+         ordersDone: ordersDone
+        });
 }
 
 /**
@@ -78,4 +95,20 @@ exports.getProfilePage = async (req, res) => {
     let id = req.session.guide.id,
         guide = await guideModel.getGuide(id)
     res.render('gid_profile.html', {guide: guide})
+}
+
+// PUT запрос на обновление статуса заказа до 1 (взят)
+exports.confirmOrder = async (req, res) => {
+    const order = await orderModel.getOrder(req.params.id)
+    order.status = 1;
+    await order.save()
+    res.send()
+}
+
+// PUT запрос на обновление статуса заказа до 2 (закончен)
+exports.finishOrder = async (req, res) => {
+    const order = await orderModel.getOrder(req.params.id)
+    order.status = 2;
+    await order.save()
+    res.send()
 }

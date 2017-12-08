@@ -14,6 +14,10 @@ orderSchema = mongoose.Schema({
     people: Number,
     date: Date,
     price: Number,
+    place: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'place'
+    }
 });
 
 
@@ -50,7 +54,7 @@ orderSchema.statics = {
             }
         });
 
-        let orders = await query.populate('excursion').populate('tourist');
+        let orders = await query.populate('excursions');
 
         return orders;
     }

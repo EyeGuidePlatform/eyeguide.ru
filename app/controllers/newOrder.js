@@ -23,6 +23,7 @@ exports.createOrder = async (req, res) => {
     res.send({redirect: '/'});
 
     const tourist = await regTourist(req);
+    const place = await placeModel.getPlace(req.body.placeId);
     const exc = await exModel.getExs({place: req.body.placeId}, {guideId: req.body.guideId});
     const [excData] = exc
     const order = await regOrder(req, excData);
@@ -30,8 +31,13 @@ exports.createOrder = async (req, res) => {
     tourist.orders.push(order);
     await tourist.save()
     // save in order our tourist
+    order.place = place
     order.tourist = tourist
     await order.save()
+    // save order in guide
+    const guide = await guideModel.getGuide(req.body.guideId)
+    guide.orders.push(order);
+    await guide.save()
  
     async function regTourist (req) {
 

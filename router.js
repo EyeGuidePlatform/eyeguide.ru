@@ -59,6 +59,8 @@ router.get('/guideProfile', lkController.getProfilePage);
 // ЛК гида - utils
 router.post('/guidePlaceAdd', lkController.addPlace);
 router.post('/guidePlaceRemove', lkController.removePlace);
+router.put('/order/confirm/:id', lkController.confirmOrder);
+router.put('/order/done/:id', lkController.finishOrder);
 
 //Карточки(профиль) гида и места
 router.get('/error/404', error404. throwError);
