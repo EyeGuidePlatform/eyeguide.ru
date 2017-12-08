@@ -90,9 +90,10 @@ function nextPrev(n) {
   if (n == 1 && !validateForm()) return false;
   // if you have reached the end of the form...
   if (currentTab + n >= x.length) {
-    $('#myModal').modal('toggle')
     let buffer = document.querySelector('#select_form').value;
     guideId? placeId = buffer : guideId = buffer;
+    setModal(guideId, placeId)
+    $('#myModal').modal('toggle')
     return false;
   }
   // Hide the current tab:
@@ -101,6 +102,10 @@ function nextPrev(n) {
   currentTab = currentTab + n;
   // Otherwise, display the correct tab:
   showTab(currentTab);
+}
+
+function setModal(guideId, placeId) {
+  //todo
 }
 
 function validateForm() {
@@ -139,7 +144,6 @@ function fixStepIndicator(n) {
 }
 
 const createBtn = document.querySelector('#createOrderBtn')
-
 createBtn.addEventListener('click', (e) => {
 
   const myForm = document.querySelector('#regForm')
