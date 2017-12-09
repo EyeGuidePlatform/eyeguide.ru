@@ -56,9 +56,9 @@ exports.addNewGuide = async (req, res, next) => {
     const confirmURL = await guide.genEmailConfirmURL();
 
     const message = {
-        text: 'Перейдите по ссылке ниже, чтобы подтвердить почту: \n' + confirmURL,
-        from: 'no-reply <eyeguidetest@gmail.com>',
-        to: guide.name + ' <' + guide.email + '>',
+        text: `Перейдите по ссылке ниже, чтобы подтвердить почту: \n ${confirmURL}`,
+        from: `no-reply <${require('../../config').email}>`,
+        to: `${guide.name} <${guide.email}>`,
         subject: 'Пожалуйста подтвердите почту',
         attachment: [
             {
