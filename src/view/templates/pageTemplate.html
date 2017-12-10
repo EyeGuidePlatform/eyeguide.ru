@@ -52,7 +52,7 @@
             <ul class="nav navbar-nav navbar-right">
                 {% block rightNav %}
                 {% if not currentUser %}
-                <li><a id="nav-sign-in" class="right-nav-btn" href="#" data-target="#sign-in">{{__('_login_reg')}}</a></li>
+                <li><a id="nav-sign-in" class="open-modal right-nav-btn" href="#" data-target="#sign-in">{{__('_login_reg')}}</a></li>
                 {% else %}
                 <li><a class="username" href="/guideProfile">{{ currentUser.name }}</a></li>
                 <li>
@@ -74,7 +74,7 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" id="close-modal" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close-modal close" aria-label="Close" data-target="#sign-in"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Вход</h4>
             </div>
             <div class="modal-body">

@@ -8,6 +8,29 @@
 {% endblock %}
 
 {% block content %}
+<div class="modal fade" id="rights">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close close-modal" aria-label="Close" data-target="#rights"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Условия соглашения</h4>
+            </div>
+            <div class="modal-body">
+                <p class="rights-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra imperdiet nibh, ut accumsan nulla tempor quis. Pellentesque eros mi, finibus non euismod vitae, laoreet ac lectus. Etiam pulvinar massa quis lacinia eleifend. Cras id elit at ligula fermentum egestas sed sit amet est. Sed in consectetur nibh, sit amet ullamcorper lacus. Etiam porttitor nec lacus quis malesuada. In placerat sapien a egestas tempor. Nullam posuere vehicula dolor, ut placerat purus pulvinar non. Sed ac pellentesque dolor. Duis nulla nisi, volutpat nec eros in, viverra vehicula orci.
+                    
+                    Pellentesque sodales justo magna, sit amet pulvinar sem aliquet sed. Morbi sit amet maximus eros. Sed ut dui imperdiet urna pulvinar consectetur. Cras et consequat risus. Quisque eu euismod mauris, sed feugiat enim. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque consequat suscipit leo, sit amet vehicula augue dictum id. In sit amet leo vel nulla pretium feugiat. Nunc sem urna, accumsan non odio vitae, lacinia gravida ligula. Fusce a velit semper, mattis lacus eu, condimentum neque. Curabitur lacus purus, sagittis quis libero sit amet, consectetur convallis nulla. Pellentesque mollis ligula et sem posuere, sit amet lobortis orci ultrices. Integer dui arcu, condimentum a lacinia non, laoreet non nibh.
+                    
+                    Mauris vestibulum arcu sit amet nisi euismod, eu mollis neque placerat. Maecenas eu leo varius, pulvinar odio nec, mattis dui. Nullam commodo feugiat purus eget pharetra. Fusce sit amet eros eu dolor scelerisque elementum sit amet quis arcu. Vivamus tempus dolor lectus, vel cursus nisl dignissim non. Nullam et odio magna. Ut magna elit, posuere non neque luctus, condimentum sagittis massa. Mauris congue, erat sit amet tincidunt dictum, tortor magna sodales massa, sit amet dapibus metus ipsum sit amet diam. Vestibulum convallis accumsan leo, quis mollis nunc aliquet non. Proin elementum felis ut felis fermentum, ultricies bibendum ipsum blandit. Integer cursus ipsum sed risus porta, id malesuada ipsum aliquam. Nunc nec erat ac nulla varius gravida. Phasellus massa nisl, egestas ut ultrices et, elementum eget diam. Nunc porttitor eget neque vitae feugiat. Maecenas ultricies, arcu eu convallis convallis, nisl nisi aliquam felis, a gravida est massa vel sapien. Nam molestie eu magna placerat blandit.
+                    
+                    Morbi cursus, nulla sit amet condimentum lacinia, lacus felis tincidunt enim, molestie consectetur dui elit a mi. Cras faucibus augue at eros scelerisque, a pretium nibh pharetra. Proin id ipsum ipsum. Nulla facilisi. Pellentesque at neque vehicula, convallis ante eget, rhoncus nibh. Sed imperdiet sem a faucibus ultricies. Cras tempor elementum justo, consequat euismod augue pretium at. Sed eget magna et dui accumsan porttitor at tincidunt justo. Quisque congue, purus ac fermentum pulvinar, eros lacus maximus turpis, vel dictum magna ipsum at urna. Duis lectus leo, bibendum eu sodales dictum, rutrum nec metus. Maecenas ligula metus, imperdiet in ligula et, imperdiet interdum mi. In finibus, dolor in vehicula mattis, odio arcu gravida urna, eget viverra arcu tortor vel justo.
+                </p>
+                <button type="button" class="btn btn-primary close-modal" aria-label="Close" data-target="#rights">Я прочитал</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="wrap">
     <div class="container">
         <div class="row">
@@ -79,7 +102,7 @@
 
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="rules" required> Прежде чем зарегистрироваться необходимо принять <a href="">условия соглашения</a>
+                        <input type="checkbox" name="rules" required> Прежде чем зарегистрироваться необходимо принять <a type="button" class="open-modal" data-target="#rights">условия соглашения</a>
                     </label>
                 </div>
                 
@@ -92,4 +115,5 @@
 
 {% block commonJS %}
 <script src="/js/choiceInputs.js"></script>
+<script src="/js/modal.js"></script>
 {% endblock %}

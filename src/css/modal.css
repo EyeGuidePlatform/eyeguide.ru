@@ -1,5 +1,6 @@
 .modal {
     background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
 }
 
 .fade.show {
@@ -8,7 +9,7 @@
 }
 
 .modal.fade .modal-dialog {
-    transform: translate(0, 50%);
+    transform: translate(0, 80px);
 }
 
 .modal-content, 
