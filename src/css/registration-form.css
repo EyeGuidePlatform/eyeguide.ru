@@ -23,11 +23,11 @@ textarea {
     display: inline-block;
 }
 
-.added-places, .new-guides {
+.added-places, .new-guides, .new-places {
     height: 80%;
 }
 
-.added-places ul, .new-guides ul {
+.added-places ul, .new-guides ul, .new-places ul {
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;

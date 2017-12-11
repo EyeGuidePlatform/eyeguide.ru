@@ -8,6 +8,7 @@ const placeModel = require('../models/place').placeModel,
  */
 exports.getSuggestPlacePage = async (req, res) => {
     let cities = await staticModel.getCities(req.locale);
+    
     res.render('suggestPlace.html', {cities: cities});
 }
 

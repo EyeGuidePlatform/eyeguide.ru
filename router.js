@@ -99,15 +99,23 @@ router.get('/search/places' ,searchController.getSearchPagePlaces);
 
 //Административные функции
 router.get('/admin/main', middleware.isAdminLogged, adminController.getPage);
+
 router.get('/admin/login', adminController.loginPage);
 router.post('/admin/login', adminController.login);
 router.get('/admin/logout', middleware.isAdminLogged, adminController.logout);
+
 router.get('/admin/create', middleware.isAdminLogged, adminController.createPage);
 router.post('/admin/create', middleware.isAdminLogged,adminController.create);
+
 router.get('/admin/create/place', middleware.isAdminLogged, regPlaceController.getCreatePlacePage);
 router.post('/admin/create/place', middleware.isAdminLogged, upload.single('img'), regPlaceController.createPlace);
+
 router.get('/admin/confirm/guides', middleware.isAdminLogged, adminController.getConfirmGuidesPage);
+router.get('/admin/confirm/places', middleware.isAdminLogged, adminController.getConfirmPlacesPage);
+
 router.get('/admin/confirm/guides/:id', middleware.isAdminLogged, adminController.confirmGuide);
+router.get('/admin/confirm/places/:id', middleware.isAdminLogged, adminController.confirmPlace);
+
 router.post('/profile/:id/remove', middleware.isAdminLogged, regGuideController.removeGuide);
 router.get('/profile/:id/edit', middleware.isAdminLogged, regGuideController.getEditGuidePage);
 router.post('/profile/:id', middleware.isAdminLogged, regGuideController.editGuide);

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose'),
     adminModel = require('../models/admin').adminModel,
-    guideModel = require('../models/guide').guideModel;
+    guideModel = require('../models/guide').guideModel,
+    placeModel = require('../models/place').placeModel;
 
 exports.getPage = (req, res) => {
     res.redirect('/admin/create/place');
@@ -48,6 +49,12 @@ exports.getConfirmGuidesPage = async (req, res) => {
     res.render('confirmGuides.html', {newGuides: newGuides});
 }
 
+exports.getConfirmPlacesPage = async (req, res) => {
+    const newPlaces = await placeModel.getPlaces({visible: 0});
+
+    res.render('confirmPlaces.html', {newPlaces: newPlaces});
+}
+
 exports.confirmGuide = async (req, res) => {
     const foundGuide = await guideModel.getGuide(req.params.id);
 
@@ -56,4 +63,14 @@ exports.confirmGuide = async (req, res) => {
 
     req.flash('success', 'Гид подтвержден!');
     res.redirect('/admin/confirm/guides');
+}
+
+exports.confirmPlace = async (req, res) => {
+    const foundPlace = await placeModel.getPlace(req.params.id);
+
+    foundPlace.visible = 1;
+    await foundPlace.save();
+
+    req.flash('success', 'Место подтверждено!');
+    res.redirect('/admin/confirm/places');
 }
