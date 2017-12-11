@@ -1,0 +1,34 @@
+{% extends "templates/adminPage.html" %}
+
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/registration-form.css">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid wrap">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Новые гиды</h1>
+            <div class="new-guides">
+                <ul>
+                    {% for guide in newGuides %}
+                    <li class="guide">
+                        <a href="/profile/{{ guide._id }}" class="guide-name">
+                            <h4>{{ guide.name }} {{ guide.surname }}</h4>
+                        </a>
+                        <div class="control-btns">
+                            <a href="/admin/confirm/guides/{{ guide._id }}" class="btn btn-success">Подтвердить</a>
+                            <a href="/profile/{{ guide._id }}/edit" class="btn btn-warning">Редактировать</a>
+                            <form class="form-btn" action="/profile/{{ guide._id }}/remove" method="POST">
+                                <button class="btn btn-danger" type="submit">Удалить</button>
+                            </form>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -198,6 +198,9 @@ guideSchema.statics = {
                     query.where('info.lang').in(arg.lang);
 
                     break;
+                case 'visible':
+                    query.where('visible').equals(arg.visible);
+                    break;
                 //TODO: остальные криетрии поиска
             }
         });
@@ -205,6 +208,15 @@ guideSchema.statics = {
         let guides = await query.populate('places');
 
         return guides;
+    },
+
+    editGuide: async function (guideId, guideData) {
+        const editGuide = await this.findByIdAndUpdate(guideId, guideData);
+        return editGuide;
+    },
+
+    removeGuide: async function (guideId) {
+        await this.findByIdAndRemove(guideId);
     }
 }
 
