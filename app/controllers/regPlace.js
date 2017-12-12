@@ -31,7 +31,7 @@ exports.suggestPlace = async (req, res, next) => {
  */
 exports.getCreatePlacePage = async (req, res) => {
     let cities = await staticModel.getCities(req.locale),
-        places = await placeModel.getPlaces({select: '_id name'});
+        places = await placeModel.getPlaces({visible: 1}, {select: '_id name'});
 
     res.render('createPlace.html', {
         addedPlaces: places,

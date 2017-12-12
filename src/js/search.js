@@ -1,3 +1,6 @@
+const urlParams = new URLSearchParams(window.location.search),
+    selectedCity = urlParams.get('city');
+
 // map
 YMaps.jQuery(function () {
 
@@ -20,7 +23,12 @@ YMaps.jQuery(function () {
 
     let places = [];
     (async () => {
-        places = await getPlacesJSON('allPlaces')
+        console.log(selectedCity);
+        if (selectedCity) {
+            places = await getPlacesJSON('city', selectedCity);
+        } else {
+            places = await getPlacesJSON('allPlaces');
+        }
 
         let pCollection = new YMaps.GeoObjectCollection();
 

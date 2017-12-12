@@ -57,7 +57,10 @@ placeSchema.statics = {
             let argKey = Object.keys(arg)[0];
             switch(argKey){
                 //FIXME: поиск без учета регистра
-                case 'city': query.where('city').equals(arg.city);
+                case 'city': 
+                    if (!arg.city) break;
+                    
+                    query.where('city').equals(arg.city);
                     break;
                 case 'limit': query.limit(arg.limit);
                     break;
