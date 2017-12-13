@@ -1,50 +1,34 @@
-
-
 YMaps.jQuery(initMap);
 function initMap(){
-    map = new YMaps.Map(document.getElementById("YMapsID"));
-    map.enableScrollZoom();
+    const map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
     
+    // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
     map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
+    map.enableScrollZoom();
 
     let template = new YMaps.Template(
-        `<div class='balloon'> 
-            <img src="$[img]"> 
-            <h3>$[name]</h3> 
-            <p>$[description]</p>
-            <a class = 'btn btn-success mapBtn' href = '$[placeurl]'>К месту</a>
-        </div>`
+        '<div style="width: 300px; text-align:center"> \
+            <img style="width: 90%" src="$[img]"> \
+            <h3>$[name]</h3> \
+            <p>$[description]</p> \
+            <a href="$[placeurl]">Перейти к месту...</a> \
+        </div>'
     );
 
     let s = new YMaps.Style();
-    s.balloonContentStyle = new YMaps.BalloonContentStyle(template);
-    
-    let places = [];
+    s.BalloonContentStyle = new YMaps.BalloonContentStyle(template);
+
     (async () => {
-        let pCollection = new YMaps.GeoObjectCollection();
-        places = await getPlacesJSON(document.querySelector('#avatar').getAttribute('value'));
+        let places = await getPlacesJSON(document.querySelector('#avatar').getAttribute('value'));
         places.forEach(place => {
-            let point = new YMaps.GeoPoint(place.geo.y, place.geo.x);
-            let placemark = new YMaps.Placemark(point, { style: s });
+            let placemark = new YMaps.Placemark(new YMaps.GeoPoint(place.geo.y, place.geo.x), {style: s});
             placemark.name = place.name;
             placemark.description = place.description;
             placemark.img = place.img;
-            placemark.placeurl = "/place/" + place._id;
-            pCollection.add(placemark);
+            placemark.placeurl = '/place/' + place._id;
+            map.addOverlay(placemark);
         });
-
-        map.addOverlay(pCollection);
-        map.setCenter(new YMaps.GeoPoint(places[0].geo.y, places[0].geo.x), 10);
     })();
-    // var s = new YMaps.Style();
-    // s.balloonContentStyle = new YMaps.BalloonContentStyle(
-    //     new YMaps.Template("<div style=\"color:#0A0; width: 300px;\">$[description]</div>")
-    // );
-    
-    // var placemark = new YMaps.Placemark(new YMaps.GeoPoint(37.7,55.7), {style: s} );
-    // placemark.description = "Добро пожаловать на Яндекс.Карты!";
-    // map.addOverlay(placemark);    
-    // placemark.openBalloon();
 }
 
 async function getPlacesJSON(id) {

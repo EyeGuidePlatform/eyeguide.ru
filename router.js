@@ -27,8 +27,9 @@ let express = require('express'),
     newOrderController = require('./app/controllers/newOrder'),
     middleware = require('./app/controllers/middleware'),
     orderStatusController = require('./app/controllers/orderStatus'),
-    FAQcontroller=require('./app/controllers/FAQ');
+    FAQcontroller = require('./app/controllers/FAQ'),
     guideFAQcontroller = require('./app/controllers/guideFAQ');
+
 
 
 

@@ -15,3 +15,4 @@ const config = require('../../config'),
 exports.sendEmail = message => {
     server.send(message);
 } 
+
