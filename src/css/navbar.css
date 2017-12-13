@@ -1,0 +1,135 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    padding-top: 80px;
+}
+
+body a {
+    text-decoration: inherit;
+    color: inherit;
+}
+/* ========================================================================== */
+/* Navbar */
+/* ========================================================================== */
+.navbar-default {
+    background-color: #fff;
+    font-family: Roboto;
+    font-weight: 400;
+
+    text-align: center;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #000;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:focus {
+    color: #2ecc71;
+}
+
+.navbar-nav {
+    margin-top: 15px;
+}
+
+.navbar-right {
+    margin: 22px 15px 0 0;
+}
+
+.navbar-header {
+    height: 80px;
+}
+
+.navbar-header > button {
+    margin-top: 23px;
+}
+
+.navbar-brand {
+    height: 100%;
+    padding: 0;
+}
+
+.navbar-brand img {
+    width: auto;
+    height: 100%;
+}
+
+.navbar-brand-text {
+    width: 110px;
+
+    text-transform: uppercase;
+    color: #2ecc71;
+    font-weight: 500;
+    font-size: 1.7em;
+    line-height: 50px;
+}
+
+.navbar-brand-text:hover,
+.navbar-brand-text:focus {
+    text-decoration: none;
+    color: #0caa50;
+}
+
+.navbar-default .navbar-nav .right-nav-btn {
+    padding: 8px 20px;
+
+    color: #2ecc71;
+    border: 1px solid #2ecc71;
+    border-radius: 20px;
+    background-color: #fff;
+
+    transition: all 0.3s ease;
+}
+
+.navbar-default .navbar-nav .right-nav-btn:hover,
+.navbar-default .navbar-nav .right-nav-btn:focus {
+    color: #fff;
+    background-color: #2ecc71;
+}
+
+.navbar-default .navbar-nav .username {
+    padding-top: 10px;
+}
+
+.collapse {
+    display: none;
+}
+
+.collapse.in {
+    display: block;
+}
+
+@media (max-width: 767px) {
+    body {
+        padding-top: 50px;
+    }
+
+    .navbar-header {
+        height: 50px;
+    }
+
+    .navbar-header > button {
+        margin-top: 8px;
+    }
+    
+    .navbar-right {
+        width: 100%;
+        margin: 0;
+    }
+
+    #nav-sign-in {
+        color: #000;
+        padding: 10px 0;
+        border: none;
+        border-radius: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #nav-sign-in:hover, #nav-sign-in:focus {
+        color: #2ecc71;
+        background-color: #fff;
+    }
+}

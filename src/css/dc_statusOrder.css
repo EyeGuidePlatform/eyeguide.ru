@@ -1,0 +1,22 @@
+.text-center{
+    text-align: center;
+}
+
+.mt-3{
+    margin-top:3rem;
+}
+
+hr{
+    color:red;
+    background-color:red; 
+}
+
+a:hover{
+    color:#0caa50;
+    text-decoration: none;
+
+}
+
+a:focus{
+    text-decoration: none;
+}

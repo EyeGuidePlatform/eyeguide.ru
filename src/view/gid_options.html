@@ -1,0 +1,83 @@
+{% extends "templates/pageTemplate.html" %} {% block commonStyles %}
+
+<link rel="stylesheet" href="/css/brm_gid-navbar.css">
+<link rel="stylesheet" href="/css/brm_gid-options.css">
+<link rel="stylesheet" href="/css/datepicker.min.css">
+<link rel="stylesheet" href="/css/jz_gid-options.css">
+{% endblock %} {% block content %}
+
+<div class="wrap">
+
+
+
+
+
+
+
+  <!-- ====================== -->
+  <!-- top-menu -->
+  <div class="container-fluid gid_nav">
+    <div class="row">
+      <div class='col-xs-12 col-sm-12 col-md-offset-3 col-md-9 '>
+        {% include "templates/top_menu.html" %}
+      </div>
+    </div>
+  </div>
+
+
+
+  <main>
+    <div class="container">
+        
+      <div class="col-md-6 col-sm-12 col-xs-12">
+        <h3>Календарь занятости</h3>
+        <p>
+          Выберите места, в которые вы заняты и не можете проводить экскурсии.
+        </p>
+
+        <form action="" method="post">
+          <button class="btn btn-success">Сохранить</button>
+        </form>
+      </div>
+      <div class="col-md-6 col-sm-12 col-xs-12">
+  
+        <div id="calendar" class="datepicker-here" data-multiple-dates='true' data-multiple-dates-separator=", " data-position='right top'>
+  
+        </div>
+      </div>
+    </div>
+      
+    <div class="container">
+      <span class="container__header">Смена пароля</span>
+      <span class="container__confirm hide">пароль успешно сменен</span>
+      <form>
+        <div class="form-group">
+          <label for="old_pwd">Старый пароль:</label>
+          <input type="password" class="form-control" placeholder="Старый пароль" name="old_pwd" required>
+        </div>
+        <div class="form-group">
+          <label for="new_pwd">Новый пароль:</label>
+          <input type="password" class="form-control" placeholder="Новый пароль" name="new_pwd" required>
+        </div>
+        <div class="form-group">
+          <label for="new_pwd2">Повторить пароль:</label>
+          <input type="password" class="form-control" placeholder="Повторить пароль" name="new_pwd2" required>
+        </div>
+        <button type="submit" class="btn btn-default submit_btn">OK</button>
+        <button type="button" class="btn btn-default delete_acc_btn">
+          <i class="fa fa-times" aria-hidden="true"></i>
+          Удалить аккаунт
+        </button>
+      </form>
+    </div>
+  </main>
+
+
+</div>
+<!-- wrap -->
+{% endblock %} {% block commonJS %}
+<script src="/js/jquery-2.2.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/gid_options.js"></script>
+<script src="/js/datepicker.min.js"></script>
+<script src="/js/calendar.js"></script> {% endblock %}
