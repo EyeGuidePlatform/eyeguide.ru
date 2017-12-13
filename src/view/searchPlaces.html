@@ -4,6 +4,9 @@
 
 <link rel="stylesheet" href="/css/brm_gid-navbar.css">
 <link rel="stylesheet" href="/css/brm_search.css">
+
+<link rel="stylesheet" href="/css/choices.min.css">
+<script src="/js/choices.min.js"></script>
 <script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
 {% endblock %}
 
@@ -38,17 +41,24 @@
                           </a>
                           <div id='collapse_search' class="panel-collapse in">
                             <div class="panel-body row">
-                              <div class="form-group search_city col-xs-12 col-sm-4 col-md-12">
-                                <label for="city">Город</label>
-                                <input id="city" class="form-control" type="text" placeholder="Введите город">
-                              </div>
-                              <div class="form-group search_date col-xs-12 col-sm-4 col-md-12">
-                                <label for="date">Выберите дату</label>
-                                <input id="date" class="form-control" type="date">
-                              </div>
-                           <div class="form-group search_confirm col-xs-12 col-sm-12 col-md-12">
-                            <button type="submit">Поиск</button>
-                           </div>
+                              <form action="/search/places" method="GET">
+                                <div class="form-group search_city col-xs-12 col-sm-4 col-md-12">
+                                  <label for="city">Город</label>
+                                  <select id="city" class="single-choice" name="city">
+                                      {% for city in cities %}
+                                      <option {% if selectedCity == city %} selected {% endif %} value="{{ city }}">{{ city }}</option>
+                                      {% endfor %}
+                                  </select>
+                                </div>
+                                <div class="form-group search_date col-xs-12 col-sm-4 col-md-12">
+                                    <label for="date">Выберите дату</label>
+                                    <input id="date" class="form-control" type="date">
+                                  </div>
+
+                                <div class="form-group search_confirm col-xs-12 col-sm-12 col-md-12">
+                                  <button type="submit">Поиск</button>
+                                </div>
+                              </form>
                           </div>
                         </div>
                       </div>
@@ -97,10 +107,11 @@
  {% endblock %}
  
  {% block commonJS %}
- <script src="/js/search.js"></script>
+  <script src="/js/jquery-2.2.3.min.js"></script>
 
- <script src="/js/jquery-2.2.3.min.js"></script>
- <script src="/js/bootstrap.min.js"></script>
- 
+  <script src="/js/search.js"></script>
+  <script src="/js/choiceInputs.js"></script>
+
+  <script src="/js/bootstrap.min.js"></script>
  {% endblock %}
  {% block footerClasses %}col-md-9{% endblock %}

@@ -23,11 +23,11 @@ textarea {
     display: inline-block;
 }
 
-.added-places {
+.added-places, .new-guides, .new-places {
     height: 80%;
 }
 
-.added-places ul {
+.added-places ul, .new-guides ul, .new-places ul {
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
@@ -36,7 +36,7 @@ textarea {
     padding: 0;
 }
 
-.place {
+.place, .guide {
     text-align: center;
 }
 

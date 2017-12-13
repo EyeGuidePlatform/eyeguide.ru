@@ -56,9 +56,9 @@ exports.addNewGuide = async (req, res, next) => {
     const confirmURL = await guide.genEmailConfirmURL();
 
     const message = {
-        text: 'Перейдите по ссылке ниже, чтобы подтвердить почту: \n' + confirmURL,
-        from: 'no-reply <eyeguidetest@gmail.com>',
-        to: guide.name + ' <' + guide.email + '>',
+        text: `Перейдите по ссылке ниже, чтобы подтвердить почту: \n ${confirmURL}`,
+        from: `no-reply <${require('../../config').email}>`,
+        to: `${guide.name} <${guide.email}>`,
         subject: 'Пожалуйста подтвердите почту',
         attachment: [
             {
@@ -89,4 +89,32 @@ exports.confirmEmail = async (req, res) => {
     }
 
     res.redirect('/');
+}
+
+exports.removeGuide = async (req, res) => {
+    guideModel.removeGuide(req.params.id);
+
+    req.flash('success', 'Гид успешно удален!');
+    res.redirect('/admin/confirm/guides');
+}
+
+exports.getEditGuidePage = async (req, res) => {
+    const guideId = req.params.id,
+        foundGuide = await guideModel.getGuide(guideId, req.locale);
+
+    res.render('editGuide.html', {guide: foundGuide});
+}
+
+exports.editGuide = async (req, res) => {
+    let editGuide = req.body.editGuide;
+    editGuide.name = req.sanitize(editGuide.name);
+    editGuide.description = {
+        lang: req.locale,
+        value: req.sanitize(req.body.description)
+    }
+
+    editGuide = await guideModel.editGuide(req.params.id, editGuide);
+
+    req.flash('success', 'Данные гида успешно изменены!');
+    res.redirect('/admin/confirm/guides');
 }

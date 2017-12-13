@@ -1,7 +1,9 @@
 //Поле 'выбор мест'
 const placeSelect = new Choices('#places', {
-    removeItemButton: true
-}),
+        removeItemButton: true
+    }),
+    urlParams = new URLSearchParams(window.location.search),
+    selectedPlaces = urlParams.getAll('places');
 
 citySelect = document.getElementById('city');
 
@@ -26,6 +28,10 @@ function updatePlaces(places, newCity) {
                 value: place._id,
                 label: place.name
             };
+            if (selectedPlaces.indexOf(place._id) != -1) {
+                item.selected = true;
+            }
+            
             items.push(item);
         }
     } );

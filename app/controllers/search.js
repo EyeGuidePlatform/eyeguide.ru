@@ -24,8 +24,7 @@ exports.getSearchPageGuides = async (req,res) => {
     const guides = await guideModel.getGuides(
         {lang: req.query.lang ? [req.query.lang] : undefined},
         {city: req.query.city}, 
-        {places: queryPlaces}, 
-        {limit: 9}
+        {places: queryPlaces}
     );
 
     res.render('searchGuides.html', {
@@ -38,9 +37,12 @@ exports.getSearchPageGuides = async (req,res) => {
 }
 
 exports.getSearchPagePlaces = async (req,res) => {
-    places = await placeModel.getPlaces()
+    const cities = await staticModel.getCities(req.locale),
+        places = await placeModel.getPlaces({visible: 1}, {city: req.query.city});
 
     res.render('searchPlaces.html', {
-        places: places
-    })
+        places: places,
+        cities: cities,
+        selectedCity: req.query.city
+    });
 }

@@ -35,7 +35,6 @@ function initMap() {
         let gCollection = createCollection(placesOfGuides, s),
             pCollection = createCollection(allPlaces, s);
         
-        console.log(placesOfGuides.length);
         if(placesOfGuides.length != 0) {
             showCollection(map, gCollection, placesOfGuides[0].geo);
         }
