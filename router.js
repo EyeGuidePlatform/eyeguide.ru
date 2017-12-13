@@ -27,7 +27,9 @@ let express = require('express'),
     newOrderController = require('./app/controllers/newOrder'),
     middleware = require('./app/controllers/middleware'),
     orderStatusController = require('./app/controllers/orderStatus'),
-    FAQcontroller=require('./app/controllers/FAQ');
+    FAQcontroller = require('./app/controllers/FAQ'),
+    guideFAQcontroller = require('./app/controllers/guideFAQ');
+
 
 
 
@@ -113,6 +115,9 @@ router.post('/place/:id/remove', middleware.isAdminLogged, regPlaceController.re
 
 //FAQ
 router.get('/FAQ', FAQcontroller.getFAQpage);
+router.post('/FAQ', FAQcontroller.sendSupportEmail);
+router.get('/guideFAQ', guideFAQcontroller.getGuideFAQpage);
+router.post('/guideFAQ', guideFAQcontroller.sendSupportEmail);
 
 //Статус заказа
 router.get('/order/:id', orderStatusController.getOrderStatus);

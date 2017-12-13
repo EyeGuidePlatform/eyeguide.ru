@@ -64,3 +64,13 @@ body {
     }
 }
 
+.uncomp a{
+    color: rgb(255, 0, 0);
+}
+
+.uncomp a:hover{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
