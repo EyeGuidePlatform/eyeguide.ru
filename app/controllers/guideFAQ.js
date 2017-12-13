@@ -18,7 +18,7 @@ exports.sendSupportEmail = async (req, res) => {
     let thisGuide = await guideModel.getGuide(req.session.guide.id);  
     const message = {
         from: thisGuide.name + ' ' + thisGuide.surname + ' <' + thisGuide.email + '>',
-        to: '<devilishchuck@gmail.com>',
+        to: ' <' + require('../../config').emailSender + '>',
         subject: req.body.subject,
         text: req.body.message
     };

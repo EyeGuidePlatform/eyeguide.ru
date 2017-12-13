@@ -242,7 +242,7 @@ guideSchema.methods = {
         this.activate = url;
         await this.save();
 
-        return 'http://localhost:8080/activate/' + url;
+        return require('../../config').domain + '/activate/' + url;
     }
 }
 

@@ -7,7 +7,7 @@ exports.getFAQpage = (req, res) => {
 exports.sendSupportEmail = (req, res) => {
     const message = {
         from: req.body.name + ' <' + req.body.email + '>',
-        to: '<devilishchuck@gmail.com>',
+        to: ' <' + require('../../config').emailSender + '>',
         subject: req.body.subject,
         text: req.body.message
     };
