@@ -132,7 +132,7 @@ guideSchema.statics = {
 
         place.guides = await place.guides.filter(guide => guide._id != guideId);
         await place.save()
-        
+
         guide.places = await guide.places.filter(place => place._id != placeId);
         return await guide.save();
     },
@@ -151,10 +151,26 @@ guideSchema.statics = {
      * Заправшиваем из БД гида по id
      * @param {ObjectId} guideId
      */
-    getGuide: async function (guideId, locale='ru') {
-        let guide = await this.findById(guideId).populate('places').populate('excursions');
+    getGuide: async function (guideId, locale = 'ru') {
+        let guide = await this.findById(guideId)
+            .populate('places')
+            .populate('excursions')
+            .populate({
+                path: 'orders',
+                populate: [
+                    {
+                        path: 'excursion'
+                    },
+                    {
+                        path: 'tourist'
+                    },
+                    {
+                        path: 'place'
+                    }
+                ]
+            });
 
-        guide.description = guide.description.find(desc => desc.lang == locale);  
+        guide.description = guide.description.find(desc => desc.lang == locale);
         return guide;
     },
     /**
@@ -176,7 +192,7 @@ guideSchema.statics = {
             let argKey = Object.keys(arg)[0];
             switch (argKey) {
                 //FIXME: поиск без учета регистра
-                case 'city': 
+                case 'city':
                     if (!arg.city) break;
 
                     query.where('city').equals(arg.city);
@@ -188,7 +204,7 @@ guideSchema.statics = {
                     break;
                 case 'places':
                     if (!arg.places) break;
-                    
+
                     query.where('places').in(arg.places);
 
                     break;
@@ -214,7 +230,7 @@ guideSchema.methods = {
         this.activate = url;
         await this.save();
 
-        return 'http://'+require('.../config').domain+'/activate/' + url;
+        return 'http://localhost:8080/activate/' + url;
     }
 }
 

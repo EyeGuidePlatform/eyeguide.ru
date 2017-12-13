@@ -1,12 +1,13 @@
 const guideModel = require('../models/guide').guideModel,
     placeModel = require('../models/place').placeModel,
     touristModel = require('../models/tourist').touristModel,
-    emailModel = require('../models/email');
+    orderModel = require('../models/orders').orderModel,
+    exModel = require('../models/excursions').exModel,
+    emailModel = require('../models/email')
 
 
 
 exports.getNewOrderPage = async (req, res) => {
-    console.log(req.body);
     if (req.body.guideId) {
         let guide = await guideModel.getGuide(req.body.guideId)
         res.render('new_orderG.html', {guide: guide})
@@ -18,17 +19,31 @@ exports.getNewOrderPage = async (req, res) => {
 }
 
 exports.createOrder = async (req, res) => {
+
+    res.send({redirect: '/'});
+
     const tourist = await regTourist(req);
-
-    res.redirect('/');
-
-
+    const place = await placeModel.getPlace(req.body.placeId);
+    const exc = await exModel.getExs({place: req.body.placeId}, {guideId: req.body.guideId});
+    const [excData] = exc
+    const order = await regOrder(req, excData);
+    //save in tourist new order
+    tourist.orders.push(order);
+    await tourist.save()
+    // save in order our tourist
+    order.place = place
+    order.tourist = tourist
+    await order.save()
+    // save order in guide
+    const guide = await guideModel.getGuide(req.body.guideId)
+    guide.orders.push(order);
+    await guide.save()
+ 
+    //FIXME:
     async function regTourist (req) {
-        let newTourist = req.body.tourist;
 
-        let tourist = await touristModel.regTourist(newTourist);
-
-        tourist.password = tourist.genPassword();
+        let newTourist = req.body,
+        tourist = await touristModel.regTourist(newTourist);
 
         const message = {
             text: 'Ваш пароль для просмотра информации о заказе экскурсии: \n' + tourist.password,
@@ -53,5 +68,11 @@ exports.createOrder = async (req, res) => {
         emailModel.sendEmail(message);
 
         return tourist;
+    }
+
+    async function regOrder(req, ex) {
+        let newOrder = req.body,
+        order =  await orderModel.regOrder(newOrder, ex);
+        return order
     }
 }

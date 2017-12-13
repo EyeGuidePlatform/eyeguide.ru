@@ -43,7 +43,7 @@
           <option value="RU" selected>ru</option>
           <option value="EN">en</option>
         </select>
-        
+
         <h4>Мои экскурсии:</h4>
         <ul id="places">
           {% for place in myPlaces %}
@@ -61,15 +61,12 @@
                 <div id='place_{{ place._id}}' class="panel-collapse collapse">
                   <div class="panel-body">
                     <div class="order done_order">
-                      <a href="/place/{{ place._id }}" class="element col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div style="background-image: url('{{ place.img }}')" class="element-img"></div>
-                        <div class="element-info">
-                          <h3 class="element-name">{{ place.name }}</h3>
-                          <p class="element-stats">
-                            {{ place.description | truncate(110) }}
-                          </p>
-                        </div>
-                      </a>
+                      <div class="edit_place">
+                          <form>
+                            <input type="hidden" name="placeId" value="{{ place._id}}" />
+                            <button class="btn btn-block">Редактировать место</button>
+                          </form>
+                      </div>
                       <div class="remove_place">
                         <form method="POST" action="/guidePlaceRemove">
                           <input type="hidden" name="placeId" value="{{ place._id}}" />

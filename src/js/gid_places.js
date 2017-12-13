@@ -24,7 +24,7 @@ YMaps.jQuery(function () {
         let pCollection = new YMaps.GeoObjectCollection();
 
         places.forEach(place => {
-            let point = new YMaps.GeoPoint(place.geo.x, place.geo.y);
+            let point = new YMaps.GeoPoint(place.geo.y, place.geo.x);
             let placemark = new YMaps.Placemark(point, { style: s });
             placemark.name = place.name;
             placemark.description = place.description;
@@ -34,7 +34,7 @@ YMaps.jQuery(function () {
         });
 
         map.addOverlay(pCollection);
-        map.setCenter(new YMaps.GeoPoint(places[0].geo.x, places[0].geo.y), 10);
+        map.setCenter(new YMaps.GeoPoint(places[0].geo.y, places[0].geo.x), 10);
     })();
 
 });

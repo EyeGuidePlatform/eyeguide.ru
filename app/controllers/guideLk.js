@@ -1,6 +1,7 @@
 const guideModel = require('../models/guide').guideModel;
 const placeModel = require('../models/place').placeModel;
 const exModel = require('../models/excursions').exModel;
+const orderModel = require('../models/orders').orderModel;
 
 /**
  * Страница "Смена пароля гида"
@@ -13,9 +14,34 @@ exports.getGuideOptionsPage = (req, res) => {
 /**
  * Страница "Заказы гида"
  */
-exports.getGuideOrdersPage = (req, res) => {
-    let id = req.session.guide.id
-    res.render('gid_orders.html', { id: id});
+exports.getGuideOrdersPage = async (req, res) => {
+    let id = req.session.guide.id,
+    guide = await guideModel.getGuide(id)
+    
+    const ordersNew = [];
+    const ordersDone = [];
+    const ordersNow = [];
+
+    guide.orders.forEach( (order) => {
+        switch(order.status) {
+            case 0 : ordersNew.push(order);
+                break;
+            case 1 : ordersNow.push(order);
+                break;
+            case 2 : ordersDone.push(order);
+                break;
+        }
+    });
+
+    // console.log(guide)
+    // console.log(ordersNow)
+
+    res.render('gid_orders.html', {
+         id: id,
+         ordersNew: ordersNew,
+         ordersNow: ordersNow,
+         ordersDone: ordersDone
+        });
 }
 
 /**
@@ -69,4 +95,20 @@ exports.getProfilePage = async (req, res) => {
     let id = req.session.guide.id,
         guide = await guideModel.getGuide(id)
     res.render('gid_profile.html', {guide: guide})
+}
+
+// PUT запрос на обновление статуса заказа до 1 (взят)
+exports.confirmOrder = async (req, res) => {
+    const order = await orderModel.getOrder(req.params.id)
+    order.status = 1;
+    await order.save()
+    res.send()
+}
+
+// PUT запрос на обновление статуса заказа до 2 (закончен)
+exports.finishOrder = async (req, res) => {
+    const order = await orderModel.getOrder(req.params.id)
+    order.status = 2;
+    await order.save()
+    res.send()
 }

@@ -61,6 +61,8 @@ router.get('/guideProfile', lkController.getProfilePage);
 // ЛК гида - utils
 router.post('/guidePlaceAdd', lkController.addPlace);
 router.post('/guidePlaceRemove', lkController.removePlace);
+router.put('/order/confirm/:id', lkController.confirmOrder);
+router.put('/order/done/:id', lkController.finishOrder);
 
 //Карточки(профиль) гида и места
 router.get('/error/404', error404. throwError);
@@ -77,8 +79,7 @@ router.get('/activate/:url', regGuideController.confirmEmail);
 
 //Создание заказа
 router.post('/new_order', newOrderController.getNewOrderPage);
-//FIXME:
-//router.post('/new_order', newOrderController.createOrder); 
+router.post('/set_new_order', newOrderController.createOrder); 
 
 //Аутентификация гидов
 router.post('/guide/login', logGuideController.login);

@@ -1,229 +1,176 @@
-{% extends "templates/pageTemplate.html" %}
-
-{% block commonStyles %}
+{% extends "templates/pageTemplate.html" %} {% block commonStyles %}
 
 <link rel="stylesheet" href="/css/brm_gid-navbar.css">
-<link rel="stylesheet" href="/css/brm_gid-orders.css">
-
-{% endblock %}
-
-{% block content %}
+<link rel="stylesheet" href="/css/brm_gid-orders.css"> {% endblock %} {% block content %}
 <div class="wrap">
 
-   <!-- ====================== -->
+  <!-- ====================== -->
   <!-- top-menu -->
   <div class="container-fluid gid_nav">
     <div class="row">
-        <div class='col-xs-12 col-sm-12 col-md-offset-3 col-md-9 '>
-            {% include "templates/top_menu.html" %}
-        </div>
-    </div>
-</div>
-
-<!-- ================================ -->
-<!-- main -->
-<main>
-  <div class="container-fluid">
-    <div class="row">
-      <!-- ========================================= -->
-      <!-- New orders -->
-      <!-- ========================================= -->
-      <div class="col-sm-4 col-md-4 active_order">
-        <h4>Активные заказы</h4>
-        <div class="order new_order">
-          <h3>Название места</h3>
-          <ul>
-            <li>Имя:
-              <span class="order--name">name</span>
-            </li>
-            <li>Телефон:
-              <span class="order--number">number</span>
-            </li>
-            <li>Дата:
-              <span class="order--date">date</span>
-            </li>
-            <li>Время:
-              <span class="order--time">time</span>
-            </li>
-            <li>Количество человек:
-              <span class="order--people">54</span>
-            </li>
-          </ul>
-          <button type="button" class="new_order--btnY">Принять</button>
-          <button type="button" class="new_order--btnN">Отказ</button>
-        </div>
-      </div>
-      <!-- ========================================= -->
-      <!-- Recent orders -->
-      <!-- ========================================= -->
-      <div class="col-sm-4 col-md-4">
-        <h4>Текущие</h4>
-        <div class="list-wrapper">
-        <!-- old order -->
-        <div class="panel-group" id="accordion">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" date-parent='#accordion' href="#collapse1">
-                  Название места
-                </a>
-              </h4>
-            </div>
-            <div id='collapse1' class="panel-collapse collapse">
-              <div class="panel-body">
-                <div class="order done_order">
-                  <ul>
-                    <li>Имя:
-                      <span class="order--name">name</span>
-                    </li>
-                    <li>Телефон:
-                      <span class="order--number">number</span>
-                    </li>
-                    <li>Дата:
-                      <span class="order--date">date</span>
-                    </li>
-                    <li>Время:
-                      <span class="order--time">time</span>
-                    </li>
-                    <li>Количество человек:
-                      <span class="order--people">54</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- old order END -->
-        <div class="panel-group" id="accordion">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" date-parent='#accordion' href="#collapse4">
-                  Название места 2
-                </a>
-              </h4>
-            </div>
-            <div id='collapse4' class="panel-collapse collapse">
-              <div class="panel-body">
-                <div class="order done_order">
-                  <ul>
-                    <li>Имя:
-                      <span class="order--name">name</span>
-                    </li>
-                    <li>Телефон:
-                      <span class="order--number">number</span>
-                    </li>
-                    <li>Дата:
-                      <span class="order--date">date</span>
-                    </li>
-                    <li>Время:
-                      <span class="order--time">time</span>
-                    </li>
-                    <li>Количество человек:
-                      <span class="order--people">54</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> <!-- end order -->
-        </div>
-      </div>
-      <!-- ========================================= -->
-      <!-- Done orders -->
-      <!-- ========================================= -->
-      <div class="col-sm-4 col-md-4">
-        <h4>Законченные</h4>
-        <div class="list-wrapper">
-        <!-- old order -->
-        <div class="panel-group" id="accordion">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" date-parent='#accordion' href="#collapse5">
-                  Название места
-                </a>
-              </h4>
-            </div>
-            <div id='collapse5' class="panel-collapse collapse">
-              <div class="panel-body">
-                <div class="order done_order">
-                  <ul>
-                    <li>Имя:
-                      <span class="order--name">name</span>
-                    </li>
-                    <li>Телефон:
-                      <span class="order--number">number</span>
-                    </li>
-                    <li>Дата:
-                      <span class="order--date">date</span>
-                    </li>
-                    <li>Время:
-                      <span class="order--time">time</span>
-                    </li>
-                    <li>Количество человек:
-                      <span class="order--people">54</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- old order END -->
-        <div class="panel-group" id="accordion">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" date-parent='#accordion' href="#collapse2">
-                  Название места 2
-                </a>
-              </h4>
-            </div>
-            <div id='collapse2' class="panel-collapse collapse">
-              <div class="panel-body">
-                <div class="order done_order">
-                  <ul>
-                    <li>Имя:
-                      <span class="order--name">name</span>
-                    </li>
-                    <li>Телефон:
-                      <span class="order--number">number</span>
-                    </li>
-                    <li>Дата:
-                      <span class="order--date">date</span>
-                    </li>
-                    <li>Время:
-                      <span class="order--time">time</span>
-                    </li>
-                    <li>Количество человек:
-                      <span class="order--people">54</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> <!-- end order -->
- 
-        </div>
-        <!-- end wrapper  -->
+      <div class='col-xs-12 col-sm-12 col-md-offset-3 col-md-9 '>
+        {% include "templates/top_menu.html" %}
       </div>
     </div>
   </div>
-</main>
+
+  <!-- ================================ -->
+  <!-- main -->
+  <main>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- ========================================= -->
+        <!-- New orders -->
+        <!-- ========================================= -->
+        <ul class="col-sm-4 col-md-4 active_order">
+          <h4>Активные заказы</h4>
+          {% for order in ordersNew %}
+          <li>
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" date-parent='#accordion' href="#{{ order._id }}">
+                      {{ order.place.name }}
+                    </a>
+                  </h4>
+                </div>
+                <form id='{{ order._id }}' class="panel-collapse collapse new_order">
+                  <div class="panel-body">
+                    <div class="order">
+                      <ul>
+                        <li>Имя:
+                          <span class="order--name">{{ order.tourist.name }}</span>
+                        </li>
+                        <li>Телефон:
+                          <span class="order--number">Чтобы увидеть номер телефона, возьмите заказ</span>
+                        </li>
+                        <li>Дата:
+                          <span class="order--date">{{ order.date }}</span>
+                        </li>
+                        <li>Время:
+                          <span class="order--time">TODO</span>
+                        </li>
+                        <li>Количество человек:
+                          <span class="order--people">{{ order.people }}</span>
+                        </li>
+                      </ul>
+                      <button type="submit" class="new_order--btnY">Принять</button>
+                      <button type="button" class="new_order--btnN">Отказ</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </li>
+          {% endfor %}
+        </ul>
+        <!-- ========================================= -->
+        <!-- Current orders -->
+        <!-- ========================================= -->
+        <div class="col-sm-4 col-md-4">
+          <h4>Текущие</h4>
+          <ul>
+            {% for order in ordersNow %}
+            <li>
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" date-parent='#accordion' href="#{{ order._id }}">
+                        {{ order.place.name }}
+                      </a>
+                    </h4>
+                  </div>
+                  <form id='{{ order._id }}' class="panel-collapse collapse current_order">
+                    <div class="panel-body">
+                      <div class="order-now">
+                        <ul>
+                          <li>Имя:
+                            <span class="order__name">{{ order.tourist.name }}</span>
+                          </li>
+                          <li>Телефон:
+                            <span class="order__number">{{ order.tourist.phone }}</span>
+                          </li>
+                          <li>Дата:
+                            <span class="order__date">{{ order.date }}</span>
+                          </li>
+                          <li>Время:
+                            <span class="order__time">TODO</span>
+                          </li>
+                          <li>Количество человек:
+                            <span class="order__people">{{ order.people }}</span>
+                          </li>
+                        </ul>
+                        <div class="row">
+                          <button type="submit" class="btn form-control">Завершить</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <!-- ========================================= -->
+        <!-- Done orders -->
+        <!-- ========================================= -->
+        <div class="col-sm-4 col-md-4">
+          <h4>Законченные</h4>
+          <ul>
+            {% for order in ordersDone %}
+            <li>
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" date-parent='#accordion' href="#{{ order._id }}">
+                        {{ order.place.name }}
+                      </a>
+                    </h4>
+                  </div>
+                  <div id='{{ order._id }}' class="panel-collapse collapse">
+                    <div class="order">
+                      <ul>
+                        <li>Имя:
+                          <span class="order--name">{{ order.tourist.name }}</span>
+                        </li>
+                        <li>Телефон:
+                          <span class="order--number">{{ order.tourist.phone }}</span>
+                        </li>
+                        <li>Дата:
+                          <span class="order--date">{{ order.date }}</span>
+                        </li>
+                        <li>Время:
+                          <span class="order--time">TODO</span>
+                        </li>
+                        <li>Количество человек:
+                          <span class="order--people">{{ order.people }}</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+          <!-- end wrapper  -->
+        </div>
+      </div>
+    </div>
+  </main>
 
 
-</div> <!-- wrap -->
- 
+</div>
+<!-- wrap -->
 
-  {% endblock %}
 
-  {% block commonJS %}
+{% endblock %} {% block commonJS %}
 
-  <script src="/js/jquery-2.2.3.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
-  
-  {% endblock %}
+<script src="/js/jquery-2.2.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/gid_orders.js"></script> {% endblock %}

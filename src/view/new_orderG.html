@@ -33,23 +33,23 @@
                 <h1>Оформление заказа:</h1>
                 <div class="form-group">
                     <label for="name">Имя:</label>
-                    <input type="text" class="form-control" id="name">
+                    <input type="text" class="form-control" name="name" id="name">
                 </div>
                 <div class="form-group">
                     <label for="phone">Телефон:</label>
-                    <input type="text" class="form-control" id="phone">
+                    <input type="text" class="form-control" name="phone" id="phone">
                 </div>
                 <div class="form-group">
                     <label for="email">E-mail:</label>
-                    <input type="email" class="form-control" id="email">
+                    <input type="email" class="form-control" name="email" id="email">
                 </div>
                 <div class="form-group">
                     <label for="date">Дата:</label>
-                    <input type="date" class="form-control" id="date">
+                    <input type="date" class="form-control" name="date" id="date">
                 </div>
                 <div class="form-group">
                     <label for="people">Количество человек:</label>
-                    <input type="number" min='1' max='6' class="form-control" id="people">
+                    <input type="number" min='1' max='6' class="form-control" name="people" id="people">
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
                     </button>
                     <h4 class="modal-title">Ваш новый заказ</h4>
                 </div>
-                <div class="modal-body row">
+                <div class="modal-body row modal__order-list">
                     <div class="form-group col-sm-6 col-md-6">
                         <label id='form-label' for="guide_check">Выбранный гид: Name</label>
                         <div style="background-image: url('{{ guide.img }}');
@@ -123,7 +123,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                    <button type="submit" class="btn btn-primary">Подтвердить</button>
+                    <button type="submit" id="createOrderBtn" class="btn btn-primary">Подтвердить</button>
                 </div>
             </div>
             <!-- /.modal-content -->
