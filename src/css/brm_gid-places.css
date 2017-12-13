@@ -108,11 +108,13 @@ aside {
   overflow: auto;
  
 }
-
+.edit_place {
+  padding-bottom: 1rem;
+}
 .remove_place {
   text-align: center;
 }
-.remove_place button {
+.remove_place button, .edit_place button  {
   border: 1px #2ecc71 solid;
   color: #2ecc71;
   background-color: white;
@@ -120,6 +122,10 @@ aside {
 .remove_place button:hover {
   color: white;
   background-color: rgb(153, 45, 45);
+}
+.edit_place button:hover {
+  color: white;
+  background-color: rgb(145, 140, 3);
 }
 
 /* ========================================================================== */
