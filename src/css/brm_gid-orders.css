@@ -24,16 +24,11 @@ main .row:first-child {
 .order {
   padding-bottom: 3rem;
 }
-/* .new_order {
-  position: relative;
-  margin-top: 1rem;
-  border: 3px #2ecc71 solid;
-  border-radius: 4px;
-} */
-.order ul {
+
+.order ul, .order-now ul {
   padding-left: 2rem;
 }
-.order li {
+.order li, .order-now li{
   padding: .5rem
 }
 .new_order button {
@@ -62,7 +57,6 @@ main .row:first-child {
 .new_order--btnY:focus, .new_order--btnN:focus {
   outline: none;
 }
-
 
 .panel-group {
   margin: 1rem 0 1rem 0;

@@ -85,25 +85,27 @@
                   </div>
                   <form id='{{ order._id }}' class="panel-collapse collapse current_order">
                     <div class="panel-body">
-                      <div class="order">
+                      <div class="order-now">
                         <ul>
                           <li>Имя:
-                            <span class="order--name">{{ order.tourist.name }}</span>
+                            <span class="order__name">{{ order.tourist.name }}</span>
                           </li>
                           <li>Телефон:
-                            <span class="order--number">{{ order.tourist.phone }}</span>
+                            <span class="order__number">{{ order.tourist.phone }}</span>
                           </li>
                           <li>Дата:
-                            <span class="order--date">{{ order.date }}</span>
+                            <span class="order__date">{{ order.date }}</span>
                           </li>
                           <li>Время:
-                            <span class="order--time">TODO</span>
+                            <span class="order__time">TODO</span>
                           </li>
                           <li>Количество человек:
-                            <span class="order--people">{{ order.people }}</span>
+                            <span class="order__people">{{ order.people }}</span>
                           </li>
                         </ul>
-                        <button type="submit" class="orderNow_end">Завершить</button>
+                        <div class="row">
+                          <button type="submit" class="btn form-control">Завершить</button>
+                        </div>
                       </div>
                     </div>
                   </form>
