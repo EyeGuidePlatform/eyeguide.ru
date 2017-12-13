@@ -91,6 +91,18 @@ aside .edit:active {
 .profile_info div:nth-child(n+2) {
   margin-top: -3px;
 }
+.profile_info div:first-child {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
+  border-bottom-left-radius: 0px;
+}
+.profile_info div:last-child {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+
+  border-top-right-radius: 0px;
+}
 
 .form_lang {
   position: absolute;
@@ -104,6 +116,19 @@ aside .edit:active {
   .profile_info div:nth-child(n+2) {
     margin-top: 0px;
     margin-left: -3px;
+  }
+  .profile_info div:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+    border-top-right-radius: 0px;
+  }
+  .profile_info div:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+    border-bottom-left-radius: 0px;
+
   }
 }
 
