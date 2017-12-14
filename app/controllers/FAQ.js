@@ -17,3 +17,4 @@ exports.sendSupportEmail = (req, res) => {
     req.flash('success', 'Ваше сообщение успешно отправлено!');
     res.redirect('/');
 }
+
