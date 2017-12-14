@@ -1,0 +1,35 @@
+.modal {
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.fade.show {
+    display: block;
+    opacity: 0;
+}
+
+.modal.fade .modal-dialog {
+    transform: translate(0, 80px);
+}
+
+.modal-content, 
+.modal-header, 
+.modal-footer {
+    border-color: #2ecc71;
+    text-align: center;
+}
+
+.modal-title {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.sign-up {
+    background-color: #2ecc71;
+}
+
+.sign-up:hover,
+.sign-up:focus {
+    background-color: #0caa50;
+}

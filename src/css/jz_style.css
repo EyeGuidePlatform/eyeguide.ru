@@ -1,0 +1,333 @@
+
+/* ========================================================================== */
+/* Left-sidebar */
+/* ========================================================================== */
+#slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    width: 100%;
+}
+
+#slider .image {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+#map-sidebar {
+    display: table;
+    table-layout: fixed;
+
+    padding: 0;
+
+    z-index: 0;
+
+    height: 100vh;
+}
+
+#map-sidebar .fade {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #000;
+    opacity: .4;
+}
+
+.vcenter {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;
+}
+
+.left-s__content {
+    font-family: Roboto;
+    color: #fff;
+}
+
+.intro-title {
+    margin: 0;
+
+    font-size: 35px;
+    font-weight: 500;
+}
+
+.search-form {
+    height: 40px;
+    margin-top: 20px;
+}
+
+.search-form.bottom {
+    position: absolute;
+    z-index: 2;
+
+    bottom: 100px;
+    width: 100%;
+    left: 0;
+}
+
+.search-input {
+    padding: 11px 10px;
+    width: 50%;
+    height: 100%;
+    min-width: 210px;
+
+    color: #000;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    margin-right: -4px;
+}
+
+.search-submit {
+    color: #fff;
+    width: 80px;
+    height: 100%;
+    margin-top: 1px;
+
+    background-color: #2ecc71;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    transition: background-color 0.2s ease-in;
+}
+
+.search-submit:hover,
+.search-submit:focus {
+    background-color: #0caa50;
+}
+
+/* ========================================================================== */
+/* Right-sidebar */
+/* ========================================================================== */
+#content-sidebar {
+    padding: 0;
+    font-family: Roboto;
+}
+
+.info-block {
+    padding: 40px;
+    color: #000;
+}
+
+.info-block i {
+    margin-right: 10px;
+}
+
+.info-block:nth-of-type(2n) {
+    background-color: #eaffea;
+}
+
+.info-block .title {
+    margin: 0;
+    font-weight: 500;
+    font-size: 1.7em;
+}
+
+.info-block .descr {
+    line-height: 1.5em;
+    font-size: 1.2em;
+}
+
+.info-block a {
+    color: #0caa50;
+}
+
+
+#switch {
+    padding: 40px;
+}
+
+.switcher {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.switcher button {
+    padding: 5px 30px;
+    border: 1px solid #2ecc71;
+    background-color: #fff;
+
+    transition: all 0.3s ease-in;
+}
+
+.switcher button:hover,
+.switcher button:focus {
+    background-color: #0caa50;
+    color: #fff;
+}
+
+.switcher button.active {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.to-guides {
+    border-radius: 20px 0 0 20px;
+    margin-right: -5px;
+}
+
+.to-places {
+    border-radius: 0 20px 20px 0;
+}
+
+.elements {
+    margin-bottom: 20px;
+}
+
+.element {
+    overflow: hidden;
+    
+    padding: 15px;
+
+    transition: all 0.2s ease;
+}
+
+.element:hover,
+.element:focus {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.element-img {
+    height: 200px;
+    margin-bottom: 10px;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    box-shadow: 0px 0px 10px 2px #ccc;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.element-name {
+    margin: 0;
+}
+
+#switch .element-info {
+    padding: 0;
+}
+
+.show-all {
+    text-align: center;
+}
+
+.show-all a {
+    padding: 12px 20px;
+    color: #fff;
+    border: 1px solid #0caa50;
+    border-radius: 20px;
+
+    background-color: #2ecc71;
+
+    transition: all 0.3s ease;
+}
+
+.show-all a:hover,
+.show-all a:focus {
+    background-color: #0caa50;
+
+    text-decoration: none;
+}
+
+
+/* ========================================================================== */
+/* Media queries */
+/* ========================================================================== */
+@media (min-width: 992px) {
+    #map-sidebar {
+        position: fixed;
+    }
+}
+
+@media (max-width: 520px) {
+    #switch .element {
+        width: 100%;
+    }
+}
+
+/*  Bootstrap Clearfix */
+
+/*  Tablet  */
+@media (min-width:767px){
+    
+      /* Column clear fix */
+      .col-lg-1:nth-child(12n+1),
+      .col-lg-2:nth-child(6n+1),
+      .col-lg-3:nth-child(4n+1),
+      .col-lg-4:nth-child(3n+1),
+      .col-lg-6:nth-child(2n+1),
+      .col-md-1:nth-child(12n+1),
+      .col-md-2:nth-child(6n+1),
+      .col-md-3:nth-child(4n+1),
+      .col-md-4:nth-child(3n+1),
+      .col-md-6:nth-child(2n+1){
+        clear: none;
+      }
+      .col-sm-1:nth-child(12n+1),
+      .col-sm-2:nth-child(6n+1),
+      .col-sm-3:nth-child(4n+1),
+      .col-sm-4:nth-child(3n+1),
+      .col-sm-6:nth-child(2n+1){
+        clear: left;
+      }
+    }
+    
+    
+    /*  Medium Desktop  */
+    @media (min-width:992px){
+    
+      /* Column clear fix */
+      .col-lg-1:nth-child(12n+1),
+      .col-lg-2:nth-child(6n+1),
+      .col-lg-3:nth-child(4n+1),
+      .col-lg-4:nth-child(3n+1),
+      .col-lg-6:nth-child(2n+1),
+      .col-sm-1:nth-child(12n+1),
+      .col-sm-2:nth-child(6n+1),
+      .col-sm-3:nth-child(4n+1),
+      .col-sm-4:nth-child(3n+1),
+      .col-sm-6:nth-child(2n+1){
+        clear: none;
+      }
+      .col-md-1:nth-child(12n+1),
+      .col-md-2:nth-child(6n+1),
+      .col-md-3:nth-child(4n+1),
+      .col-md-4:nth-child(3n+1),
+      .col-md-6:nth-child(2n+1){
+        clear: left;
+      }
+    }
+    
+    
+    /*  Large Desktop  */
+    @media (min-width:1200px){
+    
+      /* Column clear fix */
+      .col-md-1:nth-child(12n+1),
+      .col-md-2:nth-child(6n+1),
+      .col-md-3:nth-child(4n+1),
+      .col-md-4:nth-child(3n+1),
+      .col-md-6:nth-child(2n+1),
+      .col-sm-1:nth-child(12n+1),
+      .col-sm-2:nth-child(6n+1),
+      .col-sm-3:nth-child(4n+1),
+      .col-sm-4:nth-child(3n+1),
+      .col-sm-6:nth-child(2n+1){
+        clear: none;
+      }
+      .col-lg-1:nth-child(12n+1),
+      .col-lg-2:nth-child(6n+1),
+      .col-lg-3:nth-child(4n+1),
+      .col-lg-4:nth-child(3n+1),
+      .col-lg-6:nth-child(2n+1){
+        clear: left;
+      }
+    }

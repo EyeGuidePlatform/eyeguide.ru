@@ -1,0 +1,87 @@
+{% extends "templates/pageTemplate.html" %}
+
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/jz_style.css">
+
+<script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid wrap">
+    <div class="row">
+        <!-- =========================================================== -->
+        <!-- Left-Sidebar -->
+        <!-- =========================================================== -->
+        <div id="map-sidebar" style="background-image: none; background-color: #ccc;" class="col-md-6 col-sm-12 col-xs-12">
+            <div class="left-s__content vcenter">
+                <form class="search-form bottom" action="/map" method="POST">
+                    <input class="search-input" type="text" name="city" placeholder="Например: Москва" value="{{ city }}" required>
+                    <button class="search-submit">Найти</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- =========================================================== -->
+        <!-- Right-Sidebar -->
+        <!-- =========================================================== -->
+        <div id="content-sidebar" class="col-md-offset-6 col-md-6 col-sm-12 col-xs-12">
+            <div id="switch">
+                <div class="switcher">
+                    <button class="to-guides active" data-target="#guides">Гиды</button>
+                    <button class="to-places" data-target="#places">Места</button>
+                </div>
+
+                <div id="guides">
+                    <div class="elements row">
+                        {% for guide in guides %}
+                        <a href="/profile/{{ guide._id }}" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
+                            <div style="background-image: url('{{ guide.img }}')" class="element-img col-md-12"></div>
+                            <div class="element-info col-md-12">
+                                <h3 class="element-name">{{ guide.name }}</h3>
+                                <p class="element-stats">
+                                    {{ guide.info.hours }} часов экскурсии<br>
+                                    {{ guide.info.tours }} проведенных экскурсий<br>
+                                    {{ guide.info.happy }} счастливых туристов
+                                </p>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+
+                    <div class="show-all">
+                        <a href="/search/guides/?city={{city}}&lang={{lang}}">Показать всех гидов</a>
+                    </div>
+                    
+                </div>
+
+                <div id="places" class="hidden">
+                    <div class="elements row">
+                        {% for place in places %}
+                        <a href="/place/{{ place._id }}" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
+                            <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
+                            <div class="element-info col-md-12">
+                                <h3 class="element-name">{{ place.name }}</h3>
+                                <p class="element-stats">
+                                    {{ place.description | truncate(110) }}
+                                </p>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="show-all">
+                        <a href="/search/places">Показать все места</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- container-fluid -->
+{% endblock %}
+
+{% block footerClasses %}col-md-offset-6 col-md-6{% endblock %}
+
+{% block commonJS %}
+<script src="/js/jquery-2.2.3.min.js"></script>
+<script src="/js/map.js"></script>
+{% endblock %}

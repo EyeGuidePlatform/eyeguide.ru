@@ -1,0 +1,42 @@
+main {
+  margin-top: 2rem;
+}
+.container__header {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 1.7em;
+}
+.container__confirm {
+  margin-left: 2rem;
+  color: #0caa50
+}
+.submit_btn {
+  float: left;
+  transition: all .3s ease;
+}
+.submit_btn:hover {
+  color: white;
+  background-color:#0caa50;
+}
+.delete_acc_btn {
+  float: right;
+  transition: all .3s ease;
+}
+.delete_acc_btn i{
+font-size: 1.4em;
+color:red;
+transition: all .3s ease;
+}
+.delete_acc_btn:hover{
+  color: white;
+  background-color: red;
+}
+.delete_acc_btn:hover i {
+  color:white;
+}
+.hide {
+  display: none;
+}
+.pb {
+  padding-bottom: 1rem;
+}
