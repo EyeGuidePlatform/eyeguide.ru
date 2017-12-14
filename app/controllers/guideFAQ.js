@@ -8,10 +8,7 @@ exports.getGuideFAQpage = (req, res) => {
             guideName: req.session.guide.name
         });
     } 
-    else{
-        req.flash('')
-        res.redirect('back');
-    }
+    else res.redirect('/FAQ');
 };
 
 exports.sendSupportEmail = async (req, res) => {

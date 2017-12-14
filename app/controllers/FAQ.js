@@ -1,7 +1,9 @@
 emailModel = require('../models/email');
 
 exports.getFAQpage = (req, res) => {
+    if(!req.session.guide)
     res.render('FAQ.html');
+    else res.redirect('/guideFAQ');
 };
 
 exports.sendSupportEmail = (req, res) => {
