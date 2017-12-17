@@ -10,6 +10,18 @@ $('.new_order').on('submit', (e) => {
 
 });
 
+$('.delete').on('click', (e) => {
+    e.preventDefault()
+    $.ajax({
+        url: `/order/delete/${e.currentTarget.form.id}`,
+        type: 'PUT',
+        complete: function() {
+            location.reload()
+        }
+    });
+});
+
+
 $('.current_order').on('submit', (e) => {
     e.preventDefault();
     $.ajax({
@@ -20,3 +32,4 @@ $('.current_order').on('submit', (e) => {
         }
     })
 })
+

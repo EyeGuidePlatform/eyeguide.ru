@@ -40,6 +40,10 @@ guideSchema = mongoose.Schema({
         type: String,
         default: 'http://dummyimage.com/300'
     },
+    car: {
+        type: Boolean,
+        default: false
+    },
     info: {
         spec: [String],
         types: [String],

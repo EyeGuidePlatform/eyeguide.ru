@@ -63,6 +63,7 @@ router.post('/guidePlaceAdd', lkController.addPlace);
 router.post('/guidePlaceRemove', lkController.removePlace);
 router.put('/order/confirm/:id', lkController.confirmOrder);
 router.put('/order/done/:id', lkController.finishOrder);
+router.put('/order/delete/:id', lkController.deleteOrder);
 
 //Карточки(профиль) гида и места
 router.get('/error/404', error404. throwError);

@@ -42,6 +42,9 @@
                         <li>Имя:
                           <span class="order--name">{{ order.tourist.name }}</span>
                         </li>
+                        <li>Фамилия:
+                          <span class="order__name">Фамилия скрыта</span>
+                        </li>
                         <li>Телефон:
                           <span class="order--number">Чтобы увидеть номер телефона, возьмите заказ</span>
                         </li>
@@ -49,14 +52,14 @@
                           <span class="order--date">{{ order.date }}</span>
                         </li>
                         <li>Время:
-                          <span class="order--time">TODO</span>
+                          <span class="order--time">{{ order.time }}</span>
                         </li>
                         <li>Количество человек:
                           <span class="order--people">{{ order.people }}</span>
                         </li>
                       </ul>
                       <button type="submit" class="new_order--btnY">Принять</button>
-                      <button type="button" class="new_order--btnN">Отказ</button>
+                      <button type="button" class="delete">Отказ</button>
                     </div>
                   </div>
                 </form>
@@ -75,7 +78,7 @@
             {% for order in ordersNow %}
             <li>
               <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
+                <div class="panel panel-default" {% if order.status === 5 %} style='border-color:brown' {% endif%}>
                   <div class="panel-heading">
                     <h4 class="panel-title">
                       <a data-toggle="collapse" date-parent='#accordion' href="#{{ order._id }}">
@@ -90,6 +93,9 @@
                           <li>Имя:
                             <span class="order__name">{{ order.tourist.name }}</span>
                           </li>
+                          <li>Фамилия:
+                            <span class="order__name">{{ order.tourist.surname }}</span>
+                          </li>
                           <li>Телефон:
                             <span class="order__number">{{ order.tourist.phone }}</span>
                           </li>
@@ -97,15 +103,21 @@
                             <span class="order__date">{{ order.date }}</span>
                           </li>
                           <li>Время:
-                            <span class="order__time">TODO</span>
+                            <span class="order__time">{{ order.time }}</span>
                           </li>
                           <li>Количество человек:
                             <span class="order__people">{{ order.people }}</span>
                           </li>
                         </ul>
+                        {% if order.status === 1 %}
                         <div class="row">
                           <button type="submit" class="btn form-control">Завершить</button>
                         </div>
+                        {% else %}
+                        <div class="row">
+                          <button type="button" class="btn form-control delete">Удалить</button>
+                        </div>
+                        {% endif %}
                       </div>
                     </div>
                   </form>
@@ -138,6 +150,9 @@
                         <li>Имя:
                           <span class="order--name">{{ order.tourist.name }}</span>
                         </li>
+                        <li>Фамилия:
+                          <span class="order__name">{{ order.tourist.surname }}</span>
+                        </li>
                         <li>Телефон:
                           <span class="order--number">{{ order.tourist.phone }}</span>
                         </li>
@@ -145,7 +160,7 @@
                           <span class="order--date">{{ order.date }}</span>
                         </li>
                         <li>Время:
-                          <span class="order--time">TODO</span>
+                          <span class="order--time">{{ order.time }}</span>
                         </li>
                         <li>Количество человек:
                           <span class="order--people">{{ order.people }}</span>
