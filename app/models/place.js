@@ -60,11 +60,14 @@ placeSchema.statics = {
                 case 'city': 
                     if (!arg.city) break;
                     
-                    query.where('city').equals(arg.city);
+                    query.where({'city': {$regex: arg.city, $options:'i'}});
                     break;
                 case 'limit': query.limit(arg.limit);
                     break;
-                case '_id': query.where('_id').in(arg._id);
+                case '_id':
+                    if (!arg._id) break;
+
+                    query.where('_id').in(arg._id);
                     break;
                 case 'not': query.where('_id').nin(arg.not);
                     break;

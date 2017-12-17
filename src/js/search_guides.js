@@ -3,9 +3,9 @@ const placeSelect = new Choices('#places', {
         removeItemButton: true
     }),
     urlParams = new URLSearchParams(window.location.search),
-    selectedPlaces = urlParams.getAll('places');
+    selectedPlaces = urlParams.getAll('places'),
 
-citySelect = document.getElementById('city');
+    citySelect = document.getElementById('city');
 
 (async () => {
     const places = await getPlacesJSON('city', 'none');

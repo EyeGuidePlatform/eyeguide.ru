@@ -1,6 +1,47 @@
 const urlParams = new URLSearchParams(window.location.search),
     selectedCity = urlParams.get('city');
 
+//Поле 'выбор мест'
+const placeSelect = new Choices('#place', {
+    removeItemButton: true
+}),
+    selectedPlace = urlParams.get('place'),
+
+    citySelect = document.getElementById('city');
+
+(async () => {
+    const places = await getPlacesJSON('city', 'none');
+
+    updatePlaces(places, citySelect.value);
+
+    citySelect.onchange = e => {
+        let newCity = e.target.value;
+
+        updatePlaces(places, newCity);
+    }
+})();
+
+function updatePlaces(places, newCity) {
+    let items = [{value: null, label: ''}];
+
+    places.forEach( place => {
+        if (place.city == newCity) {
+            const item = {
+                value: place._id,
+                label: place.name
+            };
+            if (selectedPlace == place._id) {
+                item.selected = true;
+            }
+            
+            items.push(item);
+        }
+    } );
+
+    //Обновляем места, принадлежащие выбранному городу
+    placeSelect.clearStore().setChoices(items, 'value', 'label', false);
+}
+
 // map
 YMaps.jQuery(function () {
 
@@ -23,8 +64,9 @@ YMaps.jQuery(function () {
 
     let places = [];
     (async () => {
-        console.log(selectedCity);
-        if (selectedCity) {
+        if (selectedPlace) {
+            places.push(await getPlacesJSON('id', selectedPlace));
+        } else if (selectedCity) {
             places = await getPlacesJSON('city', selectedCity);
         } else {
             places = await getPlacesJSON('allPlaces');

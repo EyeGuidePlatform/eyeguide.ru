@@ -1,43 +1,35 @@
+const currentCity = $('.search-input')[0].value;
 
-let currentSelect = 'guides';
-let switcher = document.querySelector('.switcher');
+let currentSelect = 'guides',
+    switcher = $('.switcher')[0];
 
 YMaps.jQuery(initMap);
 
 
 function initMap() {
-    // Создает экземпляр карты и привязывает его к созданному контейнеру
-    const map = new YMaps.Map(YMaps.jQuery('#map-sidebar')[0]);
-    
-    map.enableScrollZoom();
-    // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
-    map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 11);
-
-    let template = new YMaps.Template(
-        '<div style="width: 300px; text-align:center"> \
-            <img style="width: 90%" src="$[img]"> \
-            <h3>$[name]</h3> \
-            <p>$[description]</p> \
-        </div>'
-    );
-
-    let s = new YMaps.Style(); 
-    s.balloonContentStyle = new YMaps.BalloonContentStyle(template);
-
-    const currentCity = YMaps.jQuery('.search-input')[0].value;
-    
-    let placesOfGuides = [],
-        allPlaces = [];
     (async () => {
-        placesOfGuides = await getPlacesJSON('guides', currentCity);
-        allPlaces = await getPlacesJSON('city', currentCity);
+        // Создает экземпляр карты и привязывает его к созданному контейнеру
+        const map = new YMaps.Map(YMaps.jQuery('#map-sidebar')[0]);
         
-        let gCollection = createCollection(placesOfGuides, s),
-            pCollection = createCollection(allPlaces, s);
-        
-        if(placesOfGuides.length != 0) {
-            showCollection(map, gCollection, placesOfGuides[0].geo);
-        }
+        map.enableScrollZoom();
+        // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
+        map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 11);
+
+        let template = new YMaps.Template(
+            '<div style="width: 300px; text-align:center"> \
+                <img style="width: 90%" src="$[img]"> \
+                <h3>$[name]</h3> \
+                <p>$[description]</p> \
+            </div>'
+        );
+
+        let s = new YMaps.Style(); 
+        s.balloonContentStyle = new YMaps.BalloonContentStyle(template);
+
+        let allPlaces = await getPlacesJSON('city', currentCity);
+            
+        let pCollection = createCollection(allPlaces, s);
+        showCollection(map, pCollection, allPlaces[0].geo);
         
 
         switcher.addEventListener('click', (e) => {
@@ -45,7 +37,7 @@ function initMap() {
             
             if (target.tagName != 'BUTTON' || target.classList.contains('active')) return;
             
-            switchBlock(target, map, pCollection, gCollection);
+            switchBlock(target, pCollection);
         });
     })();
 }
@@ -72,21 +64,17 @@ function showCollection(map, collection, center) {
 
 //FIXME:
 // Создать отдельный класс для свитчера
-function switchBlock(target, map, pCollection, gCollection) {
+function switchBlock(target, pCollection, gCollection) {
     let disableBtn;
     switch (target.className) {
         case 'to-guides':
             disableBtn = document.querySelector('.to-places');
             currentSelect = 'guides';
-            map.removeOverlay(pCollection);
-            map.addOverlay(gCollection);
 
             break;
         case 'to-places':
             disableBtn = document.querySelector('.to-guides');
             currentSelect = 'places';
-            map.removeOverlay(gCollection);
-            map.addOverlay(pCollection);
 
             break;
     }

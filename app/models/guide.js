@@ -195,7 +195,7 @@ guideSchema.statics = {
                 case 'city':
                     if (!arg.city) break;
 
-                    query.where('city').equals(arg.city);
+                    query.where({'city': {$regex: arg.city, $options:'i'}});
 
                     break;
                 case 'limit': query.limit(arg.limit);

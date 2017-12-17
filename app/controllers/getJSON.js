@@ -30,7 +30,12 @@ exports.getPlacesJSON = async (req, res) => {
             break;
 
         case 'allPlaces':
-                response = await placeModel.getPlaces();
+                response = await placeModel.getPlaces({visible: 1});
+            break;
+        
+        case 'id':
+            response = await placeModel.getPlace(parameter);
+
             break;
     }
       
