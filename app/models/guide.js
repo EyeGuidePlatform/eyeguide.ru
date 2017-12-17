@@ -1,7 +1,7 @@
 const mongoose = require('./../../server').mongoose,
     toHash = require('md5'),
     placeModel = require('./place').placeModel,
-    exModel = require('./excursions').exModel
+    exModel = require('./excursions').exModel;
 
 // схема данных - задает структуру объекта, хранимого в БД
 guideSchema = mongoose.Schema({
@@ -67,6 +67,7 @@ guideSchema = mongoose.Schema({
         value: String
     }]
 });
+
 
 
 guideSchema.statics = {
@@ -170,6 +171,7 @@ guideSchema.statics = {
      */
     getGuides: async function (...args) {
         let query = this.find();
+        const count = await this.count();
 
         //парсим аргументы и cоставляем query
         args.map(arg => {
@@ -232,4 +234,5 @@ guideSchema.methods = {
 
 // модель данных и ее экспорт
 let guideModel = mongoose.model('guide', guideSchema);
+
 module.exports.guideModel = guideModel;
