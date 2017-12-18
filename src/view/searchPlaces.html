@@ -88,7 +88,7 @@
 
               <!-- ================================ -->
               <!-- places template -->
-              <div id="places" class="row hidden">
+              <div id="places" class="row pagination-container hidden">
                 {% for place in places %}
                 <a href="/place/{{ place._id }}" class="element col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
@@ -117,6 +117,7 @@
 
   <script src="/js/search.js"></script>
   <script src="/js/choiceInputs.js"></script>
+  <script src="/js/pagination.js"></script>
 
   <script src="/js/bootstrap.min.js"></script>
  {% endblock %}

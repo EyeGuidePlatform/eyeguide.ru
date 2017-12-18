@@ -7,21 +7,6 @@ exports.getPlacesJSON = async (req, res) => {
     let response;
 
     switch (query) {
-        case 'guides':
-            const guides = await guideModel.getGuides({city: parameter}, {limit: 6});
-            let foundPlaces = [];
-
-            //FIXME: Оптимизировать выбор
-            guides.forEach(guide => {
-                guide.places.forEach(place => {
-                    if (place.city == parameter && foundPlaces.indexOf(place) === -1) {
-                        foundPlaces.push(place);
-                    }
-                });
-            });
-            
-            response = foundPlaces;
-            break;
         case 'city':
             if (parameter !== 'none')
                 response = await placeModel.getPlaces({ city: parameter }, {visible: 1});
@@ -40,6 +25,21 @@ exports.getPlacesJSON = async (req, res) => {
     }
       
     res.json(JSON.stringify(response));
+}
+
+exports.getPlaces = async (req, res) => {
+    let queries = [];
+
+    for (let query in req.query) {
+        let queryObj = {};
+        queryObj[query] = req.query[query];
+
+        queries.push(queryObj);
+    }
+
+    let response = await placeModel.getPlaces(...queries);
+    
+    res.json(response);
 }
 
 exports.getPlaceByIdJSON = async (req, res) => {

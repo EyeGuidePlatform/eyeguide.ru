@@ -87,6 +87,7 @@ router.post('/guide/logout', middleware.isGuideLogged, logGuideController.logout
 
 
 //JSON
+router.get('/api/getPlaces', getJSONController.getPlaces);
 router.get('/api/getPlaces/:query', getJSONController.getPlacesJSON);
 router.get('/api/editPlaces/:id', getJSONController.editPlacesJSON);
 router.get('/api/getPlace/:id', getJSONController.getPlaceByIdJSON);

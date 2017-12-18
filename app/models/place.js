@@ -64,10 +64,10 @@ placeSchema.statics = {
                     break;
                 case 'limit': query.limit(arg.limit);
                     break;
-                case '_id':
-                    if (!arg._id) break;
+                case 'place':
+                    if (!arg.place) break;
 
-                    query.where('_id').in(arg._id);
+                    query.where('_id').in(arg.place);
                     break;
                 case 'not': query.where('_id').nin(arg.not);
                     break;
@@ -76,6 +76,10 @@ placeSchema.statics = {
                 case 'guides': query.where('guides').in(arg.guides);
                     break;
                 case 'select': query.select(arg.select);
+                    break;
+                case 'page':
+                    query.skip((arg.page - 1)*9).limit(9);
+
                     break;
                 //TODO: остальные криетрии поиска
             }
