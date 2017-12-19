@@ -97,7 +97,7 @@
             <div class="col-xs-12 col-sm-12 col-md-9">
               <!-- ================================ -->
               <!-- guides template -->
-              <div id="guides" class="row">
+              <div id="guides" class="row pagination-container">
                 {% for guide in guides %}
                 <a href="/profile/{{ guide._id }}" class="element col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <div style="background-image: url('{{ guide.img }}')" class="element-img col-md-12"></div>
@@ -125,6 +125,8 @@
  <script src="/js/choiceInputs.js"></script>
 
  <script src="/js/jquery-2.2.3.min.js"></script>
+
+ <script src="/js/pagination.js"></script>
  <script src="/js/search_guides.js"></script>
  <script src="/js/bootstrap.min.js"></script>
  

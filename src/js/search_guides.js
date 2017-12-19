@@ -7,6 +7,15 @@ const placeSelect = new Choices('#places', {
 
     citySelect = document.getElementById('city');
 
+
+//Infinite scroll pagination
+$(window).scroll(function(){
+    if  (!paginationContainer.classList.contains('hidden') && ($(window).scrollTop() == $(document).height() - $(window).height())){
+        loadGuides(pageNum, window.location.search.slice(1));
+        pageNum++;
+    }
+}); 
+
 (async () => {
     const places = await getPlacesJSON('city', 'none');
 

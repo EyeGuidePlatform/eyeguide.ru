@@ -217,6 +217,11 @@ guideSchema.statics = {
                 case 'visible':
                     query.where('visible').equals(arg.visible);
                     break;
+
+                case 'page':
+                    query.skip((arg.page - 1)*9).limit(9);
+
+                    break;
                 //TODO: остальные криетрии поиска
             }
         });

@@ -42,6 +42,21 @@ exports.getPlaces = async (req, res) => {
     res.json(response);
 }
 
+exports.getGuides = async (req, res) => {
+    let queries = [];
+
+    for (let query in req.query) {
+        let queryObj = {};
+        queryObj[query] = query == 'lang' ? [req.query[query]] : req.query[query];
+
+        queries.push(queryObj);
+    }
+
+    let response = await guideModel.getGuides({select: '_id name img info'}, ...queries);
+    
+    res.json(response);
+}
+
 exports.getPlaceByIdJSON = async (req, res) => {
    
     let place = await placeModel.getPlace(req.params.id);
