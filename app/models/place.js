@@ -45,6 +45,10 @@ placeSchema.statics = {
     getPlace: async function(placeId){        
         return await this.findById(placeId).populate('guides');
     },
+
+    getPlaceByName: async function (placeName) {
+        return await this.findOne({name: {$regex: placeName, $options:'i'}});
+    },
     /**
      * Запрашиваем из БД места по критериям
      * @param {[Object]} args (критерии поиска)
