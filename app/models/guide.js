@@ -40,10 +40,13 @@ guideSchema = mongoose.Schema({
         type: String,
         default: 'http://dummyimage.com/300'
     },
+<<<<<<< HEAD
     car: {
         type: Boolean,
         default: false
     },
+=======
+>>>>>>> origin/newBranch
     info: {
         spec: [String],
         types: [String],
@@ -52,6 +55,22 @@ guideSchema = mongoose.Schema({
         tours: Number,
         happy: Number,
     },
+<<<<<<< HEAD
+=======
+    weekends: {
+        jan: [Number],
+        feb: [Number],
+        mar: [Number],
+        apr: [Number],
+        may: [Number],
+        jun: [Number],
+        jul: [Number],
+        aug: [Number],
+        sep: [Number],
+        nov: [Number],
+        dec: [Number]
+    },
+>>>>>>> origin/newBranch
     places: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -199,7 +218,11 @@ guideSchema.statics = {
                 case 'city':
                     if (!arg.city) break;
 
+<<<<<<< HEAD
                     query.where({'city': {$regex: arg.city, $options:'i'}});
+=======
+                    query.where('city').equals(arg.city);
+>>>>>>> origin/newBranch
 
                     break;
                 case 'limit': query.limit(arg.limit);
@@ -221,11 +244,14 @@ guideSchema.statics = {
                 case 'visible':
                     query.where('visible').equals(arg.visible);
                     break;
+<<<<<<< HEAD
 
                 case 'page':
                     query.skip((arg.page - 1)*9).limit(9);
 
                     break;
+=======
+>>>>>>> origin/newBranch
                 //TODO: остальные криетрии поиска
             }
         });
@@ -242,6 +268,17 @@ guideSchema.statics = {
 
     removeGuide: async function (guideId) {
         await this.findByIdAndRemove(guideId);
+<<<<<<< HEAD
+=======
+    },
+
+    addWeekends: async function(guideId, weekendData) {
+        let guide = await this.getThisGuide(guideId);
+        for(let i = 0; i < 11; i++){
+            guide.weekends[i] = weekendData[i];
+        }
+        await guide.save();
+>>>>>>> origin/newBranch
     }
 }
 
@@ -257,4 +294,8 @@ guideSchema.methods = {
 
 // модель данных и ее экспорт
 let guideModel = mongoose.model('guide', guideSchema);
+<<<<<<< HEAD
 module.exports.guideModel = guideModel;
+=======
+module.exports.guideModel = guideModel;
+>>>>>>> origin/newBranch

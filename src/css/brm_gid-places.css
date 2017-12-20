@@ -125,6 +125,7 @@ aside {
 }
 .edit_place button:hover {
   color: white;
+<<<<<<< HEAD
   background-color: #2ecc71;
 }
 .none {
@@ -152,6 +153,11 @@ aside {
   background-color: #2ecc71;
   color:white;
 }
+=======
+  background-color: rgb(145, 140, 3);
+}
+
+>>>>>>> origin/newBranch
 @media (max-width: 991px) {
   .wrapper {
     margin-left: -1rem;

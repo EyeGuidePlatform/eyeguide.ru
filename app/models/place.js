@@ -45,10 +45,13 @@ placeSchema.statics = {
     getPlace: async function(placeId){        
         return await this.findById(placeId).populate('guides');
     },
+<<<<<<< HEAD
 
     getPlaceByName: async function (placeName) {
         return await this.findOne({name: {$regex: placeName, $options:'i'}});
     },
+=======
+>>>>>>> origin/newBranch
     /**
      * Запрашиваем из БД места по критериям
      * @param {[Object]} args (критерии поиска)
@@ -64,6 +67,7 @@ placeSchema.statics = {
                 case 'city': 
                     if (!arg.city) break;
                     
+<<<<<<< HEAD
                     query.where({'city': {$regex: arg.city, $options:'i'}});
                     break;
                 case 'limit': query.limit(arg.limit);
@@ -72,6 +76,13 @@ placeSchema.statics = {
                     if (!arg.place) break;
 
                     query.where('_id').in(arg.place);
+=======
+                    query.where('city').equals(arg.city);
+                    break;
+                case 'limit': query.limit(arg.limit);
+                    break;
+                case '_id': query.where('_id').in(arg._id);
+>>>>>>> origin/newBranch
                     break;
                 case 'not': query.where('_id').nin(arg.not);
                     break;
@@ -81,10 +92,13 @@ placeSchema.statics = {
                     break;
                 case 'select': query.select(arg.select);
                     break;
+<<<<<<< HEAD
                 case 'page':
                     query.skip((arg.page - 1)*9).limit(9);
 
                     break;
+=======
+>>>>>>> origin/newBranch
                 //TODO: остальные криетрии поиска
             }
         })

@@ -26,14 +26,24 @@ exports.getGuideOrdersPage = async (req, res) => {
         switch(order.status) {
             case 0 : ordersNew.push(order);
                 break;
+<<<<<<< HEAD
             case 1 :
             case 5 : ordersNow.push(order);
+=======
+            case 1 : ordersNow.push(order);
+>>>>>>> origin/newBranch
                 break;
             case 2 : ordersDone.push(order);
                 break;
         }
     });
 
+<<<<<<< HEAD
+=======
+    // console.log(guide)
+    // console.log(ordersNow)
+
+>>>>>>> origin/newBranch
     res.render('gid_orders.html', {
          id: id,
          ordersNew: ordersNew,
@@ -91,20 +101,31 @@ exports.removePlace = async (req,res) => {
 
 exports.getProfilePage = async (req, res) => {
     let id = req.session.guide.id,
+<<<<<<< HEAD
         guide = await guideModel.getGuide(id)
     res.render('gid_profile.html', {guide: guide})
+=======
+        guide = await guideModel.getGuide(id);
+    res.render('gid_profile.html', {guide: guide});
+>>>>>>> origin/newBranch
 }
 
 // PUT запрос на обновление статуса заказа до 1 (взят)
 exports.confirmOrder = async (req, res) => {
     const order = await orderModel.getOrder(req.params.id)
     order.status = 1;
+<<<<<<< HEAD
     await order.save()
     res.send()
+=======
+    await order.save();
+    res.send();
+>>>>>>> origin/newBranch
 }
 
 // PUT запрос на обновление статуса заказа до 2 (закончен)
 exports.finishOrder = async (req, res) => {
+<<<<<<< HEAD
     const order = await orderModel.getOrder(req.params.id)
     order.status = 2;
     await order.save()
@@ -114,6 +135,15 @@ exports.finishOrder = async (req, res) => {
 exports.deleteOrder = async (req, res) => {
     const order = await orderModel.getOrder(req.params.id)
     order.status = 4;
+=======
+    const order = await orderModel.getOrder(req.params.id);
+    order.status = 2;
+    const guide = await guideModel.getGuide(req.session.guide.id);
+    const excursion = await exModel.getEx(order.excursion);
+    guide.info.tours++;
+    guide.info.hours += excursion.lasting;
+    await guide.save();
+>>>>>>> origin/newBranch
     await order.save()
     res.send()
 }

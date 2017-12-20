@@ -1,16 +1,5 @@
-
-
-$(document).ready(function(){
-    
- 
-    
-    $("#button-save").click(function(){
-
-
-        
+$(document).ready(function(){ 
+    $("#button-save").click(function(){        
          alert("Сохранено");
     })
-    
-    
-    })
-    
+});

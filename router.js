@@ -28,9 +28,14 @@ let express = require('express'),
     middleware = require('./app/controllers/middleware'),
     orderStatusController = require('./app/controllers/orderStatus'),
     FAQcontroller = require('./app/controllers/FAQ'),
+<<<<<<< HEAD
     guideFAQcontroller = require('./app/controllers/guideFAQ');
 
 
+=======
+    guideFAQcontroller = require('./app/controllers/guideFAQ'),
+    contactsController = require('./app/controllers/contacts');
+>>>>>>> origin/newBranch
 
 
 //Middleware
@@ -63,7 +68,10 @@ router.post('/guidePlaceAdd', lkController.addPlace);
 router.post('/guidePlaceRemove', lkController.removePlace);
 router.put('/order/confirm/:id', lkController.confirmOrder);
 router.put('/order/done/:id', lkController.finishOrder);
+<<<<<<< HEAD
 router.put('/order/delete/:id', lkController.deleteOrder);
+=======
+>>>>>>> origin/newBranch
 
 //Карточки(профиль) гида и места
 router.get('/error/404', error404. throwError);
@@ -88,8 +96,11 @@ router.post('/guide/logout', middleware.isGuideLogged, logGuideController.logout
 
 
 //JSON
+<<<<<<< HEAD
 router.get('/api/getPlaces', getJSONController.getPlaces);
 router.get('/api/getGuides', getJSONController.getGuides);
+=======
+>>>>>>> origin/newBranch
 router.get('/api/getPlaces/:query', getJSONController.getPlacesJSON);
 router.get('/api/editPlaces/:id', getJSONController.editPlacesJSON);
 router.get('/api/getPlace/:id', getJSONController.getPlaceByIdJSON);
@@ -135,9 +146,18 @@ router.get('/FAQ', FAQcontroller.getFAQpage);
 router.post('/FAQ', FAQcontroller.sendSupportEmail);
 router.get('/guideFAQ', guideFAQcontroller.getGuideFAQpage);
 router.post('/guideFAQ', guideFAQcontroller.sendSupportEmail);
+<<<<<<< HEAD
 
 //Статус заказа
 router.get('/order/:id', orderStatusController.getOrderStatus);
 
+=======
+router.get('/contacts', contactsController.getContactsPage);
+
+//Статус заказа
+router.get('/order/:id', orderStatusController.getOrderStatus);
+router.post('/order/:id', orderStatusController.rateExcursion);
+router.post('/order', orderStatusController.cancelExcursion);
+>>>>>>> origin/newBranch
 
 module.exports = router;

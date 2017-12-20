@@ -47,6 +47,7 @@ main .row:first-child {
 .new_order--btnY:hover {
   background-color:#0caa50;
 }
+<<<<<<< HEAD
 .delete {
   right: -1px;
   bottom: -1px;
@@ -56,6 +57,16 @@ main .row:first-child {
   color: white;
 }
 .new_order--btnY:focus, .delete:focus {
+=======
+.new_order--btnN {
+  right: -1px;
+  bottom: -1px;
+}
+.new_order--btnN:hover {
+  background-color: #211d0e;
+}
+.new_order--btnY:focus, .new_order--btnN:focus {
+>>>>>>> origin/newBranch
   outline: none;
 }
 

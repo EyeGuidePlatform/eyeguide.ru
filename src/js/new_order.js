@@ -161,3 +161,16 @@ createBtn.addEventListener('click', (e) => {
        if (typeof data.redirect == 'string') window.location = data.redirect
     })
 })
+
+$('#nextBtn').click(function(){
+  let name = $('input[name="name"]').val(),
+      phone = $('input[name="phone"]').val(),
+      email = $('input[name="email"]').val(),
+      date = $('input[name="date"]').val(),
+      people = $('input[name="people"').val();
+  $('.name').append(name);
+  $('.phone').append(phone);
+  $('.email').append(email);
+  $('.date').append(date);
+  $('.people').append(people);
+});
