@@ -24,12 +24,8 @@ exports.getSearchPageGuides = async (req,res) => {
     const guides = await guideModel.getGuides(
         {lang: req.query.lang ? [req.query.lang] : undefined},
         {city: req.query.city}, 
-<<<<<<< HEAD
         {places: queryPlaces},
         {limit: 9}
-=======
-        {places: queryPlaces}
->>>>>>> origin/newBranch
     );
 
     res.render('searchGuides.html', {
@@ -42,14 +38,9 @@ exports.getSearchPageGuides = async (req,res) => {
 }
 
 exports.getSearchPagePlaces = async (req,res) => {
-<<<<<<< HEAD
     const cities = await staticModel.getCities(req.locale);
 
     let places = await placeModel.getPlaces({visible: 1}, {place: req.query.place},{city: req.query.city}, {limit: 9});
-=======
-    const cities = await staticModel.getCities(req.locale),
-        places = await placeModel.getPlaces({visible: 1}, {city: req.query.city});
->>>>>>> origin/newBranch
 
     res.render('searchPlaces.html', {
         places: places,

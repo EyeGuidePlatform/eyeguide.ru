@@ -11,12 +11,6 @@ hr{
     background-color:red; 
 }
 
-<<<<<<< HEAD
-a:hover{
-    color:#0caa50;
-    text-decoration: none;
-
-=======
 .place a, .guide a{
     color: #0f9931;
 }
@@ -24,14 +18,11 @@ a:hover{
 .place a:hover, .guide a:hover{
     color:green;
     text-decoration: none;
->>>>>>> origin/newBranch
 }
 
 a:focus{
     text-decoration: none;
 }
-<<<<<<< HEAD
-=======
 
 div.stars {
       width: 270px;
@@ -60,4 +51,3 @@ label.star:before {
       content: '\f006';
       font-family: FontAwesome;
 }
->>>>>>> origin/newBranch

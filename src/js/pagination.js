@@ -32,7 +32,7 @@ function loadGuides(pageNum, otherQueries) {
         success: function(guides){
             guides.forEach((guide) => {
                 paginationContainer.innerHTML += 
-                    `<a href="/place/${ guide._id }" class="element col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    `<a href="/profile/${ guide._id }" class="element col-lg-4 col-md-6 col-sm-12 col-xs-12">
                         <div style="background-image: url('${ guide.img }')" class="element-img col-md-12"></div>
                         <div class="element-info col-md-12">
                             <h3 class="element-name">${ guide.name }</h3>

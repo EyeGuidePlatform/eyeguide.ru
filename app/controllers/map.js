@@ -16,7 +16,6 @@ exports.parseCity = (req, res) => {
  * @param {String} city
  */
 exports.getCityPage = async (req, res) => {
-<<<<<<< HEAD
     let city = req.params.city;
 
     let places = await placeModel.getPlaces({limit: 6}, {city: city}, {visible: 1}),
@@ -34,16 +33,6 @@ exports.getCityPage = async (req, res) => {
 
     guides = shuffle(guides).slice(0, 6);
 
-=======
-    let city = req.params.city,
-        places = await placeModel.getPlaces({limit: 6}, {city: city}, {visible: 1}),
-        guides = await guideModel.getGuides({limit: 6}, {city: city});
-    
-    if (!guides.length) {
-        return res.render('404notfound.html', {error: 'Город не найден'});
-    }
-
->>>>>>> origin/newBranch
     res.render('map.html', {
         guides: guides, 
         places: places,
@@ -51,7 +40,6 @@ exports.getCityPage = async (req, res) => {
         city: city
     });
 }
-<<<<<<< HEAD
 
 function shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
@@ -60,5 +48,3 @@ function shuffle(a) {
     }
     return a;
 }
-=======
->>>>>>> origin/newBranch

@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-const orderModel = require('../models/orders').orderModel;
-
-
-exports.getOrderStatus = async (req, res) => {
-    let orderId = req.params.id,
-        order = await orderModel.getOrder(orderId),
-        status = await orderModel.getStatus(order);
-        
-    res.render('orderStatus.html', {
-        order: order,
-        status: status
-    });
-};
-=======
 const orderModel = require('../models/orders').orderModel,
         placeModel = require('../models/place').placeModel;
         guideModel = require('../models/guide').guideModel;
@@ -54,4 +39,3 @@ exports.cancelExcursion = async (req, res) => {
     req.flash('error', 'Экскурсия отменена');
     res.redirect('/');
 }
->>>>>>> origin/newBranch

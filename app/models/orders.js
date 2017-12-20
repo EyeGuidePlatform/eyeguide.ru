@@ -13,10 +13,7 @@ orderSchema = mongoose.Schema({
     },
     people: Number,
     date: Date,
-<<<<<<< HEAD
     time: String,
-=======
->>>>>>> origin/newBranch
     price: Number,
     place: {
         type: mongoose.Schema.Types.ObjectId,

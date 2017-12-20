@@ -1,13 +1,9 @@
 emailModel = require('../models/email');
 
 exports.getFAQpage = (req, res) => {
-<<<<<<< HEAD
     if(!req.session.guide)
     res.render('FAQ.html');
     else res.redirect('/guideFAQ');
-=======
-    res.render('FAQ.html');
->>>>>>> origin/newBranch
 };
 
 exports.sendSupportEmail = (req, res) => {
@@ -20,9 +16,5 @@ exports.sendSupportEmail = (req, res) => {
     emailModel.sendEmail(message);
     req.flash('success', 'Ваше сообщение успешно отправлено!');
     res.redirect('/');
-<<<<<<< HEAD
 }
 
-=======
-}
->>>>>>> origin/newBranch

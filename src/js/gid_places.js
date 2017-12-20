@@ -56,9 +56,6 @@ const modal = document.querySelector('#myModal form')
 const place = document.querySelector('#place_choise')
 const placeForm = document.querySelector('#place-form')
 
-total.addEventListener('input', (e) => {
-    total_label.textContent = `Максимальное количество человек:  ${e.target.value}`
-});
 duration.addEventListener('input', (e) => {
     duration_label.textContent = `Длительность экскурсии в часах:  ${e.target.value}`
 });

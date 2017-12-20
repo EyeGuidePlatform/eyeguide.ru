@@ -26,20 +26,12 @@ exports.createOrder = async (req, res) => {
     const place = await placeModel.getPlace(req.body.placeId);
     const exc = await exModel.getExs({place: req.body.placeId}, {guideId: req.body.guideId});
     const [excData] = exc
-<<<<<<< HEAD
     const order = await orderModel.regOrder(req.body, excData);
    
     //save in tourist new order
     tourist.orders.push(order);
     await tourist.save()
     // save in order our tourist 
-=======
-    const order = await regOrder(req, excData);
-    //save in tourist new order
-    tourist.orders.push(order);
-    await tourist.save()
-    // save in order our tourist
->>>>>>> origin/newBranch
     order.place = place
     order.tourist = tourist
     await order.save()
@@ -78,13 +70,4 @@ exports.createOrder = async (req, res) => {
 
         return tourist;
     }
-<<<<<<< HEAD
-=======
-
-    async function regOrder(req, ex) {
-        let newOrder = req.body,
-        order =  await orderModel.regOrder(newOrder, ex);
-        return order
-    }
->>>>>>> origin/newBranch
 }
