@@ -1,0 +1,39 @@
+.map_menu {
+  padding-right: 0px;
+}
+.wrapper {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin-top: .5rem;
+  font-size: 0;
+}
+.map_menu .wrapper div {
+  display: inline-block;
+  position: relative;
+  font-size: 2.4rem;
+  font-weight: 500;
+  padding: 1rem .5rem 1rem .5rem;
+  cursor: pointer;
+}
+.map_menu--edit {
+  border-left: 1px black solid;
+  margin-left: -1px;
+}
+
+.map_menu--add {
+  color: black;
+  text-shadow: none;
+  padding: 10px 0;
+}
+
+@media (max-width: 991px) {
+  .wrapper {
+    margin-left: -1rem;
+  }
+}
+
+main {
+  margin: 2rem;
+  background-color: green;
+}

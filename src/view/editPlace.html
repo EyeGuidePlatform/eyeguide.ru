@@ -1,0 +1,57 @@
+{% extends "templates/adminPage.html" %}
+
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/registration-form.css">
+<link rel="stylesheet" href="/css/choices.min.css">
+<script src="/js/choices.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container wrap">
+    <div class="row">
+        <div class="left-sidebar">
+            <h1 class="text-center">Редактировать место</h1>
+            <form class="form-center" action="/place/{{ place._id }}" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Название</label>
+                    <input class="form-control" id="name" type="text" name="editPlace[name]" value="{{ place.name }}" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="description">Описание</label>
+                    <textarea class="form-control" id="description" name="editPlace[description]" rows="5" required>{{ place.description }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="city">Город</label>
+                    <select id="city" class="single-choice" name="editPlace[city]" required>
+                        {% for city in cities %}
+                        <option {% if place.city == city %} selected {% endif %} value="{{ city }}">{{ city }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <div class="form-group">
+                    <label for="img">Изображение</label>
+                    <input class="form-control" id="img" type="file" name="img">
+                </div>
+    
+                <div class="form-group">
+                    <label for="x">X</label>
+                    <input class="form-control" id="x" type="number" name="editPlace[geo.x]" step="0.000001" value="{{ place.geo.x }}" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="y">Y</label>
+                    <input class="form-control" id="y" type="number" name="editPlace[geo.y]" step="0.000001" value="{{ place.geo.y }}" required>
+                </div>
+                <button type="submit" id="submit" class="btn btn-block btn-primary">Подтвердить</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block commonJS %}
+<script src="/js/choiceInputs.js"></script>
+{% endblock %}

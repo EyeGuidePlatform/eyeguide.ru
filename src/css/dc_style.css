@@ -1,0 +1,89 @@
+body{
+    box-sizing: border-box;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.guideCard{
+    background: #0caa50;
+    border: 1px rgb(175, 175, 175) solid;
+    box-shadow: 0px 0px 4px rgb(175, 175, 175);
+    border-radius: 3rem; 
+    color:white;   
+}
+
+.guideInfo{
+    border: 1px rgb(225, 225, 225) solid;
+    border-radius: 1rem;
+}
+
+.text-white{
+    color: white;
+}
+
+#YMapsID{
+    margin:auto;
+    height:300px;
+    width:100%;
+}
+form{
+    margin: 0 auto;
+}
+
+.btn{
+    height: 5rem;
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+}
+
+@media(max-width: 768px){
+    .btn{
+        width:70%;
+    }
+}
+
+@media (min-width: 768px) {
+    #YMapsID{
+        height: 450px;
+    }
+
+    .imgSlide{
+        width: 50%;
+        height: 100%;
+    }
+
+}
+
+.balloon{
+    width: 250px;
+    height: auto;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.balloon img{
+    width: 75%;
+    height: auto;
+}
+
+.butt{
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    width: 60%;
+    background: #0caa50;
+    color: white;
+    border: 1px solid whitesmoke;
+    height: 30px;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.mapBtn{
+    height: 3.5rem;
+    margin: 0 auto;
+    width: 75%;
+}
