@@ -2,8 +2,7 @@
 
 <link rel="stylesheet" href="/css/new_order.css">
 <link rel="stylesheet" href="/css/choices.min.css">
-<script src="/js/choices.min.js"></script>
-{% endblock %} {% block content %}
+<script src="/js/choices.min.js"></script> {% endblock %} {% block content %}
 <div class="wrap">
     <!-- ============================= -->
     <!-- форма -->
@@ -34,19 +33,27 @@
                 <h1>Оформление заказа:</h1>
                 <div class="form-group">
                     <label for="name">Имя:</label>
-                    <input type="text" class="form-control"  name="name" id="name">
+                    <input type="text" class="form-control" name="name" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="surname">Фамилия:</label>
+                    <input type="text" class="form-control" name="surname" id="surname">
                 </div>
                 <div class="form-group">
                     <label for="phone">Телефон:</label>
-                    <input type="text" class="form-control"  name="phone" id="phone">
+                    <input type="text" class="form-control" name="phone" id="phone">
                 </div>
                 <div class="form-group">
                     <label for="email">E-mail:</label>
-                    <input type="email" class="form-control"  name="email" id="email">
+                    <input type="email" class="form-control" name="email" id="email">
                 </div>
                 <div class="form-group">
                     <label for="date">Дата:</label>
                     <input type="date" class="form-control" name="date" id="date">
+                </div>
+                <div class="form-group">
+                    <label for="time">Желаемое время экскурсии:</label>
+                    <input type="time" class="form-control" name="time" id="time">
                 </div>
                 <div class="form-group">
                     <label for="people">Количество человек:</label>
@@ -74,64 +81,72 @@
 
     <!-- MODAL -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" name="excursion">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title">Ваш новый заказ</h4>
-                    </div>
-                    <div class="modal-body row">
-                        <div class="form-group col-sm-6 col-md-6">
-                            <label id='form-label' for="guide_check">Выбранный гид: Name</label>
-                            <div style="background-image: url('{{ guide.img }}');
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" name="excursion">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Ваш новый заказ</h4>
+                </div>
+                <div class="modal-body row">
+                    <div class="form-group col-sm-6 col-md-6">
+                        <label id='form-label' for="guide_check">Выбранный гид: Name</label>
+                        <div style="background-image: url('{{ guide.img }}');
                     max-width: 200px;" class="element-img" value="{{ guide._id }}" id="guide_check"></div>
-                        </div>
-                        <div class="form-group col-sm-6 col-md-6">
-                            <label id='form-label' for="place_check">Выбранное место: Name</label>
-                            <div style="background-image: url('{{ place.img }}');
-                    max-width: 200px;" class="element-img" value="{{ place._id }}" id="place_check"></div>
-                        </div>
-                        <div class='form-group col-md-12'>
-                            <ul>
-                                <li>
-                                    <label>Ваше имя:</label>
-                                    <span>Vb[fbk</span>
-                                </li>
-                                <li>
-                                    <label>Телефон:</label>
-                                    <span>1012455()0</span>
-                                </li>
-                                <li>
-                                    <label>E-mail:</label>
-                                    <span>gasfas@asda</span>
-                                </li>
-                                <li>
-                                    <label>Дата экскурсии:</label>
-                                    <span>10.055010</span>
-                                </li>
-                                <li>
-                                    <label>Количество заявленных человек:</label>
-                                    <span>100</span>
-                                </li>
-                                <li>
-                                    <label>Цена экскурсии: </label>
-                                    <span>100</span>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                        <button type="submit" id="createOrderBtn" class="btn btn-primary">Подтвердить</button>
+                    <div class="form-group col-sm-6 col-md-6">
+                        <label id='form-label' for="place_check">Выбранное место: Name</label>
+                        <div style="background-image: url('{{ place.img }}');
+                    max-width: 200px;" class="element-img" value="{{ place._id }}" id="place_check"></div>
+                    </div>
+                    <div class='form-group col-md-12'>
+                        <ul>
+                            <li>
+                                <label>Ваше имя:</label>
+                                <span>Vb[fbk</span>
+                            </li>
+                            <li>
+                                <label>Ваша фамилия:</label>
+                                <span>Vb[fbk</span>
+                            </li>
+                            <li>
+                                <label>Телефон:</label>
+                                <span>1012455()0</span>
+                            </li>
+                            <li>
+                                <label>E-mail:</label>
+                                <span>gasfas@asda</span>
+                            </li>
+                            <li>
+                                <label>Дата экскурсии:</label>
+                                <span>10.055010</span>
+                            </li>
+                            <li>
+                                <label>Желаемое время экскурсии:</label>
+                                <span>12.00</span>
+                            </li>
+                            <li>
+                                <label>Количество заявленных человек:</label>
+                                <span>100</span>
+                            </li>
+                            <li>
+                                <label>Цена экскурсии: </label>
+                                <span>100</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <!-- /.modal-content -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                    <button type="submit" id="createOrderBtn" class="btn btn-primary">Подтвердить</button>
+                </div>
             </div>
-            <!-- /.modal-dialog -->
+            <!-- /.modal-content -->
         </div>
-        <!-- /.modal -->
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 
 </div>
 <!-- wrap -->

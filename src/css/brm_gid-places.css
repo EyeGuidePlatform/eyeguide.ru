@@ -125,9 +125,33 @@ aside {
 }
 .edit_place button:hover {
   color: white;
-  background-color: rgb(145, 140, 3);
+  background-color: #2ecc71;
+}
+.none {
+  display: none;
 }
 
+.price {
+  padding: 1rem;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+.price-config {
+  padding-top: 1rem;
+}
+.price-config button {
+  width: 5rem;
+  font-size: 2rem;
+  border: 1px solid #2ecc71;
+  background-color: white;
+  color: #2ecc71;
+  border-radius: 5px;
+  transition: .2s all ease-in;
+}
+.price-config button:hover {
+  background-color: #2ecc71;
+  color:white;
+}
 @media (max-width: 991px) {
   .wrapper {
     margin-left: -1rem;

@@ -62,10 +62,10 @@
                   <div class="panel-body">
                     <div class="order done_order">
                       <div class="edit_place">
-                          <form>
-                            <input type="hidden" name="placeId" value="{{ place._id}}" />
-                            <button class="btn btn-block">Редактировать место</button>
-                          </form>
+                        <form>
+                          <input type="hidden" name="placeId" value="{{ place._id}}" />
+                          <button class="btn btn-block">Редактировать место</button>
+                        </form>
                       </div>
                       <div class="remove_place">
                         <form method="POST" action="/guidePlaceRemove">
@@ -101,15 +101,26 @@
           <h4 class="modal-title">Экскурсия по месту</h4>
         </div>
         <div class="modal-body">
+          <h4>Настройки стоимости:</h4>
           <div class="form-group">
-            <label id='form-label' for="total-people">Максимальное количество человек: 1</label>
-            <input class="form-control" type="range" id="total-people" name="people" min='1' max='6' value='1' required>
+            <div class="price">
+              <span>Количество человек: </span>
+              <label>от
+                <input type="number" value=1 min=1 max=1 readonly>
+              </label>
+              <label>до
+                <input type="number" value=1 min=1 max=6>
+              </label>
+              <br>
+              <span>Цена за одного человека:</span>
+              <input type="number" min=0>
+            </div>
+            <div class="price-config">
+              <button class='modal__add'>+</button>
+              <button class='modal__remove none'>-</button>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="price">Цена экскурсии за человека, рублей:</label>
-            <input class="form-control" type="number" id="price" name="price" min='0' step='100' required>
-          </div>
-          <div class="form-group">
+          <div class="form-group" id="duration">
             <label id='form-duration' for="duration">Длительность экскурсии в часах: 1</label>
             <input class="form-control" type="range" id="duration" name="duration" step='.5' min='1' max='5' value='1' required>
           </div>

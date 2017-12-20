@@ -13,6 +13,7 @@ orderSchema = mongoose.Schema({
     },
     people: Number,
     date: Date,
+    time: String,
     price: Number,
     place: {
         type: mongoose.Schema.Types.ObjectId,

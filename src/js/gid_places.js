@@ -56,9 +56,6 @@ const modal = document.querySelector('#myModal form')
 const place = document.querySelector('#place_choise')
 const placeForm = document.querySelector('#place-form')
 
-total.addEventListener('input', (e) => {
-    total_label.textContent = `Максимальное количество человек:  ${e.target.value}`
-});
 duration.addEventListener('input', (e) => {
     duration_label.textContent = `Длительность экскурсии в часах:  ${e.target.value}`
 });
@@ -84,8 +81,61 @@ modal.addEventListener('submit', (e) => {
     $('#myModal').modal('toggle');
 
     $.post('/guidePlaceAdd', buffer, (data) => {
-       if (typeof data.redirect == 'string') window.location = data.redirect
+        if (typeof data.redirect == 'string') window.location = data.redirect
     })
+});
 
-    
+
+
+// this is what you got without react
+function modalGroup(minVal) {
+    return (
+        `
+               <div class="price">
+                   <span>Количество человек: </span>
+                   <label>от
+                       <input type="number" value=${minVal} min=${minVal} max=6 readonly>
+                   </label>
+                   <label>до
+                       <input type="number" value=${minVal} min=${minVal} max=6>
+                   </label>
+                   <br>
+                   <span>Цена за одного человека:</span>
+                   <input type="number" min=0>
+               </div>
+       `
+    )
+}
+
+const addNewPrice = document.querySelector('.modal__add')
+const removePrice = document.querySelector('.modal__remove')
+const modalBody = document.querySelector('.modal-body')
+addNewPrice.addEventListener('click', (e) => {
+    e.preventDefault();
+    setDisable()
+    let n = $('.modal-body .form-group:nth-last-child(2) input')[1]
+    if (n.value >= 1) removePrice.classList.remove('none')
+    if (n.value >= 6) return;
+    let div = document.createElement('div');
+    div.className = `form-group`
+    div.innerHTML = modalGroup(+n.value + 1);
+    modalBody.insertBefore(div, document.querySelector('#duration'))
 })
+
+removePrice.addEventListener('click', (e) => {
+    e.preventDefault();
+    let n = checkInputPrice()
+    let node = $('.modal-body .form-group:nth-last-child(2)');
+    node.remove()
+    if (checkInputPrice()[0].value == 1) removePrice.classList.add('none');
+    setDisable()
+})
+
+function checkInputPrice() {
+    return $(`.modal-body .form-group:nth-last-child(2) input`)
+};
+
+function setDisable() {
+    let buffer = $('.modal-body .form-group:nth-last-child(2) input');
+    buffer[1].readOnly = !buffer[1].readOnly
+};

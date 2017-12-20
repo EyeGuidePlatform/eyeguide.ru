@@ -47,14 +47,15 @@ main .row:first-child {
 .new_order--btnY:hover {
   background-color:#0caa50;
 }
-.new_order--btnN {
+.delete {
   right: -1px;
   bottom: -1px;
 }
-.new_order--btnN:hover {
+.delete:hover {
   background-color: #211d0e;
+  color: white;
 }
-.new_order--btnY:focus, .new_order--btnN:focus {
+.new_order--btnY:focus, .delete:focus {
   outline: none;
 }
 
