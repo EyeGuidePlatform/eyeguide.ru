@@ -58,6 +58,7 @@ router.get('/guideOrders', lkController.getGuideOrdersPage);
 router.get('/guidePlaces', lkController.getGuidePlacesPage);
 router.get('/guideProfile', lkController.getProfilePage);
 // ЛК гида - utils
+router.post('/guide/changeInfo', lkController.guideChangeInfo);
 router.post('/guidePlaceAdd', lkController.addPlace);
 router.post('/guidePlaceRemove', lkController.removePlace);
 router.put('/order/confirm/:id', lkController.confirmOrder);

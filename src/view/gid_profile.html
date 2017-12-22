@@ -69,19 +69,19 @@
             <i class="fa fa-pencil" aria-hidden="true"></i>
           </div>
 
-          <form action="">
+          <form action="/guide/changeInfo" method="POST">
           <li>
-            <span>Фамилия имя</span>
+            <div>Фамилия имя</div>
             <h4 data-role='default'>{{ guide.surname }} {{ guide.name }}</h4>
-            <input type="text" data-role='input' class="form-control none" name="surname" value="{{ guide.surname }}" 
+            <input type="text" data-role='input' class="form-control inline none" name="surname" value="{{ guide.surname }}" 
             placeholder="Введите фамилию">
-            <input type="text" data-role='input' class="form-control none" name="name" value=" {{ guide.name }}" 
+            <input type="text" data-role='input' class="form-control inline none" name="name" value="{{ guide.name }}" 
             placeholder="Введите имя">
           </li>
           <li>
             <span>Специализации</span>
             <h4 data-role='default'>{{ guide.info.spec }}</h4>
-            <label class="none" data-role='input'>
+            <div class="none" data-role='input'>
               <input 
                 type="text" 
                 class="multiple-choice form-control" 
@@ -91,27 +91,27 @@
                 value="{{ guide.info.spec }}" 
                 required
               >
-            </label>
+            </div>
           </li>
           <li>
             <span>Виды экскурсий</span>
             <h4 data-role='default'>{{ guide.info.types }}</h4>
-            <label class="none" data-role='input'>
+            <div class="none" data-role='input'>
               <input 
                 type="text" 
                 class="multiple-choice form-control none" 
-                id="spec" 
-                name="spec" 
+                id="types" 
+                name="types" 
                 placeholder="Введите виды экскурсий" 
                 value="{{ guide.info.types }}" 
                 required
               >
-            </label>
+            </div>
           </li>
           <li>
             <span>Языки</span>
             <h4 data-role='default'>{{ guide.info.lang }}</h4>
-            <label class="none" data-role='input'>
+            <div class="none" data-role='input'>
               <select 
                 class="multiple-choice form-control none" 
                 id="languages" 
@@ -138,7 +138,7 @@
                   en
                   </option>
               </select>
-            </label>
+            </div>
           </li>
           <li>
             <span>Телефон</span>

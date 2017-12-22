@@ -116,6 +116,11 @@ aside .edit:active {
 .none {
   display: none !important;
 }
+.inline {
+  display: inline-block;
+  width: auto;
+  margin-bottom: .5rem;
+}
 
 @media (max-width: 991px) {
   .profile_info div:nth-child(n+2) {
@@ -137,6 +142,12 @@ aside .edit:active {
   }
 }
 
+@media (max-width: 768px ) {
+  main ul {
+    padding-left: 0px;
+  }
+}
+
 @media (max-width: 430px) {
   .profile_info {
     font-size: 1.2rem;
@@ -146,9 +157,6 @@ aside .edit:active {
   }
   .edit_small {
     display: block;
-  }
-  main ul {
-    padding-left: 0px;
   }
 
 }

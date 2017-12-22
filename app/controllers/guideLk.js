@@ -121,3 +121,17 @@ exports.deleteOrder = async (req, res) => {
     await order.save()
     res.send()
 }
+
+exports.guideChangeInfo = async(req,res) => {
+    let id = req.session.guide.id,
+    guide = await guideModel.getGuide(id),
+    info = {
+        spec: [req.body.spec],
+        types: [req.body.types],
+        lang: typeof req.body.lang == 'string'? [req.body.lang] : req.body.lang
+     }
+     //todo
+    // let check = guideModel.editGuide(id, req.body, info)
+    console.log(info)
+    res.redirect('/guideProfile')
+}
