@@ -5,7 +5,8 @@ main ul {
   position: relative;
   list-style: none;
   padding-right: 3rem;
-  background: linear-gradient(to top, white, #b9ffbe)
+  background: linear-gradient(to top, white, #b9ffbe);
+  border-radius: 10px;
 }
 main li {
   padding: 1rem;
@@ -66,8 +67,8 @@ aside .edit:active {
   display: none;
   line-height: 2.5rem;
   font-size: 2em;
-  top: 5px;
-  right: 10px;
+  top: -10px;
+  left: -5px;
   width: 3rem;
   height: 3rem;
   cursor: pointer;
@@ -112,6 +113,10 @@ aside .edit:active {
   cursor: pointer;
 }
 
+.none {
+  display: none !important;
+}
+
 @media (max-width: 991px) {
   .profile_info div:nth-child(n+2) {
     margin-top: 0px;
@@ -144,9 +149,6 @@ aside .edit:active {
   }
   main ul {
     padding-left: 0px;
-  }
-  .form_lang {
-    top: 3.5rem;
   }
 
 }
