@@ -121,6 +121,22 @@ aside .edit:active {
   width: auto;
   margin-bottom: .5rem;
 }
+.choices__list--multiple .choices__item {
+  background-color: #0caa50 !important;
+}
+.confirm_button {
+  border: 1px solid #2ecc71;
+  border-radius: 10px;
+  background-color: white;
+  color: #2ecc71;
+  padding: 1rem;
+  margin-left: 1rem;
+  transition: .2s all ease-in-out;
+}
+.confirm_button:hover {
+  background-color: #2ecc71;
+  color: white;
+}
 
 @media (max-width: 991px) {
   .profile_info div:nth-child(n+2) {

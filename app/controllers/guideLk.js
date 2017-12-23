@@ -122,16 +122,22 @@ exports.deleteOrder = async (req, res) => {
     res.send()
 }
 
+// Обновление личных данных гида
 exports.guideChangeInfo = async(req,res) => {
     let id = req.session.guide.id,
-    guide = await guideModel.getGuide(id),
     info = {
         spec: [req.body.spec],
         types: [req.body.types],
         lang: typeof req.body.lang == 'string'? [req.body.lang] : req.body.lang
-     }
-     //todo
-    // let check = guideModel.editGuide(id, req.body, info)
-    console.log(info)
+    };
+    let guide = await guideModel.getGuide(id)
+
+    await guideModel.editGuide(id, req.body)
+    //todo?
+    guide.info.spec = info.spec
+    guide.info.types = info.types
+    guide.info.lang = info.lang
+    await guide.save()
+    req.flash('success', 'Ваши данные успешно изменены');
     res.redirect('/guideProfile')
 }
