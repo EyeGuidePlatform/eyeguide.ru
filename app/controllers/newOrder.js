@@ -20,14 +20,14 @@ exports.getNewOrderPage = async (req, res) => {
 
 exports.createOrder = async (req, res) => {
 
-    res.send({redirect: '/'});
+    
 
     const tourist = await regTourist(req);
     const place = await placeModel.getPlace(req.body.placeId);
     const exc = await exModel.getExs({place: req.body.placeId}, {guideId: req.body.guideId});
     const [excData] = exc
     const order = await orderModel.regOrder(req.body, excData);
-   
+    res.send(order._id);
     //save in tourist new order
     tourist.orders.push(order);
     await tourist.save()

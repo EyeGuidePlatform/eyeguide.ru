@@ -91,7 +91,7 @@ function nextPrev(n) {
   // if you have reached the end of the form...
   if (currentTab + n >= x.length) {
     let buffer = document.querySelector('#select_form').value;
-    guideId? placeId = buffer : guideId = buffer;
+    guideId ? placeId = buffer : guideId = buffer;
     setModal(guideId, placeId)
     $('#myModal').modal('toggle')
     return false;
@@ -158,19 +158,23 @@ createBtn.addEventListener('click', (e) => {
   }
 
   $.post('/set_new_order', buffer, (data) => {
-       if (typeof data.redirect == 'string') window.location = data.redirect
-    })
+    window.location = `order/${data}`
+  })
 })
 
-$('#nextBtn').click(function(){
+$('#nextBtn').click(function () {
   let name = $('input[name="name"]').val(),
-      phone = $('input[name="phone"]').val(),
-      email = $('input[name="email"]').val(),
-      date = $('input[name="date"]').val(),
-      people = $('input[name="people"').val();
-  $('.name').append(name);
-  $('.phone').append(phone);
-  $('.email').append(email);
-  $('.date').append(date);
-  $('.people').append(people);
+    surname = $('input[name="surname"]').val(),
+    phone = $('input[name="phone"]').val(),
+    email = $('input[name="email"]').val(),
+    date = $('input[name="date"]').val(),
+    time = $('input[name="time"]').val(),
+    people = $('input[name="people"').val();
+  $('.name').text(name);
+  $('.surname').text(surname);
+  $('.phone').text(phone);
+  $('.email').text(email);
+  $('.date').text(date);
+  $('.time').text(time);
+  $('.people').text(people);
 });
