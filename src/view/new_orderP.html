@@ -1,0 +1,157 @@
+{% extends "templates/pageTemplate.html" %} {% block commonStyles %}
+
+<link rel="stylesheet" href="/css/new_order.css">
+<link rel="stylesheet" href="/css/choices.min.css">
+<script src="/js/choices.min.js"></script>
+{% endblock %} {% block content %}
+<div class="wrap">
+    <!-- ============================= -->
+    <!-- форма -->
+    <!-- ============================= -->
+    <form id="regForm" class="container" action="#">
+        <div class="row">
+            <!-- ============================= -->
+            <!-- форма выбора места-->
+            <div class="tab col-md-12">
+                <h1>Выбор места:</h1>
+                <h3>{{ place.name }}</h3>
+                <div style="background-image: url('{{ place.img }}')" class="element-img" value="{{ place._id }}" id="place"></div>
+            </div>
+            <!-- ============================= -->
+            <!-- форма выбора экскурсовода-->
+            <div class="tab col-md-12">
+                <h1>Выбор экскурсовода:</h1>
+                <div class="form-group">
+                    <select class="form-control" id="select_form">
+                    </select>
+                    <div style="background-image: url('{{ guide.img }}');
+                    max-width: 300px;" class="element-img" value="{{ guide._id }}"></div>
+                </div>
+            </div>
+            <!-- ============================= -->
+            <!-- форма заполнения данных-->
+            <div class="tab col-md-12">
+                <h1>Оформление заказа:</h1>
+                <div class="form-group">
+                    <label for="name">Имя:</label>
+                    <input type="text" class="form-control" name="name" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="surname">Фамилия:</label>
+                    <input type="text" class="form-control" name="surname" id="surname">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон:</label>
+                    <input type="text" class="form-control" name="phone" id="phone">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" class="form-control" name="email" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="date">Дата:</label>
+                    <input type="date" class="form-control" name="date" id="date">
+                </div>
+                <div class="form-group">
+                    <label for="time">Желаемое время экскурсии:</label>
+                    <input type="time" class="form-control" name="time" id="time">
+                </div>
+                <div class="form-group">
+                    <label for="people">Количество человек:</label>
+                    <input type="number" min='1' max='6' class="form-control" name="people" id="people">
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================= -->
+        <!-- навигация-->
+        <div style="overflow:auto;">
+            <div style="text-align: center">
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Назад</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">Далее</button>
+            </div>
+        </div>
+        <!-- ============================= -->
+        <!-- индикация навигации-->
+        <div style="text-align:center;margin-top:40px;">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
+    </form>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" name="excursion">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Ваш новый заказ</h4>
+                </div>
+                <div class="modal-body row">
+                    <div class="form-group col-sm-6 col-md-6">
+                        <label id='form-label' for="guide_check">Выбранный гид: Name</label>
+                        <div style="background-image: url('{{ guide.img }}');
+                    max-width: 200px;" class="element-img" value="{{ guide._id }}" id="guide_check"></div>
+                    </div>
+                    <div class="form-group col-sm-6 col-md-6">
+                        <label id='form-label' for="place_check">Выбранное место: Name</label>
+                        <div style="background-image: url('{{ place.img }}');
+                    max-width: 200px;" class="element-img" value="{{ place._id }}" id="place_check"></div>
+                    </div>
+                    <div class='form-group col-md-12'>
+                        <ul>
+                            <li>
+                                <label>Ваше имя:</label>
+                                <span>Vb[fbk</span>
+                            </li>
+                            <li>
+                                <label>Ваша фамилия:</label>
+                                <span>Vb[fbk</span>
+                            </li>
+                            <li>
+                                <label>Телефон:</label>
+                                <span>1012455()0</span>
+                            </li>
+                            <li>
+                                <label>E-mail:</label>
+                                <span>gasfas@asda</span>
+                            </li>
+                            <li>
+                                <label>Дата экскурсии:</label>
+                                <span>10.055010</span>
+                            </li>
+                            <li>
+                                <label>Желаемое время экскурсии:</label>
+                                <span>12.00</span>
+                            </li>
+                            <li>
+                                <label>Количество заявленных человек:</label>
+                                <span>100</span>
+                            </li>
+                            <li>
+                                <label>Цена экскурсии: </label>
+                                <span>100</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                    <button type="submit" id="createOrderBtn" class="btn btn-primary">Подтвердить</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+</div>
+<!-- wrap -->
+{% endblock %} {% block commonJS %}
+<script src="/js/jquery-2.2.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/new_order.js"></script> {% endblock %}

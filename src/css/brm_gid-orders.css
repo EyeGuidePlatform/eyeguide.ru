@@ -1,0 +1,83 @@
+h4 {
+  font-size: 1.7em;
+  font-weight: 500;
+  text-align: center;
+}
+h3 {
+  margin-top:.5rem;
+  text-align: center;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+main .row:first-child {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.panel-default {
+  background-color: #b9ffbe;
+  border: 3px solid #2ecc71;
+}
+
+.order {
+  padding-bottom: 3rem;
+}
+
+.order ul, .order-now ul {
+  padding-left: 2rem;
+}
+.order li, .order-now li{
+  padding: .5rem
+}
+.new_order button {
+  position: absolute;
+  padding: .5rem;
+  width: 45%;
+  color: white;
+  background-color: #2ecc71;
+  border: 1px #2ecc71 solid;
+  transition: all .3s ease;
+}
+.new_order--btnY {
+  left: -1px;
+  bottom: -1px;
+}
+.new_order--btnY:hover {
+  background-color:#0caa50;
+}
+.delete {
+  right: -1px;
+  bottom: -1px;
+}
+.delete:hover {
+  background-color: #211d0e;
+  color: white;
+}
+.new_order--btnY:focus, .delete:focus {
+  outline: none;
+}
+
+.panel-group {
+  margin: 1rem 0 1rem 0;
+}
+.panel-heading {
+  padding: 0;
+}
+.panel-collapse {
+  position: relative;
+}
+.panel-title a {
+  display: inline-block;
+  padding: 10px 15px;
+  width: 100%;
+}
+.panel-default .panel-heading {
+  background-color: white;
+}
+
+.panel-default>.panel-heading+.panel-collapse .panel-body {
+  border:none;
+  padding: 0 15px 15px 15px;
+}
