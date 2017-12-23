@@ -22,6 +22,7 @@ exports.getSearchPageGuides = async (req,res) => {
     }
 
     const guides = await guideModel.getGuides(
+        {visible: 2},
         {lang: req.query.lang ? [req.query.lang] : undefined},
         {city: req.query.city}, 
         {places: queryPlaces},

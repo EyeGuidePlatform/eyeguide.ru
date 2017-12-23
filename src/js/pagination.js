@@ -8,6 +8,7 @@ function loadPlaces(pageNum, otherQueries) {
         type: 'GET',
         data: 'page=' + pageNum + '&' + otherQueries,
         success: function(places){
+            $('.loader').hide();
             places.forEach((place) => {
                 paginationContainer.innerHTML += 
                     `<a href="/place/${ place._id }" class="element col-lg-4 col-md-6 col-sm-12 col-xs-12">
@@ -22,14 +23,17 @@ function loadPlaces(pageNum, otherQueries) {
             });
         }
     });
+    $('.loader').show();
 }
 
 function loadGuides(pageNum, otherQueries) {
+    $('.loader').show();
     $.ajax({
         url: '/api/getGuides',
         type: 'GET',
         data: 'page=' + pageNum + '&' + otherQueries,
         success: function(guides){
+            $('.loader').hide();
             guides.forEach((guide) => {
                 paginationContainer.innerHTML += 
                     `<a href="/profile/${ guide._id }" class="element col-lg-4 col-md-6 col-sm-12 col-xs-12">
