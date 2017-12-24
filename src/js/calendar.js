@@ -1,26 +1,25 @@
-let arrayOfDates = [];
-var myDatepicker = $('#calendar').datepicker({
-    onSelect: function(fd, d, picker){
-        console.log(d);
-        arrayOfDates = d;
-    },
-    onRenderCell: function(date, cellType) {
-        if (cellType == 'day' && date.getDate() == 11) {
-            return {
-                classes: '-selected-'
-            }
-        }
+let weekendsToDownload = $('#calendar').attr('value').split(",");
+let weekendsToUpload = [];
+let datepicker = $('#calendar').datepicker({
+    onSelect: function (fd, d, picker) {
+        weekendsToUpload = d;
     }
 }).data('datepicker');
-$('.btn-calendar').click(function(){
+if (weekendsToDownload.length !== 1) {
+    for (let i = 0; i < weekendsToDownload.length; i++) {
+        let date = new Date(weekendsToDownload[i]);
+        datepicker.selectDate(date);
+    }
+}
+
+$('.btn-calendar').click(function () {
     let dateData = {};
-    dateData.weekends = arrayOfDates;
+    dateData.weekends = weekendsToUpload;
     $.ajax({
         data: dateData,
         method: "POST",
-        url: '/guideOptions',
-        success: console.log("success")
+        url: '/guideOptions'
+    }).done(function () {
+        $('.btn-calendar').text("Сохранено!").attr('disabled', 'disabled');
     });
 });
-
-console.log($('#calendar').attr('value'));
