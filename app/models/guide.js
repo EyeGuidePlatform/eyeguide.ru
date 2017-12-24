@@ -80,8 +80,13 @@ guideSchema = mongoose.Schema({
         ref: 'order'
     }],
     description: [{
+        status: {
+            type: Number, 
+            default: 0
+        },
         lang: String,
-        value: String
+        value: String,
+        onModerate: String
     }],
     rating: {
         type: Number,
@@ -254,6 +259,10 @@ guideSchema.statics = {
                     query.sort({rating: arg.rating});
 
                     break;
+
+                case 'onModerate':
+                    query.where('description.status').equals(1);
+                    break;
                 //TODO: остальные криетрии поиска
             }
         });
@@ -293,6 +302,25 @@ guideSchema.methods = {
         await this.save();
 
         return require('../../config').domain + '/activate/' + url;
+    },
+    computeRating: async function () {
+        let guide = await this.populate('orders'),
+            newRating = 0,
+            count = 0;
+
+        guide.orders.forEach((order) => {
+            if (order.mark) {
+                newRating += order.mark;
+                count++;
+            }
+        });
+
+        if (count) {
+            newRating /= count;
+            guide.rating = newRating;
+    
+            await guide.save();
+        }
     }
 }
 

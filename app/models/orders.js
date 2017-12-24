@@ -1,4 +1,5 @@
-const mongoose = require('./../../server').mongoose;
+const mongoose = require('./../../server').mongoose,
+    guideModel = require('./guide').guideModel;
 
 orderSchema = mongoose.Schema({
     status: Number, // 0 - подана заявка, 1 - принята гидом, 3 - экскурсия завершена
@@ -60,6 +61,30 @@ orderSchema.statics = {
         return orders;
     }
 }
+
+orderSchema.pre('save', async function(next){
+    let order = await this.populate('excursion');
+
+    switch (order.status) {
+        //TODO: Пересчитать если 2 (завершено)
+        case 2:
+            if (!order.mark) break;
+
+            let guideId = order.excursion.guide,
+            guide = await guideModel.getGuide(guideId);
+
+            await guide.computeRating();
+
+            break;
+        //3 отклонена туристом пока гид еще не принял
+
+        //5 гид принял, а турист отменил заказ
+
+        //4 когда отменил заказ
+    }
+    
+    next();
+})
 
 let orderModel = mongoose.model('order', orderSchema);
 module.exports.orderModel = orderModel;

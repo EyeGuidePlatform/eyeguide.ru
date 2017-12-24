@@ -1,4 +1,5 @@
 const mongoose = require('../../server').mongoose,
+    emailModel = require('../models/email');
     toHash = require('md5');
 
 touristSchema = mongoose.Schema({
@@ -29,6 +30,31 @@ touristSchema.methods = {
         this.password = toHash(randomString);
 
         return randomString;
+    },
+    sendEmail: function (orderId) {
+        let domain = require('../../config').domain;
+        const message = {
+            text: 'Ваш пароль для просмотра информации о заказе экскурсии: \n' + tourist.password,
+            from: 'no-reply <eyeguidetest@gmail.com>',
+            to: tourist.name + ' <' + tourist.email + '>',
+            subject: 'Информация о вашем заказе экскурсии',
+            attachment: [
+                {
+                    data: 
+                    `
+                    <html>
+                        <p>Информация о вашем заказе экскурсии доступна по ссылке ниже:</p>
+                        <a href="${domain}/order/${orderId}">Информация о заказе</a>
+                        <p>Пароль для входа:</p>
+                        <p>${tourist.password}</p>
+                    </html>   
+                    `,
+                    alternative: true
+                }
+            ]
+        };
+
+        emailModel.sendEmail(message);
     }
 }
 
