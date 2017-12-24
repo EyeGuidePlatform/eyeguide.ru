@@ -40,18 +40,6 @@ form {
     margin: 0 auto;
 }
 
-.balloon {
-    width: 250px;
-    height: auto;
-    text-align: center;
-    font-size: 1.2rem;
-}
-
-.balloon img {
-    width: 75%;
-    height: auto;
-}
-
 .butt {
     display: block;
     text-align: center;
@@ -63,12 +51,6 @@ form {
     height: 30px;
     border-radius: 0.5rem;
     font-size: 1.5rem;
-}
-
-.mapBtn {
-    height: 3.5rem;
-    margin: 0 auto;
-    width: 75%;
 }
 
 @media(max-width: 768px) {

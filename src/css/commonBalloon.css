@@ -1,0 +1,15 @@
+.balloon {
+    width: 250px;
+    height: auto;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.balloonImg {
+    width: 80%;
+    height: auto;
+}
+
+.balloonBtn {
+    width: 80%;
+}
