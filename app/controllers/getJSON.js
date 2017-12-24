@@ -37,7 +37,12 @@ exports.getPlaces = async (req, res) => {
         queries.push(queryObj);
     }
 
-    let response = await placeModel.getPlaces({visible: 1}, ...queries);
+    let response = await placeModel.getPlaces(
+        {visible: 1}, 
+        {select: '_id name img description'}, 
+        {noPopulate: true}, 
+        ...queries
+    );
     
     res.json(response);
 }
@@ -52,7 +57,12 @@ exports.getGuides = async (req, res) => {
         queries.push(queryObj);
     }
 
-    let response = await guideModel.getGuides({visible: 2}, {select: '_id name img info'}, ...queries);
+    let response = await guideModel.getGuides(
+        {visible: 2}, 
+        {select: '_id name img info'}, 
+        {noPopulate: true},
+         ...queries
+    );
     
     res.json(response);
 }

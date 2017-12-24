@@ -202,7 +202,8 @@ guideSchema.statics = {
      * @param {[Object]} args (критерии поиска)
      */
     getGuides: async function (...args) {
-        let query = this.find();
+        let query = this.find(),
+            populate = true;
 
         //парсим аргументы и cоставляем query
         args.map(arg => {
@@ -239,11 +240,21 @@ guideSchema.statics = {
                     query.skip((arg.page - 1)*9).limit(9);
 
                     break;
+
+                case 'noPopulate':
+                    populate = false;
+
+                    break;
                 //TODO: остальные криетрии поиска
             }
         });
 
-        let guides = await query.populate('places');
+        let guides;
+        if (populate) {
+            guides = await query.populate('places');
+        } else {
+            guides = await query.exec();
+        }
 
         return guides;
     },

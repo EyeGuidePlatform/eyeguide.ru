@@ -23,9 +23,11 @@ exports.getSearchPageGuides = async (req,res) => {
 
     const guides = await guideModel.getGuides(
         {visible: 2},
+        {select: '_id name img info'},
         {lang: req.query.lang ? [req.query.lang] : undefined},
         {city: req.query.city}, 
         {places: queryPlaces},
+        {noPopulate: true},
         {limit: 9}
     );
 
@@ -41,7 +43,14 @@ exports.getSearchPageGuides = async (req,res) => {
 exports.getSearchPagePlaces = async (req,res) => {
     const cities = await staticModel.getCities(req.locale);
 
-    let places = await placeModel.getPlaces({visible: 1}, {place: req.query.place},{city: req.query.city}, {limit: 9});
+    let places = await placeModel.getPlaces(
+        {visible: 1},
+        {select: '_id name img description'}, 
+        {noPopulate: true},
+        {place: req.query.place}, 
+        {city: req.query.city}, 
+        {limit: 9}
+    );
 
     res.render('searchPlaces.html', {
         places: places,

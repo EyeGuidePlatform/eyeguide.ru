@@ -54,7 +54,8 @@ placeSchema.statics = {
      * @param {[Object]} args (критерии поиска)
      */
     getPlaces: async function(...args) {
-        let query = this.find();
+        let query = this.find(),
+            populate = true;
 
         //парсим аргументы и cоставляем query
         args.map(arg => {
@@ -85,12 +86,22 @@ placeSchema.statics = {
                     query.skip((arg.page - 1)*9).limit(9);
 
                     break;
+                case 'noPopulate':
+                    populate = false;
+
+                    break;
                 //TODO: остальные криетрии поиска
             }
         })
+        
+        let places;
 
-        let places = await query.populate('guides');
-
+        if (populate) {
+            places = await query.populate('guides');
+        } else {
+            places = await query.exec();
+        }
+        
         return places;
     },
 
