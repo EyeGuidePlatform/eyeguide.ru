@@ -90,6 +90,11 @@ placeSchema.statics = {
                     populate = false;
 
                     break;
+
+                case 'name':
+                    query.where({'name': {$regex: arg.name, $options:'i'}});
+
+                    break;
                 //TODO: остальные криетрии поиска
             }
         })

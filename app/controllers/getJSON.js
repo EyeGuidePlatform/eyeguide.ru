@@ -1,6 +1,7 @@
-const placeModel = require('../models/place').placeModel;
-const guideModel = require('../models/guide').guideModel;
-const toHash = require('md5')
+const placeModel = require('../models/place').placeModel,
+    guideModel = require('../models/guide').guideModel,
+    staticModel = require('../models/static').staticModel;
+    toHash = require('md5');
 
 exports.getPlacesJSON = async (req, res) => {
     const [query, parameter] = req.params.query.split('=');
@@ -38,12 +39,18 @@ exports.getPlaces = async (req, res) => {
     }
 
     let response = await placeModel.getPlaces(
-        {visible: 1}, 
+        {visible: 1},
         {select: '_id name img description'}, 
         {noPopulate: true}, 
         ...queries
     );
     
+    res.json(response);
+}
+
+exports.getCities = async (req, res) => {
+    let response = await staticModel.getCities(req.locale, req.query.name);
+
     res.json(response);
 }
 
