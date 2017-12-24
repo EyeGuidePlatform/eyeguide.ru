@@ -26,7 +26,7 @@ exports.rateExcursion = async (req, res) => {
     }
     await order.save();
     req.flash('success', 'Спасибо за оценку!');
-    res.redirect('/');
+    res.redirect('/order/' + order.id);
 }
 
 exports.cancelExcursion = async (req, res) => {
@@ -35,6 +35,5 @@ exports.cancelExcursion = async (req, res) => {
     if (order.status === 0) order.status = 3;
     else if (order.status === 1) order.status = 5;
     await order.save();
-    req.flash('error', 'Экскурсия отменена');
-    res.redirect('/');
+    res.redirect('/order/' + order.id);
 }
