@@ -1,0 +1,46 @@
+/*==========================================================*/
+/* ===== navbar =======*/
+/*==========================================================*/
+.navbar_wrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    z-index: 1000;
+    border-bottom: 1px lightgray solid;
+  }
+  .navbar_wrapper div {
+    display: inline-block;
+    cursor: pointer;
+  }
+  .navbar_logo {
+    height: 80px;
+    float: left;
+  }
+  .navbar_right {
+    float: right;
+    margin-top: 2rem;
+  }
+  .navbar_logo img {
+    height: 99%;
+    width: auto;
+  }
+  .navbar_right div {
+    font-size: 1.7em;
+  }
+  .navbar_login {
+    position: relative;
+    padding: 0 1rem 0 1rem;
+  }
+  .navbar_login:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 1px;
+    height: 3.5rem;
+    background-color: black;
+  }
+  .navbar_profile {
+    border: 1px lightgray solid;
+  }

@@ -1,0 +1,73 @@
+{% extends "templates/pageTemplate.html" %}
+
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/FAQ.css">
+<link rel="stylesheet" href="/css/dc_spacing.css">
+{% endblock %}
+{% block content %}
+    <div class="wrap">
+        <div id="FAQ">
+            <div class="container">
+            <div  class="row mb-5 faq-row">
+            <div class=" col-md-12 col-sm-12">
+                    <h2 class="title-faq"><i class="fa fa-question" aria-hidden="true"></i> Что мне дает EyeGuide?</h2>
+                    <p>EyeGuide формирует поток заказов на проведение экскурсий. Это может быть как подработкой,так и основным местом работы.</p>
+                </div>
+                <div class=" col-md-12 col-sm-12">
+                        <h2 class="title-faq"><i class="fa fa-sign-in" aria-hidden="true"></i> Что нужно, чтобы присоединиться к EyeGuide?</h2>
+                        <p>«Служебный вход», раздел «Регистрация». Заполняете данный раздел и получаете доступ к своему личному кабинету.</p>  
+                    </div>
+                    <div class=" col-md-12 col-sm-12">
+                        <h2 class="title-faq"><i class="fa fa-list" aria-hidden="true"></i> Как получить заказ?</h2>
+                        <p>Вам будет приходить уведомление на номер телефона о появлении активного заказа в личном кабинете. Для отклика, Вам надо будет пройти в Личный кабинет, зайти в раздел «Активные заказы» и откликнуться на заказ.</p>
+                    </div>
+                    <div class=" col-md-12 col-sm-12">
+                        <h2 class="title-faq"><i class="fa fa-step-forward" aria-hidden="true"></i> Что мне нужно делать после получения заказа?</h2>
+                        <p>После получение заказа, Вы самостоятельно связываетесь с заказчиком и договариваетесь о месте и времени проведения экскурсии.</p>
+                    </div>
+                    <div class=" col-md-12 col-sm-12">
+                        <h2 class="title-faq uncomp"><i class="fa fa-times" aria-hidden="true"></i><a href=""> Как отказаться от заказа?</a></h2>
+                    </div>
+                    <div class=" col-md-12 col-sm-12">
+                        <h2 class="title-faq uncomp"><i class="fa fa-comments" aria-hidden="true"></i><a href=""> Что делать если не удалось выполнить заказ?</a></h2>
+                    </div>
+
+                </div>
+            </div>
+           <div id="RSV">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                            <div class="jumbotron">
+                                <h1 class="title text-center mb-3">Появились вопросы, {{ guideName }}? Напишите и мы Вам поможем.</h1>
+                                <p id="form-messages"></p>
+                                <form class="tc-form-style1" id="ajax-form" method="POST" action="/guideFAQ">						
+                                    <div class="form-field">
+                                        <input type="text" class="subject" name="subject" placeholder="Тема вопроса">
+                                    </div>
+                                    <div class="form-field">
+                                        <textarea class="message" name="message" placeholder="Сообщение" rows="7"></textarea>
+                                    </div>
+                                    <div class="form-button">
+                                        <button type="submit" class="btn btn-default"> Отправить</button>
+                                    </div>
+                                </form>
+                              </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    {% endblock %}   
+
+
+  {% block commonJS %}
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="/js/jquery-2.2.3.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  {% endblock %}
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% extends "templates/adminPage.html" %}
+
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/registration-form.css">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid wrap">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Новые места</h1>
+            <div class="new-places">
+                <ul>
+                    {% for place in newPlaces %}
+                    <li class="col-lg-3 col-md-4 col-sm-6 place">
+                        <a href="/place/{{ place._id }}" class="place-name">
+                            <h4>{{ place.name }} {{ place.surname }}</h4>
+                        </a>
+                        <div class="control-btns">
+                            <a href="/admin/confirm/places/{{ place._id }}" class="btn btn-success">Подтвердить</a>
+                            <a href="/place/{{ place._id }}/edit" class="btn btn-warning">Редактировать</a>
+                            <form class="form-btn" action="/place/{{ place._id }}/remove" method="POST">
+                                <button class="btn btn-danger" type="submit">Удалить</button>
+                            </form>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

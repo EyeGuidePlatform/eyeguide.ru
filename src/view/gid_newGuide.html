@@ -1,0 +1,118 @@
+{% extends "templates/pageTemplate.html" %}
+
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/choices.min.css">
+<link rel="stylesheet" href="/css/registration-form.css">
+<script src="/js/choices.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="modal fade" id="rights">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close close-modal" aria-label="Close" data-target="#rights"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Условия соглашения</h4>
+            </div>
+            <div class="modal-body">
+                <p class="rights-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pharetra imperdiet nibh, ut accumsan nulla tempor quis. Pellentesque eros mi, finibus non euismod vitae, laoreet ac lectus. Etiam pulvinar massa quis lacinia eleifend. Cras id elit at ligula fermentum egestas sed sit amet est. Sed in consectetur nibh, sit amet ullamcorper lacus. Etiam porttitor nec lacus quis malesuada. In placerat sapien a egestas tempor. Nullam posuere vehicula dolor, ut placerat purus pulvinar non. Sed ac pellentesque dolor. Duis nulla nisi, volutpat nec eros in, viverra vehicula orci.
+                    
+                    Pellentesque sodales justo magna, sit amet pulvinar sem aliquet sed. Morbi sit amet maximus eros. Sed ut dui imperdiet urna pulvinar consectetur. Cras et consequat risus. Quisque eu euismod mauris, sed feugiat enim. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque consequat suscipit leo, sit amet vehicula augue dictum id. In sit amet leo vel nulla pretium feugiat. Nunc sem urna, accumsan non odio vitae, lacinia gravida ligula. Fusce a velit semper, mattis lacus eu, condimentum neque. Curabitur lacus purus, sagittis quis libero sit amet, consectetur convallis nulla. Pellentesque mollis ligula et sem posuere, sit amet lobortis orci ultrices. Integer dui arcu, condimentum a lacinia non, laoreet non nibh.
+                    
+                    Mauris vestibulum arcu sit amet nisi euismod, eu mollis neque placerat. Maecenas eu leo varius, pulvinar odio nec, mattis dui. Nullam commodo feugiat purus eget pharetra. Fusce sit amet eros eu dolor scelerisque elementum sit amet quis arcu. Vivamus tempus dolor lectus, vel cursus nisl dignissim non. Nullam et odio magna. Ut magna elit, posuere non neque luctus, condimentum sagittis massa. Mauris congue, erat sit amet tincidunt dictum, tortor magna sodales massa, sit amet dapibus metus ipsum sit amet diam. Vestibulum convallis accumsan leo, quis mollis nunc aliquet non. Proin elementum felis ut felis fermentum, ultricies bibendum ipsum blandit. Integer cursus ipsum sed risus porta, id malesuada ipsum aliquam. Nunc nec erat ac nulla varius gravida. Phasellus massa nisl, egestas ut ultrices et, elementum eget diam. Nunc porttitor eget neque vitae feugiat. Maecenas ultricies, arcu eu convallis convallis, nisl nisi aliquam felis, a gravida est massa vel sapien. Nam molestie eu magna placerat blandit.
+                    
+                    Morbi cursus, nulla sit amet condimentum lacinia, lacus felis tincidunt enim, molestie consectetur dui elit a mi. Cras faucibus augue at eros scelerisque, a pretium nibh pharetra. Proin id ipsum ipsum. Nulla facilisi. Pellentesque at neque vehicula, convallis ante eget, rhoncus nibh. Sed imperdiet sem a faucibus ultricies. Cras tempor elementum justo, consequat euismod augue pretium at. Sed eget magna et dui accumsan porttitor at tincidunt justo. Quisque congue, purus ac fermentum pulvinar, eros lacus maximus turpis, vel dictum magna ipsum at urna. Duis lectus leo, bibendum eu sodales dictum, rutrum nec metus. Maecenas ligula metus, imperdiet in ligula et, imperdiet interdum mi. In finibus, dolor in vehicula mattis, odio arcu gravida urna, eget viverra arcu tortor vel justo.
+                </p>
+                <button type="button" class="btn btn-primary close-modal" aria-label="Close" data-target="#rights">Я прочитал</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wrap">
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Регистрация</h1>
+            <form class="form-center" action="/registration" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Имя</label>
+                    <input type="text" class="form-control" id="name" name="guide[name]" required>
+                </div>
+                <div class="form-group">
+                    <label for="surname">Фамилия</label>
+                    <input type="text" class="form-control" id="surname" name="guide[surname]" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Электронная почта</label>
+                    <input type="email" class="form-control" id="email" name="guide[email]" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" class="form-control" id="password" name="guide[password]" required>
+                </div>
+                <div class="form-group">
+                    <label for="password-again">Подтвердите пароль</label>
+                    <input type="password" class="form-control" id="password-again" name="confirmPassword" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Возраст</label>
+                    <input type="number" class="form-control" id="age" name="guide[age]" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="text" class="form-control" id="phone" name="guide[phone]" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">О себе</label>
+                    <textarea class="form-control" id="description" name="description" rows="5"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Фотография</label>
+                    <input type="file" class="form-control" id="img" name="img">
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Город</label>
+                    <select id="city" class="single-choice" name="guide[city]" required>
+                        {% for city in cities %}
+                        <option value="{{ city }}">{{ city }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="spec">Специализации</label>
+                    <input type="text" class="multiple-choice form-control" id="spec" name="spec" placeholder="Введите специализации">
+                </div>
+                <div class="form-group">
+                    <label for="types">Виды экскурсий</label>
+                    <input type="text" class="multiple-choice form-control" id="types" name="types" placeholder="Введите виды экскурсий">
+                </div>
+                <div class="form-group">
+                    <label for="languages">Языки</label>
+                    <select class="multiple-choice form-control" id="languages" name="lang" placeholder="Выберите языки, которые вы знаете" multiple required>
+                        {% for lang in languages %}
+                        <option value="{{ lang.key }}">{{ lang.value }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="rules" required> Прежде чем зарегистрироваться необходимо принять <a type="button" class="open-modal" data-target="#rights">условия соглашения</a>
+                    </label>
+                </div>
+                
+                <button type="submit" id="submit" class="btn btn-block btn-primary">Зарегистрироваться</button>
+            </form>       
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block commonJS %}
+<script src="/js/choiceInputs.js"></script>
+<script src="/js/modal.js"></script>
+{% endblock %}

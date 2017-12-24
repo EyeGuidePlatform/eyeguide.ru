@@ -1,0 +1,15 @@
+.contact-title{
+    margin: 3rem 0;
+    font-size: 30px;
+}
+
+.title{
+    text-align: center;
+    font-size: 72px;
+
+}
+
+.contact-title a:hover{
+    text-decoration: none;
+    color: green;
+}
