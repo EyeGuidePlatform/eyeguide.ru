@@ -34,7 +34,6 @@ exports.cancelExcursion = async (req, res) => {
     order.mark = 0;
     if (order.status === 0) order.status = 3;
     else if (order.status === 1) order.status = 5;
-    console.log(order.mark);
     await order.save();
     req.flash('error', 'Экскурсия отменена');
     res.redirect('/');
