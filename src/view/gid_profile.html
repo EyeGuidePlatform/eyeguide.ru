@@ -1,10 +1,9 @@
 {% extends "templates/pageTemplate.html" %} {% block commonStyles %}
 
 <link rel="stylesheet" href="/css/brm_gid-navbar.css">
-<link rel="stylesheet" href="/css/brm_gid-profile.css"> 
+<link rel="stylesheet" href="/css/brm_gid-profile.css">
 <link rel="stylesheet" href="/css/choices.min.css">
-<script src="/js/choices.min.js"></script>
-{% endblock %} {% block content %}
+<script src="/js/choices.min.js"></script> {% endblock %} {% block content %}
 <div class="wrap">
 
 
@@ -29,10 +28,12 @@
 
           <div class="col-md-12">
             <div class="profile_photo" style="background-image: url('{{ guide.img }}')">
-              
-              <div class="edit">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-              </div>
+              <form class="imgForm" data-role='input_photo' action="/guide/changePhoto" method="POST" enctype="multipart/form-data">
+                <input type="file" id="img" name="img" accept="image/*">
+                <button type="click" class="edit edit_photo">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                </button>
+              </form>
             </div>
           </div>
 
@@ -60,7 +61,7 @@
       <!-- main -->
       <main class="col-md-9">
         <ul>
-          
+
           <select class="form-control form_lang" name="lang">
             <option value="RU" selected>ru</option>
             <option value="EN">en</option>
@@ -70,89 +71,61 @@
           </div>
 
           <form action="/guide/changeInfo" method="POST">
-          <li>
-            <div>Фамилия имя</div>
-            <h4 data-role='default'>{{ guide.surname }} {{ guide.name }}</h4>
-            <input type="text" data-role='input' class="form-control inline none" name="surname" value="{{ guide.surname }}" 
-            placeholder="Введите фамилию">
-            <input type="text" data-role='input' class="form-control inline none" name="name" value="{{ guide.name }}" 
-            placeholder="Введите имя">
-          </li>
-          <li>
-            <span>Специализации</span>
-            <h4 data-role='default'>{{ guide.info.spec }}</h4>
-            <div class="none" data-role='input'>
-              <input 
-                type="text" 
-                class="multiple-choice form-control" 
-                id="spec" 
-                name="spec" 
-                placeholder="Введите специализации" 
-                value="{{ guide.info.spec }}" 
-                required
-              >
-            </div>
-          </li>
-          <li>
-            <span>Виды экскурсий</span>
-            <h4 data-role='default'>{{ guide.info.types }}</h4>
-            <div class="none" data-role='input'>
-              <input 
-                type="text" 
-                class="multiple-choice form-control none" 
-                id="types" 
-                name="types" 
-                placeholder="Введите виды экскурсий" 
-                value="{{ guide.info.types }}" 
-                required
-              >
-            </div>
-          </li>
-          <li>
-            <span>Языки</span>
-            <h4 data-role='default'>{{ guide.info.lang }}</h4>
-            <div class="none" data-role='input'>
-              <select 
-                class="multiple-choice form-control none" 
-                id="languages" 
-                name="lang" 
-                placeholder="Выберите языки, которые вы знаете"
-                multiple required
-              >
-                  <option value="ru" 
-                  {% for lang in guide.info.lang %}
-                    {% if lang == 'ru' %}
-                      selected
-                    {% endif %}
-                  {% endfor %} 
-                   >
-                   ru
+            <li>
+              <div>Фамилия имя</div>
+              <h4>{{ guide.surname }} {{ guide.name }}</h4>
+            </li>
+            <li>
+              <span>E-mail</span>
+              <h4>{{ guide.email }}</h4>
+            </li>
+            <li>
+              <span>Специализации</span>
+              <h4 data-role='default'>{{ guide.info.spec }}</h4>
+              <div class="none" data-role='input'>
+                <input type="text" class="multiple-choice form-control" id="spec" name="spec" placeholder="Введите специализации" value="{{ guide.info.spec }}"
+                  required>
+              </div>
+            </li>
+            <li>
+              <span>Виды экскурсий</span>
+              <h4 data-role='default'>{{ guide.info.types }}</h4>
+              <div class="none" data-role='input'>
+                <input type="text" class="multiple-choice form-control none" id="types" name="types" placeholder="Введите виды экскурсий"
+                  value="{{ guide.info.types }}" required>
+              </div>
+            </li>
+            <li>
+              <span>Языки</span>
+              <h4 data-role='default'>{{ guide.info.lang }}</h4>
+              <div class="none" data-role='input'>
+                <select class="multiple-choice form-control none" id="languages" name="lang" placeholder="Выберите языки, которые вы знаете"
+                  multiple required>
+                  <option value="ru" {% for lang in guide.info.lang %} {% if lang=='ru' %} selected {% endif %} {% endfor %}>
+                    ru
                   </option>
-                  <option value="en" 
-                  {% for lang in guide.info.lang %}
-                    {% if lang == 'en' %}
-                      selected
-                    {% endif %}
-                  {% endfor %}
-                  >
-                  en
+                  <option value="en" {% for lang in guide.info.lang %} {% if lang=='en' %} selected {% endif %} {% endfor %}>
+                    en
                   </option>
-              </select>
-            </div>
-          </li>
-          <li>
-            <span>Телефон</span>
-            <h4 data-role='default'>{{ guide.phone }} (виден только мне)</h4>
-            <input type="text" class="form-control none" data-role='input' name="phone" value='{{ guide.phone }}' placeholder="Введите телефон">
-          </li>
-          <li>
-            <span>E-mail</span>
-            <h4 data-role='default'>{{ guide.email }}</h4>
-            <input type="email" class="form-control none" data-role='input' name="email" value='{{ guide.email }}' placeholder="Введите email">
-          </li>
-          <button type="submit" class="confirm_button none" data-role='input'>Сохранить</button>
+                </select>
+              </div>
+            </li>
+            <li>
+              <span>Телефон</span>
+              <h4 data-role='default'>{{ guide.phone }} (виден только мне)</h4>
+              <input type="text" class="form-control none" data-role='input' name="phone" value='{{ guide.phone }}' placeholder="Введите телефон">
+            </li>
+            <li>
+              <span>О себе</span>
+              {% if guide.description[0].status == 1 %}
+              <span class="red none" data-role='input'> (cодержимое проходит модерацию)</span>
+              {% endif %}
+              <h4 data-role='default'>{{ guide.description[0].value }}</h4>
+              <textarea type="text" class="form-control none" data-role='input' name="desc" placeholder="Введите описание">{{ guide.description[0].value }}</textarea>
+            </li>
+            <button type="submit" class="confirm_button none" data-role='input'>Сохранить</button>
           </form>
-        </ul>`
+        </ul>
       </main>
 
     </div>

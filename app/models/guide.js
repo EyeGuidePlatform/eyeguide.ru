@@ -152,6 +152,9 @@ guideSchema.statics = {
 
         await exs.forEach(element => element.remove());
 
+        const [exdata] = exs
+        guide.excursions = await guide.excursions.filter(ex => ex._id != exdata._id)
+        
         place.guides = await place.guides.filter(guide => guide._id != guideId);
         await place.save()
 
