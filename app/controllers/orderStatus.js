@@ -8,6 +8,7 @@ exports.getOrderStatus = async (req, res) => {
         place = await placeModel.getPlace(order.place),
         guide = await guideModel.getGuide(order.excursion.guide),
         excursion = await exModel.getEx(order.excursion.id);
+        console.log(req.body);
     res.render('orderStatus.html', {
         place: place,
         order: order,

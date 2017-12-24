@@ -57,6 +57,7 @@ router.get('/guideOptions', lkController.getGuideOptionsPage);
 router.get('/guideOrders', lkController.getGuideOrdersPage);
 router.get('/guidePlaces', lkController.getGuidePlacesPage);
 router.get('/guideProfile', lkController.getProfilePage);
+router.post('/guideOptions', lkController.saveWeekends);
 // ЛК гида - utils
 router.post('/guide/changeInfo', lkController.guideChangeInfo);
 router.post('/guidePlaceAdd', lkController.addPlace);

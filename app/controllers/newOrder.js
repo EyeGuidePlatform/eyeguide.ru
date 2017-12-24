@@ -39,7 +39,7 @@ exports.createOrder = async (req, res) => {
     const guide = await guideModel.getGuide(req.body.guideId)
     guide.orders.push(order);
     await guide.save()
- 
+    console.log(req.body);
     await tourist.sendEmail(order._id);
 
     return tourist;

@@ -94,14 +94,14 @@ function modalGroup(minVal) {
                <div class="price">
                    <span>Количество человек: </span>
                    <label>от
-                       <input type="number" value=${minVal} min=${minVal} max=6 readonly>
+                       <input type="number" name="peopleMin${minVal}" value=${minVal} min=${minVal} max=6 readonly>
                    </label>
                    <label>до
-                       <input type="number" value=${minVal} min=${minVal} max=6>
+                       <input type="number" name="peopleMin${minVal}" value=${minVal} min=${minVal} max=6>
                    </label>
                    <br>
                    <span>Цена за одного человека:</span>
-                   <input type="number" min=0>
+                   <input type="number" name="price${minVal}" min=0>
                </div>
        `
     )
