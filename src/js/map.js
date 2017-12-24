@@ -51,7 +51,7 @@ function createCollection(items, s) {
         placemark.name = item.name;
         placemark.description = item.description;
         placemark.img = item.img;
-        
+        placemark.placeurl = "/place/" + item._id;
         newCollection.add(placemark);
     });
 
