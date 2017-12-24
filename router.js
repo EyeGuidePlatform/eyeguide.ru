@@ -60,6 +60,7 @@ router.get('/guideProfile', lkController.getProfilePage);
 // ЛК гида - utils
 router.post('/guide/changeInfo', lkController.guideChangeInfo);
 router.post('/guide/changePhoto', upload.single('img'), lkController.guideChangePhoto);
+router.post('/guideOptions', lkController.saveWeekends);
 router.post('/guidePlaceAdd', lkController.addPlace);
 router.post('/guidePlaceRemove', lkController.removePlace);
 router.put('/order/confirm/:id', lkController.confirmOrder);

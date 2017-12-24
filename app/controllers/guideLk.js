@@ -6,9 +6,10 @@ const orderModel = require('../models/orders').orderModel;
 /**
  * Страница "Смена пароля гида"
  */
-exports.getGuideOptionsPage = (req, res) => {
-    let id = req.session.guide.id
-    res.render('gid_options.html', { id: id});
+exports.getGuideOptionsPage = async (req, res) => {
+    let id = req.session.guide.id,
+        weekendsData = await guideModel.getWeekends(id);
+    res.render('gid_options.html', { id: id, weekends: weekendsData});
 }
 
 /**
@@ -61,7 +62,6 @@ exports.addPlace = async (req,res) => {
     let id = req.session.guide.id,
         placeId = req.body.place,
         excursion = {}
-        console.log(req.body)
         excursion.place = await placeModel.getPlace(req.body.place)
         excursion.guide = await guideModel.getGuide(id)
         excursion.prices = [{price: req.body.price, people: req.body.people}]
@@ -155,4 +155,12 @@ exports.guideChangePhoto = async(req, res) => {
     await guide.save()
     req.flash('success', 'Ваше фото успешно загружено');
     res.redirect('/guideProfile')
+}
+
+exports.saveWeekends = async(req,res) => {
+    let guideId = req.session.guide.id;
+    let weekendData = req.body.weekends;
+    guideModel.addWeekends(weekendData, guideId);
+    req.flash('success', 'Выходные успешно сохранены');
+    res.redirect('/guideProfile');
 }
