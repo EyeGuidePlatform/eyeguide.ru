@@ -74,3 +74,30 @@ exports.confirmPlace = async (req, res) => {
     req.flash('success', 'Место подтверждено!');
     res.redirect('/admin/confirm/places');
 }
+
+exports.getOnModerate = async (req, res) => {
+    const foundModetate = await guideModel.getGuides({onModerate:0});
+
+    res.render('onModerate.html', {guides: foundModetate});
+}
+
+exports.agreeOnModerate = async (req, res) => {
+    let guide = await guideModel.getGuide(req.params.id);
+
+    guide.description[0].status = 0;
+    guide.description[0].value = guide.description[0].onModerate;
+    guide.description[0].onModerate = '';
+    
+    guide.save();
+    res.redirect('/onModerate');
+}
+
+exports.desagreeOnModerate = async (req, res) => {
+    let guide = await guideModel.getGuide(req.params.id);
+
+    guide.description[0].status = 0;
+    guide.description[0].onModerate = 'Последнее изменение отклонено';
+    
+    guide.save();
+    res.redirect('/onModerate');
+}

@@ -61,5 +61,17 @@ orderSchema.statics = {
     }
 }
 
+orderSchema.pre('save', function(next){
+    //TODO: Пересчитать если 2 (завершено)
+
+    //3 отклонена туристом пока гид еще не принял
+
+    //5 гид принял, а турист отменил заказ
+
+    //4 когда отменил заказ
+    console.log('Новый ордер!')
+    next();
+})
+
 let orderModel = mongoose.model('order', orderSchema);
 module.exports.orderModel = orderModel;
