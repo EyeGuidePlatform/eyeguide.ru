@@ -82,7 +82,11 @@ guideSchema = mongoose.Schema({
     description: [{
         lang: String,
         value: String
-    }]
+    }],
+    rating: {
+        type: Number,
+        default: 4.5
+    }
 });
 
 
@@ -243,6 +247,11 @@ guideSchema.statics = {
 
                 case 'noPopulate':
                     populate = false;
+
+                    break;
+
+                case 'rating':
+                    query.sort({rating: arg.rating});
 
                     break;
                 //TODO: остальные криетрии поиска

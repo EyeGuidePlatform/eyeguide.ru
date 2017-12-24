@@ -28,6 +28,7 @@ exports.getSearchPageGuides = async (req,res) => {
         {city: req.query.city}, 
         {places: queryPlaces},
         {noPopulate: true},
+        {rating: -1},
         {limit: 9}
     );
 
