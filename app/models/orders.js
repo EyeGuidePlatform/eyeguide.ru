@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 const mongoose = require('./../../server').mongoose;
 const domain = require('../../config').domain;
 const emailModel = require('../models/email');
 const guideModel = require('./guide').guideModel;
+=======
+const mongoose = require('./../../server').mongoose,
+    guideModel = require('./guide').guideModel;
+>>>>>>> origin/jz_fin_fixes
 
 orderSchema = mongoose.Schema({
     status: Number, // 0 - подана заявка, 1 - принята гидом, 3 - экскурсия завершена
@@ -66,11 +71,8 @@ orderSchema.statics = {
 
 orderSchema.pre('save', async function(next){
 
-    //TODO: Пересчитать если 2 (завершено)
-    
-
-    let exc = this.populate('excursions');
-    let guide = await guideModel.getGuide(exc.excursion.guide);
+    let order = this.populate('excursions');
+    let guide = await guideModel.getGuide(order.excursion.guide);
 
     let message = {
         text: '',
@@ -99,6 +101,12 @@ orderSchema.pre('save', async function(next){
                 </html>`;
             message.to = this.tourist.name + ' <' + this.tourist.email + '>';
         break;
+        case 2:
+            if (!order.mark) 
+                break;
+                
+            await guide.computeRating();
+        break;
         case 4:
             message.attachment[0].data = `<html>
             <p>Гид отменил экскурсию!</p>
@@ -117,7 +125,7 @@ orderSchema.pre('save', async function(next){
 
     if(message.to!='')
         emailModel.sendEmail(message);
-
+    
     next();
 })
 

@@ -73,6 +73,28 @@
     left: 0;
 }
 
+.search-container {
+    height: 100%;
+}
+
+.search-dropdown {
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+    left: -40px;
+    
+    overflow: auto;
+    list-style: none;
+    text-align: left;
+    padding: 0;
+    min-width: 210px;
+}
+
+.search-dropdown option {
+    color: #000;
+    background-color: #fff;
+}
+
 .search-input {
     padding: 11px 10px;
     width: 50%;

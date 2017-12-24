@@ -75,7 +75,11 @@ guideSchema = mongoose.Schema({
         lang: String,
         value: String,
         onModerate: String
-    }]
+    }],
+    rating: {
+        type: Number,
+        default: 4.5
+    }
 });
 
 
@@ -198,7 +202,8 @@ guideSchema.statics = {
      * @param {[Object]} args (критерии поиска)
      */
     getGuides: async function (...args) {
-        let query = this.find();
+        let query = this.find(),
+            populate = true;
 
         //парсим аргументы и cоставляем query
         args.map(arg => {
@@ -235,6 +240,17 @@ guideSchema.statics = {
                     query.skip((arg.page - 1)*9).limit(9);
 
                     break;
+
+                case 'noPopulate':
+                    populate = false;
+
+                    break;
+
+                case 'rating':
+                    query.sort({rating: arg.rating});
+
+                    break;
+
                 case 'onModerate':
                     query.where('description.status').equals(1);
                     break;
@@ -242,7 +258,12 @@ guideSchema.statics = {
             }
         });
 
-        let guides = await query.populate('places');
+        let guides;
+        if (populate) {
+            guides = await query.populate('places');
+        } else {
+            guides = await query.exec();
+        }
 
         return guides;
     },
@@ -275,6 +296,25 @@ guideSchema.methods = {
         await this.save();
 
         return require('../../config').domain + '/activate/' + url;
+    },
+    computeRating: async function () {
+        let guide = await this.populate('orders'),
+            newRating = 0,
+            count = 0;
+
+        guide.orders.forEach((order) => {
+            if (order.mark) {
+                newRating += order.mark;
+                count++;
+            }
+        });
+
+        if (count) {
+            newRating /= count;
+            guide.rating = newRating;
+    
+            await guide.save();
+        }
     }
 }
 
