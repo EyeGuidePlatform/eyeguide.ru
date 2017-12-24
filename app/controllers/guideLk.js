@@ -61,7 +61,7 @@ exports.addPlace = async (req,res) => {
     let id = req.session.guide.id,
         placeId = req.body.place,
         excursion = {}
-
+        console.log(req.body)
         excursion.place = await placeModel.getPlace(req.body.place)
         excursion.guide = await guideModel.getGuide(id)
         excursion.prices = [{price: req.body.price, people: req.body.people}]
@@ -70,7 +70,6 @@ exports.addPlace = async (req,res) => {
         let newEx = await exModel.addExcursion(excursion)
         let addEx = await guideModel.addExInGuide(newEx, id)
         let addPlace = await guideModel.addPlaceInGuide(id, placeId)
-        
         res.send({redirect: '/guidePlaces'});
     
 }
@@ -79,7 +78,6 @@ exports.removePlace = async (req,res) => {
     let id = req.session.guide.id,
         placeId = req.body.placeId
     let placeList = await guideModel.removePlaceFromGuide(id,placeId)
-    
     res.redirect('/guidePlaces')
 }
 
