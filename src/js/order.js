@@ -18,6 +18,8 @@ $('.date').append(stringDate);
 
 let status = $('p span').attr('value');
 let mark = $('.stars').attr('value');
+console.log($('#rating-form').attr('action'));
+$('.stars').hide();
 $('input:radio').click(function(){
     $('.btn-rate').removeAttr('disabled');
 });
@@ -31,7 +33,7 @@ switch(status){
     case '2':
         $('p span').append('Экскурсия завершена').css({'color':'green'});
         $('.btn-cancel').hide();
-        (mark === '' && mark !== '0')? $('div.stars').css({"display":"inline-block"}) : $('div.stars').css({"display":"none"});
+        (mark === '' && mark !== '0')? $('.stars').show() : $('.stars').hide();
         break;
     case '3':
         $('p span').append('Экскурсия отменена туристом').css({'color':'red'});

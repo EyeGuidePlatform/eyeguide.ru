@@ -80,8 +80,13 @@ guideSchema = mongoose.Schema({
         ref: 'order'
     }],
     description: [{
+        status: {
+            type: Number, 
+            default: 0
+        },
         lang: String,
-        value: String
+        value: String,
+        onModerate: String
     }]
 });
 
@@ -238,6 +243,9 @@ guideSchema.statics = {
                 case 'page':
                     query.skip((arg.page - 1)*9).limit(9);
 
+                    break;
+                case 'onModerate':
+                    query.where('description.status').equals(1);
                     break;
                 //TODO: остальные криетрии поиска
             }

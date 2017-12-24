@@ -22,7 +22,7 @@ exports.createOrder = async (req, res) => {
 
     
 
-    const tourist = await regTourist(req);
+    const tourist = await touristModel.regTourist(req.body);
     const place = await placeModel.getPlace(req.body.placeId);
     const exc = await exModel.getExs({place: req.body.placeId}, {guideId: req.body.guideId});
     const [excData] = exc
@@ -40,34 +40,7 @@ exports.createOrder = async (req, res) => {
     guide.orders.push(order);
     await guide.save()
  
-    //FIXME:
-    async function regTourist (req) {
+    await tourist.sendEmail(order._id);
 
-        let newTourist = req.body,
-        tourist = await touristModel.regTourist(newTourist);
-
-        const message = {
-            text: 'Ваш пароль для просмотра информации о заказе экскурсии: \n' + tourist.password,
-            from: 'no-reply <eyeguidetest@gmail.com>',
-            to: tourist.name + ' <' + tourist.email + '>',
-            subject: 'Информация о вашем заказе экскурсии',
-            attachment: [
-                {
-                    data: 
-                    `
-                    <html>
-                        <p>Информация о вашем заказе экскурсии доступна по ссылке ниже:</p>
-                        <a href="#">Информация о заказе</a>
-                        <p>Пароль для входа:</p>
-                        <p>${tourist.password}</p>
-                    </html>   
-                    `,
-                    alternative: true
-                }
-            ]
-        };
-        emailModel.sendEmail(message);
-
-        return tourist;
-    }
+    return tourist;
 }

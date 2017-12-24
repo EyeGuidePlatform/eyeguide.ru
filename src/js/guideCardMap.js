@@ -7,10 +7,10 @@ function initMap(){
 
     let template = new YMaps.Template(
         `<div class='balloon'> 
-            <img class = "balloonImg" src="$[img]"> 
+            <img src="$[img]"> 
             <h3>$[name]</h3> 
             <p>$[description]</p>
-            <a class = 'btn btn-success btn-lg balloonBtn' href = '$[placeurl]'>Подробнее</a>
+            <a class = 'btn btn-success mapBtn' href = '$[placeurl]'>Подробнее</a>
         </div>`
     );
 

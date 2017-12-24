@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
 <script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="/css/commonBalloon.css">
+
  
  
 <script type="text/javascript">
@@ -19,12 +19,11 @@
        map.setCenter(new YMaps.GeoPoint(+' {{place.geo.y}}', +' {{place.geo.x}}'), 10);
        map.enableScrollZoom();
        let template = new YMaps.Template(
-        `<div class='balloon'> 
-            <img class = "balloonImg" src="$[img]"> 
-            <h3>$[name]</h3> 
-            <p>$[description]</p>
-            <a class = 'btn btn-success btn-lg balloonBtn' href = '$[placeurl]'>Подробнее</a>
-        </div>`
+          '<div style="width: 300px; text-align:center"> \
+              <img style="width: 90%" src="$[img]"> \
+              <h3>$[name]</h3> \
+              <p>$[description]</p> \
+          </div>'
       );
    
       let s = new YMaps.Style();
@@ -48,7 +47,7 @@
           placemark.name = place.name;
           placemark.description = place.description;
           placemark.img = place.img;
-          placemark.plcaeurl = '/place/' + place.id;
+   
           pCollection.add(placemark);
       });
       

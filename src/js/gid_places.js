@@ -8,10 +8,9 @@ YMaps.jQuery(function () {
     map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
     let template = new YMaps.Template(
         `<div class='balloon'> 
-            <img class = "balloonImg" src="$[img]"> 
+            <img src="$[img]"> 
             <h3>$[name]</h3> 
-            <p>$[description]</p>
-            <a class = 'btn btn-success btn-lg balloonBtn' href = '$[placeurl]'>Подробнее</a>
+            <p>$[description]</p> 
         </div>`
     );
 

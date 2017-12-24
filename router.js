@@ -130,6 +130,9 @@ router.get('/place/:id/edit', middleware.isAdminLogged, regPlaceController.getEd
 router.post('/place/:id', middleware.isAdminLogged, upload.single('img'), regPlaceController.editPlace);
 router.post('/place/:id/remove', middleware.isAdminLogged, regPlaceController.removePlace);
 
+router.get('/onModerate',  middleware.isAdminLogged, adminController.getOnModerate);
+router.get('/onModerate/agree/:id', middleware.isAdminLogged, adminController.agreeOnModerate);
+router.get('/onModerate/desagree/:id', middleware.isAdminLogged, adminController.desagreeOnModerate);
 //FAQ
 router.get('/FAQ', FAQcontroller.getFAQpage);
 router.post('/FAQ', FAQcontroller.sendSupportEmail);
