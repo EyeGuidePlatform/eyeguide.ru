@@ -1,0 +1,125 @@
+{% extends "templates/pageTemplate.html" %}
+
+{% block commonStyles %}
+
+<link rel="stylesheet" href="/css/slick.css">
+<link href="/css/place.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
+<script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/css/commonBalloon.css">
+ 
+ 
+<script type="text/javascript">
+    YMaps.jQuery(function () {
+       // Создает экземпляр карты и привязывает его к созданному контейнеру
+       var map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
+ 
+       // Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования
+       map.setCenter(new YMaps.GeoPoint(+' {{place.geo.y}}', +' {{place.geo.x}}'), 10);
+       map.enableScrollZoom();
+       let template = new YMaps.Template(
+            `<div class='balloon'> 
+            <img class = "balloonImg" src="$[img]"> 
+            <h3>$[name]</h3> 
+            <p>$[description]</p>
+            <a class = 'btn btn-success btn-lg balloonBtn' href = '$[placeurl]'>Подробнее</a>
+            </div>`
+      );
+   
+      let s = new YMaps.Style();
+      s.balloonContentStyle = new YMaps.BalloonContentStyle(template);
+   
+      let places = [
+          {
+              name: '{{place.name}}',
+              description: '{{place.description}}',
+              img: '{{ place.img }}',
+              geo: [+' {{place.geo.y}}', +'{{place.geo.x}}']
+          },
+        
+      ];
+   
+      let pCollection = new YMaps.GeoObjectCollection();
+      
+      places.forEach( (place) => {
+          let point = new YMaps.GeoPoint(place.geo[0], place.geo[1]);
+          let placemark = new YMaps.Placemark(point, {style: s});
+          placemark.name = place.name;
+          placemark.description = place.description;
+          placemark.img = place.img;
+   
+          pCollection.add(placemark);
+      });
+      
+      map.addOverlay(pCollection);
+      })
+</script>
+
+
+{% endblock %}
+
+{% block content %}
+<div class="wrap">
+        <div id="place">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="place-name text-center">{{ place.name }}</h1>
+                        <div class="col-md-6 col-sm-6">
+                            <!-- <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12" id="Imgplace" ></div> -->
+                            <img src="{{place.img}}" class="element-img col-md-12 img-thumbnail center-block" id="Imgplace">
+                        </div>  
+                        <div class="place-info col-md-6 col-sm-6">
+                            <h3>Описание:</h3>  
+                            <h4>{{ place.description }}</h4>
+                        </div>
+                       
+                    </div>
+                  <div class="col-xs-12 mt-3">
+                    <form action="/new_order" method="POST"id="zakaz">
+                        <input type="hidden" value="{{ place._id }}" name="placeId">
+                        <button type="submit" class="btn btn-default" ><h4>Заказать!</h4></button>
+                    </form>
+            </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid green-bg text-white slider">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 class="text-center">Гиды</h3>
+                    <div class="responsive">
+                        {% for item in place.guides %}
+                        <div class=""><a href="/profile/{{ item.id }}"><img class = "imgSlide" src={{item.img}} title="{{item.name}}"></a></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <div class="container-fluid ">
+        <h3 class="text-center">Расположение на карте</h3>
+            <div class="row">
+                <div class="col-xs-12 mb-5">
+                    <div id="YMapsID"></div>
+                </div>
+                
+            </div>
+</div>
+    </div> 
+  {% endblock %}
+
+  {% block commonJS %}
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="/slick/slick.min.js"></script>
+  <script type="text/javascript" src="/js/slider.js"></script>
+  <script src="/js/jquery-2.2.3.min.js"></script>
+  <!-- <script src="/js/place.js"></script> -->
+  <script src="/js/bootstrap.min.js"></script>
+  
+  {% endblock %}
+</body>
+</html>

@@ -1,0 +1,33 @@
+main {
+  margin-top: 2rem;
+}
+main span {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 1.7em;
+}
+.submit_btn {
+  float: left;
+  transition: all .3s ease;
+}
+.submit_btn:hover {
+  color: white;
+  background-color:#2ecc71;
+}
+.delete_acc_btn {
+  float: right;
+  transition: all .3s ease;
+}
+.delete_acc_btn i{
+font-size: 1.4em;
+color:red;
+transition: all .3s ease;
+}
+.delete_acc_btn:hover{
+  color: white;
+  background-color: red;
+}
+.delete_acc_btn:hover i {
+  color:white;
+}
+

@@ -1,0 +1,94 @@
+{% extends "templates/pageTemplate.html" %}
+
+{% block commonStyles %}
+
+<link rel="stylesheet" href="/css/new_order.css">
+
+{% endblock %}
+
+{% block content %}
+<div class="wrap">
+    <!-- ============================= -->
+    <!-- форма -->
+    <!-- ============================= -->
+    <form id="regForm" class="container" action="/new_order" method="POST">
+        <div class="row">
+            <!-- ============================= -->
+            <!-- форма выбора экскурсовода-->
+            <div class="tab col-md-12">
+                <h1>Выбор экскурсовода:</h1>
+                <h3>Экскурсовод {{ guide.name }}</h3>
+                <div style="background-image: url('{{ guide.img }}');
+                max-width: 300px;" 
+                class="element-img"></div>
+            </div>
+            <!-- ============================= -->
+            <!-- форма выбора места-->
+            <div class="tab col-md-12">
+                <h1>Выбор места:</h1>
+                <div class="form-group">
+                    <select class="form-control" id="city">
+                        {% for place in places %}
+                        <option value="{{ place._id }}" name="place">{{ place.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <div id="city-img" class="element-img col-md-12" value=''></div>
+                </div>
+            </div>
+            <!-- ============================= -->
+            <!-- форма заполнения данных-->
+            <div class="tab col-md-12">
+                <h1>Оформление заказа:</h1>
+                <div class="form-group">
+                    <label for="name">Имя:</label>
+                    <input type="text" class="form-control" id="name" name="tourist[name]">
+                </div>
+                <div class="form-group">
+                    <label for="name">Имя:</label>
+                    <input type="text" class="form-control" id="name" name="tourist[surname]">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон:</label>
+                    <input type="text" class="form-control" id="phone" name="tourist[phone]">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" class="form-control" id="email" name="tourist[email]">
+                </div>
+                <div class="form-group">
+                    <label for="date">Дата:</label>
+                    <input type="date" class="form-control" id="date" name="date">
+                </div>
+                <div class="form-group">
+                    <label for="people">Количество человек:</label>
+                    <input type="number" min='1' max='6' class="form-control" id="people">
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================= -->
+        <!-- навигация-->
+        <div style="overflow:auto;">
+          <div style="float:right;">
+            <button type="button" id="prevBtn" onclick="nextPrev(-1)">Назад</button>
+            <button type="button" id="nextBtn" onclick="nextPrev(1)">Далее</button>
+          </div>
+        </div>
+        <!-- ============================= -->
+        <!-- индикация навигации-->
+        <div style="text-align:center;margin-top:40px;">
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+        </div>
+      </form>
+
+</div> <!-- wrap -->
+{% endblock %}
+
+{% block commonJS %}
+<script src="/js/jquery-2.2.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/new_order.js"></script>
+
+{% endblock %}
