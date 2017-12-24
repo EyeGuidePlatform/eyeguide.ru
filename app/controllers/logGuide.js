@@ -15,6 +15,7 @@ exports.login = async (req, res) => {
         return res.redirect('/guideProfile');
     }
 
+    req.flash('error', 'Неверный логин или пароль!');
     res.redirect('back');
 }
 

@@ -63,6 +63,7 @@ YMaps.jQuery(function () {
                 <img src="$[img]"> 
                 <h3>$[name]</h3> 
                 <p>$[description]</p> 
+                <a class="btn btn-primary" href="$[href]">Подробнее</a>
             </div>`
     );
 
@@ -89,6 +90,7 @@ YMaps.jQuery(function () {
             placemark.name = place.name;
             placemark.description = place.description;
             placemark.img = place.img;
+            placemark.href = '/place/' + place._id;
 
             pCollection.add(placemark);
         });
