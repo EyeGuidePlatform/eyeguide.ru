@@ -80,8 +80,13 @@ guideSchema = mongoose.Schema({
         ref: 'order'
     }],
     description: [{
+        status: {
+            type: Number, 
+            default: 0
+        },
         lang: String,
-        value: String
+        value: String,
+        onModerate: String
     }]
 });
 

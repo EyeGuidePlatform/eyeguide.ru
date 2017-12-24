@@ -104,6 +104,12 @@ aside .edit:active {
 
   border-top-right-radius: 0px;
 }
+input[type='file'] {
+  display: none; 
+}
+
+
+
 
 .form_lang {
   position: absolute;
@@ -112,7 +118,9 @@ aside .edit:active {
   top: 10px;
   cursor: pointer;
 }
-
+.red {
+  color:red;
+}
 .none {
   display: none !important;
 }
@@ -156,6 +164,9 @@ aside .edit:active {
     border-bottom-left-radius: 0px;
 
   }
+}
+textarea {
+  min-height: 3rem;
 }
 
 @media (max-width: 768px ) {

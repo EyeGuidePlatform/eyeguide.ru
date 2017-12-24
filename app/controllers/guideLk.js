@@ -137,7 +137,24 @@ exports.guideChangeInfo = async(req,res) => {
     guide.info.spec = info.spec
     guide.info.types = info.types
     guide.info.lang = info.lang
+    
+    if (req.body.desc !== guide.description[0].value) {
+        guide.description[0].onModerate = req.body.desc
+        guide.description[0].status = 1;
+    }
+    
     await guide.save()
     req.flash('success', 'Ваши данные успешно изменены');
+    res.redirect('/guideProfile')
+}
+
+exports.guideChangePhoto = async(req, res) => {
+    let id = req.session.guide.id,
+    guide = await guideModel.getGuide(id)
+
+    if (req.file) guide.img = `/img/${req.file.filename}`
+
+    await guide.save()
+    req.flash('success', 'Ваше фото успешно загружено');
     res.redirect('/guideProfile')
 }
