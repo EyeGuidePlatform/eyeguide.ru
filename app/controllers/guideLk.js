@@ -104,6 +104,13 @@ exports.confirmOrder = async (req, res) => {
 exports.finishOrder = async (req, res) => {
     const order = await orderModel.getOrder(req.params.id)
     order.status = 2;
+
+    const guide = await guideModel.getGuide(req.session.guide.id);
+    const excursion = await exModel.getEx(order.excursion);
+    guide.info.tours++;
+    guide.info.hours += excursion.lasting;
+    await guide.save();
+    
     await order.save()
     res.send()
 }
@@ -111,11 +118,6 @@ exports.finishOrder = async (req, res) => {
 exports.deleteOrder = async (req, res) => {
     const order = await orderModel.getOrder(req.params.id)
     order.status = 4;
-    const guide = await guideModel.getGuide(req.session.guide.id);
-    const excursion = await exModel.getEx(order.excursion);
-    guide.info.tours++;
-    guide.info.hours += excursion.lasting;
-    await guide.save();
     await order.save()
     res.send()
 }

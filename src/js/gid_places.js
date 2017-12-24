@@ -8,9 +8,10 @@ YMaps.jQuery(function () {
     map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
     let template = new YMaps.Template(
         `<div class='balloon'> 
-            <img src="$[img]"> 
+            <img class = "balloonImg" src="$[img]"> 
             <h3>$[name]</h3> 
-            <p>$[description]</p> 
+            <p>$[description]</p>
+            <a class = 'btn btn-success btn-lg balloonBtn' href = '$[placeurl]'>Подробнее</a>
         </div>`
     );
 
@@ -29,7 +30,7 @@ YMaps.jQuery(function () {
             placemark.name = place.name;
             placemark.description = place.description;
             placemark.img = place.img;
-
+            placemark.placeurl = "/place/" + place._id;
             pCollection.add(placemark);
         });
 

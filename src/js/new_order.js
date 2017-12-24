@@ -179,16 +179,18 @@ $('#nextBtn').click(function () {
 });
 
 selectForm.passedElement.addEventListener('change', (e) => {
-  let buffer
+  let buffer;
+  
   if (placesArray) {
     buffer = placesArray.find(place => place._id == e.target.value);
-    $('#place-img').css('background-image', `url(${buffer.img})`);
-    $('#place-img2').css('background-image', `url(${buffer.img})`);
+    $('#place-img').css('background-image', `url("${buffer.img}")`);
+    $('#place-img2').css('background-image', `url("${buffer.img}")`);
     $('#place-name').text(`Выбранное место: ${buffer.name}`)
   } else {
     buffer = guidesArray.find(guide => guide._id == e.target.value)
-    $('#guide-img').css('background-image', `url(${buffer.img})`);
-    $('#guide-img2').css('background-image', `url(${buffer.img})`);
+    $('#guide-img').css('background-image', `url("${buffer.img}")`);
+    $('#guide-img2').css('background-image', `url("${buffer.img}")`);
     $('#guide-name').text(`Выбранный гид: ${buffer.name}`);
   }
+  
 })

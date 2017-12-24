@@ -2,7 +2,9 @@
 <link rel="stylesheet" type="text/css" href="/css/dc_spacing.css">
 <link rel="stylesheet" type="text/css" href="/css/dc_style.css">
 <link rel="stylesheet" type="text/css" href="/slick/slick.css" />
-<link rel="stylesheet" type="text/css" href="/slick/slick-theme.css" /> {% endblock %} {% block content %}
+<link rel="stylesheet" type="text/css" href="/slick/slick-theme.css" />
+<link rel="stylesheet" type="text/css" href="/css/commonBalloon.css">
+{% endblock %} {% block content %}
 <div class="wrap">
     <div class="container guideCard mt-3 mb-3">
         <div class="row">
@@ -51,9 +53,7 @@
             <div class="col-xs-12">
                 <form action="/new_order" method="POST" class="my-1">
                     <input type="hidden" value="{{guide._id}}" name="guideId">
-                    <button type="submit" class="btn btn-default postBtn">
-                        <h4>Заказать!</h4>
-                    </button>
+                    <button type="submit" class="btn btn-default btn-lg">Заказать!</button>
                 </form>
             </div>
         </div>

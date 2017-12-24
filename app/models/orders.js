@@ -1,12 +1,7 @@
-<<<<<<< HEAD
 const mongoose = require('./../../server').mongoose;
 const domain = require('../../config').domain;
 const emailModel = require('../models/email');
 const guideModel = require('./guide').guideModel;
-=======
-const mongoose = require('./../../server').mongoose,
-    guideModel = require('./guide').guideModel;
->>>>>>> origin/jz_fin_fixes
 
 orderSchema = mongoose.Schema({
     status: Number, // 0 - подана заявка, 1 - принята гидом, 3 - экскурсия завершена
