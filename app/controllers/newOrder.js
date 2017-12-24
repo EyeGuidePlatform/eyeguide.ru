@@ -3,7 +3,7 @@ const guideModel = require('../models/guide').guideModel,
     touristModel = require('../models/tourist').touristModel,
     orderModel = require('../models/orders').orderModel,
     exModel = require('../models/excursions').exModel,
-    emailModel = require('../models/email')
+    emailModel = require('../models/email');
 
 
 
