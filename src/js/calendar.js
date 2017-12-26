@@ -5,7 +5,7 @@ let datepicker = $('#calendar').datepicker({
         weekendsToUpload = d;
     }
 }).data('datepicker');
-if (weekendsToDownload.length !== 1) {
+if (weekendsToDownload.length > 1) {
     for (let i = 0; i < weekendsToDownload.length; i++) {
         let date = new Date(weekendsToDownload[i]);
         datepicker.selectDate(date);
