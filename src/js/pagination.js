@@ -1,14 +1,17 @@
-const paginationContainer = $('.pagination-container')[0];
+const paginationContainer = $('.pagination-container')[0],
+    loader = document.querySelector('.loader'),
+    total = loader.dataset.total;
 
 let pageNum = 2;
 
 function loadPlaces(pageNum, otherQueries) {
+    $('.loader').show('fast');
     $.ajax({
         url: '/api/getPlaces',
         type: 'GET',
         data: 'page=' + pageNum + '&' + otherQueries,
         success: function(places){
-            $('.loader').hide();
+            $('.loader').hide('1000');
             places.forEach((place) => {
                 paginationContainer.innerHTML += 
                     `<a href="/place/${ place._id }" class="element col-lg-4 col-md-6 col-sm-12 col-xs-12">
@@ -23,7 +26,6 @@ function loadPlaces(pageNum, otherQueries) {
             });
         }
     });
-    $('.loader').show();
 }
 
 function loadGuides(pageNum, otherQueries) {

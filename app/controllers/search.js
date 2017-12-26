@@ -28,16 +28,20 @@ exports.getSearchPageGuides = async (req,res) => {
         {lang: req.query.lang ? [req.query.lang] : undefined},
         {city: req.query.city}, 
         {places: queryPlaces},
-        {noPopulate: true},
-        {limit: 9}
+        {noPopulate: true}
     );
 
+    let total = guides.length;
+    
+        guides = guides.slice(0, 9);
+
     res.render('searchGuides.html', {
-        guides: guides,
+        guides: guides.guides,
         cities: cities,
         languages: langs,
         selectedLang: req.query.lang,
-        selectedCity: req.query.city
+        selectedCity: req.query.city,
+        totalPages: Math.floor(total/9)+1
     })
 }
 
@@ -49,13 +53,17 @@ exports.getSearchPagePlaces = async (req,res) => {
         {select: '_id name img description'}, 
         {noPopulate: true},
         {place: req.query.place}, 
-        {city: req.query.city}, 
-        {limit: 9}
+        {city: req.query.city}
     );
+
+    let total = places.length;
+
+    places = places.slice(0, 9);
 
     res.render('searchPlaces.html', {
         places: places,
         cities: cities,
-        selectedCity: req.query.city
+        selectedCity: req.query.city,
+        totalPages: Math.floor(total/9)+1
     });
 }
