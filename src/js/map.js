@@ -16,11 +16,12 @@ function initMap() {
         map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 11);
 
         let template = new YMaps.Template(
-            '<div style="width: 300px; text-align:center"> \
-                <img style="width: 90%" src="$[img]"> \
-                <h3>$[name]</h3> \
-                <p>$[description]</p> \
-            </div>'
+            `<div class='balloon'> 
+            <img class = "balloonImg" src="$[img]"> 
+            <h3>$[name]</h3> 
+            <p>$[description]</p>
+            <a class = 'btn btn-success btn-lg balloonBtn' href = '$[placeurl]'>Подробнее</a>
+            </div>`
         );
 
         let s = new YMaps.Style(); 
@@ -50,7 +51,7 @@ function createCollection(items, s) {
         placemark.name = item.name;
         placemark.description = item.description;
         placemark.img = item.img;
-
+        placemark.placeurl = "/place/" + item._id;
         newCollection.add(placemark);
     });
 

@@ -6,9 +6,10 @@ const orderModel = require('../models/orders').orderModel;
 /**
  * Страница "Смена пароля гида"
  */
-exports.getGuideOptionsPage = (req, res) => {
-    let id = req.session.guide.id
-    res.render('gid_options.html', { id: id});
+exports.getGuideOptionsPage = async (req, res) => {
+    let id = req.session.guide.id,
+        weekendsData = await guideModel.getWeekends(id);
+    res.render('gid_options.html', { id: id, weekends: weekendsData});
 }
 
 /**
@@ -61,7 +62,6 @@ exports.addPlace = async (req,res) => {
     let id = req.session.guide.id,
         placeId = req.body.place,
         excursion = {}
-
         excursion.place = await placeModel.getPlace(req.body.place)
         excursion.guide = await guideModel.getGuide(id)
         excursion.prices = [{price: req.body.price, people: req.body.people}]
@@ -70,7 +70,6 @@ exports.addPlace = async (req,res) => {
         let newEx = await exModel.addExcursion(excursion)
         let addEx = await guideModel.addExInGuide(newEx, id)
         let addPlace = await guideModel.addPlaceInGuide(id, placeId)
-        
         res.send({redirect: '/guidePlaces'});
     
 }
@@ -79,7 +78,6 @@ exports.removePlace = async (req,res) => {
     let id = req.session.guide.id,
         placeId = req.body.placeId
     let placeList = await guideModel.removePlaceFromGuide(id,placeId)
-    
     res.redirect('/guidePlaces')
 }
 
@@ -106,6 +104,13 @@ exports.confirmOrder = async (req, res) => {
 exports.finishOrder = async (req, res) => {
     const order = await orderModel.getOrder(req.params.id)
     order.status = 2;
+
+    const guide = await guideModel.getGuide(req.session.guide.id);
+    const excursion = await exModel.getEx(order.excursion);
+    guide.info.tours++;
+    guide.info.hours += excursion.lasting;
+    await guide.save();
+    
     await order.save()
     res.send()
 }
@@ -113,11 +118,6 @@ exports.finishOrder = async (req, res) => {
 exports.deleteOrder = async (req, res) => {
     const order = await orderModel.getOrder(req.params.id)
     order.status = 4;
-    const guide = await guideModel.getGuide(req.session.guide.id);
-    const excursion = await exModel.getEx(order.excursion);
-    guide.info.tours++;
-    guide.info.hours += excursion.lasting;
-    await guide.save();
     await order.save()
     res.send()
 }
@@ -137,7 +137,32 @@ exports.guideChangeInfo = async(req,res) => {
     guide.info.spec = info.spec
     guide.info.types = info.types
     guide.info.lang = info.lang
+    
+    if (req.body.desc !== guide.description[0].value) {
+        guide.description[0].onModerate = req.body.desc
+        guide.description[0].status = 1;
+    }
+    
     await guide.save()
     req.flash('success', 'Ваши данные успешно изменены');
     res.redirect('/guideProfile')
+}
+
+exports.guideChangePhoto = async(req, res) => {
+    let id = req.session.guide.id,
+    guide = await guideModel.getGuide(id)
+
+    if (req.file) guide.img = `/img/${req.file.filename}`
+
+    await guide.save()
+    req.flash('success', 'Ваше фото успешно загружено');
+    res.redirect('/guideProfile')
+}
+
+exports.saveWeekends = async(req,res) => {
+    let guideId = req.session.guide.id;
+    let weekendData = req.body.weekends;
+    guideModel.addWeekends(weekendData, guideId);
+    req.flash('success', 'Выходные успешно сохранены');
+    res.redirect('/guideProfile');
 }

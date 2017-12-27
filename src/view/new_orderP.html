@@ -2,12 +2,8 @@
 
 <link rel="stylesheet" href="/css/new_order.css">
 <link rel="stylesheet" href="/css/choices.min.css">
-<<<<<<< HEAD
 <script src="/js/choices.min.js"></script> {% endblock %} {% block content %}
-=======
-<script src="/js/choices.min.js"></script>
-{% endblock %} {% block content %}
->>>>>>> origin/devilish_fixes
+
 <div class="wrap">
     <!-- ============================= -->
     <!-- форма -->
@@ -28,8 +24,7 @@
                 <div class="form-group">
                     <select class="form-control" id="select_form">
                     </select>
-                    <div style="background-image: url('{{ guide.img }}');
-                    max-width: 300px;" class="element-img" value="{{ guide._id }}"></div>
+                    <div id='guide-img' style="max-width: 300px;" class="element-img" value="{{ guide._id }}"></div>
                 </div>
             </div>
             <!-- ============================= -->
@@ -96,14 +91,12 @@
                 </div>
                 <div class="modal-body row">
                     <div class="form-group col-sm-6 col-md-6">
-                        <label id='form-label' for="guide_check">Выбранный гид: Name</label>
-                        <div style="background-image: url('{{ guide.img }}');
-                    max-width: 200px;" class="element-img" value="{{ guide._id }}" id="guide_check"></div>
+                        <label id='guide-name' for="guide_check">Выбранный гид:</label>
+                        <div id='guide-img2' style="max-width: 200px;" class="element-img" value="{{ guide._id }}" id="guide_check"></div>
                     </div>
                     <div class="form-group col-sm-6 col-md-6">
-                        <label id='form-label' for="place_check">Выбранное место: Name</label>
-                        <div style="background-image: url('{{ place.img }}');
-                    max-width: 200px;" class="element-img" value="{{ place._id }}" id="place_check"></div>
+                        <label id='form-label' for="place_check">Выбранное место: {{ place.name }}</label>
+                        <div style="background-image: url('{{ place.img }}'); max-width: 200px;" class="element-img" value="{{ place._id }}" id="place_check"></div>
                     </div>
                     <div class='form-group col-md-12'>
                         <ul>

@@ -34,9 +34,9 @@ touristSchema.methods = {
     sendEmail: function (orderId) {
         let domain = require('../../config').domain;
         const message = {
-            text: 'Ваш пароль для просмотра информации о заказе экскурсии: \n' + tourist.password,
+            text: 'Ваш пароль для просмотра информации о заказе экскурсии: \n' + this.password,
             from: 'no-reply <eyeguidetest@gmail.com>',
-            to: tourist.name + ' <' + tourist.email + '>',
+            to: this.name + ' <' + this.email + '>',
             subject: 'Информация о вашем заказе экскурсии',
             attachment: [
                 {
@@ -46,7 +46,7 @@ touristSchema.methods = {
                         <p>Информация о вашем заказе экскурсии доступна по ссылке ниже:</p>
                         <a href="${domain}/order/${orderId}">Информация о заказе</a>
                         <p>Пароль для входа:</p>
-                        <p>${tourist.password}</p>
+                        <p>${this.password}</p>
                     </html>   
                     `,
                     alternative: true

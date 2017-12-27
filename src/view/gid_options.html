@@ -31,17 +31,17 @@
         
       <div class="col-md-6 col-sm-12 col-xs-12">
         <h3>Календарь занятости</h3>
-        <p>
+        <p >
           Выберите места, в которые вы заняты и не можете проводить экскурсии.
         </p>
 
-        <form action="" method="post">
-          <button class="btn btn-success">Сохранить</button>
+        <form action="">
+          <button class="btn btn-success btn-calendar" type='button'>Сохранить</button>
         </form>
       </div>
       <div class="col-md-6 col-sm-12 col-xs-12">
   
-        <div id="calendar" class="datepicker-here" data-multiple-dates='true' data-multiple-dates-separator=", " data-position='right top'>
+        <div id="calendar" class="datepicker-here" data-multiple-dates='true' data-multiple-dates-separator=", " data-position='right top' value = "{{weekends}}">
   
         </div>
       </div>

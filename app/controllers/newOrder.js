@@ -3,7 +3,7 @@ const guideModel = require('../models/guide').guideModel,
     touristModel = require('../models/tourist').touristModel,
     orderModel = require('../models/orders').orderModel,
     exModel = require('../models/excursions').exModel,
-    emailModel = require('../models/email')
+    emailModel = require('../models/email');
 
 
 
@@ -39,8 +39,6 @@ exports.createOrder = async (req, res) => {
     const guide = await guideModel.getGuide(req.body.guideId)
     guide.orders.push(order);
     await guide.save()
- 
-    await tourist.sendEmail(order._id);
 
     return tourist;
 }

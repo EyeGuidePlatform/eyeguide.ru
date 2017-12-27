@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="/css/brm_gid-navbar.css">
 <link rel="stylesheet" href="/css/brm_gid-places.css">
 <link rel="stylesheet" href="/css/choices.min.css">
+<link rel="stylesheet" type="text/css" href="/css/commonBalloon.css">
 <script src="/js/choices.min.js"></script>
 <script src="https://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script> {% endblock %} {% block content %}
 
@@ -27,7 +28,7 @@
               <button class="btn btn-default" type="submit">Добавить</button>
             </span>
           </form>
-          <a href='/suggest/place'>зарегистрировать новое место</a>
+          <a href='/suggest/place'> (Зарегистрировать новое место...)</a>
         </div>
       </div>
     </div>
@@ -106,14 +107,14 @@
             <div class="price">
               <span>Количество человек: </span>
               <label>от
-                <input type="number" value=1 min=1 max=1 readonly>
+                <input type="number" name="peopleMin1" value=1 min=1 max=1 readonly>
               </label>
               <label>до
-                <input type="number" value=1 min=1 max=6>
+                <input type="number" name="peopleMax1" value=1 min=1 max=6>
               </label>
               <br>
               <span>Цена за одного человека:</span>
-              <input type="number" min=0>
+              <input type="number" name="price1" min=0>
             </div>
             <div class="price-config">
               <button class='modal__add'>+</button>

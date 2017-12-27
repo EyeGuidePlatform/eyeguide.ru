@@ -52,19 +52,7 @@ guideSchema = mongoose.Schema({
         tours: Number,
         happy: Number,
     },
-    weekends: {
-        jan: [Number],
-        feb: [Number],
-        mar: [Number],
-        apr: [Number],
-        may: [Number],
-        jun: [Number],
-        jul: [Number],
-        aug: [Number],
-        sep: [Number],
-        nov: [Number],
-        dec: [Number]
-    },
+    weekends: [Date],
     places: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -156,6 +144,9 @@ guideSchema.statics = {
 
         await exs.forEach(element => element.remove());
 
+        const [exdata] = exs
+        guide.excursions = await guide.excursions.filter(ex => ex._id != exdata._id)
+        
         place.guides = await place.guides.filter(guide => guide._id != guideId);
         await place.save()
 
@@ -215,7 +206,7 @@ guideSchema.statics = {
             populate = true;
 
         //парсим аргументы и cоставляем query
-        args.map(arg => {
+        args.map(async arg => {
             let argKey = Object.keys(arg)[0];
             switch (argKey) {
                 //FIXME: поиск без учета регистра
@@ -263,6 +254,11 @@ guideSchema.statics = {
                 case 'onModerate':
                     query.where('description.status').equals(1);
                     break;
+
+                case 'car':
+                    query.where('car').equals(arg.car);
+
+                    break;
                 //TODO: остальные криетрии поиска
             }
         });
@@ -286,12 +282,15 @@ guideSchema.statics = {
         await this.findByIdAndRemove(guideId);
     },
 
-    addWeekends: async function(guideId, weekendData) {
-        let guide = await this.getThisGuide(guideId);
-        for(let i = 0; i < 11; i++){
-            guide.weekends[i] = weekendData[i];
-        }
-        await guide.save();
+    addWeekends: async function(weekendsData, guideId) {
+        let guide = await this.findById(guideId);
+        guide.weekends = weekendsData;
+        guide.save();
+    },
+
+    getWeekends: async function(guideId){
+        let guide = await this.findById(guideId);
+        return guide.weekends;
     }
 }
 

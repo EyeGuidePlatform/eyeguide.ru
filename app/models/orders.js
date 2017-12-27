@@ -1,5 +1,7 @@
-const mongoose = require('./../../server').mongoose,
-    guideModel = require('./guide').guideModel;
+const mongoose = require('./../../server').mongoose;
+const domain = require('../../config').domain;
+const emailModel = require('../models/email');
+const guideModel = require('./guide').guideModel;
 
 orderSchema = mongoose.Schema({
     status: Number, // 0 - подана заявка, 1 - принята гидом, 3 - экскурсия завершена
@@ -63,25 +65,61 @@ orderSchema.statics = {
 }
 
 orderSchema.pre('save', async function(next){
-    let order = await this.populate('excursion');
 
-    switch (order.status) {
-        //TODO: Пересчитать если 2 (завершено)
+    let order = this.populate('excursions');
+    let guide = await guideModel.getGuide(order.excursion.guide);
+
+    let message = {
+        text: '',
+        from: 'no-reply <eyeguidetest@gmail.com>',
+        to: '',
+        subject: 'Новая информация о заказе',
+        attachment: [
+            {
+                data:'',
+                alternative: true
+            }
+        ]
+    };
+    switch (this.status) {
+        case 0:
+            message.attachment[0].data = `<html>
+            <p>Вы получили новый заказ!</p>
+            <a href="${domain}/guideOrders">Информация о заказе</a>
+            </html>`;
+            message.to = guide.name + ' <' + guide.email + '>';
+        break;
+        case 1:
+            message.attachment[0].data = `<html>
+                <p>Гид принял Ваш заказ. Дождитесь его звонка!</p>
+                <a href="${domain}/order/${this._id}">Информация о заказе</a>
+                </html>`;
+            message.to = this.tourist.name + ' <' + this.tourist.email + '>';
+        break;
         case 2:
-            if (!order.mark) break;
-
-            let guideId = order.excursion.guide,
-            guide = await guideModel.getGuide(guideId);
-
+            if (!order.mark) 
+                break;
+                
             await guide.computeRating();
-
-            break;
-        //3 отклонена туристом пока гид еще не принял
-
-        //5 гид принял, а турист отменил заказ
-
-        //4 когда отменил заказ
+        break;
+        case 4:
+            message.attachment[0].data = `<html>
+            <p>Гид отменил экскурсию!</p>
+            <a href="${domain}/order/${this._id}">Информация о заказе</a>
+            </html>`;
+            message.to = this.tourist.name + ' <' + this.tourist.email + '>';
+        break;
+        case 5:
+            message.attachment[0].data = `<html>
+            <p>Турист отменил свой заказ!</p>
+            <a href="${domain}/guideOrders">Информация о заказе</a>
+            </html>`;
+            message.to = guide.name + ' <' + guide.email + '>';
+        break;        
     }
+
+    if(message.to!='')
+        emailModel.sendEmail(message);
     
     next();
 })

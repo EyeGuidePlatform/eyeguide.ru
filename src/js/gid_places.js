@@ -8,9 +8,10 @@ YMaps.jQuery(function () {
     map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
     let template = new YMaps.Template(
         `<div class='balloon'> 
-            <img src="$[img]"> 
+            <img class = "balloonImg" src="$[img]"> 
             <h3>$[name]</h3> 
-            <p>$[description]</p> 
+            <p>$[description]</p>
+            <a class = 'btn btn-success btn-lg balloonBtn' href = '$[placeurl]'>Подробнее</a>
         </div>`
     );
 
@@ -29,7 +30,7 @@ YMaps.jQuery(function () {
             placemark.name = place.name;
             placemark.description = place.description;
             placemark.img = place.img;
-
+            placemark.placeurl = "/place/" + place._id;
             pCollection.add(placemark);
         });
 
@@ -77,7 +78,6 @@ modal.addEventListener('submit', (e) => {
     for (var pair of formData.entries()) {
         buffer[pair[0]] = pair[1]
     }
-
     $('#myModal').modal('toggle');
 
     $.post('/guidePlaceAdd', buffer, (data) => {
@@ -94,14 +94,14 @@ function modalGroup(minVal) {
                <div class="price">
                    <span>Количество человек: </span>
                    <label>от
-                       <input type="number" value=${minVal} min=${minVal} max=6 readonly>
+                       <input type="number" name="peopleMin${minVal}" value=${minVal} min=${minVal} max=6 readonly>
                    </label>
                    <label>до
-                       <input type="number" value=${minVal} min=${minVal} max=6>
+                       <input type="number" name="peopleMax${minVal}" value=${minVal} min=${minVal} max=6>
                    </label>
                    <br>
                    <span>Цена за одного человека:</span>
-                   <input type="number" min=0>
+                   <input type="number" name="price${minVal}" min=0>
                </div>
        `
     )

@@ -9,7 +9,7 @@ let express = require('express'),
             cb(null, Date.now() + '-' + file.originalname)
         }
     }),
-    upload = multer({storage: storage}),
+    upload = multer({storage: storage}, {limits: { fileSize: 2048 }}),
     locales = require('./server').locales,
 
     mainController = require('./app/controllers/main'),
@@ -59,6 +59,8 @@ router.get('/guidePlaces', lkController.getGuidePlacesPage);
 router.get('/guideProfile', lkController.getProfilePage);
 // ЛК гида - utils
 router.post('/guide/changeInfo', lkController.guideChangeInfo);
+router.post('/guide/changePhoto', upload.single('img'), lkController.guideChangePhoto);
+router.post('/guideOptions', lkController.saveWeekends);
 router.post('/guidePlaceAdd', lkController.addPlace);
 router.post('/guidePlaceRemove', lkController.removePlace);
 router.put('/order/confirm/:id', lkController.confirmOrder);

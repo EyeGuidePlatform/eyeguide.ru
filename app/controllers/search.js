@@ -21,22 +21,23 @@ exports.getSearchPageGuides = async (req,res) => {
         }
     }
 
-    const guides = await guideModel.getGuides(
+    let guides = await guideModel.getGuides(
         {visible: 2},
         {rating: -1},
         {select: '_id name img info'},
         {lang: req.query.lang ? [req.query.lang] : undefined},
         {city: req.query.city}, 
         {places: queryPlaces},
+        {car: req.query.car == 'on' ? true : false },
         {noPopulate: true}
     );
 
     let total = guides.length;
     
-        guides = guides.slice(0, 9);
+    guides = guides.slice(0, 9);
 
     res.render('searchGuides.html', {
-        guides: guides.guides,
+        guides: guides,
         cities: cities,
         languages: langs,
         selectedLang: req.query.lang,

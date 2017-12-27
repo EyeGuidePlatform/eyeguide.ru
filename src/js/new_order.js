@@ -1,12 +1,12 @@
 // добавление мест или гидов в селект при загрузке страницы
 let placeId, guideId;
+const selectForm = new Choices('#select_form');
+let placesArray, guidesArray;
 window.onload = () => {
-  const selectForm = new Choices('#select_form');
 
   if (document.querySelector('#regForm .tab div').id === "guide") {
     let check = document.querySelector('#guide');
     guideId = check.getAttribute('value');
-
 
     (async () => {
       let places = await getPlacesJSON(guideId);
@@ -19,7 +19,6 @@ window.onload = () => {
         items.push(item);
 
       });
-
 
       // Обновляем места, принадлежащие выбранном гиду
       selectForm.setChoices(items, 'value', 'label', false);
@@ -52,13 +51,13 @@ window.onload = () => {
 
   async function getPlacesJSON(id) {
     const placesJSON = await $.getJSON(`/api/getPlacesByGuideId/${id}`);
-
+    placesArray = JSON.parse(placesJSON);
     return JSON.parse(placesJSON);
   };
 
   async function getGuidesJSON(id) {
     const guidesJSON = await $.getJSON(`/api/getGuidesByPlaceId/${id}`);
-
+    guidesArray = JSON.parse(guidesJSON);
     return JSON.parse(guidesJSON);
   };
 }
@@ -178,3 +177,20 @@ $('#nextBtn').click(function () {
   $('.time').text(time);
   $('.people').text(people);
 });
+
+selectForm.passedElement.addEventListener('change', (e) => {
+  let buffer;
+  
+  if (placesArray) {
+    buffer = placesArray.find(place => place._id == e.target.value);
+    $('#place-img').css('background-image', `url("${buffer.img}")`);
+    $('#place-img2').css('background-image', `url("${buffer.img}")`);
+    $('#place-name').text(`Выбранное место: ${buffer.name}`)
+  } else {
+    buffer = guidesArray.find(guide => guide._id == e.target.value)
+    $('#guide-img').css('background-image', `url("${buffer.img}")`);
+    $('#guide-img2').css('background-image', `url("${buffer.img}")`);
+    $('#guide-name').text(`Выбранный гид: ${buffer.name}`);
+  }
+  
+})
