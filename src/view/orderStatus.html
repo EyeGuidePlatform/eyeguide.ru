@@ -12,7 +12,7 @@
             <p class = 'guide'>Гид: <a href="/profile/{{ guide.id }}">{{ guide.name + ' ' + guide.surname}}</a></p>
             <p class = 'date' value='{{ order.date }}'>Дата и время: </p>
             <hr class = "mt-3">
-            <p>Стоимость: {{ price * order.people}} рублей за {{ order.people }} чел.</p>
+            <p>Стоимость: {{ price*order.people }} рублей за {{ order.people }} чел.</p>
             <p>Статус заказа: <span value = '{{order.status}}' class = 'status'></span></p>
             <form id = "cancel-form" action="/order" method="POST">
                 <button class="btn btn-danger btn-lg btn-cancel" type="submit" name="_id" value="{{ order._id }}">Отменить</button>

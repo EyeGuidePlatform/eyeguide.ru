@@ -8,11 +8,23 @@ exports.getOrderStatus = async (req, res) => {
         place = await placeModel.getPlace(order.place),
         guide = await guideModel.getGuide(order.excursion.guide),
         excursion = await exModel.getEx(order.excursion.id);
+
+        let _price;
+        for (let i=0; i<excursion.prices.length; i++){
+            if (order.people >= excursion.prices[i].people[0] && order.people <= excursion.prices[i].people[1]){
+                _price = excursion.prices[i].price;
+                break;
+            }
+        }
+        if (order.people >= excursion.prices[excursion.prices.length-1].people[0] && excursion.prices[excursion.prices.length-1].people[1] == 0)
+            _price = excursion.prices[excursion.prices.length-1].price;
+
+
     res.render('orderStatus.html', {
         place: place,
         order: order,
         guide: guide,
-        price: excursion.prices[0].price
+        price: _price
     });
 };
 
@@ -34,7 +46,6 @@ exports.cancelExcursion = async (req, res) => {
     order.mark = 0;
     if (order.status === 0) order.status = 3;
     else if (order.status === 1) order.status = 5;
-    console.log(order.mark);
     await order.save();
     req.flash('error', 'Экскурсия отменена');
     res.redirect('/');

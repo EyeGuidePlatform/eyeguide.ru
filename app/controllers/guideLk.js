@@ -53,7 +53,8 @@ exports.getGuidePlacesPage = async (req, res) => {
     res.render('gid_places.html', {
         myPlaces: guide.places,
         id: id,
-        places: places
+        places: places,
+        guide: guide
     });
 }
 
@@ -62,16 +63,20 @@ exports.addPlace = async (req,res) => {
     let id = req.session.guide.id,
         placeId = req.body.place,
         excursion = {}
-        
-        excursion.place = await placeModel.getPlace(req.body.place)
         excursion.guide = await guideModel.getGuide(id)
-        excursion.prices = req.body.price
-        excursion.lasting = req.body.duration
-        let newEx = await exModel.addExcursion(excursion)
-        let addEx = await guideModel.addExInGuide(newEx, id)
-        let addPlace = await guideModel.addPlaceInGuide(id, placeId)
-        res.send({redirect: '/guidePlaces'});
-    
+
+        if (excursion.guide.visible === 2){
+            excursion.place = await placeModel.getPlace(req.body.place)
+            excursion.prices = req.body.price
+            excursion.lasting = req.body.duration
+            let newEx = await exModel.addExcursion(excursion)
+            let addEx = await guideModel.addExInGuide(newEx, id)
+            let addPlace = await guideModel.addPlaceInGuide(id, placeId)
+            res.send({redirect: '/guidePlaces'});
+        }
+        else {
+            res.redirect('/error/404');
+        }
 }
 // POST запрос на удаление места и обновление страницы
 exports.removePlace = async (req,res) => {

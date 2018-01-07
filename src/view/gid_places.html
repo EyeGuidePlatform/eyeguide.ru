@@ -16,6 +16,7 @@
         {% include "templates/top_menu.html" %}
       </div>
       <div class="col-md-3 col-md-pull-9 map_menu">
+          {% if guide.visible == 2 %}
         <div class="wrapper">
           <form class="input-group" id='place-form'>
             <select name="places[]" id="place_choise" required>
@@ -30,6 +31,13 @@
           </form>
           <a href='/suggest/place'> (Зарегистрировать новое место...)</a>
         </div>
+        {% endif %}
+        {% if guide.visible == 0 %}
+        <h5>Чтобы добавить экскурсии подтвердите свой email.</h5>
+        {% endif %}
+        {% if guide.visible == 1 %}
+        <h5>Чтобы добавить экскурсии дождитесь проверки вашего профиля модератором.</h5>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -46,6 +54,7 @@
         </select>
 
         <h4>Мои экскурсии:</h4>
+        
         <ul id="places">
           {% for place in myPlaces %}
           <li>
@@ -102,6 +111,7 @@
           <h4 class="modal-title">Экскурсия по месту</h4>
         </div>
         <div class="modal-body">
+          <h5>В данном окне можно указать зависимость цены от числа человек в экскурсии. Если у вас нет ограничений по числу человек (вообще или в конкретном диапазоне), то поле "до" оставьте пустым.</h5>
           <h4>Настройки стоимости:</h4>
           <div class="form-group">
             <div class="price">

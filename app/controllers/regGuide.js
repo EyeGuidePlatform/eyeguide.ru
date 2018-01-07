@@ -37,6 +37,7 @@ exports.addNewGuide = async (req, res, next) => {
         tours: 0,
         happy: 0
     };
+    newGuide.car = req.body.car;
     
     let guide;
     try {

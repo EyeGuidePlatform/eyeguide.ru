@@ -206,7 +206,6 @@ $('#nextBtn').click(function () {
 
 selectForm.passedElement.addEventListener('change', (e) => {
   let buffer;
-
   if (placesArray) {
     buffer = placesArray.find(place => place._id == e.target.value);
     $('#place-img').css('background-image', `url("${buffer.img}")`);
