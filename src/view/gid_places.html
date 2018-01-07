@@ -63,7 +63,7 @@
                   <div class="panel-body">
                     <div class="order done_order">
                       <div class="edit_place">
-                        <form>
+                        <form hidden>
                           <input type="hidden" name="placeId" value="{{ place._id}}" />
                           <button class="btn btn-block">Редактировать место</button>
                         </form>
@@ -107,14 +107,14 @@
             <div class="price">
               <span>Количество человек: </span>
               <label>от
-                <input type="number" name="peopleMin1" value=1 min=1 max=1 readonly>
+                <input type="number" name="peopleMin1" value=1 readonly>
               </label>
               <label>до
-                <input type="number" name="peopleMax1" value=1 min=1 max=6>
+                <input type="number" name="peopleMax1" value=1 min=1>
               </label>
               <br>
               <span>Цена за одного человека:</span>
-              <input type="number" name="price1" min=0>
+              <input type="number" name="price1" min=0 required>
             </div>
             <div class="price-config">
               <button class='modal__add'>+</button>

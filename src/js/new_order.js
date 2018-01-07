@@ -1,7 +1,7 @@
 // добавление мест или гидов в селект при загрузке страницы
 let placeId, guideId;
 const selectForm = new Choices('#select_form');
-let placesArray, guidesArray;
+let placesArray, guidesArray, excursionArray
 window.onload = () => {
 
   if (document.querySelector('#regForm .tab div').id === "guide") {
@@ -60,7 +60,20 @@ window.onload = () => {
     guidesArray = JSON.parse(guidesJSON);
     return JSON.parse(guidesJSON);
   };
-}
+};
+
+async function getExc(guideId, placeId) {
+  let data1 = { guide: guideId, place: placeId }
+  const exc = await $.ajax({
+    dataType: "json",
+    url: `/api/getExcursion`,
+    data: data1
+  });
+
+  // const guide = await $.getJSON(`/api/getGuideById/${id}`);
+  return JSON.parse(exc);
+};
+
 
 const regForm = document.querySelector('#regForm')
 
@@ -89,9 +102,7 @@ function nextPrev(n) {
   if (n == 1 && !validateForm()) return false;
   // if you have reached the end of the form...
   if (currentTab + n >= x.length) {
-    let buffer = document.querySelector('#select_form').value;
-    guideId ? placeId = buffer : guideId = buffer;
-    setModal(guideId, placeId)
+    $('.price').text(getPrice($('input[name="people"').val()));
     $('#myModal').modal('toggle')
     return false;
   }
@@ -103,9 +114,6 @@ function nextPrev(n) {
   showTab(currentTab);
 }
 
-function setModal(guideId, placeId) {
-  //todo
-}
 
 function validateForm() {
   // This function deals with validation of the form fields
@@ -116,9 +124,26 @@ function validateForm() {
 
   //   A loop that checks every input field in the current tab:
   for (i = 0; i < y.length; i++) {
+    if (y[i].name == 'people') {
+      let excMax = excursionArray.prices[excursionArray.prices.length - 1]
+      if (y[i].value > excMax.people[1]) {
+        if (excMax.people[1] === 0) continue
+        // add an "invalid" class to the field:
+        y[i].className += " invalid";
+        // and set the current valid status to false
+        valid = false;
+      }
+    }
     // If a field is empty...
     if (y[i].value == "") {
       if (y[i].classList.contains('choices__input') && choice.value) {
+        let buffer = document.querySelector('#select_form').value;
+        guideId ? placeId = buffer : guideId = buffer;
+
+        (async () => {
+          excursionArray = await getExc(guideId, placeId)
+        })();
+
         continue
       }
       // add an "invalid" class to the field:
@@ -151,6 +176,7 @@ createBtn.addEventListener('click', (e) => {
 
   order.append('guideId', guideId)
   order.append('placeId', placeId)
+  order.append('price', $('.price').text());
 
   for (let pair of order.entries()) {
     buffer[pair[0]] = pair[1]
@@ -180,7 +206,7 @@ $('#nextBtn').click(function () {
 
 selectForm.passedElement.addEventListener('change', (e) => {
   let buffer;
-  
+
   if (placesArray) {
     buffer = placesArray.find(place => place._id == e.target.value);
     $('#place-img').css('background-image', `url("${buffer.img}")`);
@@ -192,5 +218,16 @@ selectForm.passedElement.addEventListener('change', (e) => {
     $('#guide-img2').css('background-image', `url("${buffer.img}")`);
     $('#guide-name').text(`Выбранный гид: ${buffer.name}`);
   }
-  
+
 })
+
+getPrice = function(people) {
+  let totalPrice
+  for (let i = excursionArray.prices.length-1; i >= 0; i--) {
+    if (excursionArray.prices[i].people[0] <= people) {
+      totalPrice = excursionArray.prices[i].price * people
+      break
+    }
+  }
+  return totalPrice
+}

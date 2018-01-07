@@ -256,7 +256,8 @@ guideSchema.statics = {
                     break;
 
                 case 'car':
-                    query.where('car').equals(arg.car);
+                    if(arg.car)
+                        query.where('car').equals(arg.car);
 
                     break;
                 //TODO: остальные криетрии поиска

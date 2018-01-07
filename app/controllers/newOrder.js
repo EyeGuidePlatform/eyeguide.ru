@@ -21,7 +21,6 @@ exports.getNewOrderPage = async (req, res) => {
 exports.createOrder = async (req, res) => {
 
     
-
     const tourist = await touristModel.regTourist(req.body);
     const place = await placeModel.getPlace(req.body.placeId);
     const exc = await exModel.getExs({place: req.body.placeId}, {guideId: req.body.guideId});

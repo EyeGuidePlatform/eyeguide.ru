@@ -5,7 +5,7 @@ excursionSchema = mongoose.Schema({
     totalMark: {type: Number, default:0},
     prices: [{
         price: Number,
-        people: String
+        people: [Number]
     }],
     lasting: Number,
     place: {

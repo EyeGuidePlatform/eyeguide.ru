@@ -75,12 +75,26 @@ modal.addEventListener('submit', (e) => {
 
     formData.append('place', place.value)
 
-    for (var pair of formData.entries()) {
+    for (let pair of formData.entries()) {
         buffer[pair[0]] = pair[1]
     }
+    let prices = []
+    const totalPrices = (Object.keys( buffer ).length - 2)/3;
+
+    for (let i = 1; i <= totalPrices; i++) {
+        prices.push({
+            price: +buffer[`price${i}`],
+            people:[+buffer[`peopleMin${i}`], +buffer[`peopleMax${i}`] ]
+        })
+    }
+
+    const formPOST = {}
+    formPOST.place = buffer['place'];
+    formPOST.duration = buffer['duration'];
+    formPOST.price = prices
     $('#myModal').modal('toggle');
 
-    $.post('/guidePlaceAdd', buffer, (data) => {
+    $.post('/guidePlaceAdd', formPOST, (data) => {
         if (typeof data.redirect == 'string') window.location = data.redirect
     })
 });
@@ -88,20 +102,20 @@ modal.addEventListener('submit', (e) => {
 
 
 // this is what you got without react
-function modalGroup(minVal) {
+function modalGroup(minVal, counter) {
     return (
         `
                <div class="price">
                    <span>Количество человек: </span>
                    <label>от
-                       <input type="number" name="peopleMin${minVal}" value=${minVal} min=${minVal} max=6 readonly>
+                       <input type="number" name="peopleMin${counter}" value=${minVal} readonly>
                    </label>
                    <label>до
-                       <input type="number" name="peopleMax${minVal}" value=${minVal} min=${minVal} max=6>
+                       <input type="number" name="peopleMax${counter}" value=${minVal} min=${minVal}>
                    </label>
                    <br>
                    <span>Цена за одного человека:</span>
-                   <input type="number" name="price${minVal}" min=0>
+                   <input type="number" name="price${counter}" min=0 required>
                </div>
        `
     )
@@ -110,15 +124,20 @@ function modalGroup(minVal) {
 const addNewPrice = document.querySelector('.modal__add')
 const removePrice = document.querySelector('.modal__remove')
 const modalBody = document.querySelector('.modal-body')
+let counter = 1;
 addNewPrice.addEventListener('click', (e) => {
     e.preventDefault();
+    
+    let n = checkInputPrice()[1].value
+    let input1 = checkInputPrice()[0].value
+    if (n <= input1-1) {
+        return
+    }
     setDisable()
-    let n = $('.modal-body .form-group:nth-last-child(2) input')[1]
-    if (n.value >= 1) removePrice.classList.remove('none')
-    if (n.value >= 6) return;
+    if (n >= 1) removePrice.classList.remove('none')
     let div = document.createElement('div');
     div.className = `form-group`
-    div.innerHTML = modalGroup(+n.value + 1);
+    div.innerHTML = modalGroup(+n + 1, ++counter);
     modalBody.insertBefore(div, document.querySelector('#duration'))
 })
 
@@ -129,6 +148,7 @@ removePrice.addEventListener('click', (e) => {
     node.remove()
     if (checkInputPrice()[0].value == 1) removePrice.classList.add('none');
     setDisable()
+    counter--;
 })
 
 function checkInputPrice() {

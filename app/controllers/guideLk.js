@@ -62,11 +62,11 @@ exports.addPlace = async (req,res) => {
     let id = req.session.guide.id,
         placeId = req.body.place,
         excursion = {}
+        
         excursion.place = await placeModel.getPlace(req.body.place)
         excursion.guide = await guideModel.getGuide(id)
-        excursion.prices = [{price: req.body.price, people: req.body.people}]
+        excursion.prices = req.body.price
         excursion.lasting = req.body.duration
-
         let newEx = await exModel.addExcursion(excursion)
         let addEx = await guideModel.addExInGuide(newEx, id)
         let addPlace = await guideModel.addPlaceInGuide(id, placeId)

@@ -127,3 +127,9 @@ exports.getGuidesByPlaceId = async (req, res) => {
     place = await placeModel.getPlace(id);
     res.json(JSON.stringify(place.guides));
 }
+
+exports.getExcursion = async (req, res) => {
+    let guide = await guideModel.getGuide(req.query.guide)
+    let exc = guide.excursions.find( ex => ex.place == req.query.place)
+    res.json(JSON.stringify(exc));
+}
