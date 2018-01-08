@@ -2,9 +2,9 @@ const config = require('../../config'),
 
     email = require('emailjs/email'),
     server = email.server.connect({
-        user: 'eyeguidetest',
+        user: 'info@eyeguide.ru',
         password: config.emailPass,
-        host: 'smtp.gmail.com',
+        host: 'smtp.yandex.ru',
         ssl: true
     });
 
@@ -13,6 +13,7 @@ const config = require('../../config'),
  * @param {Object} message 
  */
 exports.sendEmail = message => {
+    console.log('send');
     server.send(message);
 } 
 
