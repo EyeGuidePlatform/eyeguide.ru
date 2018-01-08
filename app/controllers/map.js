@@ -28,7 +28,7 @@ exports.getCityPage = async (req, res) => {
             return res.redirect('/place/' + place._id);
         }
 
-        return res.render('404notfound.html', {error: 'Ничего не найдено'});
+        return res.render('404notfound.html', {error: 'В данном городе у нас пока нет экскурсий :('});
     }
 
     guides = shuffle(guides).slice(0, 6);
