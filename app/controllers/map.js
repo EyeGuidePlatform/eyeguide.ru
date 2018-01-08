@@ -19,7 +19,7 @@ exports.getCityPage = async (req, res) => {
     let city = req.params.city;
 
     let places = await placeModel.getPlaces({limit: 6}, {city: city}, {visible: 1}),
-        guides = await guideModel.getGuides({city: city});
+        guides = await guideModel.getGuides({city: city}, {visible: 2});
 
     if (!guides.length) {
         const place = await placeModel.getPlaceByName(city);
