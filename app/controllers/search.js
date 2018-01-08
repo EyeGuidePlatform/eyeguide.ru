@@ -42,6 +42,7 @@ exports.getSearchPageGuides = async (req,res) => {
         languages: langs,
         selectedLang: req.query.lang,
         selectedCity: req.query.city,
+        selectedCar: req.query.car,
         totalPages: Math.floor(total/9)+1
     })
 }

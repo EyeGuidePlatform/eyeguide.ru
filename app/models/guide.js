@@ -275,6 +275,7 @@ guideSchema.statics = {
     },
 
     editGuide: async function (guideId, guideData) {
+        guideData.car = guideData.car==='on' ? true: false;
         const editGuide = await this.findByIdAndUpdate(guideId, guideData);
         return editGuide;
     },

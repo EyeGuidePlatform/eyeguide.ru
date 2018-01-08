@@ -78,7 +78,11 @@
                         <div class="form-group search_сar col-xs-12 col-sm-4 col-md-12">
                             <label for="car">Наличие автомобиля</label>
                             <div class="toggle">
+                                {% if selectedCar %}
+                                <input id="car" type="checkbox" name="car" class="check" checked>
+                                {% else %}
                                 <input id="car" type="checkbox" name="car" class="check">
+                                {% endif %}
                                 <b class="b switch"></b>
                                 <b class="b track"></b>
                               </div>

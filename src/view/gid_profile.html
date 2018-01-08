@@ -115,6 +115,16 @@
               <input type="text" class="form-control none" data-role='input' name="phone" value='{{ guide.phone }}' placeholder="Введите телефон">
             </li>
             <li>
+              <span>Наличие автомобиля</span>
+              {% if guide.car %}
+              <h4 data-role='default'>Есть</h4>
+              <input type="checkbox" class="form-control none" data-role='input' name="car" checked>
+              {% else %}
+              <h4 data-role='default'>Отсутствует</h4>
+              <input type="checkbox" class="form-control none" data-role='input' name="car" >
+              {% endif %}
+            </li>
+            <li>
               <span>О себе</span>
               {% if guide.description[0].status == 1 %}
               <span class="red none" data-role='input'> (cодержимое проходит модерацию)</span>
