@@ -12,7 +12,7 @@ const placeSelect = new Choices('#place', {
 
 //Infinite scroll pagination
 $(window).scroll(function(){
-    if  (!paginationContainer.classList.contains('hidden') && ($(window).scrollTop() == $(document).height() - $(window).height())){
+    if  (!paginationContainer.classList.contains('hidden') && ($(window).scrollTop() >= $(document).height() - $(window).height() - 1)){
         if (pageNum > total) return 
         
         loadPlaces(pageNum, window.location.search.slice(1));

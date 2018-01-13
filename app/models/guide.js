@@ -31,7 +31,7 @@ guideSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    city: String,
+    city: [String],
     phone: {
         type: String,
         default: 'телефон отсутствует'
