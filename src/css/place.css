@@ -331,12 +331,11 @@ body {
    
 } 
 
-.btn{
+.btn-order {
     height: 5rem;
     width: 30%;
     display: block;
     margin: 0 auto;
-
 }
 
 @media(max-width: 768px){
