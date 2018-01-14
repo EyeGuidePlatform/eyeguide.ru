@@ -21,6 +21,7 @@ exports.addNewGuide = async (req, res, next) => {
     }
 
     if (!req.recaptcha.error){
+        console.log(req.recaptcha.error)
     let newGuide = req.body.guide;
     newGuide.name = req.sanitize(newGuide.name);
     newGuide.surname = req.sanitize(newGuide.surname);
