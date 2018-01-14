@@ -2,6 +2,7 @@ const guideModel = require('../models/guide').guideModel;
 const placeModel = require('../models/place').placeModel;
 const exModel = require('../models/excursions').exModel;
 const orderModel = require('../models/orders').orderModel;
+const staticModel = require('../models/static').staticModel;
 
 /**
  * Страница "Смена пароля гида"
@@ -93,8 +94,10 @@ exports.removePlace = async (req,res) => {
 
 exports.getProfilePage = async (req, res) => {
     let id = req.session.guide.id,
-        guide = await guideModel.getGuide(id);
-    res.render('gid_profile.html', {guide: guide});
+        guide = await guideModel.getGuide(id),
+        cities = await staticModel.getCities(req.locale),
+        languages = await staticModel.getLangs(req.locale);
+    res.render('gid_profile.html', {guide: guide, cities: cities, languages});
 }
 
 // PUT запрос на обновление статуса заказа до 1 (взят)
