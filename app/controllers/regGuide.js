@@ -1,5 +1,3 @@
-import { request } from 'https';
-
 const guideModel = require('../models/guide').guideModel,
     placeModel = require('../models/place').placeModel,
     emailModel = require('../models/email'),
@@ -24,7 +22,7 @@ exports.addNewGuide = async (req, res, next) => {
     }
 
     let recaptcha = require('../../server').recaptcha;
-    recaptcha.verify(req, function(error, data){
+    let error = await captcha.verify(req);
     if(!error) {
         
     let newGuide = req.body.guide;
@@ -92,7 +90,6 @@ exports.addNewGuide = async (req, res, next) => {
         return res.redirect('back');
     }
     
-});
 }
 
 exports.confirmEmail = async (req, res) => {
