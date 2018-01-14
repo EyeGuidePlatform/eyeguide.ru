@@ -21,10 +21,6 @@ exports.addNewGuide = async (req, res, next) => {
     }
 
     if (!req.recaptcha.error){
-        req.flash('error', 'Неверная капча!');
-        return res.redirect('back');
-    }
-
     let newGuide = req.body.guide;
     newGuide.name = req.sanitize(newGuide.name);
     newGuide.surname = req.sanitize(newGuide.surname);
@@ -83,6 +79,12 @@ exports.addNewGuide = async (req, res, next) => {
 
     req.flash('success', 'На вашу почту отправлено письмо для подтверждения регистрации!');
     res.redirect('/guideProfile/');
+    }
+    else
+    {
+        req.flash('error', 'Неверная капча!');
+        return res.redirect('back');
+    }
 }
 
 exports.confirmEmail = async (req, res) => {
