@@ -15,13 +15,14 @@ exports.getNewGuide = async (req, res) => {
 
 exports.addNewGuide = async (req, res, next) => {
     //При несовпадении паролей возвращаем обратно
+    console.log(req.recaptcha.error)
     if (req.body.guide.password != req.body.confirmPassword) {
         req.flash('error', 'Пароли не совпадают!');
         return res.redirect('back');
     }
 
     if (!req.recaptcha.error){
-        console.log(req.recaptcha.error)
+        
     let newGuide = req.body.guide;
     newGuide.name = req.sanitize(newGuide.name);
     newGuide.surname = req.sanitize(newGuide.surname);
