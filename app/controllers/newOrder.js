@@ -33,6 +33,7 @@ exports.createOrder = async (req, res) => {
     // save in order our tourist 
     order.place = place
     order.tourist = tourist
+    order.status = 0;
     await order.save()
     // save order in guide
     const guide = await guideModel.getGuide(req.body.guideId)

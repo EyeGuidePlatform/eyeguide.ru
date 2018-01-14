@@ -14,10 +14,10 @@ exports.getGuideFAQpage = (req, res) => {
 exports.sendSupportEmail = async (req, res) => {
     let thisGuide = await guideModel.getGuide(req.session.guide.id);  
     const message = {
-        from: thisGuide.name + ' ' + thisGuide.surname + ' <' + thisGuide.email + '>',
-        to: ' <' + require('../../config').emailSender + '>',
+        from: `no-reply <${require('../../config').email}>`,
+        to: 'Гид FAQ <' + require('../../config').email + '>',
         subject: req.body.subject,
-        text: req.body.message
+        text: `${req.body.message} \n${thisGuide.name} ${thisGuide.surname} <${thisGuide.email}>`
     };
     emailModel.sendEmail(message);
     req.flash('success', 'Ваше сообщение успешно отправлено!');

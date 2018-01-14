@@ -26,7 +26,6 @@ form.addEventListener('submit', (e) => {
 
         (async () => {
             let check = await changePassJSON(new_pas)
-            console.log(check)
             elems.new_pwd.value = elems.new_pwd2.value = elems.old_pwd.value = ''
             confirm.classList.remove('hide')
             setTimeout(() => {
@@ -41,9 +40,11 @@ form.addEventListener('submit', (e) => {
 
 async function checkPassJSON(pass) {
     const check = await $.getJSON(`/api/checkPass/${pass}`);
+    console.log(check);
     return JSON.parse(check);
 }
 async function changePassJSON(pass) {
     const check = await $.getJSON(`/api/changePass/${pass}`);
+    console.log(check);
     return JSON.parse(check);
 }

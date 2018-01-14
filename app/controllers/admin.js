@@ -1,6 +1,7 @@
 const mongoose = require('mongoose'),
     adminModel = require('../models/admin').adminModel,
     guideModel = require('../models/guide').guideModel,
+    exModel = require('../models/excursions').exModel,
     placeModel = require('../models/place').placeModel;
 
 exports.getPage = (req, res) => {
@@ -100,4 +101,32 @@ exports.desagreeOnModerate = async (req, res) => {
     
     guide.save();
     res.redirect('/onModerate');
+}
+
+exports.getGuides = async (req, res) => {
+    let guides = await guideModel.getGuides({visible: 2});
+    res.render('adminGuides.html', {guides: guides});
+}
+
+exports.deleteGuide = async (req, res) => {
+    let id = req.params.id,
+    guide = await guideModel.getGuide(id);
+    await guide.remove();
+
+    let exs = await exModel.getExs({guideId: id});
+    for (let i=0; i<exs.length; i++){
+        exs[i].remove();
+    }
+
+    res.redirect('/admin/update/guides');
+}
+
+exports.updateRaiting = async (req, res) => {
+    let guide = await guideModel.getGuide(req.body.guideId);
+    guide.info.tours = req.body.tours;
+    guide.info.hours = req.body.hours;
+    guide.info.happy = req.body.happy;
+
+    guide.save();
+    res.redirect('/admin/update/guides');
 }

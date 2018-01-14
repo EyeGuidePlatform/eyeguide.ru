@@ -8,10 +8,10 @@ exports.getFAQpage = (req, res) => {
 
 exports.sendSupportEmail = (req, res) => {
     const message = {
-        from: req.body.name + ' <' + req.body.email + '>',
-        to: ' <' + require('../../config').emailSender + '>',
+        from: `no-reply <${require('../../config').email}>`,
+        to: 'Общий FAQ <' + require('../../config').email + '>',
         subject: req.body.subject,
-        text: req.body.message
+        text: `${req.body.message} \nОт ${req.body.name} <${req.body.email}>`
     };
     emailModel.sendEmail(message);
     req.flash('success', 'Ваше сообщение успешно отправлено!');

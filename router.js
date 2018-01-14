@@ -66,6 +66,7 @@ router.post('/guidePlaceRemove', lkController.removePlace);
 router.put('/order/confirm/:id', lkController.confirmOrder);
 router.put('/order/done/:id', lkController.finishOrder);
 router.put('/order/delete/:id', lkController.deleteOrder);
+router.post('/guide/delete', lkController.deleteGuide);
 
 //Карточки(профиль) гида и места
 router.get('/error/404', error404. throwError);
@@ -137,6 +138,10 @@ router.post('/place/:id/remove', middleware.isAdminLogged, regPlaceController.re
 router.get('/onModerate',  middleware.isAdminLogged, adminController.getOnModerate);
 router.get('/onModerate/agree/:id', middleware.isAdminLogged, adminController.agreeOnModerate);
 router.get('/onModerate/desagree/:id', middleware.isAdminLogged, adminController.desagreeOnModerate);
+
+router.get('/admin/update/guides', middleware.isAdminLogged, adminController.getGuides);
+router.get('/admin/update/delete/:id', middleware.isAdminLogged, adminController.deleteGuide);
+router.post('/admin/update/raitng', middleware.isAdminLogged, adminController.updateRaiting);
 //FAQ
 router.get('/FAQ', FAQcontroller.getFAQpage);
 router.post('/FAQ', FAQcontroller.sendSupportEmail);

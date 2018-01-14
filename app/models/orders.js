@@ -40,7 +40,7 @@ orderSchema.statics = {
 
     regOrder: async function (orderData, exc) {
         const newOrder = new this(orderData);
-        newOrder.status = 0;
+        newOrder.status = 7;
         newOrder.excursion = exc;
         return await newOrder.save();
     },
@@ -71,7 +71,7 @@ orderSchema.pre('save', async function(next){
 
     let message = {
         text: '',
-        from: 'no-reply <eyeguidetest@gmail.com>',
+        from: `no-reply <${require('../../config').email}>`,
         to: '',
         subject: 'Новая информация о заказе',
         attachment: [

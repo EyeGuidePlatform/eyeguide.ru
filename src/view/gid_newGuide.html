@@ -79,48 +79,49 @@
     <div class="container">
         <div class="row">
             <h1 class="text-center">Регистрация</h1>
+            <h4 class="text-center red">Все отмеченные поля обязательны для заполнения!</h4>
             <form class="form-center" action="/registration" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="name">Имя</label>
+                    <span class="red big">*</span><label for="name">Имя</label>
                     <input type="text" class="form-control" id="name" name="guide[name]" required>
                 </div>
                 <div class="form-group">
-                    <label for="surname">Фамилия</label>
+                    <span class="red big">*</span><label for="surname">Фамилия</label>
                     <input type="text" class="form-control" id="surname" name="guide[surname]" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">Электронная почта</label>
+                    <span class="red big">*</span><label for="email">Электронная почта</label>
                     <input type="email" class="form-control" id="email" name="guide[email]" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Пароль</label>
+                    <span class="red big">*</span><label for="password">Пароль</label>
                     <input type="password" class="form-control" id="password" name="guide[password]" required>
                 </div>
                 <div class="form-group">
-                    <label for="password-again">Подтвердите пароль</label>
+                    <span class="red big">*</span><label for="password-again">Подтвердите пароль</label>
                     <input type="password" class="form-control" id="password-again" name="confirmPassword" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="age">Возраст</label>
+                    <span class="red big">*</span><label for="age">Возраст</label>
                     <input type="number" class="form-control" id="age" name="guide[age]" min="0" required>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Телефон</label>
+                    <span class="red big">*</span><label for="phone">Телефон</label>
                     <input type="text" class="form-control" id="phone" name="guide[phone]" required>
                 </div>
                 <div class="form-group">
-                    <label for="description">О себе</label>
+                    <span class="red big">*</span><label for="description">О себе</label>
                     <textarea class="form-control" id="description" name="description" rows="5"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Фотография</label>
+                    <label>Фотография</label><span><i>  (Допустимый вес не более 2 Мб)</i></span>
                     <input type="file" class="form-control" id="img" name="img">
                 </div>
 
                 <div class="form-group">
-                    <label for="city">Город</label>
+                    <span class="red big">*</span><label for="city">Город</label>
                     <select id="city" class="multiple-choice" name="guide[city]" multiple required>
                         {% for city in cities %}
                         <option value="{{ city }}">{{ city }}</option>
@@ -135,15 +136,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="spec">Специализации</label>
+                    <span class="red big">*</span><label for="spec">Специализации</label> <span><i>  (Например: гид-экскурсовод, гид-переводчик)</i></span>
                     <input type="text" class="multiple-choice form-control" id="spec" name="spec" placeholder="Введите специализации">
                 </div>
                 <div class="form-group">
-                    <label for="types">Виды экскурсий</label>
+                    <span class="red big">*</span><label for="types">Виды экскурсий</label><span><i>  (Например: пешие, автобусные, квесты, групповые, индивидуальные)</i></span>
                     <input type="text" class="multiple-choice form-control" id="types" name="types" placeholder="Введите виды экскурсий">
                 </div>
                 <div class="form-group">
-                    <label for="languages">Языки</label>
+                    <span class="red big">*</span><label for="languages">Языки</label>
                     <select class="multiple-choice form-control" id="languages" name="lang" placeholder="Выберите языки, которые вы знаете" multiple required>
                         {% for lang in languages %}
                         <option value="{{ lang.key }}">{{ lang.value }}</option>
@@ -152,12 +153,13 @@
                 </div>
 
                 <div class="checkbox">
+                        <span class="red big">*</span>
                     <label>
                         <input type="checkbox" name="rules" required> Прежде чем зарегистрироваться необходимо принять <a type="button" class="open-modal" data-target="#rights">условия соглашения</a>
                     </label>
                 </div>
                 
-                <button type="submit" id="submit" class="btn btn-block btn-primary">Зарегистрироваться</button>
+                <button type="submit" id="submit" class="btn btn-block btn-success">Зарегистрироваться</button>
             </form>       
         </div>
     </div>

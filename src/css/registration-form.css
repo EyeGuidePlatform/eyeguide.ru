@@ -43,3 +43,10 @@ textarea {
 .right-sidebar {
     height: 90vh;
 }
+
+.red {
+    color: #890b31;
+}
+.big {
+    font-size: 18pt;
+}

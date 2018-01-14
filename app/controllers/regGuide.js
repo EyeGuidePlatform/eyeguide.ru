@@ -76,7 +76,7 @@ exports.addNewGuide = async (req, res, next) => {
     };
     emailModel.sendEmail(message);
 
-    req.flash('success', 'Вы успешно зарегистрировались!');
+    req.flash('success', 'На вашу почту отправлено письмо для подтверждения регистрации!');
     res.redirect('/guideProfile/');
 }
 

@@ -13,7 +13,7 @@ const config = require('../../config'),
  * @param {Object} message 
  */
 exports.sendEmail = message => {
-    console.log('send');
-    server.send(message);
+    //console.log(message);
+    server.send(message, function(err, message) { console.log(err || message); });
 } 
 

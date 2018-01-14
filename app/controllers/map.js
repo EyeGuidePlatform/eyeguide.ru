@@ -19,16 +19,19 @@ exports.getCityPage = async (req, res) => {
     let city = req.params.city;
 
     let places = await placeModel.getPlaces({limit: 6}, {city: city}, {visible: 1}),
-        guides = await guideModel.getGuides({city: city}, {visible: 2});
+        guides = await guideModel.getGuides({city: city}, {visible: 2}),
+        noGuides = false;
 
     if (!guides.length) {
         const place = await placeModel.getPlaceByName(city);
-        
+        noGuides = true;
+
         if (place) {
             return res.redirect('/place/' + place._id);
         }
 
-        return res.render('404notfound.html', {error: 'В данном городе у нас пока нет экскурсий :('});
+        if (!places.length)
+            return res.render('404notfound.html', {error: 'В данном городе у нас пока нет экскурсий :('});
     }
 
     guides = shuffle(guides).slice(0, 6);
@@ -37,7 +40,8 @@ exports.getCityPage = async (req, res) => {
         guides: guides, 
         places: places,
         lang: req.locale,
-        city: city
+        city: city,
+        noGuides
     });
 }
 

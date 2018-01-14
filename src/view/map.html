@@ -27,10 +27,20 @@
         <div id="content-sidebar" class="col-md-offset-6 col-md-6 col-sm-12 col-xs-12">
             <div id="switch">
                 <div class="switcher">
+                    {% if noGuides %}
+                    <button class="to-guides" data-target="#guides">Гиды</button>
+                    <button class="to-places active" data-target="#places">Места</button>
+                    {% else %}
                     <button class="to-guides active" data-target="#guides">Гиды</button>
                     <button class="to-places" data-target="#places">Места</button>
+                    {% endif %}
                 </div>
 
+                {% if noGuides %}
+                <div id="guides" class="hidden">
+                <h4>В этом городе пока нет наших гидов :(</h4>
+                </div>
+                {% else %}
                 <div id="guides">
                     <div class="elements row">
                         {% for guide in guides %}
@@ -53,8 +63,13 @@
                     </div>
                     
                 </div>
+                {% endif %}
 
+                {% if noGuides %}
+                <div id="places">
+                {% else %}
                 <div id="places" class="hidden">
+                {% endif %}
                     <div class="elements row">
                         {% for place in places %}
                         <a href="/place/{{ place._id }}" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">

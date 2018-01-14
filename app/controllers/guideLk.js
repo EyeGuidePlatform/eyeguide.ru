@@ -164,10 +164,24 @@ exports.guideChangePhoto = async(req, res) => {
     res.redirect('/guideProfile')
 }
 
-exports.saveWeekends = async(req,res) => {
+exports.saveWeekends = async (req,res) => {
     let guideId = req.session.guide.id;
     let weekendData = req.body.weekends;
     guideModel.addWeekends(weekendData, guideId);
     req.flash('success', 'Выходные успешно сохранены');
     res.redirect('/guideProfile');
+}
+
+exports.deleteGuide = async (req, res) => {
+    let id = req.session.guide.id,
+    guide = await guideModel.getGuide(id);
+    await guide.remove();
+
+    let exs = await exModel.getExs({guideId: id});
+    for (let i=0; i<exs.length; i++){
+        exs[i].remove();
+    }
+
+    delete req.session.guide;
+    res.redirect('/');
 }
