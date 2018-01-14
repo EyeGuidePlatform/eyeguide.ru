@@ -79,6 +79,17 @@
               <h4>{{ guide.email }}</h4>
             </li>
             <li>
+              <span>Города</span>
+              <h4 data-role='default'>{{ guide.city }}</h4>
+              <div class="none" data-role='input'>
+                <select multiple class="multiple-choice form-control" id="city" name="city" placeholder="Введите города" required>
+                  {% for city in cities %}
+                  <option {% if city in guide.city %} selected {% endif %} value="{{city}}">{{city}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </li>
+            <li>
               <span>Специализации</span>
               <h4 data-role='default'>{{ guide.info.spec }}</h4>
               <div class="none" data-role='input'>
