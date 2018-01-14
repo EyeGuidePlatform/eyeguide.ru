@@ -15,16 +15,12 @@ exports.getNewGuide = async (req, res) => {
 
 exports.addNewGuide = async (req, res, next) => {
     //При несовпадении паролей возвращаем обратно
-    console.log(req.recaptcha.error)
     if (req.body.guide.password != req.body.confirmPassword) {
         req.flash('error', 'Пароли не совпадают!');
         return res.redirect('back');
     }
 
-    let recaptcha = require('../../server').recaptcha;
-    let error = await captcha.verify(req);
-    if(!error) {
-        
+    if (!req.recaptcha.error){
     let newGuide = req.body.guide;
     newGuide.name = req.sanitize(newGuide.name);
     newGuide.surname = req.sanitize(newGuide.surname);
@@ -89,7 +85,6 @@ exports.addNewGuide = async (req, res, next) => {
         req.flash('error', 'Неверная капча!');
         return res.redirect('back');
     }
-    
 }
 
 exports.confirmEmail = async (req, res) => {

@@ -77,7 +77,7 @@ router.get('/place/:id', placeController.getPlacePage);
 
 //Регистрация гидов и мест
 router.get('/registration', regGuideController.getNewGuide);
-router.post('/registration', upload.single('img'), regGuideController.addNewGuide);
+router.post('/registration', upload.single('img'), recaptcha.middleware.verify, regGuideController.addNewGuide);
 router.get('/suggest/place', middleware.isGuideLogged, regPlaceController.getSuggestPlacePage);
 router.post('/suggest/place', middleware.isGuideLogged, upload.single('img'),regPlaceController.suggestPlace);
 router.get('/activate/:url', regGuideController.confirmEmail);
