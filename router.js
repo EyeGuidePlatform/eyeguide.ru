@@ -77,7 +77,7 @@ router.get('/place/:id', placeController.getPlacePage);
 
 //Регистрация гидов и мест
 router.get('/registration', regGuideController.getNewGuide);
-router.post('/registration', upload.single('img'), regGuideController.addNewGuide);
+router.post('/registration', recaptcha.middleware.verify, upload.single('img'), regGuideController.addNewGuide);
 router.get('/suggest/place', middleware.isGuideLogged, regPlaceController.getSuggestPlacePage);
 router.post('/suggest/place', middleware.isGuideLogged, upload.single('img'),regPlaceController.suggestPlace);
 router.get('/activate/:url', regGuideController.confirmEmail);
@@ -145,9 +145,9 @@ router.get('/admin/update/delete/:id', middleware.isAdminLogged, adminController
 router.post('/admin/update/raitng', middleware.isAdminLogged, adminController.updateRaiting);
 //FAQ
 router.get('/FAQ', FAQcontroller.getFAQpage);
-router.post('/FAQ', FAQcontroller.sendSupportEmail);
+router.post('/FAQ', recaptcha.middleware.verify, FAQcontroller.sendSupportEmail);
 router.get('/guideFAQ', guideFAQcontroller.getGuideFAQpage);
-router.post('/guideFAQ', guideFAQcontroller.sendSupportEmail);
+router.post('/guideFAQ', recaptcha.middleware.verify, guideFAQcontroller.sendSupportEmail);
 router.get('/contacts', contactsController.getContactsPage);
 
 //Статус заказа
