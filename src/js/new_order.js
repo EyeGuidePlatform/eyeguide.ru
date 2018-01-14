@@ -183,7 +183,10 @@ createBtn.addEventListener('click', (e) => {
   }
 
   $.post('/set_new_order', buffer, (data) => {
-    window.location = `order/${data}`
+    if (data!=null)
+      window.location = `order/${data}`;
+    else 
+      alert('Неверная капча!');
   })
 })
 

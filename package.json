@@ -16,6 +16,7 @@
     "cookie-parser": "^1.4.3",
     "emailjs": "^1.0.12",
     "express": "^4.14.0",
+    "express-recaptcha": "^3.0.0",
     "express-sanitizer": "^1.0.2",
     "express-session": "^1.15.6",
     "google-translate-api": "^2.3.0",

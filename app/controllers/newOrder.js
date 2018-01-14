@@ -20,7 +20,7 @@ exports.getNewOrderPage = async (req, res) => {
 
 exports.createOrder = async (req, res) => {
 
-    
+    if (!req.recaptcha.error) {
     const tourist = await touristModel.regTourist(req.body);
     const place = await placeModel.getPlace(req.body.placeId);
     const exc = await exModel.getExs({place: req.body.placeId}, {guideId: req.body.guideId});
@@ -40,5 +40,8 @@ exports.createOrder = async (req, res) => {
     guide.orders.push(order);
     await guide.save()
 
-    return tourist;
+        return tourist;
+    }
+    else 
+        return null;
 }

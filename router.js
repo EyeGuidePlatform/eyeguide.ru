@@ -11,6 +11,7 @@ let express = require('express'),
     }),
     upload = multer({storage: storage}, {limits: { fileSize: 2048 }}),
     locales = require('./server').locales,
+    recaptcha = require('./server').recaptcha,
 
     mainController = require('./app/controllers/main'),
     searchController = require('./app/controllers/search'),
@@ -83,7 +84,7 @@ router.get('/activate/:url', regGuideController.confirmEmail);
 
 //Создание заказа
 router.post('/new_order', newOrderController.getNewOrderPage);
-router.post('/set_new_order', newOrderController.createOrder); 
+router.post('/set_new_order', recaptcha.middleware.verify, newOrderController.createOrder); 
 
 //Аутентификация гидов
 router.post('/guide/login', logGuideController.login);

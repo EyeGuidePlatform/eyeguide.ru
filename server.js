@@ -8,6 +8,7 @@ const express = require('express'),
     expressSanitizer = require('express-sanitizer'),
     flash = require('connect-flash'),
     mongoStore = require('connect-mongo')(session),
+    Recaptcha = require('express-recaptcha'),
     app = express();
 
 let locales = ['ru', 'en'],
@@ -16,11 +17,16 @@ let locales = ['ru', 'en'],
     adress = require('./config').dbAdress,
     dbName = require('./config').dbName,
     dbPort = require('./config').dbPort,
+    recaptcha = new Recaptcha(
+        require('./config.js').SITE_KEY, 
+        require('./config.js').SECRET_KEY
+    ),
     url = 'mongodb://'+login+':'+pass+'@'+adress+':'+dbPort + '/' + dbName;
     //url = 'mongodb://localhost:27017/ExampleDB';
 
 mongoose.Promise = global.Promise;
 mongoose.connect(url, {useMongoClient: true});
+module.exports.recaptcha = recaptcha;
 module.exports.mongoose = mongoose;
 module.exports.locales = locales;
 
@@ -47,6 +53,7 @@ app.use(
     express.static(__dirname + '/src'),
     bodyParser(),
     bodyParser.json(),
+    bodyParser.urlencoded({ extended: true }),
     expressSanitizer(),
     cookieParser(),
     i18n.init,

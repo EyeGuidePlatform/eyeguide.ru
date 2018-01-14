@@ -7,6 +7,7 @@ exports.getFAQpage = (req, res) => {
 };
 
 exports.sendSupportEmail = (req, res) => {
+    if (!req.recaptcha.error) {
     const message = {
         from: `no-reply <${require('../../config').email}>`,
         to: 'Общий FAQ <' + require('../../config').email + '>',
@@ -15,6 +16,9 @@ exports.sendSupportEmail = (req, res) => {
     };
     emailModel.sendEmail(message);
     req.flash('success', 'Ваше сообщение успешно отправлено!');
+    }
+    else
+        req.flash('error', 'Неверная капча!');
     res.redirect('/');
 }
 

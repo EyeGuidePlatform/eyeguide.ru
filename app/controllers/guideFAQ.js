@@ -12,6 +12,7 @@ exports.getGuideFAQpage = (req, res) => {
 };
 
 exports.sendSupportEmail = async (req, res) => {
+    if (!req.recaptcha.error){
     let thisGuide = await guideModel.getGuide(req.session.guide.id);  
     const message = {
         from: `no-reply <${require('../../config').email}>`,
@@ -21,5 +22,7 @@ exports.sendSupportEmail = async (req, res) => {
     };
     emailModel.sendEmail(message);
     req.flash('success', 'Ваше сообщение успешно отправлено!');
+    } else
+        req.flash('error', 'Неверная капча!');
     res.redirect('/guideProfile/');
 }

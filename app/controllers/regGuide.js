@@ -20,6 +20,11 @@ exports.addNewGuide = async (req, res, next) => {
         return res.redirect('back');
     }
 
+    if (!req.recaptcha.error){
+        req.flash('error', 'Неверная капча!');
+        return res.redirect('back');
+    }
+
     let newGuide = req.body.guide;
     newGuide.name = req.sanitize(newGuide.name);
     newGuide.surname = req.sanitize(newGuide.surname);
