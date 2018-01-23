@@ -9,6 +9,7 @@ const express = require('express'),
     flash = require('connect-flash'),
     mongoStore = require('connect-mongo')(session),
     Recaptcha = require('express-recaptcha'),
+    ssl = require('express-ssl'),
     app = express();
 
 let locales = ['ru', 'en'],
@@ -57,6 +58,7 @@ app.use(
     expressSanitizer(),
     cookieParser(),
     i18n.init,
+    ssl(),
     flash()
 );
 

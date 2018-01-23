@@ -19,6 +19,7 @@
     "express-recaptcha": "^3.0.0",
     "express-sanitizer": "^1.0.2",
     "express-session": "^1.15.6",
+    "express-ssl": "^3.1.0",
     "google-translate-api": "^2.3.0",
     "i18n": "^0.8.3",
     "md5": "^2.2.1",
