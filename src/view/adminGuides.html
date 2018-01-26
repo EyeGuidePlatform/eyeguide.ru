@@ -1,0 +1,38 @@
+{% extends "templates/adminPage.html" %}
+
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/registration-form.css">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid wrap">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Редактировать гидов</h1>
+            <div class="new-guides">
+                <ul>
+                    {% for guide in guides %}
+                    <li class="col-lg-3 col-md-4 col-sm-6 guide">
+                        <a href="/profile/{{ guide._id }}" class="guide-name">
+                            <h4>{{ guide.name }} {{ guide.surname }}</h4>
+                        </a>
+                        <div class="control-btns">
+                            <form action="/admin/update/raitng" method="POST">
+                            <label>Всего часов</label><input name="hours" value="{{guide.info.hours}}">
+                            <label>Всего туров</label><input name="tours" value="{{guide.info.tours}}">
+                            <label>Счастливых туристов</label><input name="happy" value="{{guide.info.happy}}">
+                            <input name="guideId" value="{{guide.id}}" hidden>
+                            <button type="submit" class="btn btn-success">Присвоить рейтинг</button>
+                            </form>
+                            <a href="/admin/update/delete/{{guide.id}}" class="btn btn-warning" onclick="return confirm('Уверены что хотите удалить?')">Удалить гида</a>
+                        </div>
+                        <hr>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

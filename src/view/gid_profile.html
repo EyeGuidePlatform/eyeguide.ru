@@ -1,0 +1,160 @@
+{% extends "templates/pageTemplate.html" %} {% block commonStyles %}
+
+<link rel="stylesheet" href="/css/brm_gid-navbar.css">
+<link rel="stylesheet" href="/css/brm_gid-profile.css">
+<link rel="stylesheet" href="/css/choices.min.css">
+<script src="/js/choices.min.js"></script> {% endblock %} {% block content %}
+<div class="wrap">
+
+
+
+  <!-- ====================== -->
+  <!-- top-menu -->
+
+  <div class="container-fluid gid_nav">
+    <div class="row">
+      <div class='col-xs-12 col-sm-12 col-md-offset-3 col-md-9 '>
+        {% include "templates/top_menu.html" %}
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left-menu -->
+      <aside class="col-md-3">
+        <div class="row">
+
+          <div class="col-md-12">
+            <div class="profile_photo" style="background-image: url('{{ guide.img }}')">
+              <form class="imgForm" data-role='input_photo' action="/guide/changePhoto" method="POST" enctype="multipart/form-data">
+                <input type="file" id="img" name="img" accept="image/*">
+                <button type="click" class="edit edit_photo">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-md-12 profile_info">
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-md-6 col-md-offset-3">
+                <h4>{{ guide.info.hours }}</h4>
+                <span>часов экскурсий</span>
+              </div>
+              <div class="col-xs-4 col-sm-4  col-md-6 col-md-offset-3">
+                <h4>{{ guide.info.tours }}</h4>
+                <span>проведенных экскурсий</span>
+              </div>
+              <div class="col-xs-4 col-sm-4  col-md-6 col-md-offset-3">
+                <h4>{{ guide.info.happy }}</h4>
+                <span>счастливых туристов</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- main -->
+      <main class="col-md-9">
+        <ul>
+          <select class="form-control form_lang" name="lang">
+            <option value="RU" selected>ru</option>
+            <option value="EN">en</option>
+          </select>
+          <div class="edit_small">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </div>
+
+          <form action="/guide/changeInfo" method="POST">
+            <li>
+              <div>Фамилия имя</div>
+              <h4>{{ guide.surname }} {{ guide.name }}</h4>
+            </li>
+            <li>
+              <span>E-mail</span>
+              <h4>{{ guide.email }}</h4>
+            </li>
+            <li>
+              <span>Города</span>
+              <h4 data-role='default'>{{ guide.city }}</h4>
+              <div class="none" data-role='input'>
+                <select multiple class="multiple-choice form-control" id="city" name="city" placeholder="Введите города" required>
+                  {% for city in cities %}
+                  <option {% if city in guide.city %} selected {% endif %} value="{{city}}">{{city}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </li>
+            <li>
+              <span>Специализации</span>
+              <h4 data-role='default'>{{ guide.info.spec }}</h4>
+              <div class="none" data-role='input'>
+                <input type="text" class="multiple-choice form-control" id="spec" name="spec" placeholder="Введите специализации" value="{{ guide.info.spec }}"
+                  required>
+              </div>
+            </li>
+            <li>
+              <span>Виды экскурсий</span>
+              <h4 data-role='default'>{{ guide.info.types }}</h4>
+              <div class="none" data-role='input'>
+                <input type="text" class="multiple-choice form-control none" id="types" name="types" placeholder="Введите виды экскурсий"
+                  value="{{ guide.info.types }}" required>
+              </div>
+            </li>
+            <li>
+              <span>Языки</span>
+              <h4 data-role='default'>{{ guide.info.lang }}</h4>
+              <div class="none" data-role='input'>
+                <select class="multiple-choice form-control none" id="languages" name="lang" placeholder="Выберите языки, которые вы знаете"
+                  multiple required>
+                  {% for lang in languages %}
+                  <option {% if lang.key in guide.info.lang %} selected {% endif %} value="{{ lang.key }}">{{ lang.value }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </li>
+            <li>
+              <span>Телефон</span>
+              <h4 data-role='default'>{{ guide.phone }} (виден только мне)</h4>
+              <input type="text" class="form-control none" data-role='input' name="phone" value='{{ guide.phone }}' placeholder="Введите телефон">
+            </li>
+            <li>
+              <span>Наличие автомобиля</span>
+              {% if guide.car %}
+              <h4 data-role='default'>Есть</h4>
+              <input type="checkbox" class="form-control none" data-role='input' name="car" checked>
+              {% else %}
+              <h4 data-role='default'>Отсутствует</h4>
+              <input type="checkbox" class="form-control none" data-role='input' name="car" >
+              {% endif %}
+            </li>
+            <li>
+              <span>О себе</span>
+              {% if guide.description[0].status == 1 %}
+              <span class="red none" data-role='input'> (cодержимое проходит модерацию)</span>
+              {% endif %}
+              <h4 data-role='default'>{{ guide.description[0].value }}</h4>
+              <textarea type="text" class="form-control none" data-role='input' name="desc" placeholder="Введите описание">{{ guide.description[0].value }}</textarea>
+            </li>
+            <button type="submit" class="confirm_button none" data-role='input'>Сохранить</button>
+          </form>
+        </ul>
+      </main>
+
+    </div>
+  </div>
+  <div class="edit big_edit">
+    <i class="fa fa-pencil" aria-hidden="true"></i>
+  </div>
+
+
+</div>
+<!-- wrap -->
+{% endblock %} {% block commonJS %}
+<script src="/js/jquery-2.2.3.min.js"></script>
+<script src="/js/gid_profile.js"></script>
+<script src="/js/bootstrap.min.js"></script> {% endblock %}

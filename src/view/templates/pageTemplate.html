@@ -1,0 +1,157 @@
+{% block head %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    
+    <!--Your common styles-->
+    {% block commonStyles %}
+    
+    {% endblock %}
+
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/modal.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>EyeGuide</title>
+</head>
+<body>
+{% endblock %}
+
+<!-- =================================================================== -->
+<!-- Navbar -->
+<!-- =================================================================== -->
+{% block navbar %}
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse1" data-target="#bs-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand hidden-xs" href="/"><img src="/img/logo.png" alt="logo"></a>
+            <a class="navbar-brand-text center-block visible-xs" href="/">eyeguide</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="nav navbar-nav">
+                <li><a href="/search/guides">С кем пойдем?</a></li>
+                <li><a href="/search/places">Куда пойдем?</a></li>   
+                <li><a href="/guideFAQ">Задать вопрос</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                {% block rightNav %}
+                {% if not currentUser %}
+                <li><a id="nav-sign-in" class="open-modal right-nav-btn" href="#" data-target="#sign-in">{{__('_login_reg')}}</a></li>
+                {% else %}
+                <li><a class="username" href="/guideProfile">{{ currentUser.name }}</a></li>
+                <li>
+                    <form action="/guide/logout" method="POST">
+                        <button class="right-nav-btn">Выйти</button>
+                    </form>
+                </li>
+                {% endif %}
+                {% endblock %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block modal %}
+{% if not currentUser %}
+<div class="modal fade" id="sign-in">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close-modal close" aria-label="Close" data-target="#sign-in"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Вход</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/guide/login" method="POST">
+                    <div class="form-group">
+                        <label for="sign-in-username">E-mail</label>
+                        <input class="form-control" type="email" id="sign-in-email" name="email" placeholder="введите электронную почту" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sign-in-password">Пароль</label>
+                        <input class="form-control" type="password" id="sign-in-password" name="password" placeholder="введите пароль" required>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="sign-in btn btn-default">Войти</button>
+                        <a href="/registration" class="sign-up btn btn-success">Регистрация</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block flashMessage %}
+<div class="container-fluid text-center">
+    {% if error and error.length > 0 %}
+        <div class="alert alert-danger" role="alert">{{ error }}</div>
+    {% endif %}
+    
+    {% if success and success.length > 0 %}
+        <div class="alert alert-success" role="alert">{{ success }}</div>
+    {% endif %}
+</div>
+{% endblock %}
+<!-- ======================================================================= -->
+<!-- Main content -->
+<!-- ======================================================================= -->
+{% block content %}
+
+{% endblock %}
+
+<!-- ======================================================= -->
+<!-- Footer -->
+<!-- ======================================================= -->
+{% block footer %}
+<div id="footer" class="container-fluid">
+        <div class="row">
+            <div class="content {% block footerClasses %} col-md-12 {% endblock %} col-sm-12 col-xs-12">
+                <div class="pull-left footer-contacts">
+                    <a href="/contacts">{{__('_contacts')}}</a>
+                </div>
+
+                <div class="pull-right footer-help">
+                    <a href="/FAQ">{{__('_help')}}</a>
+                </div>
+
+                <div class="footer-social">
+                    <a class="facebook" href="https://www.facebook.com/EyeGuide2/"  target="_blank"><i class="fa fa-facebook"></i></a>
+                    <a class="vk" href="https://vk.com/eyeguide"  target="_blank"><i class="fa fa-vk"></i></a>
+                    <a class="instagram" href="https://www.instagram.com/eye.guide/"  target="_blank"><i class="fa fa-instagram"></i></a>
+                </div>
+
+                <p class="pull-right footer-rights">
+                    &copy; EyeGuide 2017
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="/js/menu.js"></script>
+    {% if not currentUser %}<script src="/js/modal.js"></script>{% endif %}
+    {% block commonJS %}
+
+    {% endblock %}
+</body>
+</html>
+{% endblock %}

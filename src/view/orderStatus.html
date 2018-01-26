@@ -1,0 +1,44 @@
+{% extends "templates/pageTemplate.html" %}
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/dc_statusOrder.css"> </link>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+{% endblock %}
+{% block content %}
+<div class="wrap">
+    <div class="container">
+        <div class="jumbotron text-center mt-3">
+            <h1>Информация о заказе</h1>
+            <p class="place mt-3">Место экскурсии: <a href="/place/{{ place.id }}">{{ place.name }}</a></p>
+            <p class = 'guide'>Гид: <a href="/profile/{{ guide.id }}">{{ guide.name + ' ' + guide.surname}}</a></p>
+            <p class = 'date' value='{{ order.date }}'>Дата и время: </p>
+            <hr class = "mt-3">
+            <p>Стоимость: {{ price*order.people }} рублей за {{ order.people }} чел.</p>
+            <p>Статус заказа: <span value = '{{order.status}}' class = 'status'></span></p>
+            <form id = "cancel-form" action="/order" method="POST">
+                <button class="btn btn-danger btn-lg btn-cancel" type="submit" name="_id" value="{{ order._id }}">Отменить</button>
+            </form>
+            <div class="stars" value = "{{ order.mark }}">
+                <form id = "rating-form" action="/order/{{ order._id }}" method="POST">
+                  <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
+                  <label class="star star-5" for="star-5"></label>
+                  <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
+                  <label class="star star-4" for="star-4"></label>
+                  <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>
+                  <label class="star star-3" for="star-3"></label>
+                  <input class="star star-2" id="star-2" type="radio" name="star" value="2"/>
+                  <label class="star star-2" for="star-2"></label>
+                  <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>
+                  <label class="star star-1" for="star-1"></label>
+                  <p>Пожалуйста, оцените Ваши впечатления от экскурсии</p>
+                  <button class = 'btn btn-success btn-lg btn-rate' type='submit' disabled>Оценить</button>
+                </form>
+              </div>
+              <p class='rating'></p>
+        </div>
+    </div>
+</div>        
+{% endblock %}
+{% block commonJS %}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/order.js"></script>
+{% endblock %} 

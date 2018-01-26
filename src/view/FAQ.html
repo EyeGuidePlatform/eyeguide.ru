@@ -1,0 +1,79 @@
+{% extends "templates/pageTemplate.html" %}
+
+{% block commonStyles %}
+<link rel="stylesheet" href="/css/FAQ.css">
+<link rel="stylesheet" href="/css/dc_spacing.css">
+{% endblock %}
+{% block content %}
+    <div class="wrap">
+        <div id="FAQ">
+            <div class="container">
+            <div  class="row mb-5 faq-row">
+            <div class=" col-md-12 col-sm-12">
+                    <h2 class="title-faq"><i class="fa fa-location-arrow"  aria-hidden="true"></i> Как найти место?</h2>
+                    <p>Введите в поисковую строку название места, далее перейдете на карточку места с гидами/экскурсоводами, которые проводят там экскурсии. </p>
+                </div>
+                <div class=" col-md-12 col-sm-12">
+                        <h2 class="title-faq"><i class="fa fa-user  aria-hidden="true""></i> Как выбрать гида?</h2>
+                        <p>Из предложенных по выбранному месту гидов Вы можете выбрать любого гида/экскурсовода, посмотреть какие еще места он может показать, ознакомиться с ценами и временем проведения. Вы сможете без проблем выбрать для себя комфортный вариант. </p>  
+                    </div>
+                    <div class=" col-md-12 col-sm-12">
+                        <h2 class="title-faq"><i class="fa fa-list-alt  aria-hidden="true""></i> Как сделать заказ экскурсии?</h2>
+                        <p>После выбора места, Вам откроется карточка места, где можно сразу заказать гида/экскурсовода на удобные время и дату. В заявке указываете имя, телефон, e-mail, дату, время и количество человек. </p>
+                    </div>
+                    <div class=" col-md-12 col-sm-12">
+                        <h2 class="title-faq"><i class="fa fa-paper-plane" aria-hidden="true"></i> Как я пойму, что заявка отправлена?</h2>
+                        <p>После отправки заявки на экране высветится окно с введенными данными, номером заявки и ссылки для ее отслеживания. Чтобы вернуться на сайт, нажмите на кнопку "Вернуться на главную". </p>
+                    </div>
+                    <div class=" col-md-12 col-sm-12">
+                        <h2 class="title-faq"><i class="fa fa-comments aria-hidden="true""></i> Как осуществляется связь с гидом?</h2>
+                        <p>После отправки заявки, откликнувшемуся гиду/экскурсоводу высылаются Ваши контакты и он с Вами связывается. </p>
+                    </div>
+
+                </div>
+            </div>
+           <div id="RSV">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                            <div class="jumbotron">
+                                <h1 class="title text-center mb-3">Есть вопросы? Задайте их!</h1>
+                                <p id="form-messages"></p>
+                                <form class="tc-form-style1" id="ajax-form" method="POST" action="/FAQ">
+                                    <div class="form-field">
+                                        <input type="text" class="name" name="name" placeholder="Ваше имя" required>
+                                    </div>								
+                                    <div class="form-field">
+                                        <input type="email" class="email" name="email" placeholder="Email" required>
+                                    </div>								
+                                    <div class="form-field">
+                                        <input type="text" class="subject" name="subject" placeholder="Тема вопроса">
+                                    </div>
+                                    <div class="form-field">
+                                        <textarea class="message" name="message" placeholder="Сообщение" rows="7"></textarea>
+                                    </div>
+                                    <div class="g-recaptcha" data-sitekey="6Lc_q0AUAAAAALbWQZt95S5aw0ybCNqGc_uxw28H"></div><br>
+                                    <div class="form-button">
+                                        <button type="submit" class="btn btn-default"> Отправить</button>
+                                    </div>
+                                </form>
+                              </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    {% endblock %}   
+
+
+  {% block commonJS %}
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="/js/FAQ.js"></script>
+  <script src="/js/jquery-2.2.3.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  {% endblock %}
+</body>
+</html>
