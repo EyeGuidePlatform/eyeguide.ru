@@ -64,10 +64,6 @@ form {
     #YMapsID {
         height: 450px;
     }
-    .imgSlide {
-        width: 50%;
-        height: 100%;
-    }
 }
 
 @media (max-width: 992px) {
