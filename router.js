@@ -155,4 +155,6 @@ router.get('/order/:id', orderStatusController.getOrderStatus);
 router.post('/order/:id', orderStatusController.rateExcursion);
 router.post('/order', orderStatusController.cancelExcursion);
 
+router.get('/synch/images', require('./app/utils/images').getImageList);
+
 module.exports = router;

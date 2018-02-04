@@ -75,6 +75,9 @@ nunjucks.configure(__dirname + '/src/view', {
     express: app
 });
 
+//for utils (пора уже на gulp)
+//require('./app/utils/images').syncImage();
+
 app.use('/', require('./router'));
 app.listen(require('./config.js').port);
 
