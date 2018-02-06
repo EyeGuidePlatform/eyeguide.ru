@@ -54,28 +54,31 @@ function updatePlaces(places, newCity) {
 }
 
 // map
-YMaps.jQuery(function () {
-
-    map = new YMaps.Map(document.getElementById("YMapsID"));
-    map.enableScrollZoom();
-
-    map.setCenter(new YMaps.GeoPoint(37.64, 55.76), 10);
-    let template = new YMaps.Template(
-        `<div class='balloon'> 
-                <img class = "balloonImg" src="$[img]"> 
-                <h3>$[name]</h3> 
-                <p>$[description]</p>
-                <a class = 'btn btn-success btn-lg balloonBtn' href = '$[placeurl]'>Подробнее</a>
-        </div>`
-    );
-
-    let s = new YMaps.Style();
-    s.balloonContentStyle = new YMaps.BalloonContentStyle(template);
-
-    var mama = 1;
-
+ymaps.ready(function () {
     let places = [];
     (async () => {
+
+        let BalloonContentLayout = ymaps.templateLayoutFactory.createClass(
+            //'<div >' +
+            '<img class ="balloonImg" src="$[properties.img]">'+ 
+            '<h3>$[properties.name]</h3>'+
+            '<p>$[properties.description]</p>'+
+            '<a class="btn btn-success btn-lg balloonBtn" href="$[properties.placeurl]">Подробнее...</a>',
+            //+'</div>',
+            {
+    
+            build: function () {
+                BalloonContentLayout.superclass.build.call(this);
+                $('#counter-button').bind('click', this.onCounterClick);
+                $('#count').html(counter);
+            },
+    
+            clear: function () {
+                $('#counter-button').unbind('click', this.onCounterClick);
+                BalloonContentLayout.superclass.clear.call(this);
+            }
+        });
+
         if (selectedPlace) {
             places.push(await getPlacesJSON('id', selectedPlace));
         } else if (selectedCity) {
@@ -84,21 +87,27 @@ YMaps.jQuery(function () {
             places = await getPlacesJSON('allPlaces');
         }
 
-        let pCollection = new YMaps.GeoObjectCollection();
-
+        let placemarks = [];
         places.forEach(place => {
-            let point = new YMaps.GeoPoint(place.geo.y, place.geo.x);
-            let placemark = new YMaps.Placemark(point, { style: s });
-            placemark.name = place.name;
-            placemark.description = place.description;
-            placemark.img = place.img;
-            placemark.placeurl = "/place/" + place._id;
-
-            pCollection.add(placemark);
+            let placemark = new ymaps.Placemark([place.geo.x, place.geo.y],
+                {
+                    name: place.name,
+                    description: place.description,
+                    img: place.img,
+                    placeurl: "/place/" + place._id
+                },
+                {
+                    balloonContentLayout: BalloonContentLayout
+                });
+            placemarks.push(placemark);    
         });
-
-        map.addOverlay(pCollection);
-        map.setCenter(new YMaps.GeoPoint(places[0].geo.y, places[0].geo.x), 10);
+        map = new ymaps.Map("YMapsID",{center: [places[0].geo.x, places[0].geo.y],
+            behaviors: ["default", "scrollZoom"],
+            zoom: 10});
+            placemarks.map(placemark => {
+                map.geoObjects.add(placemark)
+            });
+        map.controls.add('zoomControl', { left: 5, top: 5 })
     })();
 
 });

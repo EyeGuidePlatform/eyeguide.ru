@@ -73,11 +73,16 @@ modal.addEventListener('submit', (e) => {
     const formData = new FormData(document.forms.excursion)
     const buffer = {}
 
+    
     formData.append('place', place.value)
 
     for (let pair of formData.entries()) {
         buffer[pair[0]] = pair[1]
     }
+    console.log(buffer);
+    console.log('-----');
+    //for 
+
     let prices = []
     const totalPrices = (Object.keys( buffer ).length - 2)/3;
 
@@ -88,7 +93,9 @@ modal.addEventListener('submit', (e) => {
         })
     }
 
+    //alert('worked');
     const formPOST = {}
+    formPOST.text = $('#text1').val();
     formPOST.place = buffer['place'];
     formPOST.duration = buffer['duration'];
     formPOST.price = prices

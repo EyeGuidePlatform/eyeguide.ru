@@ -137,7 +137,7 @@
               {% if guide.description[0].status == 1 %}
               <span class="red none" data-role='input'> (cодержимое проходит модерацию)</span>
               {% endif %}
-              <h4 data-role='default'>{{ guide.description[0].value }}</h4>
+              <h4 data-role='default'>{{ guide.description[0].value | striptags(true) | escape | nl2br}}</h4>
               <textarea type="text" class="form-control none" data-role='input' name="desc" placeholder="Введите описание">{{ guide.description[0].value }}</textarea>
             </li>
             <button type="submit" class="confirm_button none" data-role='input'>Сохранить</button>

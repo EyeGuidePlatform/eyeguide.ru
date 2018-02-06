@@ -1,5 +1,6 @@
-const placeModel = require('../models/place').placeModel,
-guideModel = require('../models/guide').guideModel;
+const placeModel = require('../models/place').placeModel;
+const guideModel = require('../models/guide').guideModel;
+const exModel = require('../models/excursions').exModel;
 
 /**
  * Страница "Место"
@@ -10,9 +11,12 @@ exports.getProfile = async (req, res)=>{
     guide = await  guideModel.getGuide(id);
     if ((guide == undefined) || (guide == null) || ((guide.visible==0 || guide.visible==1) && !req.session.admin))
         res.redirect('/error/404/');
-    else
+    else{
+        let eXs = await exModel.getExs({guideId:id});
         res.render('guideView.html',{
-            guide: guide,
-            places: guide.places
+            place: guide.place,
+            guide,
+            eXs
         });
+    }
 }

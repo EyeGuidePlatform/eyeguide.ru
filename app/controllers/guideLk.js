@@ -70,6 +70,7 @@ exports.addPlace = async (req,res) => {
             excursion.place = await placeModel.getPlace(req.body.place)
             excursion.prices = req.body.price
             excursion.lasting = req.body.duration
+            excursion.text = req.body.text
             let newEx = await exModel.addExcursion(excursion)
             let addEx = await guideModel.addExInGuide(newEx, id)
             let addPlace = await guideModel.addPlaceInGuide(id, placeId)

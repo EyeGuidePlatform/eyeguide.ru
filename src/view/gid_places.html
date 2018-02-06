@@ -72,7 +72,7 @@
                   <div class="panel-body">
                     <div class="order done_order">
                       <div class="edit_place">
-                        <form hidden>
+                        <form method="POST" action="/guidePlaceUpdate">
                           <input type="hidden" name="placeId" value="{{ place._id}}" />
                           <button class="btn btn-block">Редактировать место</button>
                         </form>
@@ -111,6 +111,14 @@
           <h4 class="modal-title">Экскурсия по месту</h4>
         </div>
         <div class="modal-body">
+          <h5>В этом окне можно добавить свое описание к месту экускурсии. Это описание смогут увидеть туристы.</h5>
+          <h4>Текст описания:</h4>
+          <!--div class="form-group">
+            <div class="exText"-->
+              <textarea type="text" rows="10" style="min-width: 100%" id="text1" placeholder="Введите описание">
+              </textarea>
+            <!--/div>
+          </div-->
           <h5>В данном окне можно указать зависимость цены от числа человек в экскурсии. Если у вас нет ограничений по числу человек (вообще или в конкретном диапазоне), то поле "до" оставьте пустым.</h5>
           <h4>Настройки стоимости:</h4>
           <div class="form-group">

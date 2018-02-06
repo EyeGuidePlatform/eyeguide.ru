@@ -1,0 +1,76 @@
+.element {
+    
+    padding: 15px;
+    border: 5px solid white;
+    border-radius: 10px;
+    transition: all .2s ease;
+    background-color: #eaffea;
+}
+
+._size{
+    overflow: hidden;
+    height: 470px;
+}
+
+._sizePlace{
+    overflow: hidden;
+    height: 500px; 
+}
+._openText{
+    height: auto;
+    width: auto;
+}
+
+.element:hover,
+.element:focus{
+    background-color: #2ecc71;
+    color: #fff;
+}
+.element:hover .element-img,
+.element:focus .element-img {
+    box-shadow: none;
+}
+
+.text_about {
+    height: 75px;
+    overflow: hidden;
+}
+
+.element-img {
+    min-height: 180px;
+    height: 40%;
+    width: 100%;
+    margin-bottom: 10px;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    box-shadow: 0px 0px 10px 2px #ccc;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.head-img{
+    min-height: 200px;
+    min-width: 320px;
+    height: 60%;
+    width: 100%;
+    margin-bottom: 10px;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    box-shadow: 0px 0px 10px 2px #ccc;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.element-name {
+    margin: 0;
+}
+
+#switch .element-info {
+    padding: 0;
+}

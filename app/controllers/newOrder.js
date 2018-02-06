@@ -8,13 +8,17 @@ const guideModel = require('../models/guide').guideModel,
 
 
 exports.getNewOrderPage = async (req, res) => {
-    if (req.body.guideId) {
+    if (req.body._g) {
         let guide = await guideModel.getGuide(req.body.guideId)
-        res.render('new_orderG.html', {guide: guide})
+        //let place = await placeModel.getPlace(req.body.placeId)
+        //console.log(`guide: ${guide._id}, place: ${place._id}`)
+        res.render('new_orderG.html', {guide:guide/*, place*/})
     }
-    if (req.body.placeId) {
+    if (req.body._p) {
         let place = await placeModel.getPlace(req.body.placeId)
-        res.render('new_orderP.html', {place: place})
+        let guide = await guideModel.getGuide(req.body.guideId)
+        //console.log(`guide: ${guide._id}, place: ${place._id}`)
+        res.render('new_orderP.html', {guide, place})
     }
 }
 

@@ -15,17 +15,15 @@
             <div class="tab col-md-12">
                 <h1>Выбор места:</h1>
                 <h3>{{ place.name }}</h3>
-                <div style="background-image: url('{{ place.img }}')" class="element-img" value="{{ place._id }}" id="place"></div>
+                <div style="background-image: url('{{ place.img }}'); max-width: 400px;" class="element-img" value="{{ place._id }}" id="place"></div>
             </div>
             <!-- ============================= -->
             <!-- форма выбора экскурсовода-->
             <div class="tab col-md-12">
-                <h1>Выбор экскурсовода:</h1>
-                <div class="form-group">
-                    <select class="form-control" id="select_form">
-                    </select>
-                    <div id='guide-img' style="max-width: 300px;" class="element-img" value="{{ guide._id }}"></div>
-                </div>
+                    <h1>Выбор экскурсовода:</h1>
+                    <h3>Экскурсовод {{ guide.name }}</h3>
+                    <div style="background-image: url('{{ guide.img }}');
+                    max-width: 400px;" class="element-img" value="{{ guide._id }}" id="guide"></div>
             </div>
             <!-- ============================= -->
             <!-- форма заполнения данных-->
