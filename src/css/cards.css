@@ -14,11 +14,22 @@
 
 ._sizePlace{
     overflow: hidden;
-    height: 500px; 
+    height: 520px; 
 }
+
+._openItem{
+    overflow: none;
+    height: auto; 
+    z-index: 1000;
+}
+
 ._openText{
     height: auto;
     width: auto;
+}
+
+._map {
+    margin:3%;
 }
 
 .element:hover,
@@ -34,6 +45,11 @@
 .text_about {
     height: 75px;
     overflow: hidden;
+}
+
+.text_ab_open{
+    height: auto;
+    overflow: none;
 }
 
 .element-img {
@@ -69,6 +85,11 @@
 
 .element-name {
     margin: 0;
+    text-overflow: ellipsis;
+    height: 20pt;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 10px;
 }
 
 #switch .element-info {

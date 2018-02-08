@@ -9,6 +9,7 @@
   "author": "Startap studio HQ",
   "license": "MIT",
   "dependencies": {
+    "async-request": "^1.2.0",
     "body-parser": "^1.18.2",
     "calendar": "^0.1.0",
     "connect-flash": "^0.1.1",
@@ -22,6 +23,7 @@
     "express-ssl": "^3.1.0",
     "google-translate-api": "^2.3.0",
     "i18n": "^0.8.3",
+    "image-downloader": "^3.3.0",
     "md5": "^2.2.1",
     "mongoose": "^4.13.2",
     "multer": "^1.3.0",

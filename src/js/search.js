@@ -101,12 +101,36 @@ ymaps.ready(function () {
                 });
             placemarks.push(placemark);    
         });
-        map = new ymaps.Map("YMapsID",{center: [places[0].geo.x, places[0].geo.y],
-            behaviors: ["default", "scrollZoom"],
-            zoom: 10});
-            placemarks.map(placemark => {
-                map.geoObjects.add(placemark)
+
+        map = new ymaps.Map("YMapsID",{
+                    center: [places[0].geo.x, places[0].geo.y],
+                    behaviors: ["default", "scrollZoom"],
+                    zoom: 10,
+                },
+                {
+                    geoObjectClusterDisableClickZoom: true
+                }
+            );
+            let clusterer = new ymaps.Clusterer({
+                // Поскольку опции задаются для кластеров, а не для всего
+                // кластеризатора, им нужно приписать префикс 'cluster'.
+                clusterDisableClickZoom: true,
+        
+                // Если нужно задать опции для балуна кластера, то к названию
+                // опции приписываются сразу 2 префикса - 'cluster' и 'balloon'.
+                clusterBalloonMainContentLayout: BalloonContentLayout,
+                //clusterBalloonSidebarItemLayout: BalloonContentLayout,
+                // Настроим ширину левой части балуна кластера
+                clusterBalloonSidebarWidth: 100,
+                // и ширину балуна целиком.
+                clusterBalloonWidth: 300
             });
+            clusterer.add(placemarks);
+            /*placemarks.map(placemark => {
+                map.geoObjects.add(placemark)
+            });*/
+
+            map.geoObjects.add(clusterer);
         map.controls.add('zoomControl', { left: 5, top: 5 })
     })();
 

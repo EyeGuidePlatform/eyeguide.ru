@@ -52,33 +52,32 @@
             </div>
             <div class="col-xs-12">
                 <h3 class="text-center mb-3">Информация о гиде</h3>
-                <h4>{{guide.description[0].value | striptags(true) | escape | nl2br}}</h4>
+                <div id="opisanie" class="text-grad">
+                    <h4>{{guide.description[0].value | striptags(true) | escape | nl2br}}</h4>
+                </div>
+                <p id="switcher" align="center" class="_openLink" onclick="_open()">Развернуть ▼</p>
             </div>
-            <!--div class="col-xs-12">
-                <form action="/new_order" method="POST" class="my-1">
-                    <input type="hidden" value="text" name="_g">
-                    <input type="hidden" value="{{guide._id}}" name="guideId">
-                    <button type="submit" class="btn btn-order btn-default btn-lg">Заказать!</button>
-                </form>
-            </div-->
         </div>
     </div>
     <div class="container-fluid my-3">
         <div class="row">
             <div class="col-xs-12">
-                <!--h3 class="text-center mb-3">Экскурсии</h3-->
                 <div class="responsive">
                         
                                 {% for ex in eXs %}
                                 <div id="places" class="row">
-                                <div class="element _sizePlace col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div id="item{{ex._id}}" class="element _sizePlace col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <a href="/place/{{ ex.place._id }}"><div style="background-image: url('{{ ex.place.img }}')" class="element-img col-md-12"></div></a>
                                     <div class="element-info col-md-12">
                                         <h3 class="element-name">{{ ex.place.name }}</h3>
                                         <p id="_{{ex._id}}" class="text_about">
+                                            {% if (ex.text!=undifined) and (ex.text!="") %}
                                             {{ ex.text | striptags(true) | escape | nl2br}}
+                                            {% else %}
+                                            {{ex.place.description}}
+                                            {% endif %}
                                         </p>
-                                        <a id="{{ex._id}}" href="#dop{{ex._id}}" onclick="_open(this.id)">подробнее...</a>
+                                        <i><p id="{{ex._id}}" class="_itemOpenLink" onclick="itemOpen(this.id)">подробнее...</p></i>
                                         <h4>Цены:</h4>
                                         <p>
                                             {% if ex.prices[0].price == ex.prices[ex.prices.length-1].price%}
@@ -105,18 +104,47 @@
                         
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container-fluid mt-3">
-        <!--h3 class="text-center mb-3">Расположение на карте</h3-->
-        <div class="row">
-            <div class="col-xs-12 mb-5">
-                <div id="YMapsID"></div>
+            <div class="row">
+                <div class="col-xs-12 mb-5">
+                    <div class="_map" id="YMapsID"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 {% endblock %} {% block commonJS %}
+<script>
+    let view = true;
+    function _open(){
+        if (view){
+            view = false;
+            $('#opisanie').removeClass('text-grad');
+            $('#switcher').text('Cвернуть ▲');
+        } else {
+            view = true;
+            $('#opisanie').addClass('text-grad');
+            $('#switcher').text('Развернуть ▼');
+        }
+            
+    }
+
+    let item = true;
+    function itemOpen(id){
+        if (item) {
+            item = false;
+            $(`#_${id}`).removeClass('text_about');
+            $(`#item${id}`).removeClass('_sizePlace');
+            $(`#item${id}`).addClass('_openItem');
+            $(`#_${id}`).addClass('text_ab_open');
+            $(`#${id}`).text('свернуть...');
+        } else {
+            item = true;
+            $(`#_${id}`).addClass('text_about');
+            $(`#_${id}`).removeClass('text_ab_open');
+            $(`#${id}`).text('подробнее...');
+        }
+    }
+</script>
 <script type="text/javascript" src="https://api-maps.yandex.ru/1.1/index.xml"></script>
 <script type="text/javascript" src="/js/guideCardMap.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
