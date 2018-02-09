@@ -9,7 +9,7 @@
 
 ._size{
     overflow: hidden;
-    height: 470px;
+    height: 500px;
 }
 
 ._sizePlace{
@@ -94,4 +94,26 @@
 
 #switch .element-info {
     padding: 0;
+}
+
+.infoTable{
+    valign: middle;
+    table-layout: fixed;
+    
+    margin: 1%;
+    margin-top: 3%;
+    height: auto;
+    min-height: 250px;
+    width: 100%;
+    text-align: center;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border: 2px solid white;
+}
+
+.itemTable{
+    padding: 5px;
+    width: 100%;
 }

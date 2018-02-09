@@ -15,21 +15,16 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="place-name text-center">{{ place.name }}</h1>
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-5 col-sm-6">
                             <div style="background-image: url('{{ place.img }}')" class="head-img col-md-12" id="Imgplace" ></div>
-                            <!--img src="{{place.img}}" class="element-img element col-md-12 img-thumbnail center-block" id="Imgplace"-->
                         </div>  
-                        <div class="col-md-6 col-sm-6">
+                        <div class="col-md-7 col-sm-6">
                             <h3>Описание:</h3>  
                             <h4>{{ place.description | striptags(true) | escape | nl2br}}</h4>
                             <br><a href="/search/places?place={{place._id}}" style="font-size:12pt;">Найти на карте...</a>
                         </div>   
                     </div>
                   <div class="col-xs-12 mt-3">
-                    <!--form action="/new_order" method="POST"id="zakaz">
-                        <input type="hidden" value="{{ place._id }}" name="placeId">
-                        <button type="submit" class="btn btn-order btn-default" ><h4>Заказать!</h4></button>
-                    </form-->
             </div>
                     
                 </div>
@@ -38,7 +33,7 @@
 
         <div class="container">
         <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12" style="height:auto">
+        <div class="col-xs-12 col-sm-12 col-md-12">
                 <div id="guides">
                         {% for ex in eXs %}
                         <div id="dop{{ex._id}}" class="element _size col-lg-3 col-md-6 col-sm-12 col-xs-12">
@@ -79,27 +74,6 @@
         </div>
         </div>
         </div>
-        <!--div class="container-fluid green-bg text-white slider">
-            <div class="row">
-                <div class="col-xs-12">
-                    <h3 class="text-center">Гиды</h3>
-                    <div class="responsive">
-                        {% for item in place.guides %}
-                        <div class=""><a href="/profile/{{ item.id }}"><img class = "imgSlide" src="{{item.img}}" title="{{item.name}}"></a></div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <div class="container-fluid ">
-        <h3 class="text-center">Расположение на карте</h3>
-            <div class="row">
-                <div class="col-xs-12 mb-5">
-                    <div id="YMapsID"></div>
-                </div>
-                
-            </div-->
 </div>
     </div> 
   {% endblock %}

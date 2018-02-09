@@ -15,6 +15,7 @@ exports.getProfile = async (req, res)=>{
         let eXs = await exModel.getExs({guideId:id});
         res.render('guideView.html',{
             place: guide.place,
+            session: req.session.admin,
             guide,
             eXs
         });

@@ -18,37 +18,48 @@
                     </div>
                     <div class="col-xs-12">
                         <div style="background-image: url('{{ guide.img }}')" class="head-img col-md-12"></div>
-                        <!--img src="{{ guide.img }}" class="img-thumbnail center-block" id='avatar' value='{{guide._id}}' height="300" width="300"-->
+                        {% if session %}
+                        <h5>(видит только админ)</h5>
+                        <h4 style="color:maroon">Телефон: {{guide.phone}}<h4>
+                        <h4 style="color:maroon"> E-mail: {{guide.email}}</h4>
+                        {% endif %}
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-md-8">
-                <div class="row text-center guideArea mt-3">
-                    <div class="col-xs-12 col-lg-5 guideInfo m-lg-1 my-1 ">
+            <table class="infoTable" align="center">
+
+                <tr>
+                    <td width="50%">
                         <h4>Специализации</h4>
                         <h5>{{guide.info.spec}}</h5>
-                    </div>
-                    <div class="col-xs-12 col-lg-5 guideInfo m-lg-1 my-1 ">
+                    </td>
+                    <td width="50%">
                         <h4>Языки</h4>
                         <h5>{{guide.info.lang}}</h5>
-                    </div>
-                    <div class="col-xs-12 col-lg-5 guideInfo m-lg-1 my-1 ">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <h4>Виды экскурсий</h4>
                         <h5>{{guide.info.types}}</h5>
-                    </div>
-                    <div class="col-xs-12 col-lg-5 guideInfo m-lg-1 my-1 ">
+                    </td>
+                    <td>
                         <h4>Часов экскурсий</h4>
                         <h5>{{guide.info.hours}}</h5>
-                    </div>
-                    <div class="col-xs-12 col-lg-5 guideInfo m-lg-1 my-1 ">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <h4>Проведенных экскурсий</h4>
                         <h5>{{guide.info.tours}}</h5>
-                    </div>
-                    <div class="col-xs-12 col-lg-5 guideInfo m-lg-1 my-1 ">
+                    </td>
+                    <td>
                         <h4>Счастливых туристов</h4>
                         <h5>{{guide.info.happy}}</h5>
-                    </div>
-                </div>
+                    </td>
+                </tr>
+            </table>
             </div>
             <div class="col-xs-12">
                 <h3 class="text-center mb-3">Информация о гиде</h3>
