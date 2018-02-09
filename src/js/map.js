@@ -171,7 +171,7 @@ ymaps.ready(function () {
             
             if (target.tagName != 'BUTTON' || target.classList.contains('active')) return;
             
-            switchBlock(target, pCollection);
+            switchBlock(target);
         });
     })();
 
