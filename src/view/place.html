@@ -36,6 +36,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
                 <div id="guides">
                         {% for ex in eXs %}
+                        {% if ex.guide.visible == 2 %}
                         <div id="dop{{ex._id}}" class="element _size col-lg-3 col-md-6 col-sm-12 col-xs-12">
                             <a href="/profile/{{ ex.guide._id }}"><div style="background-image: url('{{ ex.guide.img }}')" class="element-img col-md-12"></div></a>
                             <div class="element-info col-md-12">
@@ -69,6 +70,7 @@
                                 </form>
                             </div>
                         </div>
+                        {% endif %}
                         {% endfor %}
                       </div>
         </div>

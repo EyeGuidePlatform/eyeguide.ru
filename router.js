@@ -142,6 +142,8 @@ router.get('/onModerate/desagree/:id', middleware.isAdminLogged, adminController
 
 router.get('/admin/update/guides', middleware.isAdminLogged, adminController.getGuides);
 router.get('/admin/update/delete/:id', middleware.isAdminLogged, adminController.deleteGuide);
+router.get('/admin/update/ban/:id', middleware.isAdminLogged, adminController.banGuide);
+router.get('/admin/update/unban/:id', middleware.isAdminLogged, adminController.unBanGuide);
 router.post('/admin/update/raitng', middleware.isAdminLogged, adminController.updateRaiting);
 //FAQ
 router.get('/FAQ', FAQcontroller.getFAQpage);
