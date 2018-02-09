@@ -134,7 +134,7 @@ ymaps.ready(function () {
         //console.log(places);
         let placemarks = [];
 
-        map = new ymaps.Map('map-sidebar',{
+        map = new ymaps.Map('map-container',{
                     center: [places[0].geo.x, places[0].geo.y],
                     behaviors: ["default", "scrollZoom"],
                     zoom: 11,
