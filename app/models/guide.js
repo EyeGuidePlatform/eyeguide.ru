@@ -7,7 +7,7 @@ const mongoose = require('./../../server').mongoose,
 guideSchema = mongoose.Schema({
     visible: {
         type: Number,
-        default: 0 // 0 - не подтверждена почта, 1 - на модерации, 2 - одобрен, 3 - откланен
+        default: 0 // 0 - не подтверждена почта, 1 - на модерации, 2 - одобрен, 3 - откланен,4 - бан
     },
     email: {
         type: String,

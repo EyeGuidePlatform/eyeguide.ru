@@ -1,0 +1,119 @@
+.element {
+    
+    padding: 15px;
+    border: 5px solid white;
+    border-radius: 10px;
+    transition: all .2s ease;
+    background-color: #eaffea;
+}
+
+._size{
+    overflow: hidden;
+    height: 500px;
+}
+
+._sizePlace{
+    overflow: hidden;
+    height: 520px; 
+}
+
+._openItem{
+    overflow: none;
+    height: auto; 
+    z-index: 1000;
+}
+
+._openText{
+    height: auto;
+    width: auto;
+}
+
+._map {
+    margin:3%;
+}
+
+.element:hover,
+.element:focus{
+    background-color: #2ecc71;
+    color: #fff;
+}
+.element:hover .element-img,
+.element:focus .element-img {
+    box-shadow: none;
+}
+
+.text_about {
+    height: 75px;
+    overflow: hidden;
+}
+
+.text_ab_open{
+    height: auto;
+    overflow: none;
+}
+
+.element-img {
+    min-height: 180px;
+    height: 40%;
+    width: 100%;
+    margin-bottom: 10px;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    box-shadow: 0px 0px 10px 2px #ccc;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.head-img{
+    min-height: 200px;
+    min-width: 320px;
+    height: 60%;
+    width: 100%;
+    margin-bottom: 10px;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    box-shadow: 0px 0px 10px 2px #ccc;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.element-name {
+    margin: 0;
+    text-overflow: ellipsis;
+    height: 20pt;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 10px;
+}
+
+#switch .element-info {
+    padding: 0;
+}
+
+.infoTable{
+    valign: middle;
+    table-layout: fixed;
+    
+    margin: 1%;
+    margin-top: 3%;
+    height: auto;
+    min-height: 250px;
+    width: 100%;
+    text-align: center;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border: 2px solid white;
+}
+
+.itemTable{
+    padding: 5px;
+    width: 100%;
+}

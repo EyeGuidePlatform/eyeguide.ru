@@ -8,6 +8,7 @@ excursionSchema = mongoose.Schema({
         people: [Number]
     }],
     lasting: Number,
+    text: String,
     place: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'place'

@@ -4,7 +4,11 @@ const download = require('image-downloader');
 
 exports.getImageList = (req, res) => {
     fs.readdir(__dirname+'/../../src/img/', (err, items) => {
-        res.json(items);
+        fs.readdir(__dirname+'/../../src/img/places', (_err, _items) => {
+            let b = items.concat(_items);
+            console.log(_items);
+            res.json(_itmes);
+        });
     })
 }
 

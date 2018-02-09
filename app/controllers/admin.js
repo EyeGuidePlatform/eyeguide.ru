@@ -104,7 +104,9 @@ exports.desagreeOnModerate = async (req, res) => {
 }
 
 exports.getGuides = async (req, res) => {
-    let guides = await guideModel.getGuides({visible: 2});
+    let guides = await guideModel.getGuides({visible: 2}),
+    bannedGuides = await guideModel.getGuides({visible: 4});
+    guides = guides.concat(bannedGuides);
     res.render('adminGuides.html', {guides: guides});
 }
 
@@ -117,6 +119,24 @@ exports.deleteGuide = async (req, res) => {
     for (let i=0; i<exs.length; i++){
         exs[i].remove();
     }
+
+    res.redirect('/admin/update/guides');
+}
+
+exports.banGuide = async (req, res) => {
+    let id = req.params.id,
+    guide = await guideModel.getGuide(id);
+    guide.visible = 4;
+    guide.save();
+
+    res.redirect('/admin/update/guides');
+}
+
+exports.unBanGuide = async (req, res) => {
+    let id = req.params.id,
+    guide = await guideModel.getGuide(id);
+    guide.visible = 2;
+    guide.save();
 
     res.redirect('/admin/update/guides');
 }
