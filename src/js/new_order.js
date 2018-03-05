@@ -120,7 +120,10 @@ function validateForm() {
   let x, y, i, valid = true;
   x = document.getElementsByClassName("tab");
   y = x[currentTab].getElementsByTagName("input");
-
+  (async () => {
+    excursionArray = await getExc(guideId, placeId)
+    console.log(excursionArray);
+  })();
 
   //   A loop that checks every input field in the current tab:
   for (i = 0; i < y.length; i++) {
@@ -142,6 +145,7 @@ function validateForm() {
 
         (async () => {
           excursionArray = await getExc(guideId, placeId)
+          console.log(excursionArray);
         })();
 
         continue

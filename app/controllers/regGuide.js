@@ -20,7 +20,7 @@ exports.addNewGuide = async (req, res, next) => {
         return res.redirect('back');
     }
 
-    if (!req.recaptcha.error){
+    if (!req.recaptcha.error || !require('../../config').production){
     let newGuide = req.body.guide;
     newGuide.name = req.sanitize(newGuide.name);
     newGuide.surname = req.sanitize(newGuide.surname);

@@ -10,6 +10,8 @@ const express = require('express'),
     mongoStore = require('connect-mongo')(session),
     Recaptcha = require('express-recaptcha'),
     ssl = require('express-ssl'),
+    fs = require('fs'),
+    path = require('path'),
     app = express();
 
 let locales = ['ru', 'en'],
@@ -80,5 +82,11 @@ nunjucks.configure(__dirname + '/src/view', {
 
 app.use('/', require('./router'));
 app.listen(require('./config.js').port);
+
+let server = require('https').createServer({
+    key: fs.readFileSync(path.resolve(__dirname, 'ssl/server.key')),
+    cert: fs.readFileSync(path.resolve(__dirname, 'ssl/server.crt'))
+}, app);
+server.listen(require('./config.js').port2);
 
 console.log('Server started!');

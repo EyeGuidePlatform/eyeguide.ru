@@ -50,7 +50,7 @@ exports.getGuidePlacesPage = async (req, res) => {
     let id = req.session.guide.id,
         guide = await guideModel.getGuide(id),
         thisGuide = await guideModel.getThisGuide(id),
-        places = await placeModel.getPlaces({not: thisGuide.places})
+        places = await placeModel.getPlaces({not: thisGuide.places},{visible: 1})
     res.render('gid_places.html', {
         myPlaces: guide.places,
         id: id,

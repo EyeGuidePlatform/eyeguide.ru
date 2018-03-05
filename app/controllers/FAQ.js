@@ -7,7 +7,7 @@ exports.getFAQpage = (req, res) => {
 };
 
 exports.sendSupportEmail = (req, res) => {
-    if (!req.recaptcha.error) {
+    if (!req.recaptcha.error || !require('../../config').production) {
     const message = {
         from: `no-reply <${require('../../config').email}>`,
         to: 'Общий FAQ <' + require('../../config').email + '>',
