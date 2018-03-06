@@ -21,7 +21,8 @@ const exModel = require('../models/excursions').exModel;
         eXs = shuffle(eXs);
         res.render('place.html', {
             eXs, 
-            place: place
+            place: place,
+            domain: require('./../../config').domain
         });
     }
 }

@@ -18,7 +18,11 @@ exports.getNewOrderPage = async (req, res) => {
         let place = await placeModel.getPlace(req.body.placeId)
         let guide = await guideModel.getGuide(req.body.guideId)
         //console.log(`guide: ${guide._id}, place: ${place._id}`)
-        res.render('new_orderP.html', {guide, place})
+        res.render('new_orderP.html', {
+            guide, 
+            place,
+            domain: require('./../../config').domain
+        })
     }
 }
 

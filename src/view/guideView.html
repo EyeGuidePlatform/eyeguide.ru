@@ -17,7 +17,7 @@
                         <h3 class="text-center mb-3">{{ guide.name +' '+ guide.surname }}</h3>
                     </div>
                     <div class="col-xs-12">
-                        <div style="background-image: url('{{ guide.img }}')" class="head-img col-md-12" id="avatar" value="{{guide._id}}"></div>
+                        <div style="background-image: url('{{domain}}{{ guide.img }}')" class="head-img col-md-12" id="avatar" value="{{guide._id}}"></div>
                         {% if session %}
                         <h5>(видит только админ)</h5>
                         <h4 style="color:maroon">Телефон: {{guide.phone}}<h4>
@@ -80,7 +80,7 @@
                                 {% for ex in eXs %}
                                 <div id="places" class="row">
                                 <div id="item{{ex._id}}" class="element _sizePlace col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <a href="/place/{{ ex.place._id }}"><div style="background-image: url('{{ ex.place.img }}')" class="element-img col-md-12"></div></a>
+                                    <a href="/place/{{ ex.place._id }}"><div style="background-image: url('{{domain}}{{ ex.place.img }}')" class="element-img col-md-12"></div></a>
                                     <div class="element-info col-md-12">
                                         <h3 class="element-name">{{ ex.place.name }}</h3>
                                         <p id="_{{ex._id}}" class="text_about">

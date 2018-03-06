@@ -16,7 +16,7 @@
                     <div class="col-md-12">
                         <h1 class="place-name text-center">{{ place.name }}</h1>
                         <div class="col-md-5 col-sm-6">
-                            <div style="background-image: url('{{ place.img }}')" class="head-img col-md-12" id="Imgplace" ></div>
+                            <div style="background-image: url('{{domain}}{{ place.img }}')" class="head-img col-md-12" id="Imgplace" ></div>
                         </div>  
                         <div class="col-md-7 col-sm-6">
                             <h3>Описание:</h3>  
@@ -38,7 +38,7 @@
                         {% for ex in eXs %}
                         {% if ex.guide.visible == 2 %}
                         <div id="dop{{ex._id}}" class="element _size col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                            <a href="/profile/{{ ex.guide._id }}"><div style="background-image: url('{{ ex.guide.img }}')" class="element-img col-md-12"></div></a>
+                            <a href="/profile/{{ ex.guide._id }}"><div style="background-image: url('{{domain}}{{ ex.guide.img }}')" class="element-img col-md-12"></div></a>
                             <div class="element-info col-md-12">
                                 <h3 class="element-name">{{ ex.guide.name }}</h3>
                                 <h4>Описание:</h4>

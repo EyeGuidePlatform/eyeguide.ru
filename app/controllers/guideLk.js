@@ -10,7 +10,10 @@ const staticModel = require('../models/static').staticModel;
 exports.getGuideOptionsPage = async (req, res) => {
     let id = req.session.guide.id,
         weekendsData = await guideModel.getWeekends(id);
-    res.render('gid_options.html', { id: id, weekends: weekendsData});
+    res.render('gid_options.html', { 
+        id: id, 
+        weekends: weekendsData
+    });
 }
 
 /**
@@ -98,7 +101,12 @@ exports.getProfilePage = async (req, res) => {
         guide = await guideModel.getGuide(id),
         cities = await staticModel.getCities(req.locale),
         languages = await staticModel.getLangs(req.locale);
-    res.render('gid_profile.html', {guide: guide, cities: cities, languages});
+    res.render('gid_profile.html', {
+        guide: guide, 
+        cities: cities, 
+        languages,
+        domain: require('./../../config').domain
+    });
 }
 
 // PUT запрос на обновление статуса заказа до 1 (взят)

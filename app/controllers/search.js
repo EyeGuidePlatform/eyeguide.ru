@@ -37,6 +37,7 @@ exports.getSearchPageGuides = async (req,res) => {
     guides = guides.slice(0, 9);
 
     res.render('searchGuides.html', {
+        domain: require('./../../config').domain,
         guides: guides,
         cities: cities,
         languages: langs,
@@ -63,6 +64,7 @@ exports.getSearchPagePlaces = async (req,res) => {
     places = places.slice(0, 9);
 
     res.render('searchPlaces.html', {
+        domain: require('./../../config').domain,
         places: places,
         cities: cities,
         selectedCity: req.query.city,

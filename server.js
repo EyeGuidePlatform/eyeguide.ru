@@ -60,8 +60,14 @@ app.use(
     expressSanitizer(),
     cookieParser(),
     i18n.init,
-    //ssl(),
-    flash()
+    flash(),
+    (req, res, next) => {
+        if (!/https/.test(req.protocol) && require('./config').production) {
+            res.redirect("https://" + req.headers.host + req.url);
+        } else {
+            return next();
+        }
+    }
 );
 
 app.use(function (req, res, next) {

@@ -27,7 +27,7 @@
         <div class="row">
 
           <div class="col-md-12">
-            <div class="profile_photo" style="background-image: url('{{ guide.img }}')">
+            <div class="profile_photo" style="background-image: url('{{domain}}{{ guide.img }}')">
               <form class="imgForm" data-role='input_photo' action="/guide/changePhoto" method="POST" enctype="multipart/form-data">
                 <input type="file" id="img" name="img" accept="image/*">
                 <button type="click" class="edit edit_photo">

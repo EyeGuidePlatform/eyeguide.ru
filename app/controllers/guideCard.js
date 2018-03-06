@@ -17,7 +17,8 @@ exports.getProfile = async (req, res)=>{
             place: guide.place,
             session: req.session.admin,
             guide,
-            eXs
+            eXs,
+            domain: require('./../../config').domain
         });
     }
 }

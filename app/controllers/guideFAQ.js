@@ -5,7 +5,8 @@ exports.getGuideFAQpage = (req, res) => {
     
     if(req.session.guide){
         res.render('guideFAQ.html',{
-            guideName: req.session.guide.name
+            guideName: req.session.guide.name,
+            domain: require('./../../config').domain
         });
     } 
     else res.redirect('/FAQ');

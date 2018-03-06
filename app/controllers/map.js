@@ -41,7 +41,8 @@ exports.getCityPage = async (req, res) => {
         places: places,
         lang: req.locale,
         city: city,
-        noGuides
+        noGuides,
+        domain: require('./../../config').domain
     });
 }
 

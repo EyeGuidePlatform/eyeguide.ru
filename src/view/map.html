@@ -45,7 +45,7 @@
                     <div class="elements row">
                         {% for guide in guides %}
                         <a href="/profile/{{ guide._id }}" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
-                            <div style="background-image: url('{{ guide.img }}')" class="element-img col-md-12"></div>
+                            <div style="background-image: url('{{domain}}{{ guide.img }}')" class="element-img col-md-12"></div>
                             <div class="element-info col-md-12">
                                 <h3 class="element-name">{{ guide.name }}</h3>
                                 <p class="element-stats">
@@ -73,7 +73,7 @@
                     <div class="elements row">
                         {% for place in places %}
                         <a href="/place/{{ place._id }}" class="element col-lg-4 col-md-6 col-sm-4 col-xs-6">
-                            <div style="background-image: url('{{ place.img }}')" class="element-img col-md-12"></div>
+                            <div style="background-image: url('{{domain}}{{ place.img }}')" class="element-img col-md-12"></div>
                             <div class="element-info col-md-12">
                                 <h3 class="element-name">{{ place.name }}</h3>
                                 <p class="element-stats">

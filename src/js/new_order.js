@@ -4,6 +4,7 @@ const selectForm = new Choices('#select_form');
 let placesArray, guidesArray, excursionArray
 window.onload = () => {
 
+ 
   if (document.querySelector('#regForm .tab div').id === "guide") {
     let check = document.querySelector('#guide');
     guideId = check.getAttribute('value');
@@ -26,8 +27,10 @@ window.onload = () => {
 
 
   } else if (document.querySelector('#regForm .tab div').id === "place") {
-    let check = document.querySelector('#place');
-    placeId = check.getAttribute('value');
+    let check_place = document.querySelector('#place_check'),
+      check_guide = document.querySelector('#guide_check');
+    placeId = check_place.getAttribute('value');
+    guideId = check_guide.getAttribute('value');
 
 
     (async () => {
@@ -39,12 +42,11 @@ window.onload = () => {
           label: `${guide.surname} ${guide.name}`
         };
         items.push(item);
-
       });
 
 
       // Обновляем гидов, принадлежащие выбранном месту
-      selectForm.setChoices(items, 'value', 'label', false);
+      //selectForm.setChoices(items, 'value', 'label', false);
     })();
   }
 
@@ -95,14 +97,14 @@ function showTab(n) {
   fixStepIndicator(n)
 }
 
-function nextPrev(n) {
+async function nextPrev(n) {
   // This function will figure out which tab to display
   let x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
   if (n == 1 && !validateForm()) return false;
   // if you have reached the end of the form...
   if (currentTab + n >= x.length) {
-    $('.price').text(getPrice($('input[name="people"').val()));
+    $('.price').text(await getPrice($('input[name="people"').val()));
     $('#myModal').modal('toggle')
     return false;
   }
@@ -122,9 +124,7 @@ function validateForm() {
   y = x[currentTab].getElementsByTagName("input");
   (async () => {
     excursionArray = await getExc(guideId, placeId)
-    console.log(excursionArray);
   })();
-
   //   A loop that checks every input field in the current tab:
   for (i = 0; i < y.length; i++) {
     if (y[i].name == 'people') {
@@ -145,7 +145,6 @@ function validateForm() {
 
         (async () => {
           excursionArray = await getExc(guideId, placeId)
-          console.log(excursionArray);
         })();
 
         continue
@@ -173,7 +172,6 @@ function fixStepIndicator(n) {
 
 const createBtn = document.querySelector('#createOrderBtn')
 createBtn.addEventListener('click', (e) => {
-
   const myForm = document.querySelector('#regForm')
   const order = new FormData(myForm)
   const buffer = {}
@@ -227,8 +225,9 @@ selectForm.passedElement.addEventListener('change', (e) => {
 
 })
 
-getPrice = function(people) {
-  let totalPrice
+async function getPrice(people) {
+  let totalPrice;
+
   for (let i = excursionArray.prices.length-1; i >= 0; i--) {
     if (excursionArray.prices[i].people[0] <= people) {
       totalPrice = excursionArray.prices[i].price * people

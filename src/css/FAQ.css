@@ -74,3 +74,18 @@ body {
     cursor: pointer;
 }
 
+.spoiler{
+    color:rgb(2, 2, 148);
+    font-size: 14pt;
+}
+details{
+    margin:2%;
+}
+.spoiler-block{
+    padding: 30px;
+}
+
+.spoiler-block img{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
