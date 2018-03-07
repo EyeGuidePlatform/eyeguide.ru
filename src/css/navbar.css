@@ -133,3 +133,23 @@ body a {
         background-color: #fff;
     }
 }
+
+#bs-navbar{
+    font-size: 15pt;
+}
+
+.ul-navbar {
+    margin-left: 15px;
+    display: inline-block;
+    position: relative;
+  }
+  
+.ul-navbar:after {
+    position: absolute;
+    content: '';
+    border-bottom: 5px solid #2ecc71;
+    width: 60%;
+    bottom: -2px;
+    left: 30%;
+  }
+  
